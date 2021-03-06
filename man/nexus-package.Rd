@@ -7,6 +7,8 @@
 \alias{nexus}
 \title{nexus: Sourcing Archaeological Materials by Chemical Composition}
 \description{
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
 Sourcing Archaeological Materials by Chemical Composition.
 }
 \details{

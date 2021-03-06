@@ -37,3 +37,6 @@
 #' @docType package
 #' @keywords internal
 "_PACKAGE"
+
+#' @import arkhe
+NULL
