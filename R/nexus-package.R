@@ -39,4 +39,7 @@
 "_PACKAGE"
 
 #' @import arkhe
+#' @importFrom methods as as<- callGeneric callNextMethod
+#' .hasSlot initialize is new setClass
+#' setGeneric setMethod slot slot<- slotNames validObject .valueClassTest
 NULL
