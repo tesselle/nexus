@@ -5,16 +5,16 @@ NULL
 #' Log-Ratio
 #'
 #' S4 classes to represent log-ratio data transformations.
-#' @slot parts A \code{\link{character}} vector XXX.
-#' @slot base A \code{\link{numeric}} vector XXX.
-#' @slot mean A \code{\link{numeric}} vector XXX.
-#' @slot rationing_values A \code{\link{numeric}} vector XXX.
-#' @slot rationing_index An \code{\link{integer}} vector XXX.
-#' @slot pivot An \code{\link{integer}} vector XXX.
-#' @slot ratio A \code{\link{character}} vector XXX.
-#' @slot norm A \code{\link{numeric}} vector XXX.
+#' @slot parts A [`character`] vector XXX.
+#' @slot base A [`numeric`] vector XXX.
+#' @slot mean A [`numeric`] vector XXX.
+#' @slot rationing_values A [`numeric`] vector XXX.
+#' @slot rationing_index An [`integer`] vector XXX.
+#' @slot pivot An [`integer`] vector XXX.
+#' @slot ratio A [`character`] vector XXX.
+#' @slot norm A [`numeric`] vector XXX.
 #' @note
-#'  These classes inherit from \code{\link{matrix}}.
+#'  These classes inherit from [`matrix`].
 #' @author N. Frerebeau
 #' @family matrix
 #' @docType class
@@ -67,6 +67,19 @@ NULL
 )
 
 # OutliersIndex ================================================================
+#' Outliers
+#'
+#' An S4 class to store the result of outlier detection.
+#' @slot samples A [`character`] vector XXX.
+#' @slot groups A [`character`] vector XXX.
+#' @slot distances A [`numeric`] vector XXX.
+#' @slot outliers A [`logical`] vector giving the squared Mahalanobis distance.
+#' @slot limit An [`numeric`] vector XXX.
+#' @slot robust An [`logical`] vector XXX.
+#' @author N. Frerebeau
+#' @family outliers
+#' @docType class
+#' @aliases OutlierIndex-class
 .OutlierIndex <- setClass(
   Class = "OutlierIndex",
   slots = c(

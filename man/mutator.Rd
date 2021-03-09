@@ -23,8 +23,6 @@ get_outliers(x)
 \arguments{
 \item{x}{An object from which to get or set element(s) (typically a
 \verb{*Matrix} object).}
-
-\item{value}{A possible value for the element(s) of \code{x}.}
 }
 \value{
 An object of the same sort as \code{x} with the new values assigned.

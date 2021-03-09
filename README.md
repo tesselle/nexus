@@ -13,7 +13,11 @@ has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!-- badges: end -->
 
-Compositional data analysis for archaeological materials sourcing.
+Exploration and analysis of compositional data in the framework of
+Aitchison (1986). This package provides tools for chemical
+fingerprinting and source tracking of ancient materials.
+
+**Initial development is in progress.**
 
 ## Installation
 
@@ -34,14 +38,13 @@ remotes::install_github("tesselle/nexus")
 ## Contributing
 
 Please note that the **nexus** project is released with a [Contributor
-Code of
-Conduct](https://github.com/tesselle/nexus/blob/master/.github/CODE_OF_CONDUCT.md).
-By contributing to this project, you agree to abide by its terms.
+Code of Conduct](https://www.tesselle.org/conduct.html). By contributing
+to this project, you agree to abide by its terms.
 
 ## Acknowledgements
 
 This work received a state financial support managed by the Agence
-Nationale de la Recherche (France) throught the programs
-*Investissements d’avenir* (ref.
-[ANR-10-LABX-52](https://lascarbx.labex.u-bordeaux.fr)) and *IRANGKOR*
-(ref. [ANR-14-CE31-0007](https://anr.fr/Project-ANR-14-CE31-0007)).
+Nationale de la Recherche (France) through the programs *Investissements
+d’avenir* (ref. [ANR-10-LABX-52](https://lascarbx.labex.u-bordeaux.fr))
+and *IRANGKOR* (ref.
+[ANR-14-CE31-0007](https://anr.fr/Project-ANR-14-CE31-0007)).

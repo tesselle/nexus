@@ -9,9 +9,9 @@ NULL
 setMethod(
   f = "find_outliers",
   signature = signature(object = "CompositionMatrix"),
-  definition = function(object, level = 0.975, robust = TRUE) {
+  definition = function(object, level = 0.975, robust = TRUE, alpha = 0.5) {
 
-    distance <- sqrt(stats_mahalanobis(object, robust = robust))
+    distance <- sqrt(stats_mahalanobis(object, robust = robust, alpha = alpha))
     limit <- sqrt(stats::qchisq(p = level, df = ncol(object) - 1))
 
     .OutlierIndex(

@@ -34,7 +34,7 @@ transform_pivot(object, ...)
 \S4method{transform_pivot}{CompositionMatrix}(object, pivot = 1, base = exp(1))
 }
 \arguments{
-\item{object}{A \linkS4class{ChemicalMatrix} object.}
+\item{object}{A \linkS4class{CompositionMatrix} object.}
 
 \item{...}{Currently not used.}
 
@@ -44,8 +44,7 @@ what your are doing.}
 
 \item{j}{An \code{\link{integer}} giving the index of the rationing part.}
 
-\item{pivot}{An \code{\link{integer}} giving the index of the pivotal
-variable.}
+\item{pivot}{An \code{\link{integer}} giving the index of the pivotal variable.}
 }
 \value{
 A \linkS4class{LogRatio} object.
@@ -71,18 +70,15 @@ ilr2 <- transform_pivot(coda)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
-London: Chapman and Hall.
-DOI: \href{https://dx.doi.org/10.1007/978-94-009-4109-0}{10.1007/978-94-009-4109-0}.
+London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
 
 Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
 (2003). Isometric Logratio Transformations for Compositional Data Analysis.
-\emph{Mathematical Geology}, 35(3), 279-300.
-DOI: \href{https://dx.doi.org/10.1023/A:1023818214614}{10.1023/A:1023818214614}.
+\emph{Mathematical Geology}, 35(3), 279-300. \doi{10.1023/A:1023818214614}.
 
 Fišerová, E. & Hron, K. (2011). On the Interpretation of Orthonormal
 Coordinates for Compositional Data. \emph{Mathematical Geosciences}, 43(4),
-455‑468. DOI:
-\href{https://doi.org/10.1007/s11004-011-9333-x}{10.1007/s11004-011-9333-x}.
+455‑468. \doi{10.1007/s11004-011-9333-x}.
 }
 \author{
 N. Frerebeau

@@ -21,7 +21,7 @@ count_outliers(object)
 
 plot_outliers(object, data, ...)
 
-\S4method{find_outliers}{CompositionMatrix}(object, level = 0.975, robust = TRUE)
+\S4method{find_outliers}{CompositionMatrix}(object, level = 0.975, robust = TRUE, alpha = 0.5)
 
 \S4method{count_outliers}{OutlierIndex}(object)
 
@@ -30,9 +30,11 @@ plot_outliers(object, data, ...)
 \S4method{plot_outliers}{OutlierIndex,CompositionMatrix}(object, data, select = NULL)
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix} object.}
+\item{object}{An \linkS4class{OutlierIndex} object.}
 
 \item{...}{Currently not used.}
+
+\item{data}{A \linkS4class{CompositionMatrix} object.}
 
 \item{level}{A length-one \code{\link{numeric}} vector giving the
 significance level. \code{level} is used as a cut-off value for outlier
@@ -40,10 +42,17 @@ detection: observations with larger (squared) Mahalanobis distance are
 considered as potential outliers.}
 
 \item{robust}{A \code{\link{logical}} scalar: should robust estimators be
-used (see \code{\link[robustbase]{covMcd}})?}
+used (see \code{\link[robustbase:covMcd]{robustbase::covMcd()}})?}
+
+\item{alpha}{A length-one \code{\link{numeric}} vector controlling the size of the
+subsets over which the determinant is minimized (see
+\code{\link[robustbase:covMcd]{robustbase::covMcd()}}). Only used if \code{robust} is \code{TRUE}.}
+
+\item{select}{A \code{\link{numeric}} or \code{\link{character}} vector giving the selection of
+the parts that are drawn.}
 }
 \value{
-\code{find_outliers} returns an \linkS4class{OutlierIndex} object.
+\code{find_outliers()} returns an \linkS4class{OutlierIndex} object.
 }
 \description{
 Outlier Detection
@@ -78,6 +87,15 @@ Using Robust Methods. \emph{Mathematical Geosciences}, 40(3), 233-248.
 Filzmoser, P., Hron, K. & Reimann, C. (2012). Interpretation of multivariate
 outliers for compositional data. \emph{Computers & Geosciences}, 39, 77-85.
 \doi{10.1016/j.cageo.2011.06.014}.
+
+Santos, F. (2020). Modern methods for old data: An overview of some robust
+methods for outliers detection with applications in osteology. \emph{Journal of
+Archaeological Science: Reports}, 32, 102423.
+\doi{10.1016/j.jasrep.2020.102423}.
+}
+\seealso{
+Other outliers: 
+\code{\link{OutlierIndex-class}}
 }
 \author{
 N. Frerebeau

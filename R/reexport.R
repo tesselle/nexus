@@ -36,6 +36,18 @@ arkhe::remove_empty
 #' @export
 arkhe::get_groups
 
+#' @importFrom arkhe set_groups<-
+#' @export
+arkhe::`set_groups<-`
+
 #' @importFrom arkhe has_groups
 #' @export
 arkhe::has_groups
+
+#' @importFrom arkhe get_samples
+#' @export
+arkhe::get_samples
+
+#' @importFrom arkhe set_samples<-
+#' @export
+arkhe::`set_samples<-`
