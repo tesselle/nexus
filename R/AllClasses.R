@@ -65,3 +65,16 @@ NULL
   ),
   contains = "LogRatio"
 )
+
+# OutliersIndex ================================================================
+.OutlierIndex <- setClass(
+  Class = "OutlierIndex",
+  slots = c(
+    samples = "character",
+    groups = "character",
+    distances = "numeric",
+    outliers = "logical",
+    limit = "numeric",
+    robust = "logical"
+  )
+)

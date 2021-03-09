@@ -17,26 +17,32 @@ Authors@R:
              role = "ctb",
              email = "brice.lebrun@u-bordeaux-montaigne.fr",
              comment = c(ORCID = "0000-0001-7503-8685")))
-Maintainer: Nicolas Frerebeau
-    <nicolas.frerebeau@u-bordeaux-montaigne.fr>
+Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: Sourcing Archaeological Materials by Chemical Composition.
 License: GPL (>= 3)
-URL: https://nexus.tesselle.org,
-    https://github.com/tesselle/nexus,
+URL: https://nexus.tesselle.org, https://github.com/tesselle/nexus,
 BugReports: https://github.com/tesselle/nexus/issues
+Imports: 
+    arkhe (>= 0.3.0),
+    ggplot2,
+    rlang,
+    robustbase
+Suggests: 
+    folio,
+    khroma
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
-Imports: 
-    arkhe (>= 0.3.0)
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
+    'coerce.R'
+    'mutators.R'
     'nexus-package.R'
+    'outliers.R'
     'reexport.R'
     'statistics.R'
+    'subset.R'
     'transform.R'
     'utilities.R'
-Suggests: 
-    folio

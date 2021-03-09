@@ -31,3 +31,11 @@ arkhe::remove_zero
 #' @importFrom arkhe remove_empty
 #' @export
 arkhe::remove_empty
+
+#' @importFrom arkhe get_groups
+#' @export
+arkhe::get_groups
+
+#' @importFrom arkhe has_groups
+#' @export
+arkhe::has_groups

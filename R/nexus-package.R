@@ -39,7 +39,12 @@
 "_PACKAGE"
 
 #' @import arkhe
+#' @importFrom ggplot2 aes element_blank facet_wrap geom_hline geom_jitter
+#' geom_point ggplot labs theme scale_x_continuous scale_y_continuous
 #' @importFrom methods as as<- callGeneric callNextMethod
 #' .hasSlot initialize is new setClass
 #' setGeneric setMethod slot slot<- slotNames validObject .valueClassTest
+#' @importFrom stats cov mahalanobis qchisq
+#' @importFrom robustbase covMcd
+#' @importFrom rlang .data
 NULL

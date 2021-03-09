@@ -11,6 +11,8 @@
 \alias{remove_NA}
 \alias{remove_zero}
 \alias{remove_empty}
+\alias{get_groups}
+\alias{has_groups}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -18,6 +20,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe:CompositionMatrix-class]{CompositionMatrix}}, \code{\link[arkhe:IncidenceMatrix-class]{IncidenceMatrix}}, \code{\link[arkhe:coerce]{as_composition}}, \code{\link[arkhe:coerce]{as_features}}, \code{\link[arkhe:clean]{remove_NA}}, \code{\link[arkhe:clean]{remove_empty}}, \code{\link[arkhe:clean]{remove_zero}}, \code{\link[arkhe:clean]{replace_NA}}}
+  \item{arkhe}{\code{\link[arkhe:CompositionMatrix-class]{CompositionMatrix}}, \code{\link[arkhe:IncidenceMatrix-class]{IncidenceMatrix}}, \code{\link[arkhe:coerce]{as_composition}}, \code{\link[arkhe:coerce]{as_features}}, \code{\link[arkhe:mutator]{get_groups}}, \code{\link[arkhe:mutator]{has_groups}}, \code{\link[arkhe:clean]{remove_NA}}, \code{\link[arkhe:clean]{remove_empty}}, \code{\link[arkhe:clean]{remove_zero}}, \code{\link[arkhe:clean]{replace_NA}}}
 }}
 
