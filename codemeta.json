@@ -1,0 +1,165 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "nexus",
+  "description": "Exploration and analysis of compositional data in the\n    framework of Aitchison (1986) <isbn: 9780412280603>. This package\n    provides tools for chemical fingerprinting and source tracking of\n    ancient materials.",
+  "name": "nexus: Sourcing Archaeological Materials by Chemical Composition",
+  "codeRepository": "https://github.com/tesselle/nexus",
+  "relatedLink": "https://packages.tesselle.org/nexus",
+  "issueTracker": "https://github.com/tesselle/nexus/issues",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "0.0.0.9000",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Nicolas",
+      "familyName": "Frerebeau",
+      "email": "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+      "@id": "https://orcid.org/0000-0001-5759-4944"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Anne",
+      "familyName": "Philippe",
+      "email": "anne.philippe@univ-nantes.fr",
+      "@id": "https://orcid.org/0000-0002-5331-5087"
+    }
+  ],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Brice",
+      "familyName": "Lebrun",
+      "email": "brice.lebrun@u-bordeaux-montaigne.fr",
+      "@id": "https://orcid.org/0000-0001-7503-8685"
+    }
+  ],
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Nicolas",
+      "familyName": "Frerebeau",
+      "email": "nicolas.frerebeau@u-bordeaux-montaigne.fr",
+      "@id": "https://orcid.org/0000-0001-5759-4944"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "folio",
+      "name": "folio",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=folio"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "khroma",
+      "name": "khroma",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=khroma"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "arkhe",
+      "name": "arkhe",
+      "version": ">= 0.3.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=arkhe"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ggplot2",
+      "name": "ggplot2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "methods",
+      "name": "methods"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rlang",
+      "name": "rlang",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rlang"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "robustbase",
+      "name": "robustbase",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=robustbase"
+    }
+  ],
+  "readme": "https://github.com/tesselle/nexus/blob/master/README.md",
+  "fileSize": "127.721KB",
+  "contIntegration": "https://codecov.io/gh/tesselle/nexus",
+  "developmentStatus": "https://www.repostatus.org/#wip",
+  "keywords": ["archaeology", "archaeological-science", "archaeometry", "provenance-studies", "compositional-data", "r-package"]
+}

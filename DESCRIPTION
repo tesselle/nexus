@@ -23,7 +23,7 @@ Description: Exploration and analysis of compositional data in the
     provides tools for chemical fingerprinting and source tracking of
     ancient materials.
 License: GPL (>= 3)
-URL: https://nexus.tesselle.org, https://github.com/tesselle/nexus,
+URL: https://packages.tesselle.org/nexus, https://github.com/tesselle/nexus,
 BugReports: https://github.com/tesselle/nexus/issues
 Imports: 
     arkhe (>= 0.3.0),

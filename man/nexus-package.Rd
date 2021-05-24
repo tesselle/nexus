@@ -31,7 +31,7 @@ de la Recherche (France) through the programs \emph{Investissements d'avenir}
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://nexus.tesselle.org}
+  \item \url{https://packages.tesselle.org/nexus}
   \item \url{https://github.com/tesselle/nexus,}
   \item Report bugs at \url{https://github.com/tesselle/nexus/issues}
 }
