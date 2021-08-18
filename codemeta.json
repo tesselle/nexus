@@ -1,11 +1,14 @@
 {
-  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "nexus",
   "description": "Exploration and analysis of compositional data in the\n    framework of Aitchison (1986) <isbn: 9780412280603>. This package\n    provides tools for chemical fingerprinting and source tracking of\n    ancient materials.",
   "name": "nexus: Sourcing Archaeological Materials by Chemical Composition",
   "codeRepository": "https://github.com/tesselle/nexus",
-  "relatedLink": "https://packages.tesselle.org/nexus",
+  "relatedLink": "https://packages.tesselle.org/nexus/",
   "issueTracker": "https://github.com/tesselle/nexus/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.0.0.9000",
@@ -104,6 +107,12 @@
   "softwareRequirements": [
     {
       "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.5"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "arkhe",
       "name": "arkhe",
       "version": ">= 0.3.0",
@@ -158,8 +167,15 @@
     }
   ],
   "readme": "https://github.com/tesselle/nexus/blob/master/README.md",
-  "fileSize": "127.721KB",
+  "fileSize": "127.748KB",
   "contIntegration": "https://codecov.io/gh/tesselle/nexus",
   "developmentStatus": "https://www.repostatus.org/#wip",
-  "keywords": ["archaeology", "archaeological-science", "archaeometry", "provenance-studies", "compositional-data", "r-package"]
+  "keywords": [
+    "archaeology",
+    "archaeological-science",
+    "archaeometry",
+    "provenance-studies",
+    "compositional-data",
+    "r-package"
+  ]
 }
