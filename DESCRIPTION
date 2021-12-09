@@ -34,6 +34,7 @@ Imports:
     rlang,
     robustbase
 Suggests: 
+    testthat (>= 3.0.0),
     folio,
     khroma,
     knitr,
@@ -43,11 +44,12 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.1
+RoxygenNote: 7.1.2
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
     'coerce.R'
+    'lead.R'
     'mutators.R'
     'nexus-package.R'
     'outliers.R'
@@ -56,3 +58,4 @@ Collate:
     'subset.R'
     'transform.R'
     'utilities.R'
+Config/testthat/edition: 3
