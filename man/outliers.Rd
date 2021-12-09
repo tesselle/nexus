@@ -70,7 +70,7 @@ count_outliers(out)
 ## Plot
 plot_outliers(out) +
   ggplot2::theme_bw() +
-  khroma::scale_colour_contrast()
+  khroma::scale_colour_highcontrast()
 
 plot_outliers(out, coda, select = 1:6) +
   khroma::scale_colour_YlOrBr(range = c(0.3, 1))
@@ -94,10 +94,10 @@ Archaeological Science: Reports}, 32, 102423.
 \doi{10.1016/j.jasrep.2020.102423}.
 }
 \seealso{
-Other outliers: 
+Other outlier detection methods: 
 \code{\link{OutlierIndex-class}}
 }
 \author{
 N. Frerebeau
 }
-\concept{outliers}
+\concept{outlier detection methods}

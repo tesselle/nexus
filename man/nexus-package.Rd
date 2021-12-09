@@ -9,10 +9,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-Exploration and analysis of compositional data in the
-    framework of Aitchison (1986) <isbn: 9780412280603>. This package
-    provides tools for chemical fingerprinting and source tracking of
-    ancient materials.
+Exploration and analysis of compositional data in the framework of Aitchison (1986) <isbn: 9780412280603>. This package provides tools for chemical fingerprinting and source tracking of ancient materials.
 }
 \details{
 \tabular{ll}{
@@ -21,12 +18,6 @@ Exploration and analysis of compositional data in the
 \strong{Version:} \tab 0.0.0.9000 \cr
 \strong{License:} \tab GPL-3 \cr
 }
-}
-\note{
-This work received a state financial support managed by the Agence Nationale
-de la Recherche (France) through the programs \emph{Investissements d'avenir}
-(ref. \href{https://lascarbx.labex.u-bordeaux.fr}{ANR-10-LABX-52}) and
-\emph{IRANGKOR} (ref. \href{https://anr.fr/Project-ANR-14-CE31-0007}{ANR-14-CE31-0007}).
 }
 \seealso{
 Useful links:

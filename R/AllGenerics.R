@@ -2,19 +2,23 @@
 #' @include AllClasses.R
 NULL
 
+# Set generics from other packages =============================================
+setGeneric("has_groups", package = "arkhe")
+setGeneric("get_groups", package = "arkhe")
+
 # Extract ======================================================================
 ## Mutators --------------------------------------------------------------------
 #' Get or Set Parts of an Object
 #'
 #' Getters and setters to retrieve or set parts of an object.
-#' @param x An object from which to get or set element(s) (typically a
-#'  `*Matrix` object).
+#' @param x An object from which to get or set element(s) (typically a `*Matrix`
+#'  object).
 # @param value A possible value for the element(s) of `x`.
 #' @return
 #'  An object of the same sort as `x` with the new values assigned.
 #' @author N. Frerebeau
 #' @docType methods
-#' @family mutator
+#' @family mutators
 #' @name mutator
 #' @rdname mutator
 #' @aliases get set
@@ -39,7 +43,7 @@ setGeneric(
 #'  A subsetted object.
 #' @author N. Frerebeau
 #' @docType methods
-#' @family mutator
+#' @family mutators
 #' @name subset
 #' @rdname subset
 NULL
@@ -83,7 +87,7 @@ NULL
 #' @example inst/examples/ex-outliers.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family outliers
+#' @family outlier detection methods
 #' @name outliers
 #' @rdname outliers
 NULL
@@ -135,7 +139,7 @@ setGeneric(
 #' @example inst/examples/ex-transform.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family transformation
+#' @family transformations
 #' @name transform
 #' @rdname transform
 NULL

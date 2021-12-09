@@ -77,7 +77,7 @@ NULL
 #' @slot limit An [`numeric`] vector XXX.
 #' @slot robust An [`logical`] vector XXX.
 #' @author N. Frerebeau
-#' @family outliers
+#' @family outlier detection methods
 #' @docType class
 #' @aliases OutlierIndex-class
 .OutlierIndex <- setClass(

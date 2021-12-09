@@ -6,7 +6,8 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/tesselle/nexus/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/nexus/actions)
-[![codecov](https://codecov.io/gh/tesselle/nexus/branch/master/graph/badge.svg)](https://codecov.io/gh/tesselle/nexus)
+[![codecov](https://codecov.io/gh/tesselle/nexus/branch/main/graph/badge.svg)](https://codecov.io/gh/tesselle/nexus)
+[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/nexus/badge/main)](https://www.codefactor.io/repository/github/tesselle/nexus/overview/main)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/nexus)](https://tesselle.r-universe.dev)
 
@@ -43,10 +44,17 @@ Please note that the **nexus** project is released with a [Contributor
 Code of Conduct](https://www.tesselle.org/conduct.html). By contributing
 to this project, you agree to abide by its terms.
 
-## Acknowledgements
+## References
 
-This work received a state financial support managed by the Agence
-Nationale de la Recherche (France) through the programs *Investissements
-d’avenir* (ref. [ANR-10-LABX-52](https://lascarbx.labex.u-bordeaux.fr))
-and *IRANGKOR* (ref.
-[ANR-14-CE31-0007](https://anr.fr/Project-ANR-14-CE31-0007)).
+<div id="refs" class="references csl-bib-body hanging-indent">
+
+<div id="ref-aitchison1986" class="csl-entry">
+
+Aitchison, J. 1986. *The Statistical Analysis of Compositional Data*.
+Monographs on Statistics and Applied Probability. Londres, UK ; New
+York, USA: Chapman and Hall.
+<http://dx.doi.org/10.1007/978-94-009-4109-0>.
+
+</div>
+
+</div>

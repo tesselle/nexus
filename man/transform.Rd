@@ -83,4 +83,4 @@ Coordinates for Compositional Data. \emph{Mathematical Geosciences}, 43(4),
 \author{
 N. Frerebeau
 }
-\concept{transformation}
+\concept{transformations}

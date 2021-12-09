@@ -10,7 +10,7 @@ count_outliers(out)
 ## Plot
 plot_outliers(out) +
   ggplot2::theme_bw() +
-  khroma::scale_colour_contrast()
+  khroma::scale_colour_highcontrast()
 
 plot_outliers(out, coda, select = 1:6) +
   khroma::scale_colour_YlOrBr(range = c(0.3, 1))

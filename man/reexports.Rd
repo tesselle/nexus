@@ -23,6 +23,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe:CompositionMatrix-class]{CompositionMatrix}}, \code{\link[arkhe:IncidenceMatrix-class]{IncidenceMatrix}}, \code{\link[arkhe:coerce]{as_composition}}, \code{\link[arkhe:coerce]{as_features}}, \code{\link[arkhe:mutator]{get_groups}}, \code{\link[arkhe:mutator]{get_samples}}, \code{\link[arkhe:mutator]{has_groups}}, \code{\link[arkhe:remove]{remove_NA}}, \code{\link[arkhe:remove]{remove_empty}}, \code{\link[arkhe:remove]{remove_zero}}, \code{\link[arkhe:replace]{replace_NA}}, \code{\link[arkhe:mutator]{set_groups<-}}, \code{\link[arkhe:mutator]{set_samples<-}}}
+  \item{arkhe}{\code{\link[arkhe:CompositionMatrix-class]{CompositionMatrix}}, \code{\link[arkhe:IncidenceMatrix-class]{IncidenceMatrix}}, \code{\link[arkhe:coerce]{as_composition}}, \code{\link[arkhe:coerce]{as_features}}, \code{\link[arkhe:mutators]{get_groups}}, \code{\link[arkhe:mutators]{get_samples}}, \code{\link[arkhe:mutators]{has_groups}}, \code{\link[arkhe:remove]{remove_NA}}, \code{\link[arkhe:remove]{remove_empty}}, \code{\link[arkhe:remove]{remove_zero}}, \code{\link[arkhe:replace]{replace_NA}}, \code{\link[arkhe:mutators]{set_groups<-}}, \code{\link[arkhe:mutators]{set_samples<-}}}
 }}
 

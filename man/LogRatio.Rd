@@ -38,7 +38,11 @@ S4 classes to represent log-ratio data transformations.
 \note{
 These classes inherit from \code{\link{matrix}}.
 }
+\seealso{
+Other log-ratio transformations: 
+\code{\link{transform}()}
+}
 \author{
 N. Frerebeau
 }
-\concept{matrix}
+\concept{log-ratio transformations}

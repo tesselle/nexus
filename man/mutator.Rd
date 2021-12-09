@@ -21,8 +21,8 @@ get_outliers(x)
 \S4method{get_outliers}{OutlierIndex}(x)
 }
 \arguments{
-\item{x}{An object from which to get or set element(s) (typically a
-\verb{*Matrix} object).}
+\item{x}{An object from which to get or set element(s) (typically a \verb{*Matrix}
+object).}
 }
 \value{
 An object of the same sort as \code{x} with the new values assigned.
@@ -31,10 +31,10 @@ An object of the same sort as \code{x} with the new values assigned.
 Getters and setters to retrieve or set parts of an object.
 }
 \seealso{
-Other mutator: 
+Other mutators: 
 \code{\link{subset}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{mutator}
+\concept{mutators}

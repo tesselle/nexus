@@ -25,10 +25,10 @@ An S4 class to store the result of outlier detection.
 }}
 
 \seealso{
-Other outliers: 
+Other outlier detection methods: 
 \code{\link{outliers}}
 }
 \author{
 N. Frerebeau
 }
-\concept{outliers}
+\concept{outlier detection methods}

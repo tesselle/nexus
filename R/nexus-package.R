@@ -27,11 +27,6 @@
 #' Université Bordeaux Montaigne\cr
 #' F-33607 Pessac cedex\cr
 #' France
-#' @note
-#' This work received a state financial support managed by the Agence Nationale
-#' de la Recherche (France) through the programs *Investissements d'avenir*
-#' (ref. \href{https://lascarbx.labex.u-bordeaux.fr}{ANR-10-LABX-52}) and
-#' *IRANGKOR* (ref. \href{https://anr.fr/Project-ANR-14-CE31-0007}{ANR-14-CE31-0007}).
 #' @name nexus-package
 #' @aliases nexus-package nexus
 #' @docType package
