@@ -5,3 +5,20 @@ template:
   opengraph:
     twitter:
       creator: "@nfrerebeau"
+
+reference:
+- title: Log-ratio
+  contents:
+  - has_concept("log-ratio transformations")
+- title: Outlier Detection
+  contents:
+  - has_concept("outlier detection methods")
+- title: Isotope Analysis
+  contents:
+  - has_concept("isotope analysis")
+- title: Getters and Setters
+  contents:
+  - has_concept("mutators")
+- title: Datasets
+  contents:
+  - has_concept("datasets")

@@ -11,6 +11,8 @@
 \alias{.ALR}
 \alias{ILR-class}
 \alias{.ILR}
+\alias{PLR-class}
+\alias{.PLR}
 \title{Log-Ratio}
 \description{
 S4 classes to represent log-ratio data transformations.
@@ -24,9 +26,7 @@ S4 classes to represent log-ratio data transformations.
 
 \item{\code{mean}}{A \code{\link{numeric}} vector XXX.}
 
-\item{\code{rationing_values}}{A \code{\link{numeric}} vector XXX.}
-
-\item{\code{rationing_index}}{An \code{\link{integer}} vector XXX.}
+\item{\code{denominator}}{An \code{\link{integer}} vector XXX.}
 
 \item{\code{pivot}}{An \code{\link{integer}} vector XXX.}
 
@@ -40,7 +40,11 @@ These classes inherit from \code{\link{matrix}}.
 }
 \seealso{
 Other log-ratio transformations: 
-\code{\link{transform}()}
+\code{\link{transform_alr}()},
+\code{\link{transform_clr}()},
+\code{\link{transform_ilr}()},
+\code{\link{transform_inverse}()},
+\code{\link{transform_pivot}()}
 }
 \author{
 N. Frerebeau

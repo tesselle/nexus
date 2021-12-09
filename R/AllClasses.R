@@ -8,15 +8,14 @@ NULL
 #' @slot parts A [`character`] vector XXX.
 #' @slot base A [`numeric`] vector XXX.
 #' @slot mean A [`numeric`] vector XXX.
-#' @slot rationing_values A [`numeric`] vector XXX.
-#' @slot rationing_index An [`integer`] vector XXX.
+#' @slot denominator An [`integer`] vector XXX.
 #' @slot pivot An [`integer`] vector XXX.
 #' @slot ratio A [`character`] vector XXX.
 #' @slot norm A [`numeric`] vector XXX.
 #' @note
 #'  These classes inherit from [`matrix`].
 #' @author N. Frerebeau
-#' @family matrix
+#' @family log-ratio transformations
 #' @docType class
 #' @name LogRatio
 #' @rdname LogRatio
@@ -28,7 +27,7 @@ NULL
   Class = "LogRatio",
   slots = c(
     parts = "character",
-    base = "numeric"
+    weights = "numeric"
   ),
   contains = "NumericMatrix"
 )
@@ -37,9 +36,6 @@ NULL
 #' @aliases CLR-class
 .CLR <- setClass(
   Class = "CLR",
-  slots = c(
-    mean = "numeric"
-  ),
   contains = "LogRatio"
 )
 
@@ -48,8 +44,7 @@ NULL
 .ALR <- setClass(
   Class = "ALR",
   slots = c(
-    rationing_values = "numeric",
-    rationing_index = "integer"
+    denominator = "integer"
   ),
   contains = "LogRatio"
 )
@@ -59,11 +54,20 @@ NULL
 .ILR <- setClass(
   Class = "ILR",
   slots = c(
-    pivot = "integer",
     ratio = "character",
-    norm = "numeric"
+    base = "matrix"
   ),
   contains = "LogRatio"
+)
+
+#' @rdname LogRatio
+#' @aliases PLR-class
+.PLR <- setClass(
+  Class = "PLR",
+  slots = c(
+    order = "integer"
+  ),
+  contains = "ILR"
 )
 
 # OutliersIndex ================================================================

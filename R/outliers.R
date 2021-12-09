@@ -92,7 +92,7 @@ setMethod(
     ilr <- matrix(data = NA, nrow = nrow(data), ncol = length(select))
     k <- 1
     for (i in select) {
-      ilr[, k] <- transform_pivot(data, pivot = i)[, 1]
+      ilr[, k] <- transform_pivot(data)[, 1]
       k <- k + 1
     }
     colnames(ilr) <- colnames(data)[select]

@@ -49,6 +49,7 @@ Collate:
     'AllClasses.R'
     'AllGenerics.R'
     'coerce.R'
+    'data.R'
     'lead.R'
     'mutators.R'
     'nexus-package.R'
