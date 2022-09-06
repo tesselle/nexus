@@ -1,6 +1,47 @@
 # CLASSES DEFINITION AND INITIALIZATION
 NULL
 
+# CompositionMatrix ============================================================
+#' Numeric Matrix
+#'
+#' S4 classes that represent a \eqn{m \times p}{m x p} numeric matrix.
+#' @note
+#'  This class inherits from [`matrix`].
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @rdname NumericMatrix
+#' @aliases NumericMatrix-class
+#' @keywords internal
+.NumericMatrix <- setClass(
+  Class = "NumericMatrix",
+  contains = "matrix"
+)
+
+#' Compositional Matrix
+#'
+#' An S4 class to represent compositional data.
+#' @slot totals A [`numeric`] vector giving the absolute row sums.
+#' @slot samples A [`character`] vector.
+#' @slot groups A [`character`] vector.
+#' @inheritParams base::matrix
+#' @seealso [as_composition()]
+#' @example inst/examples/ex-matrix.R
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @rdname CompositionMatrix
+#' @aliases CompositionMatrix-class
+.CompositionMatrix <- setClass(
+  Class = "CompositionMatrix",
+  slots = c(
+    totals = "numeric",
+    samples = "character",
+    groups = "character"
+  ),
+  contains = c("NumericMatrix")
+)
+
 # Transformations ==============================================================
 #' Log-Ratio
 #'

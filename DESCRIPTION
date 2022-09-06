@@ -44,19 +44,24 @@ VignetteBuilder:
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.1
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'
     'coerce.R'
     'data.R'
+    'initialize.R'
     'lead.R'
     'mutators.R'
     'nexus-package.R'
     'outliers.R'
     'reexport.R'
+    'show.R'
     'statistics.R'
     'subset.R'
+    'summary.R'
     'transform.R'
     'utilities.R'
+    'validate.R'
+    'zzz.R'
 Config/testthat/edition: 3

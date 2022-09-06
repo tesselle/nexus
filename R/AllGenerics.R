@@ -3,8 +3,74 @@
 NULL
 
 # Set generics from other packages =============================================
-setGeneric("has_groups", package = "arkhe")
-setGeneric("get_groups", package = "arkhe")
+setGeneric("as_long", package = "arkhe")
+
+# Coerce =======================================================================
+#' Coerce
+#'
+#' Coerces an object to a `CompositionMatrix` object.
+#' @param from An object to be coerced.
+#' @param samples XXX.
+#' @param groups XXX.
+#' @param factor A [`logical`] scalar: should character string be
+#'  coerced to [`factor`]? Default to `FALSE`, if `TRUE` the original ordering is
+#'  preserved.
+#' @param reverse A [`logical`] scalar: should the order of factor levels be
+#'  reversed? Only used if `factor` is `TRUE`. Useful for plotting.
+#' @param ... Currently not used.
+#' @details
+#'  The following methods coerce an object to a `*Matrix` object:
+#'
+#'  \tabular{lll}{
+#'   **Method** \tab **Target** \tab **Details** \cr
+#'   `as_count()` \tab [`matrix`] \tab absolute frequency data \cr
+#'   `as_composition()` \tab [CompositionMatrix-class] \tab relative frequency data \cr
+#'  }
+#'
+#'  \tabular{lll}{
+#'   **Method** \tab **Target** \tab **Details** \cr
+#'   `as_long()` \tab [`data.frame`] \tab long S3 data frame \cr
+#'   `as_features()` \tab [`data.frame`] \tab wide S3 data frame \cr
+#'  }
+#'
+#'  `as_features()` converts a `*Matrix` object to a collection of features:
+#'  a [`data.frame`] with all informations as extra columns (result may differ
+#'  according to the class of `from`).
+#'
+#'  The `CompositionMatrix` class has special slots:
+#'
+#'  * `samples` for replicated measurements/observation,
+#'  * `groups` to group data by site/area.
+#'
+#'  When coercing a `data.frame` to a [CompositionMatrix-class] object, an
+#'  attempt is made to automatically assign values to these slots by mapping
+#'  column names (case insensitive, plural insensitive). This behavior can be
+#'  disabled by setting `options(nexus.autodetect = FALSE)` or overrided by
+#'  explicitly specifying the columns to be used in `as_composition()`.
+#' @return A coerced object.
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family classes
+#' @name coerce
+#' @rdname coerce
+NULL
+
+#' @rdname coerce
+#' @aliases as_count-method
+setGeneric(
+  name = "as_count",
+  def = function(from, ...) standardGeneric("as_count"),
+  valueClass = "matrix"
+)
+
+#' @rdname coerce
+#' @aliases as_composition-method
+setGeneric(
+  name = "as_composition",
+  def = function(from, ...) standardGeneric("as_composition"),
+  valueClass = "CompositionMatrix"
+)
 
 # Extract ======================================================================
 ## Mutators --------------------------------------------------------------------
@@ -13,18 +79,77 @@ setGeneric("get_groups", package = "arkhe")
 #' Getters and setters to retrieve or set parts of an object.
 #' @param x An object from which to get or set element(s) (typically a `*Matrix`
 #'  object).
-# @param value A possible value for the element(s) of `x`.
+#' @param value A possible value for the element(s) of `x`.
+#' @details
+#'  \describe{
+#'   \item{`get_samples(x)` and `get_samples(x) <- value`}{Get or set
+#'   the sample names of `x`.}
+#'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
+#'   the groups of `x`.}
+#'  }
 #' @return
-#'  An object of the same sort as `x` with the new values assigned.
+#'  * `set_*()` returns an object of the same sort as `x` with the new values
+#'    assigned.
+#'  * `get_*()` returns the part of `x`.
+#'  * `has_*()` returns a [`logical`] scalar.
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
-#' @name mutator
-#' @rdname mutator
+#' @name mutators
+#' @rdname mutators
 #' @aliases get set
 NULL
 
-#' @rdname mutator
+#' @rdname mutators
+#' @aliases has_groups-method
+setGeneric(
+  name = "has_groups",
+  def = function(x) standardGeneric("has_groups")
+)
+
+#' @rdname mutators
+#' @aliases get_groups-method
+setGeneric(
+  name = "get_groups",
+  def = function(x) standardGeneric("get_groups")
+)
+
+#' @rdname mutators
+#' @aliases set_groups-method
+setGeneric(
+  name = "set_groups<-",
+  def = function(x, value) standardGeneric("set_groups<-")
+)
+
+#' @rdname mutators
+#' @aliases get_samples-method
+setGeneric(
+  name = "get_samples",
+  def = function(x) standardGeneric("get_samples")
+)
+
+#' @rdname mutators
+#' @aliases set_samples-method
+setGeneric(
+  name = "set_samples<-",
+  def = function(x, value) standardGeneric("set_samples<-")
+)
+
+#' @rdname mutators
+#' @aliases get_totals-method
+setGeneric(
+  name = "get_totals",
+  def = function(x) standardGeneric("get_totals")
+)
+
+#' @rdname mutators
+#' @aliases set_totals-method
+setGeneric(
+  name = "set_totals<-",
+  def = function(x, value) standardGeneric("set_totals<-")
+)
+
+#' @rdname mutators
 #' @aliases get_outliers-method
 setGeneric(
   name = "get_outliers",
@@ -36,11 +161,21 @@ setGeneric(
 #'
 #' Operators acting on objects to extract or replace parts.
 #' @param x An object from which to extract element(s) or in which to replace
-#'  element(s).
-#' @param i A [`character`] string specifying elements to extract.
-#'  Any unambiguous substring can be given (see details).
+#'  element(s) (typically a `*Matrix` object).
+#' @param i,j Indices specifying elements to extract or replace. Indices are
+#'  [`numeric`], [`integer`] or [`character`] vectors or empty (missing) or
+#'  `NULL`. Numeric values are coerced to [`integer`] as by [as.integer()]
+#'  (and hence truncated towards zero). Character vectors will be matched to
+#'  the name of the elements. An empty index (a comma separated blank) indicates
+#'  that all entries in that dimension are selected.
+#' @param value A possible value for the element(s) of `x`.
+#' @param drop A [`logical`] scalar: should the result be coerced to
+#'  the lowest possible dimension? This only works for extracting elements,
+#'  not for the replacement.
+#' @param ... Currently not used.
 #' @return
-#'  A subsetted object.
+#'  A subsetted object of the same sort as `x`.
+#' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators

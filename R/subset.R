@@ -1,27 +1,62 @@
 # ACCESSORS
-#' @include AllClasses.R
+#' @include AllClasses.R AllGenerics.R
 NULL
 
 # Extract ======================================================================
-#' Extract Parts of an Object
-#'
-#' @inheritParams subset
-#' @author N. Frerebeau
-#' @keywords internal
-#' @noRd
-extract_slot <- function(x, i) {
-  class_name <- class(x)
-  i <- match.arg(i, choices = methods::slotNames(class_name),
-                 several.ok = FALSE)
-  data <- methods::slot(x, i)
-  data
-}
-
+## [ ---------------------------------------------------------------------------
 #' @export
 #' @rdname subset
-#' @aliases [[,OutlierIndex,ANY,missing-method
+#' @aliases [,CompositionMatrix-method
 setMethod(
-  f = "[[",
-  signature = c(x = "OutlierIndex", i = "ANY", j = "missing"),
-  definition = extract_slot
+  f = "[",
+  signature = c(x = "CompositionMatrix"),
+  function(x, i, j, ..., drop = TRUE) {
+    z <- methods::callNextMethod()
+
+    if (is.null(dim(z))) {
+      return(z)
+    }
+
+    if (!missing(i)) {
+      samples <- x@samples
+      groups <- x@groups
+      totals <- x@totals
+      if (!is_empty(samples)) samples <- samples[i]
+      if (!is_empty(groups)) groups <- groups[i]
+      if (!is_empty(totals)) totals <- totals[i]
+      methods::initialize(x, z, samples = samples, groups = groups,
+                          totals = totals)
+    } else{
+      methods::initialize(x, z)
+    }
+  }
+)
+
+# Replace ======================================================================
+## [<- -------------------------------------------------------------------------
+#' @export
+#' @rdname subset
+#' @aliases [<-,CompositionMatrix-method
+setMethod(
+  f = "[<-",
+  signature = c(x = "CompositionMatrix"),
+  function(x, i, j, ..., value) {
+    z <- methods::callNextMethod()
+    methods::validObject(z)
+    z
+  }
+)
+
+## [[<- ------------------------------------------------------------------------
+#' @export
+#' @rdname subset
+#' @aliases [[<-,CompositionMatrix-method
+setMethod(
+  f = "[[<-",
+  signature = c(x = "CompositionMatrix"),
+  function(x, i, j, ..., value) {
+    z <- methods::callNextMethod()
+    methods::validObject(z)
+    z
+  }
 )

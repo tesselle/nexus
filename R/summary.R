@@ -1,0 +1,14 @@
+# SUMMARY
+#' @include AllClasses.R AllGenerics.R
+NULL
+
+# @export
+# @rdname summary
+# @aliases summary,CompositionMatrix-method
+# setMethod(
+#   f = "summary",
+#   signature = "CompositionMatrix",
+#   definition = function(object, ...) {
+#
+#   }
+# )

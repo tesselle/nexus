@@ -3,27 +3,68 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[[,OutlierIndex,ANY,missing-method}
+\alias{[,CompositionMatrix-method}
+\alias{[<-,CompositionMatrix-method}
+\alias{[[<-,CompositionMatrix-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[[}{OutlierIndex,ANY,missing}(x, i)
+\S4method{[}{CompositionMatrix}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{CompositionMatrix}(x, i, j, ...) <- value
+
+\S4method{[[}{CompositionMatrix}(x, i, j, ...) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
-element(s).}
+element(s) (typically a \verb{*Matrix} object).}
 
-\item{i}{A \code{\link{character}} string specifying elements to extract.
-Any unambiguous substring can be given (see details).}
+\item{i, j}{Indices specifying elements to extract or replace. Indices are
+\code{\link{numeric}}, \code{\link{integer}} or \code{\link{character}} vectors or empty (missing) or
+\code{NULL}. Numeric values are coerced to \code{\link{integer}} as by \code{\link[=as.integer]{as.integer()}}
+(and hence truncated towards zero). Character vectors will be matched to
+the name of the elements. An empty index (a comma separated blank) indicates
+that all entries in that dimension are selected.}
+
+\item{...}{Currently not used.}
+
+\item{drop}{A \code{\link{logical}} scalar: should the result be coerced to
+the lowest possible dimension? This only works for extracting elements,
+not for the replacement.}
+
+\item{value}{A possible value for the element(s) of \code{x}.}
 }
 \value{
-A subsetted object.
+A subsetted object of the same sort as \code{x}.
 }
 \description{
 Operators acting on objects to extract or replace parts.
 }
+\examples{
+## Create a compositional matrix
+A <- CompositionMatrix(data = sample(1:100, 100, TRUE), nrow = 20)
+
+## Access
+dim(A) # Get the matrix dimensions
+row(A) # Get the row indexes
+col(A, as.factor = TRUE) # Get the column indexes
+nrow(A) # Get the number of rows
+ncol(A) # Get the number of columns
+dimnames(A) # Get the dimension names
+rownames(A) <- LETTERS[1:20] # Set the row names
+rownames(A) # Get the rownames
+colnames(A) <- letters[21:25] # Set the column names
+colnames(A) # Get the column names
+
+## Subset
+A[[1, 1]] # Get the first value
+A[1] # Get the first value
+A[, ] # Get all values
+A[1, , drop = FALSE] # Get the first row
+A[, 1:3] # Get the first three column
+}
 \seealso{
 Other mutators: 
-\code{\link{mutator}}
+\code{\link{mutators}}
 }
 \author{
 N. Frerebeau
