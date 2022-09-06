@@ -270,7 +270,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
-#' @rdname centered-log-ratio
+#' @rdname transform_clr
 #' @aliases transform_clr-method
 setGeneric(
   name = "transform_clr",
@@ -284,9 +284,6 @@ setGeneric(
 #' Computes ALR transformation.
 #' @param object A [CompositionMatrix-class] object.
 #' @param j An [`integer`] giving the index of the rationing part (denominator).
-#' @param weights A [`logical`] scalar: sould a varying weight be used. If
-#'  `FALSE` (the default), equally-weighted parts are used. Alternatively, a
-#'  positive [`numeric`] vector of weights can be specified.
 #' @param ... Currently not used.
 #' @return
 #'  An [ALR-class] object.
@@ -300,7 +297,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
-#' @rdname additive-log-ratio
+#' @rdname transform_alr
 #' @aliases transform_alr-method
 setGeneric(
   name = "transform_alr",
@@ -331,7 +328,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
-#' @rdname isometric-log-ratio
+#' @rdname transform_ilr
 #' @aliases transform_ilr-method
 setGeneric(
   name = "transform_ilr",
@@ -344,11 +341,7 @@ setGeneric(
 #'
 #' Computes PLR transformations.
 #' @param object A [CompositionMatrix-class] object.
-#' @param ordering An [`integer`] vector specifying the ordering of the parts to
-#'  be used.
-#' @param weights A [`logical`] scalar: sould a varying weight be used. If
-#'  `FALSE` (the default), equally-weighted parts are used. Alternatively, a
-#'  positive [`numeric`] vector of weights can be specified.
+#' @param pivot An [`integer`] giving the index of the pivotal variable.
 #' @param ... Currently not used.
 #' @return
 #'  A [PLR-class] object.
@@ -368,11 +361,11 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
-#' @rdname pivot-log-ratio
-#' @aliases transform_pivot-method
+#' @rdname transform_plr
+#' @aliases transform_plr-method
 setGeneric(
-  name = "transform_pivot",
-  def = function(object, ...) standardGeneric("transform_pivot"),
+  name = "transform_plr",
+  def = function(object, ...) standardGeneric("transform_plr"),
   valueClass = "PLR"
 )
 
@@ -402,7 +395,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
-#' @rdname inverse-log-ratio
+#' @rdname transform_inverse
 #' @aliases transform_inverse-method
 setGeneric(
   name = "transform_inverse",

@@ -44,7 +44,7 @@ Other log-ratio transformations:
 \code{\link{transform_clr}()},
 \code{\link{transform_ilr}()},
 \code{\link{transform_inverse}()},
-\code{\link{transform_pivot}()}
+\code{\link{transform_plr}()}
 }
 \author{
 N. Frerebeau

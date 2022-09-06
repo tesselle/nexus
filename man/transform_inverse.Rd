@@ -7,7 +7,6 @@
 \alias{transform_inverse,CLR-method}
 \alias{transform_inverse,ALR-method}
 \alias{transform_inverse,ILR-method}
-\alias{transform_inverse,PLR-method}
 \title{Inverse Log-Ratio Transformation}
 \usage{
 transform_inverse(object, ...)
@@ -17,8 +16,6 @@ transform_inverse(object, ...)
 \S4method{transform_inverse}{ALR}(object)
 
 \S4method{transform_inverse}{ILR}(object)
-
-\S4method{transform_inverse}{PLR}(object)
 }
 \arguments{
 \item{object}{A \linkS4class{CompositionMatrix} object.}
@@ -44,7 +41,7 @@ alr <- transform_alr(coda)
 
 ## Isometric log-ratio
 ilr1 <- transform_ilr(coda)
-ilr2 <- transform_pivot(coda)
+ilr2 <- transform_plr(coda)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
@@ -67,7 +64,7 @@ Other log-ratio transformations:
 \code{\link{transform_alr}()},
 \code{\link{transform_clr}()},
 \code{\link{transform_ilr}()},
-\code{\link{transform_pivot}()}
+\code{\link{transform_plr}()}
 }
 \author{
 N. Frerebeau

@@ -10,4 +10,4 @@ alr <- transform_alr(coda)
 
 ## Isometric log-ratio
 ilr1 <- transform_ilr(coda)
-ilr2 <- transform_pivot(coda)
+ilr2 <- transform_plr(coda)

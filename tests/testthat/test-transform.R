@@ -2,10 +2,11 @@ test_that("CLR", {
   data("hongite")
   coda <- as_composition(hongite)
 
-  clr <- transform_clr(coda)
+  clr <- transform_clr(coda, weights = FALSE)
   expect_snapshot(clr)
 
-  x <- transform_inverse(clr)
+  wclr <- transform_clr(coda, weights = TRUE)
+  x <- transform_inverse(wclr)
   expect_identical(round(coda@.Data, 3), round(x@.Data, 3))
 
   # alr <- transform_alr(coda)
@@ -56,9 +57,10 @@ test_that("PLR", {
   data("hongite")
   coda <- as_composition(hongite)
 
-  plr <- transform_pivot(coda)
+  plr <- transform_plr(coda)
   expect_snapshot(plr)
 
-  # x <- transform_inverse(plr)
-  # expect_identical(round(coda@.Data, 3), round(x@.Data, 3))
+  plr2 <- transform_plr(coda, pivot = 2)
+  x <- transform_inverse(plr2)
+  expect_identical(round(coda@.Data, 3), round(x@.Data, 3))
 })

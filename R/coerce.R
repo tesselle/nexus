@@ -125,6 +125,14 @@ as.data.frame.CompositionMatrix <- function(x, ...) {
   z
 }
 
+#' @method as.data.frame LogRatio
+#' @export
+as.data.frame.LogRatio <- function(x, ...) {
+  z <- as.data.frame(methods::as(x, "matrix"))
+
+  z
+}
+
 #' @method as.data.frame OutlierIndex
 #' @export
 as.data.frame.OutlierIndex <- function(x, ...) {

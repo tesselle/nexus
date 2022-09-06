@@ -68,6 +68,9 @@ NULL
   Class = "LogRatio",
   slots = c(
     parts = "character",
+    ratio = "character",
+    order = "integer",
+    base = "matrix",
     weights = "numeric"
   ),
   contains = "NumericMatrix"
@@ -84,9 +87,6 @@ NULL
 #' @aliases ALR-class
 .ALR <- setClass(
   Class = "ALR",
-  slots = c(
-    denominator = "integer"
-  ),
   contains = "LogRatio"
 )
 
@@ -94,10 +94,6 @@ NULL
 #' @aliases ILR-class
 .ILR <- setClass(
   Class = "ILR",
-  slots = c(
-    ratio = "character",
-    base = "matrix"
-  ),
   contains = "LogRatio"
 )
 
@@ -105,9 +101,6 @@ NULL
 #' @aliases PLR-class
 .PLR <- setClass(
   Class = "PLR",
-  slots = c(
-    order = "integer"
-  ),
   contains = "ILR"
 )
 

@@ -25,8 +25,29 @@ setValidity(
       arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(groups, n, empty = TRUE)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_numeric(object, "positive", strict = FALSE,
-                                            na.rm = TRUE))
+      arkhe::validate(arkhe::assert_numeric(object, "positive", strict = FALSE))
+    )
+    arkhe::check_class(object, cnd)
+  }
+)
+
+# LogRatio =====================================================================
+setValidity(
+  Class = "LogRatio",
+  method = function(object) {
+    ## Get data
+    parts <- object@parts
+    ratio <- object@ratio
+    order <- object@order
+    base <- object@base
+    weights <- object@weights
+
+    i <- length(parts)
+    j <- ncol(base)
+
+    cnd <- list(
+      arkhe::validate(arkhe::assert_length(ratio, j, empty = FALSE)),
+      arkhe::validate(arkhe::assert_length(order, i, empty = FALSE))
     )
     arkhe::check_class(object, cnd)
   }

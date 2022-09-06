@@ -40,7 +40,7 @@ alr <- transform_alr(coda)
 
 ## Isometric log-ratio
 ilr1 <- transform_ilr(coda)
-ilr2 <- transform_pivot(coda)
+ilr2 <- transform_plr(coda)
 }
 \references{
 Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
@@ -56,7 +56,7 @@ Other log-ratio transformations:
 \code{\link{transform_alr}()},
 \code{\link{transform_clr}()},
 \code{\link{transform_inverse}()},
-\code{\link{transform_pivot}()}
+\code{\link{transform_plr}()}
 }
 \author{
 N. Frerebeau
