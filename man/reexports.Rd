@@ -14,6 +14,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe:remove]{remove_NA}}, \code{\link[arkhe:remove]{remove_empty}}, \code{\link[arkhe:remove]{remove_zero}}, \code{\link[arkhe:replace]{replace_NA}}}
+  \item{arkhe}{\code{\link[arkhe:remove]{remove_empty}}, \code{\link[arkhe:remove]{remove_NA}}, \code{\link[arkhe:remove]{remove_zero}}, \code{\link[arkhe:replace]{replace_NA}}}
 }}
 

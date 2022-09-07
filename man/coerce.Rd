@@ -10,7 +10,6 @@
 \alias{as_composition,matrix-method}
 \alias{as_composition,data.frame-method}
 \alias{as_count,CompositionMatrix-method}
-\alias{as_long,CompositionMatrix-method}
 \title{Coerce}
 \usage{
 as_count(from, ...)
@@ -22,24 +21,18 @@ as_composition(from, ...)
 \S4method{as_composition}{data.frame}(from, samples = NULL, groups = NULL)
 
 \S4method{as_count}{CompositionMatrix}(from)
-
-\S4method{as_long}{CompositionMatrix}(from, factor = FALSE, reverse = FALSE)
 }
 \arguments{
 \item{from}{An object to be coerced.}
 
 \item{...}{Currently not used.}
 
-\item{samples}{XXX.}
+\item{samples}{An \code{\link{integer}} giving the index of the column to be used for
+sample identification: allows to identify replicated measurements.
+If \code{NULL} (the default), row names will be used as sample IDs.}
 
-\item{groups}{XXX.}
-
-\item{factor}{A \code{\link{logical}} scalar: should character string be
-coerced to \code{\link{factor}}? Default to \code{FALSE}, if \code{TRUE} the original ordering is
-preserved.}
-
-\item{reverse}{A \code{\link{logical}} scalar: should the order of factor levels be
-reversed? Only used if \code{factor} is \code{TRUE}. Useful for plotting.}
+\item{groups}{An \code{\link{integer}} giving the index of the column to be used to
+group the samples. If \code{NULL} (the default), no grouping is stored.}
 }
 \value{
 A coerced object.
@@ -48,25 +41,15 @@ A coerced object.
 Coerces an object to a \code{CompositionMatrix} object.
 }
 \details{
-The following methods coerce an object to a \verb{*Matrix} object:
+The following methods are available:
 
 \tabular{lll}{
-\strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-\code{as_count()} \tab \code{\link{matrix}} \tab absolute frequency data \cr
-\code{as_composition()} \tab \linkS4class{CompositionMatrix} \tab relative frequency data \cr
+\strong{Method} \tab \strong{From} \tab \strong{To} \cr
+\code{as_composition()} \tab \code{\link{matrix}} or \code{\link{data.frame}} \tab \linkS4class{CompositionMatrix} \cr
+\code{as_count()} \tab \linkS4class{CompositionMatrix} \tab \code{\link{matrix}} \cr
 }
 
-\tabular{lll}{
-\strong{Method} \tab \strong{Target} \tab \strong{Details} \cr
-\code{as_long()} \tab \code{\link{data.frame}} \tab long S3 data frame \cr
-\code{as_features()} \tab \code{\link{data.frame}} \tab wide S3 data frame \cr
-}
-
-\code{as_features()} converts a \verb{*Matrix} object to a collection of features:
-a \code{\link{data.frame}} with all informations as extra columns (result may differ
-according to the class of \code{from}).
-
-The \code{CompositionMatrix} class has special slots:
+The \linkS4class{CompositionMatrix} class has special slots:
 \itemize{
 \item \code{samples} for replicated measurements/observation,
 \item \code{groups} to group data by site/area.

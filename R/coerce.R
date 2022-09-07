@@ -95,25 +95,6 @@ setMethod(
   }
 )
 
-#' @export
-#' @rdname coerce
-#' @aliases as_long,CompositionMatrix-method
-setMethod(
-  f = "as_long",
-  signature = "CompositionMatrix",
-  definition = function(from, factor = FALSE, reverse = FALSE) {
-    x <- methods::callNextMethod(from, factor = factor, reverse = reverse)
-
-    samples <- get_samples(from) %||% NA_character_
-    x$samples <- if (factor) as_factor(samples, reverse = reverse) else samples
-
-    groups <- get_groups(from) %||% NA_character_
-    x$groups <- if (factor) as_factor(groups, reverse = reverse) else groups
-
-    x
-  }
-)
-
 # To data.frame ================================================================
 #' @method as.data.frame CompositionMatrix
 #' @export

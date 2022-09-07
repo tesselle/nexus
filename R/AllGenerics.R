@@ -3,41 +3,28 @@
 NULL
 
 # Set generics from other packages =============================================
-setGeneric("as_long", package = "arkhe")
 
 # Coerce =======================================================================
 #' Coerce
 #'
 #' Coerces an object to a `CompositionMatrix` object.
 #' @param from An object to be coerced.
-#' @param samples XXX.
-#' @param groups XXX.
-#' @param factor A [`logical`] scalar: should character string be
-#'  coerced to [`factor`]? Default to `FALSE`, if `TRUE` the original ordering is
-#'  preserved.
-#' @param reverse A [`logical`] scalar: should the order of factor levels be
-#'  reversed? Only used if `factor` is `TRUE`. Useful for plotting.
+#' @param samples An [`integer`] giving the index of the column to be used for
+#'  sample identification: allows to identify replicated measurements.
+#'  If `NULL` (the default), row names will be used as sample IDs.
+#' @param groups An [`integer`] giving the index of the column to be used to
+#'  group the samples. If `NULL` (the default), no grouping is stored.
 #' @param ... Currently not used.
 #' @details
-#'  The following methods coerce an object to a `*Matrix` object:
+#'  The following methods are available:
 #'
 #'  \tabular{lll}{
-#'   **Method** \tab **Target** \tab **Details** \cr
-#'   `as_count()` \tab [`matrix`] \tab absolute frequency data \cr
-#'   `as_composition()` \tab [CompositionMatrix-class] \tab relative frequency data \cr
+#'   **Method** \tab **From** \tab **To** \cr
+#'   `as_composition()` \tab [`matrix`] or [`data.frame`] \tab [CompositionMatrix-class] \cr
+#'   `as_count()` \tab [CompositionMatrix-class] \tab [`matrix`] \cr
 #'  }
 #'
-#'  \tabular{lll}{
-#'   **Method** \tab **Target** \tab **Details** \cr
-#'   `as_long()` \tab [`data.frame`] \tab long S3 data frame \cr
-#'   `as_features()` \tab [`data.frame`] \tab wide S3 data frame \cr
-#'  }
-#'
-#'  `as_features()` converts a `*Matrix` object to a collection of features:
-#'  a [`data.frame`] with all informations as extra columns (result may differ
-#'  according to the class of `from`).
-#'
-#'  The `CompositionMatrix` class has special slots:
+#'  The [CompositionMatrix-class] class has special slots:
 #'
 #'  * `samples` for replicated measurements/observation,
 #'  * `groups` to group data by site/area.
