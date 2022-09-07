@@ -2,6 +2,75 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
+# Variance =====================================================================
+#' @export
+#' @method var CompositionMatrix
+var.CompositionMatrix <- function(x) {
+  J <- ncol(x)
+  parts <- colnames(x)
+
+  cbn <- utils::combn(seq_len(J), 2)
+  varia <- apply(
+    X = cbn,
+    MARGIN = 2,
+    FUN = function(j, x) {
+      stats::var(log(x[, j[1]] / x[, j[2]], base = exp(1)))
+    },
+    x = x
+  )
+
+  mtx <- matrix(data = 0, nrow = J, ncol = J)
+  mtx[lower.tri(mtx, diag = FALSE)] <- varia
+  mtx <- t(mtx)
+  mtx[lower.tri(mtx, diag = FALSE)] <- varia
+
+  dimnames(mtx) <- list(parts, parts)
+  mtx
+}
+
+#' @export
+#' @rdname covariance
+#' @aliases var,CompositionMatrix-method
+setMethod("var", "CompositionMatrix", var.CompositionMatrix)
+
+# Covariance ===================================================================
+#' @export
+#' @method cov CompositionMatrix
+cov.CompositionMatrix <- function(x) {
+  stats::cov(transform_lr(x))
+}
+
+#' @export
+#' @rdname covariance
+#' @aliases cov,CompositionMatrix-method
+setMethod("cov", "CompositionMatrix", cov.CompositionMatrix)
+
+# Variation ====================================================================
+#' @export
+#' @rdname variation
+#' @aliases variation,CompositionMatrix-method
+setMethod(
+  f = "variation",
+  signature = signature(object = "CompositionMatrix"),
+  definition = function(object) {
+    J <- ncol(object)
+    cbn <- utils::combn(seq_len(J), 2)
+    varia <- apply(
+      X = cbn,
+      MARGIN = 2,
+      FUN = function(j, x) {
+        mean(log(x[, j[1]] / x[, j[2]]))
+      },
+      x = object
+    )
+
+    mtx <- var(object)
+    mtx[lower.tri(mtx, diag = FALSE)] <- varia
+    mtx
+  }
+)
+
+# Distances ====================================================================
 #' Geometric Mean
 #'
 #' @param x A [`numeric`] vector.
@@ -31,8 +100,8 @@ gmean <- function(x) {
 stats_mahalanobis <- function(object, group, robust = TRUE, alpha = 0.5, ...) {
   if (missing(group)) group <- object
 
-  ilr_object <- transform_pivot(object, ...)
-  ilr_group <- transform_pivot(group, ...)
+  ilr_object <- transform_plr(object, ...)
+  ilr_group <- transform_plr(group, ...)
 
   x <- as.matrix(ilr_object)
   y <- as.matrix(ilr_group)

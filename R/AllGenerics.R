@@ -2,7 +2,9 @@
 #' @include AllClasses.R
 NULL
 
-# Set generics from other packages =============================================
+# S4 dispatch to base S3 generic ===============================================
+setGeneric("var", package = "stats")
+setGeneric("cov", package = "stats")
 
 # Coerce =======================================================================
 #' Coerce
@@ -343,6 +345,52 @@ setGeneric(
   name = "transform_inverse",
   def = function(object, ...) standardGeneric("transform_inverse"),
   valueClass = "CompositionMatrix"
+)
+
+# Statistics ===================================================================
+#' Variance and Covariance
+#'
+#' @description
+#'  * `var()` computes the log-ratio variance matrix.
+#'  * `cov()` computes the log-ratio covariance matrix.
+#' @param x A [CompositionMatrix-class] object.
+#' @return A [`matrix`].
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-covariance.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name covariance
+#' @rdname covariance
+NULL
+
+#' Variation Matrix
+#'
+#' Computes the compositional variation array.
+#' @param object A [CompositionMatrix-class] object.
+#' @param ... Currently not used.
+#' @return A [`matrix`].
+#' @details
+#'  The compositional variation array is a square matrix where the upper
+#'  triangular part displays the log-ratio variances and the lower triangular
+#'  part displays the log-ratio means.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#' @example inst/examples/ex-covariance.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @aliases variation-method
+setGeneric(
+  name = "variation",
+  def = function(object, ...) standardGeneric("variation"),
+  valueClass = "matrix"
 )
 
 # Outliers =====================================================================

@@ -10,6 +10,9 @@ reference:
 - title: Log-ratio
   contents:
   - has_concept("log-ratio transformations")
+- title: Statistics
+  contents:
+  - has_concept("statistics")
 - title: Outlier Detection
   contents:
   - has_concept("outlier detection methods")
