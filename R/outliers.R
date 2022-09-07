@@ -59,7 +59,7 @@ setMethod(
       facet_plot <- ggplot2::facet_wrap(~ .data$groups, scales = "free_x")
     }
     ylab <- sprintf("%s Mahalanobis distance",
-                    ifelse(object[["robust"]], "Robust", "Standard"))
+                    ifelse(object@robust, "Robust", "Standard"))
 
     ggplot2::ggplot(data = data) +
       facet_plot +
@@ -67,7 +67,7 @@ setMethod(
                    colour = .data$outlier, shape = .data$outlier,
                    label = .data$samples) +
       ggplot2::geom_point() +
-      ggplot2::geom_hline(yintercept = object[["limit"]], linetype = 2) +
+      ggplot2::geom_hline(yintercept = object@limit, linetype = 2) +
       ggplot2::scale_x_continuous(name = "Index") +
       ggplot2::scale_y_continuous(name = ylab)
   }
@@ -92,12 +92,12 @@ setMethod(
     ilr <- matrix(data = NA, nrow = nrow(data), ncol = length(select))
     k <- 1
     for (i in select) {
-      ilr[, k] <- transform_pivot(data)[, 1]
+      ilr[, k] <- transform_plr(data)[, 1]
       k <- k + 1
     }
     colnames(ilr) <- colnames(data)[select]
     ilr <- arkhe::as_long(ilr, factor = TRUE)
-    ilr$distance <- object[["distances"]]
+    ilr$distance <- object@distances
     ilr$outlier <- get_outliers(object)
 
     ggplot2::ggplot(data = ilr) +

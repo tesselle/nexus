@@ -60,8 +60,8 @@ Outlier Detection
 \examples{
 ## Coerce to chemical data
 data("kommos", package = "folio")
+kommos <- remove_NA(kommos, margin = 1)
 coda <- as_composition(kommos[, -c(1, 2)])
-coda <- remove_NA(coda, margin = 1)
 
 ## Detect outliers
 out <- find_outliers(coda)
