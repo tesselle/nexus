@@ -71,16 +71,18 @@ setMethod(
 )
 
 # Distances ====================================================================
-#' Geometric Mean
-#'
-#' @param x A [`numeric`] vector.
-#' @return A [`numeric`] vector.
-#' @keywords internal
-#' @noRd
-gmean <- function(x) {
-  index <- is.finite(x) & x > 0
-  exp(mean(log(unclass(x)[index])))
+#' @export
+#' @method dist CompositionMatrix
+dist.CompositionMatrix <- function(x, method = "aitchison",
+                                   diag = FALSE, upper = FALSE) {
+  stats::dist(transform_clr(x), method = "euclidean",
+              diag = diag, upper = upper)
 }
+
+#' @export
+#' @rdname distance
+#' @aliases dist,CompositionMatrix-method
+setMethod("dist", "CompositionMatrix", dist.CompositionMatrix)
 
 #' Mahalanobis Distance
 #'
@@ -115,4 +117,16 @@ stats_mahalanobis <- function(object, group, robust = TRUE, alpha = 0.5, ...) {
   }
 
   stats::mahalanobis(x, center = est$mean, cov = est$cov)
+}
+
+# Tools ========================================================================
+#' Geometric Mean
+#'
+#' @param x A [`numeric`] vector.
+#' @return A [`numeric`] vector.
+#' @keywords internal
+#' @noRd
+gmean <- function(x) {
+  index <- is.finite(x) & x > 0
+  exp(mean(log(unclass(x)[index])))
 }

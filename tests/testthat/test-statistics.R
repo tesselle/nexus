@@ -16,3 +16,9 @@ test_that("Variation", {
 
   expect_snapshot(variation(coda))
 })
+test_that("Aitchison distance", {
+  data("hongite")
+  coda <- as_composition(hongite)
+
+  expect_snapshot(dist(coda, method = "aitchison", diag = TRUE, upper = TRUE))
+})

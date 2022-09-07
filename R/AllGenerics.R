@@ -3,6 +3,7 @@
 NULL
 
 # S4 dispatch to base S3 generic ===============================================
+setGeneric("dist", package = "stats")
 setGeneric("var", package = "stats")
 setGeneric("cov", package = "stats")
 
@@ -392,6 +393,33 @@ setGeneric(
   def = function(object, ...) standardGeneric("variation"),
   valueClass = "matrix"
 )
+
+# Distances ====================================================================
+#' Distances
+#'
+#' Computes the log-ratio variance matrix.
+#' @param x A [CompositionMatrix-class] object.
+#' @param method A [`character`] string specifying the distance measure to be
+#'  used. This must be one of "`aitchison`".
+#'  Any unambiguous substring can be given.
+#' @param diag A [`logical`] scalar indicating whether the diagonal of the
+#'  distance matrix should be printed.
+#' @param upper A [`logical`] scalar indicating whether the upper triangle of
+#'  the distance matrix should be printed.
+#' @return A [`dist`] object.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-distance.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name distance
+#' @rdname distance
+NULL
 
 # Outliers =====================================================================
 #' Outlier Detection

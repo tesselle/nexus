@@ -41,6 +41,6 @@
 #' setGeneric setMethod slot slot<- slotNames validObject .valueClassTest
 #' @importFrom robustbase covMcd
 #' @importFrom rlang .data
-#' @importFrom stats contr.helmert cov mahalanobis qchisq
+#' @importFrom stats as.dist contr.helmert cov mahalanobis qchisq
 #' @importFrom utils combn
 NULL
