@@ -7,7 +7,7 @@
 \alias{nexus}
 \title{nexus: Sourcing Archaeological Materials by Chemical Composition}
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
 Exploration and analysis of compositional data in the framework of Aitchison (1986) <isbn: 9780412280603>. This package provides tools for chemical fingerprinting and source tracking of ancient materials.
 }
@@ -17,6 +17,7 @@ Exploration and analysis of compositional data in the framework of Aitchison (19
 \strong{Type:} \tab Package \cr
 \strong{Version:} \tab 0.0.0.9000 \cr
 \strong{License:} \tab GPL-3 \cr
+\strong{Zenodo:} \tab  \cr
 }
 }
 \seealso{
@@ -42,7 +43,7 @@ Anne Philippe \tab \emph{Université de Nantes, France} \cr
 Nicolas Frerebeau\cr
 \email{nicolas.frerebeau@u-bordeaux-montaigne.fr}
 
-IRAMAT-CRP2A (UMR 5060)\cr
+Archéosciences Bordeaux (UMR 6034)\cr
 Maison de l'Archéologie\cr
 Université Bordeaux Montaigne\cr
 F-33607 Pessac cedex\cr

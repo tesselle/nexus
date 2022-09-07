@@ -6,10 +6,24 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/tesselle/nexus/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/nexus/actions)
-[![codecov](https://codecov.io/gh/tesselle/nexus/branch/main/graph/badge.svg)](https://codecov.io/gh/tesselle/nexus)
+[![codecov](https://codecov.io/gh/tesselle/nexus/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tesselle/nexus)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/nexus/badge/main)](https://www.codefactor.io/repository/github/tesselle/nexus/overview/main)
+[![Dependencies](https://tinyverse.netlify.com/badge/nexus)](https://cran.r-project.org/package=nexus)
 
-[![r-universe](https://tesselle.r-universe.dev/badges/nexus)](https://tesselle.r-universe.dev)
+<a href="https://tesselle.r-universe.dev" class="pkgdown-devel"><img
+src="https://tesselle.r-universe.dev/badges/nexus"
+alt="r-universe" /></a>
+<a href="https://cran.r-project.org/package=nexus"
+class="pkgdown-release"><img
+src="http://www.r-pkg.org/badges/version/nexus"
+alt="CRAN Version" /></a>
+<a href="https://cran.r-project.org/web/checks/check_results_nexus.html"
+class="pkgdown-release"><img
+src="https://cranchecks.info/badges/worst/nexus"
+alt="CRAN checks" /></a>
+<a href="https://cran.r-project.org/package=nexus"
+class="pkgdown-release"><img
+src="http://cranlogs.r-pkg.org/badges/nexus" alt="CRAN Downloads" /></a>
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
