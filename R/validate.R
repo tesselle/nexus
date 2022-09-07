@@ -46,7 +46,7 @@ setValidity(
     j <- ncol(base)
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(ratio, j, empty = FALSE)),
+      # arkhe::validate(arkhe::assert_length(ratio, j, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(order, i, empty = FALSE))
     )
     arkhe::check_class(object, cnd)

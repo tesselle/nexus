@@ -32,7 +32,9 @@ Imports:
     ggplot2,
     methods,
     rlang,
-    robustbase
+    robustbase,
+    stats,
+    utils
 Suggests: 
     testthat (>= 3.0.0),
     folio,

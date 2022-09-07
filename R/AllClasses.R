@@ -21,10 +21,14 @@ NULL
 #' Compositional Matrix
 #'
 #' An S4 class to represent compositional data.
-#' @slot totals A [`numeric`] vector giving the absolute row sums.
-#' @slot samples A [`character`] vector.
-#' @slot groups A [`character`] vector.
+#' @slot totals A [`numeric`] vector to store the absolute row sums (before
+#'  the closure of the compositions).
+#' @slot samples A [`character`] vector to store the sample identifiers
+#'  (allows duplicates in case of replicated measurements).
+#' @slot groups A [`character`] vector to store the group names (if any).
 #' @inheritParams base::matrix
+#' @note
+#'  This class inherits from [`matrix`].
 #' @seealso [as_composition()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
@@ -43,18 +47,20 @@ NULL
 )
 
 # Transformations ==============================================================
-#' Log-Ratio
+#' Log-Ratio Matrix
 #'
 #' S4 classes to represent log-ratio data transformations.
-#' @slot parts A [`character`] vector XXX.
-#' @slot base A [`numeric`] vector XXX.
-#' @slot mean A [`numeric`] vector XXX.
-#' @slot denominator An [`integer`] vector XXX.
-#' @slot pivot An [`integer`] vector XXX.
-#' @slot ratio A [`character`] vector XXX.
-#' @slot norm A [`numeric`] vector XXX.
+#' @slot parts A [`character`] vector to store the part names.
+#' @slot ratio A [`character`] vector to store the ratio names.
+#' @slot order An [`integer`] vector to store the original ordering of the
+#'  columns.
+#' @slot base A [`numeric`] matrix to store the basis of the transformation.
+#' @slot weights A [`numeric`] vector to store the weights assigned to the
+#'  respective log-ratios.
 #' @note
 #'  These classes inherit from [`matrix`].
+#' @seealso [transform_lr()], [transform_clr()], [transform_alr()],
+#'  [transform_ilr()], [transform_plr()]
 #' @author N. Frerebeau
 #' @family log-ratio transformations
 #' @docType class
@@ -74,6 +80,13 @@ NULL
     weights = "numeric"
   ),
   contains = "NumericMatrix"
+)
+
+#' @rdname LogRatio
+#' @aliases LR-class
+.LR <- setClass(
+  Class = "LR",
+  contains = "LogRatio"
 )
 
 #' @rdname LogRatio

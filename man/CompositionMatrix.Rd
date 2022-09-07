@@ -33,13 +33,18 @@ An S4 class to represent compositional data.
 \section{Slots}{
 
 \describe{
-\item{\code{totals}}{A \code{\link{numeric}} vector giving the absolute row sums.}
+\item{\code{totals}}{A \code{\link{numeric}} vector to store the absolute row sums (before
+the closure of the compositions).}
 
-\item{\code{samples}}{A \code{\link{character}} vector.}
+\item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
+(allows duplicates in case of replicated measurements).}
 
-\item{\code{groups}}{A \code{\link{character}} vector.}
+\item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
 }}
 
+\note{
+This class inherits from \code{\link{matrix}}.
+}
 \examples{
 ## Create a compositional matrix
 A <- CompositionMatrix(data = sample(1:100, 100, TRUE), nrow = 20)

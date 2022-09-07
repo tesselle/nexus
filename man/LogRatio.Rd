@@ -5,6 +5,8 @@
 \alias{LogRatio}
 \alias{LogRatio-class}
 \alias{.LogRatio}
+\alias{LR-class}
+\alias{.LR}
 \alias{CLR-class}
 \alias{.CLR}
 \alias{ALR-class}
@@ -13,37 +15,39 @@
 \alias{.ILR}
 \alias{PLR-class}
 \alias{.PLR}
-\title{Log-Ratio}
+\title{Log-Ratio Matrix}
 \description{
 S4 classes to represent log-ratio data transformations.
 }
 \section{Slots}{
 
 \describe{
-\item{\code{parts}}{A \code{\link{character}} vector XXX.}
+\item{\code{parts}}{A \code{\link{character}} vector to store the part names.}
 
-\item{\code{base}}{A \code{\link{numeric}} vector XXX.}
+\item{\code{ratio}}{A \code{\link{character}} vector to store the ratio names.}
 
-\item{\code{mean}}{A \code{\link{numeric}} vector XXX.}
+\item{\code{order}}{An \code{\link{integer}} vector to store the original ordering of the
+columns.}
 
-\item{\code{denominator}}{An \code{\link{integer}} vector XXX.}
+\item{\code{base}}{A \code{\link{numeric}} matrix to store the basis of the transformation.}
 
-\item{\code{pivot}}{An \code{\link{integer}} vector XXX.}
-
-\item{\code{ratio}}{A \code{\link{character}} vector XXX.}
-
-\item{\code{norm}}{A \code{\link{numeric}} vector XXX.}
+\item{\code{weights}}{A \code{\link{numeric}} vector to store the weights assigned to the
+respective log-ratios.}
 }}
 
 \note{
 These classes inherit from \code{\link{matrix}}.
 }
 \seealso{
+\code{\link[=transform_lr]{transform_lr()}}, \code{\link[=transform_clr]{transform_clr()}}, \code{\link[=transform_alr]{transform_alr()}},
+\code{\link[=transform_ilr]{transform_ilr()}}, \code{\link[=transform_plr]{transform_plr()}}
+
 Other log-ratio transformations: 
 \code{\link{transform_alr}()},
 \code{\link{transform_clr}()},
 \code{\link{transform_ilr}()},
 \code{\link{transform_inverse}()},
+\code{\link{transform_lr}()},
 \code{\link{transform_plr}()}
 }
 \author{

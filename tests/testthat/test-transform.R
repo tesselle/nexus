@@ -1,3 +1,10 @@
+test_that("LR", {
+  data("hongite")
+  coda <- as_composition(hongite)
+
+  lr <- transform_lr(coda)
+  expect_snapshot(lr)
+})
 test_that("CLR", {
   data("hongite")
   coda <- as_composition(hongite)

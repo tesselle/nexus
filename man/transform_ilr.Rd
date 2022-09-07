@@ -28,9 +28,12 @@ respect to a given orthonormal basis. \code{transform_ilr()} uses the orthonorma
 basis (Helmert matrix) originally defined by Egozcue \emph{et al.} (2003).
 }
 \examples{
-## Coerce to chemical data
+## Coerce to compositonal data
 data("hongite")
 coda <- as_composition(hongite)
+
+## Pairwise log-ratio
+lr <- transform_lr(coda)
 
 ## Centered log-ratio
 clr <- transform_clr(coda)
@@ -56,6 +59,7 @@ Other log-ratio transformations:
 \code{\link{transform_alr}()},
 \code{\link{transform_clr}()},
 \code{\link{transform_inverse}()},
+\code{\link{transform_lr}()},
 \code{\link{transform_plr}()}
 }
 \author{

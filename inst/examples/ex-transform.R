@@ -1,6 +1,9 @@
-## Coerce to chemical data
+## Coerce to compositonal data
 data("hongite")
 coda <- as_composition(hongite)
+
+## Pairwise log-ratio
+lr <- transform_lr(coda)
 
 ## Centered log-ratio
 clr <- transform_clr(coda)

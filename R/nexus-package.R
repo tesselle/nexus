@@ -39,7 +39,8 @@
 #' @importFrom methods as as<- callGeneric callNextMethod
 #' .hasSlot initialize is new setClass
 #' setGeneric setMethod slot slot<- slotNames validObject .valueClassTest
-#' @importFrom stats contr.helmert cov mahalanobis qchisq
 #' @importFrom robustbase covMcd
 #' @importFrom rlang .data
+#' @importFrom stats contr.helmert cov mahalanobis qchisq
+#' @importFrom utils combn
 NULL

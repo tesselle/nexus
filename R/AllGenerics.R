@@ -170,6 +170,181 @@ setGeneric(
 #' @rdname subset
 NULL
 
+# Log-Ratio ====================================================================
+## LR --------------------------------------------------------------------------
+#' Pairwise Log-Ratios (LR)
+#'
+#' Computes all pairwise log-ratio transformation.
+#' @param object A [CompositionMatrix-class] object.
+#' @param ... Currently not used.
+#' @return
+#'  A [LR-class] object.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-transform.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family log-ratio transformations
+#' @aliases transform_lr-method
+setGeneric(
+  name = "transform_lr",
+  def = function(object, ...) standardGeneric("transform_lr"),
+  valueClass = "LR"
+)
+
+## CLR -------------------------------------------------------------------------
+#' Centered Log-Ratios (CLR)
+#'
+#' Computes CLR transformation.
+#' @param object A [CompositionMatrix-class] object.
+#' @param weights A [`logical`] scalar: sould a varying weight be used. If
+#'  `FALSE` (the default), equally-weighted parts are used. Alternatively, a
+#'  positive [`numeric`] vector of weights can be specified.
+#' @param ... Currently not used.
+#' @return
+#'  A [CLR-class] object.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-transform.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family log-ratio transformations
+#' @aliases transform_clr-method
+setGeneric(
+  name = "transform_clr",
+  def = function(object, ...) standardGeneric("transform_clr"),
+  valueClass = "CLR"
+)
+
+## ALR -------------------------------------------------------------------------
+#' Additive Log-Ratios (ALR)
+#'
+#' Computes ALR transformation.
+#' @param object A [CompositionMatrix-class] object.
+#' @param j An [`integer`] giving the index of the rationing part (denominator).
+#' @param ... Currently not used.
+#' @return
+#'  An [ALR-class] object.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-transform.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family log-ratio transformations
+#' @aliases transform_alr-method
+setGeneric(
+  name = "transform_alr",
+  def = function(object, ...) standardGeneric("transform_alr"),
+  valueClass = "ALR"
+)
+
+## ILR -------------------------------------------------------------------------
+#' Isometric Log-Ratios (ILR)
+#'
+#' Computes ILR transformations.
+#' @param object A [CompositionMatrix-class] object.
+#' @param ... Currently not used.
+#' @details
+#'  The ILR transformation provides the coordinates of any composition with
+#'  respect to a given orthonormal basis. `transform_ilr()` uses the orthonormal
+#'  basis (Helmert matrix) originally defined by Egozcue *et al.* (2003).
+#' @return
+#'  An [ILR-class] object.
+#' @references
+#'  Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
+#'  (2003). Isometric Logratio Transformations for Compositional Data Analysis.
+#'  *Mathematical Geology*, 35(3), 279-300. \doi{10.1023/A:1023818214614}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-transform.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family log-ratio transformations
+#' @aliases transform_ilr-method
+setGeneric(
+  name = "transform_ilr",
+  def = function(object, ...) standardGeneric("transform_ilr"),
+  valueClass = "ILR"
+)
+
+## PLR -------------------------------------------------------------------------
+#' Pivot Log-Ratios (PLR)
+#'
+#' Computes PLR transformations.
+#' @param object A [CompositionMatrix-class] object.
+#' @param pivot An [`integer`] giving the index of the pivotal variable.
+#' @param ... Currently not used.
+#' @return
+#'  A [PLR-class] object.
+#' @references
+#'  Fišerová, E. & Hron, K. (2011). On the Interpretation of Orthonormal
+#'  Coordinates for Compositional Data. *Mathematical Geosciences*, 43(4),
+#'  455‑468. \doi{10.1007/s11004-011-9333-x}.
+#'
+#'  Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. & Gardlo, A. (2017).
+#'  Weighted Pivot Coordinates for Compositional Data and Their Application to
+#'  Geochemical Mapping. *Mathematical Geosciences*, 49(6), 797-814.
+#'  \doi{10.1007/s11004-017-9684-z}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-transform.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family log-ratio transformations
+#' @aliases transform_plr-method
+setGeneric(
+  name = "transform_plr",
+  def = function(object, ...) standardGeneric("transform_plr"),
+  valueClass = "PLR"
+)
+
+## Inverse ---------------------------------------------------------------------
+#' Inverse Log-Ratio Transformation
+#'
+#' Computes inverse log-ratio transformations.
+#' @param object A [CompositionMatrix-class] object.
+#' @param ... Currently not used.
+#' @return
+#'  A [CompositionMatrix-class] object.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'
+#'  Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
+#'  (2003). Isometric Logratio Transformations for Compositional Data Analysis.
+#'  *Mathematical Geology*, 35(3), 279-300. \doi{10.1023/A:1023818214614}.
+#'
+#'  Fišerová, E. & Hron, K. (2011). On the Interpretation of Orthonormal
+#'  Coordinates for Compositional Data. *Mathematical Geosciences*, 43(4),
+#'  455‑468. \doi{10.1007/s11004-011-9333-x}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-transform.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family log-ratio transformations
+#' @aliases transform_inverse-method
+setGeneric(
+  name = "transform_inverse",
+  def = function(object, ...) standardGeneric("transform_inverse"),
+  valueClass = "CompositionMatrix"
+)
+
 # Outliers =====================================================================
 #' Outlier Detection
 #'
@@ -233,161 +408,6 @@ setGeneric(
 setGeneric(
   name = "plot_outliers",
   def = function(object, data, ...) standardGeneric("plot_outliers")
-)
-
-# Log-Ratio ====================================================================
-## CLR -------------------------------------------------------------------------
-#' Centered Log-Ratios (CLR)
-#'
-#' Computes CLR transformation.
-#' @param object A [CompositionMatrix-class] object.
-#' @param weights A [`logical`] scalar: sould a varying weight be used. If
-#'  `FALSE` (the default), equally-weighted parts are used. Alternatively, a
-#'  positive [`numeric`] vector of weights can be specified.
-#' @param ... Currently not used.
-#' @return
-#'  A [CLR-class] object.
-#' @references
-#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
-#'
-#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
-#'  Boca Raton: CRC Press.
-#' @example inst/examples/ex-transform.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family log-ratio transformations
-#' @rdname transform_clr
-#' @aliases transform_clr-method
-setGeneric(
-  name = "transform_clr",
-  def = function(object, ...) standardGeneric("transform_clr"),
-  valueClass = "CLR"
-)
-
-## ALR -------------------------------------------------------------------------
-#' Additive Log-Ratios (ALR)
-#'
-#' Computes ALR transformation.
-#' @param object A [CompositionMatrix-class] object.
-#' @param j An [`integer`] giving the index of the rationing part (denominator).
-#' @param ... Currently not used.
-#' @return
-#'  An [ALR-class] object.
-#' @references
-#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
-#'
-#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
-#'  Boca Raton: CRC Press.
-#' @example inst/examples/ex-transform.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family log-ratio transformations
-#' @rdname transform_alr
-#' @aliases transform_alr-method
-setGeneric(
-  name = "transform_alr",
-  def = function(object, ...) standardGeneric("transform_alr"),
-  valueClass = "ALR"
-)
-
-## ILR -------------------------------------------------------------------------
-#' Isometric Log-Ratios (ILR)
-#'
-#' Computes ILR transformations.
-#' @param object A [CompositionMatrix-class] object.
-#' @param ... Currently not used.
-#' @details
-#'  The ILR transformation provides the coordinates of any composition with
-#'  respect to a given orthonormal basis. `transform_ilr()` uses the orthonormal
-#'  basis (Helmert matrix) originally defined by Egozcue *et al.* (2003).
-#' @return
-#'  An [ILR-class] object.
-#' @references
-#'  Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
-#'  (2003). Isometric Logratio Transformations for Compositional Data Analysis.
-#'  *Mathematical Geology*, 35(3), 279-300. \doi{10.1023/A:1023818214614}.
-#'
-#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
-#'  Boca Raton: CRC Press.
-#' @example inst/examples/ex-transform.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family log-ratio transformations
-#' @rdname transform_ilr
-#' @aliases transform_ilr-method
-setGeneric(
-  name = "transform_ilr",
-  def = function(object, ...) standardGeneric("transform_ilr"),
-  valueClass = "ILR"
-)
-
-## PLR -------------------------------------------------------------------------
-#' Pivot Log-Ratios (PLR)
-#'
-#' Computes PLR transformations.
-#' @param object A [CompositionMatrix-class] object.
-#' @param pivot An [`integer`] giving the index of the pivotal variable.
-#' @param ... Currently not used.
-#' @return
-#'  A [PLR-class] object.
-#' @references
-#'  Fišerová, E. & Hron, K. (2011). On the Interpretation of Orthonormal
-#'  Coordinates for Compositional Data. *Mathematical Geosciences*, 43(4),
-#'  455‑468. \doi{10.1007/s11004-011-9333-x}.
-#'
-#'  Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. & Gardlo, A. (2017).
-#'  Weighted Pivot Coordinates for Compositional Data and Their Application to
-#'  Geochemical Mapping. *Mathematical Geosciences*, 49(6), 797-814.
-#'  \doi{10.1007/s11004-017-9684-z}.
-#'
-#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
-#'  Boca Raton: CRC Press.
-#' @example inst/examples/ex-transform.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family log-ratio transformations
-#' @rdname transform_plr
-#' @aliases transform_plr-method
-setGeneric(
-  name = "transform_plr",
-  def = function(object, ...) standardGeneric("transform_plr"),
-  valueClass = "PLR"
-)
-
-## Inverse ---------------------------------------------------------------------
-#' Inverse Log-Ratio Transformation
-#'
-#' Computes inverse log-ratio transformations.
-#' @param object A [CompositionMatrix-class] object.
-#' @param ... Currently not used.
-#' @return
-#'  A [CompositionMatrix-class] object.
-#' @references
-#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
-#'
-#'  Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
-#'  (2003). Isometric Logratio Transformations for Compositional Data Analysis.
-#'  *Mathematical Geology*, 35(3), 279-300. \doi{10.1023/A:1023818214614}.
-#'
-#'  Fišerová, E. & Hron, K. (2011). On the Interpretation of Orthonormal
-#'  Coordinates for Compositional Data. *Mathematical Geosciences*, 43(4),
-#'  455‑468. \doi{10.1007/s11004-011-9333-x}.
-#'
-#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
-#'  Boca Raton: CRC Press.
-#' @example inst/examples/ex-transform.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family log-ratio transformations
-#' @rdname transform_inverse
-#' @aliases transform_inverse-method
-setGeneric(
-  name = "transform_inverse",
-  def = function(object, ...) standardGeneric("transform_inverse"),
-  valueClass = "CompositionMatrix"
 )
 
 # Isotopes =====================================================================
