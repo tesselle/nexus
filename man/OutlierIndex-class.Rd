@@ -25,10 +25,13 @@ An S4 class to store the result of outlier detection.
 }}
 
 \seealso{
-Other outlier detection methods: 
-\code{\link{outliers}}
+Other classes: 
+\code{\link{CompositionMatrix-class}},
+\code{\link{LogRatio-class}},
+\code{\link{NumericMatrix-class}},
+\code{\link{coerce}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{outlier detection methods}
+\concept{classes}

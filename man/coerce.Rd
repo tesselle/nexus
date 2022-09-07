@@ -80,7 +80,9 @@ head(X)
 \seealso{
 Other classes: 
 \code{\link{CompositionMatrix-class}},
-\code{\link{NumericMatrix-class}}
+\code{\link{LogRatio-class}},
+\code{\link{NumericMatrix-class}},
+\code{\link{OutlierIndex-class}}
 }
 \author{
 N. Frerebeau

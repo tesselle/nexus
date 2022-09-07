@@ -93,10 +93,6 @@ methods for outliers detection with applications in osteology. \emph{Journal of
 Archaeological Science: Reports}, 32, 102423.
 \doi{10.1016/j.jasrep.2020.102423}.
 }
-\seealso{
-Other outlier detection methods: 
-\code{\link{OutlierIndex-class}}
-}
 \author{
 N. Frerebeau
 }

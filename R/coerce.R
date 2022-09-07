@@ -67,7 +67,7 @@ setMethod(
     arkhe::assert_filled(data)
 
     ## Remove non-numeric columns
-    ok_num <- arkhe::detect(data, arkhe::is_numeric, 2)
+    ok_num <- arkhe::detect(data, is.numeric, 2)
     data <- data[, ok_num, drop = FALSE]
     arkhe::assert_filled(data)
 
@@ -80,6 +80,22 @@ setMethod(
     .CompositionMatrix(data, totals = totals, samples = spl, groups = grp)
   }
 )
+
+make_names <- function(x, n = 0, prefix = "var") {
+  if (is.null(x)) {
+    x <- if (n > 0) paste0(prefix, seq_len(n)) else character(0)
+  } else {
+    x <- make.unique(as.character(x), sep = "_")
+  }
+  x
+}
+
+make_dimnames <- function(x) {
+  list(
+    make_names(dimnames(x)[[1L]], nrow(x), "row"),
+    make_names(dimnames(x)[[2L]], ncol(x), "col")
+  )
+}
 
 #' @export
 #' @rdname coerce

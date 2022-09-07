@@ -26,7 +26,6 @@ NULL
 #' @slot samples A [`character`] vector to store the sample identifiers
 #'  (allows duplicates in case of replicated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
-#' @inheritParams base::matrix
 #' @note
 #'  This class inherits from [`matrix`].
 #' @seealso [as_composition()]
@@ -34,7 +33,6 @@ NULL
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
-#' @rdname CompositionMatrix
 #' @aliases CompositionMatrix-class
 .CompositionMatrix <- setClass(
   Class = "CompositionMatrix",
@@ -62,13 +60,8 @@ NULL
 #' @seealso [transform_lr()], [transform_clr()], [transform_alr()],
 #'  [transform_ilr()], [transform_plr()]
 #' @author N. Frerebeau
-#' @family log-ratio transformations
+#' @family classes
 #' @docType class
-#' @name LogRatio
-#' @rdname LogRatio
-NULL
-
-#' @rdname LogRatio
 #' @aliases LogRatio-class
 .LogRatio <- setClass(
   Class = "LogRatio",
@@ -82,35 +75,35 @@ NULL
   contains = "NumericMatrix"
 )
 
-#' @rdname LogRatio
+#' @rdname LogRatio-class
 #' @aliases LR-class
 .LR <- setClass(
   Class = "LR",
   contains = "LogRatio"
 )
 
-#' @rdname LogRatio
+#' @rdname LogRatio-class
 #' @aliases CLR-class
 .CLR <- setClass(
   Class = "CLR",
   contains = "LogRatio"
 )
 
-#' @rdname LogRatio
+#' @rdname LogRatio-class
 #' @aliases ALR-class
 .ALR <- setClass(
   Class = "ALR",
   contains = "LogRatio"
 )
 
-#' @rdname LogRatio
+#' @rdname LogRatio-class
 #' @aliases ILR-class
 .ILR <- setClass(
   Class = "ILR",
   contains = "LogRatio"
 )
 
-#' @rdname LogRatio
+#' @rdname LogRatio-class
 #' @aliases PLR-class
 .PLR <- setClass(
   Class = "PLR",
@@ -128,7 +121,7 @@ NULL
 #' @slot limit An [`numeric`] vector XXX.
 #' @slot robust An [`logical`] vector XXX.
 #' @author N. Frerebeau
-#' @family outlier detection methods
+#' @family classes
 #' @docType class
 #' @aliases OutlierIndex-class
 .OutlierIndex <- setClass(

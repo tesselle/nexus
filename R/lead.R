@@ -1,4 +1,6 @@
 # GEOLOGICAL MODEL AGE
+#' @include AllClasses.R AllGenerics.R
+NULL
 
 #' @export
 #' @rdname lia_age

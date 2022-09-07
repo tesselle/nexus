@@ -52,7 +52,6 @@ Collate:
     'AllGenerics.R'
     'coerce.R'
     'data.R'
-    'initialize.R'
     'lead.R'
     'mutators.R'
     'nexus-package.R'

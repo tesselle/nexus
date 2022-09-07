@@ -55,7 +55,6 @@ Boca Raton: CRC Press.
 }
 \seealso{
 Other log-ratio transformations: 
-\code{\link{LogRatio}},
 \code{\link{transform_alr}()},
 \code{\link{transform_clr}()},
 \code{\link{transform_inverse}()},
