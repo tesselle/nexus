@@ -6,40 +6,35 @@
 \alias{dist,CompositionMatrix-method}
 \title{Distances}
 \usage{
-\S4method{dist}{CompositionMatrix}(x, method = "aitchison", diag = FALSE, upper = FALSE)
+\S4method{dist}{CompositionMatrix}(x, method = "euclidean", diag = FALSE, upper = FALSE, p = 2)
 }
 \arguments{
 \item{x}{A \linkS4class{CompositionMatrix} object.}
 
 \item{method}{A \code{\link{character}} string specifying the distance measure to be
-used. This must be one of "\code{aitchison}".
-Any unambiguous substring can be given.}
+used. See \code{\link[stats:dist]{stats::dist()}} for the available distances.}
 
 \item{diag}{A \code{\link{logical}} scalar indicating whether the diagonal of the
 distance matrix should be printed.}
 
 \item{upper}{A \code{\link{logical}} scalar indicating whether the upper triangle of
 the distance matrix should be printed.}
+
+\item{p}{An \code{\link{integer}} giving the power of the Minkowski distance.}
 }
 \value{
-A \code{\link{dist}} object.
+A \code{\link[stats:dist]{stats::dist}} object.
 }
 \description{
 Computes the log-ratio variance matrix.
+}
+\details{
+Distances are computed on CLR-transformed data.
 }
 \examples{
 ## Coerce to compositonal data
 data("hongite")
 coda <- as_composition(hongite)
-
-## Variance matrix
-var(coda)
-
-## Covariance matrix
-cov(coda)
-
-## Variation matrix
-variation(coda)
 
 ## Distance
 dist(coda)

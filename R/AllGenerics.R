@@ -400,13 +400,15 @@ setGeneric(
 #' Computes the log-ratio variance matrix.
 #' @param x A [CompositionMatrix-class] object.
 #' @param method A [`character`] string specifying the distance measure to be
-#'  used. This must be one of "`aitchison`".
-#'  Any unambiguous substring can be given.
+#'  used. See [stats::dist()] for the available distances.
 #' @param diag A [`logical`] scalar indicating whether the diagonal of the
 #'  distance matrix should be printed.
 #' @param upper A [`logical`] scalar indicating whether the upper triangle of
 #'  the distance matrix should be printed.
-#' @return A [`dist`] object.
+#' @param p An [`integer`] giving the power of the Minkowski distance.
+#' @return A [`stats::dist`] object.
+#' @details
+#'  Distances are computed on CLR-transformed data.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.

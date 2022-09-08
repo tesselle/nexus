@@ -73,10 +73,10 @@ setMethod(
 # Distances ====================================================================
 #' @export
 #' @method dist CompositionMatrix
-dist.CompositionMatrix <- function(x, method = "aitchison",
-                                   diag = FALSE, upper = FALSE) {
-  stats::dist(transform_clr(x), method = "euclidean",
-              diag = diag, upper = upper)
+dist.CompositionMatrix <- function(x, method = "euclidean",
+                                   diag = FALSE, upper = FALSE, p = 2) {
+  stats::dist(transform_clr(x), method = method, diag = diag, upper = upper,
+              p = p)
 }
 
 #' @export

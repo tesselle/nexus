@@ -20,5 +20,5 @@ test_that("Aitchison distance", {
   data("hongite")
   coda <- as_composition(hongite)
 
-  expect_snapshot(dist(coda, method = "aitchison", diag = TRUE, upper = TRUE))
+  expect_snapshot(dist(coda, method = "euclidean", diag = TRUE, upper = TRUE))
 })

@@ -53,7 +53,7 @@
 # Aitchison distance
 
     Code
-      dist(coda, method = "aitchison", diag = TRUE, upper = TRUE)
+      dist(coda, method = "euclidean", diag = TRUE, upper = TRUE)
     Output
                  H1        H2        H3        H4        H5        H6        H7
       H1  0.0000000 0.8767510 2.5214253 0.7906400 0.4739924 0.9678208 0.8391283
