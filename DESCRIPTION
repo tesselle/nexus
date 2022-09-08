@@ -56,6 +56,7 @@ Collate:
     'mutators.R'
     'nexus-package.R'
     'outliers.R'
+    'plot.R'
     'reexport.R'
     'show.R'
     'statistics.R'

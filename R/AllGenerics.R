@@ -6,6 +6,7 @@ NULL
 setGeneric("dist", package = "stats")
 setGeneric("var", package = "stats")
 setGeneric("cov", package = "stats")
+setGeneric("autoplot", package = "ggplot2")
 
 # Coerce =======================================================================
 #' Coerce
@@ -421,6 +422,30 @@ setGeneric(
 #' @family statistics
 #' @name distance
 #' @rdname distance
+NULL
+
+# Plot =========================================================================
+#' Plot
+#'
+#' Displays a compositional bar chart.
+#' @param x,object A [CompositionMatrix-class] object.
+#' @param order An [`integer`] vector giving the index of the column to be used for
+#'  the ordering of the data.
+#' @param decreasing A [`logical`] scalar: should the sort order be increasing
+#'  or decreasing?
+#' @param facet A [`logical`] scalar: should a matrix of panels defined by
+#'  groups be drawn? Only used if `x` [has groups defined][has_groups].
+#' @param ... Currently not used.
+#' @return
+#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
+#'  * `plot()` is called it for its side-effects: it results in a graphic being
+#'    displayed (invisibly returns `x`).
+#' @example inst/examples/ex-plot.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family plot methods
+#' @name plot
+#' @rdname plot
 NULL
 
 # Outliers =====================================================================

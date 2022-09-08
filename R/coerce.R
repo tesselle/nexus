@@ -45,8 +45,8 @@ setMethod(
   signature = signature(from = "data.frame"),
   definition = function(from, samples = NULL, groups = NULL) {
 
-    cols <- colnames(from)
-    auto <- getOption("nexus.autodetect") && !is.null(cols)
+    cols <- make_names(colnames(from), n = ncol(from), prefix = "col")
+    auto <- getOption("nexus.autodetect")
     index <- function(what, where) {
       grep(what, where, ignore.case = TRUE, value = FALSE)
     }
@@ -67,15 +67,25 @@ setMethod(
     arkhe::assert_filled(data)
 
     ## Remove non-numeric columns
-    ok_num <- arkhe::detect(data, is.numeric, 2)
-    data <- data[, ok_num, drop = FALSE]
-    arkhe::assert_filled(data)
+    quali <- arkhe::detect(data, is.numeric, 2, negate = TRUE)
+    if (any(quali)) {
+      old <- colnames(data)
+      data <- data[, !quali, drop = FALSE]
+      arkhe::assert_filled(data)
+
+      ## Generate message
+      tot <- sum(quali)
+      msg <- "%d qualitative %s removed: %s."
+      txt <- ngettext(tot, "variable was", "variables were")
+      col <- paste(old[quali], collapse = ", ")
+      message(sprintf(msg, tot, txt, col))
+    }
 
     ## Build matrix
     data <- data.matrix(data, rownames.force = NA)
     totals <- rowSums(data, na.rm = TRUE)
     data <- data / totals
-    dimnames(data) <- make_dimnames(from)
+    # dimnames(data) <- make_dimnames(from)
 
     .CompositionMatrix(data, totals = totals, samples = spl, groups = grp)
   }
