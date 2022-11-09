@@ -464,6 +464,24 @@ NULL
 #' @rdname plot
 NULL
 
+# PCA ==========================================================================
+#' Principal Components Analysis
+#'
+#' Computes a principal components analysis based on the singular value
+#' decomposition.
+#' @param object A [LogRatio-class] object.
+#' @inheritParams dimensio::pca
+#' @return
+#'  A [dimensio::PCA-class] object.
+#' @example inst/examples/ex-pca.R
+#' @seealso [dimensio::pca()], [dimensio::biplot()]
+#' @author N. Frerebeau
+#' @docType methods
+#' @family multivariate analysis
+#' @name pca
+#' @rdname pca
+NULL
+
 # Outliers =====================================================================
 #' Outlier Detection
 #'

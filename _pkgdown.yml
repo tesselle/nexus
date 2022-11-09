@@ -16,6 +16,9 @@ reference:
 - title: Visualization
   contents:
   - has_concept("plot methods")
+- title: Multivariate Analysis
+  contents:
+  - has_concept("multivariate analysis")
 - title: Outlier Detection
   contents:
   - has_concept("outlier detection methods")

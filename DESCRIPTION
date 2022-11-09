@@ -29,6 +29,7 @@ Depends:
     R (>= 3.5)
 Imports: 
     arkhe (>= 1.0.0),
+    dimensio (>= 0.3.0),
     ggplot2,
     methods,
     rlang,
@@ -57,6 +58,7 @@ Collate:
     'mutators.R'
     'nexus-package.R'
     'outliers.R'
+    'pca.R'
     'plot.R'
     'reexport.R'
     'show.R'
