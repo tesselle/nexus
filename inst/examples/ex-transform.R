@@ -12,5 +12,18 @@ clr <- transform_clr(coda)
 alr <- transform_alr(coda)
 
 ## Isometric log-ratio
-ilr1 <- transform_ilr(coda)
-ilr2 <- transform_plr(coda)
+ilr <- transform_ilr(coda)
+plr <- transform_plr(coda)
+
+## Inverse transformation
+inv_clr <- transform_inverse(clr)
+all.equal(coda, inv_clr)
+
+inv_alr <- transform_inverse(alr)
+all.equal(coda, inv_alr)
+
+inv_ilr <- transform_inverse(ilr)
+all.equal(coda, inv_ilr)
+
+inv_plr <- transform_inverse(plr)
+all.equal(coda, inv_plr)

@@ -14,7 +14,7 @@ test_that("CLR", {
 
   wclr <- transform_clr(coda, weights = TRUE)
   x <- transform_inverse(wclr)
-  expect_identical(round(coda@.Data, 3), round(x@.Data, 3))
+  expect_equal(coda, x)
 
   # alr <- transform_alr(coda)
   # y <- transform_clr(alr)
@@ -32,7 +32,7 @@ test_that("ALR", {
   expect_snapshot(alr)
 
   x <- transform_inverse(alr)
-  expect_identical(round(coda@.Data, 3), round(x@.Data, 3))
+  expect_equal(coda, x)
 
   # clr <- transform_clr(coda)
   # y <- transform_alr(clr)
@@ -50,7 +50,7 @@ test_that("ILR", {
   expect_snapshot(ilr)
 
   x <- transform_inverse(ilr)
-  expect_identical(round(coda@.Data, 3), round(x@.Data, 3))
+  expect_equal(coda, x)
 
   # clr <- transform_clr(coda)
   # y <- transform_ilr(clr)
@@ -69,5 +69,5 @@ test_that("PLR", {
 
   plr2 <- transform_plr(coda, pivot = 2)
   x <- transform_inverse(plr2)
-  expect_identical(round(coda@.Data, 3), round(x@.Data, 3))
+  expect_equal(coda, x)
 })

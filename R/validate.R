@@ -25,7 +25,7 @@ setValidity(
       arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(groups, n, empty = TRUE)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_numeric(object, "positive", strict = FALSE))
+      arkhe::validate(arkhe::assert_positive(object, strict = FALSE))
     )
     arkhe::check_class(object, cnd)
   }
@@ -42,12 +42,20 @@ setValidity(
     base <- object@base
     weights <- object@weights
 
+    samples <- object@samples
+    groups <- object@groups
+    totals <- object@totals
+
     i <- length(parts)
     j <- ncol(base)
+    n <- nrow(object)
 
     cnd <- list(
       # arkhe::validate(arkhe::assert_length(ratio, j, empty = FALSE)),
-      arkhe::validate(arkhe::assert_length(order, i, empty = FALSE))
+      arkhe::validate(arkhe::assert_length(order, i, empty = FALSE)),
+      arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
+      arkhe::validate(arkhe::assert_length(groups, n, empty = TRUE)),
+      arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE))
     )
     arkhe::check_class(object, cnd)
   }

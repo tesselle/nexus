@@ -30,7 +30,16 @@ setMethod(
     rownames(lr) <- rownames(object)
     colnames(lr) <- r
 
-    .LR(lr, parts = parts, ratio = r, order = seq_len(J), weights = w)
+    .LR(
+      lr,
+      parts = parts,
+      ratio = r,
+      order = seq_len(J),
+      weights = w,
+      totals = object@totals,
+      samples = object@samples,
+      groups = object@groups
+    )
   }
 )
 
@@ -48,7 +57,7 @@ setMethod(
     w <- if (any(weights)) colMeans(object) else rep(1 / J, J)
     if (is.numeric(weights)) {
       arkhe::assert_length(weights, J)
-      arkhe::assert_numeric(weights, "positive", strict = FALSE)
+      arkhe::assert_positive(weights, strict = FALSE)
       w <- weights / sum(weights) # Sum up to 1
     }
 
@@ -56,8 +65,17 @@ setMethod(
     clr <- log(object, base = exp(1)) %*% base
     dimnames(clr) <- dimnames(object)
 
-    .CLR(clr, parts = parts, ratio = parts, order = seq_len(J),
-         base = base, weights = w)
+    .CLR(
+      clr,
+      parts = parts,
+      ratio = parts,
+      order = seq_len(J),
+      base = base,
+      weights = w,
+      totals = object@totals,
+      samples = object@samples,
+      groups = object@groups
+    )
   }
 )
 
@@ -88,8 +106,17 @@ setMethod(
     w <- rep(1 / D, D)
     w <- w[-D] * w[D]
 
-    .ALR(alr, parts = parts, ratio = colnames(alr), order = order(ordering),
-         base = base, weights = w)
+    .ALR(
+      alr,
+      parts = parts,
+      ratio = colnames(alr),
+      order = order(ordering),
+      base = base,
+      weights = w,
+      totals = object@totals,
+      samples = object@samples,
+      groups = object@groups
+    )
   }
 )
 
@@ -128,8 +155,17 @@ setMethod(
     colnames(ilr) <- paste0("Z", seq_parts)
     rownames(ilr) <- rownames(object)
 
-    .ILR(ilr, parts = parts, ratio = ratio, order = seq_len(D),
-         base = H, weights = rep(1 / D, D))
+    .ILR(
+      ilr,
+      parts = parts,
+      ratio = ratio,
+      order = seq_len(D),
+      base = H,
+      weights = rep(1 / D, D),
+      totals = object@totals,
+      samples = object@samples,
+      groups = object@groups
+    )
   }
 )
 
@@ -171,8 +207,18 @@ setMethod(
     )
     colnames(plr) <- paste0("Z", seq_len(J - 1))
     rownames(plr) <- rownames(object)
-    .PLR(plr, parts = parts, ratio = ratio, order = order(ordering),
-         base = H, weights = rep(1 / J, J))
+
+    .PLR(
+      plr,
+      parts = parts,
+      ratio = ratio,
+      order = order(ordering),
+      base = H,
+      weights = rep(1 / J, J),
+      totals = object@totals,
+      samples = object@samples,
+      groups = object@groups
+    )
   }
 )
 
@@ -185,11 +231,17 @@ setMethod(
   f = "transform_inverse",
   signature = signature(object = "CLR"),
   definition = function(object) {
-    y <- exp(object)
-    y <- y / (1 + rowSums(y))
+    y <- methods::S3Part(object, strictS3 = TRUE) # Drop slots
+    y <- exp(y)
+    y <- y / rowSums(y)
 
     dimnames(y) <- list(rownames(object), object@parts)
-    as_composition(y)
+    .CompositionMatrix(
+      y,
+      totals = object@totals,
+      samples = object@samples,
+      groups = object@groups
+    )
   }
 )
 ## ALR -------------------------------------------------------------------------
@@ -207,7 +259,13 @@ setMethod(
     y <- cbind(y, z)
     dimnames(y) <- list(rownames(object), object@parts)
     y <- y[, object@order]
-    as_composition(y)
+
+    .CompositionMatrix(
+      y,
+      totals = object@totals,
+      samples = object@samples,
+      groups = object@groups
+    )
   }
 )
 ## ILR -------------------------------------------------------------------------
@@ -220,9 +278,16 @@ setMethod(
   definition = function(object) {
     y <- tcrossprod(object, object@base)
     y <- exp(y)
+    y <- y / rowSums(y)
 
     dimnames(y) <- list(rownames(object), object@parts)
     y <- y[, object@order]
-    as_composition(y)
+
+    .CompositionMatrix(
+      y,
+      totals = object@totals,
+      samples = object@samples,
+      groups = object@groups
+    )
   }
 )

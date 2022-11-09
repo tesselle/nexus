@@ -66,6 +66,10 @@ NULL
 .LogRatio <- setClass(
   Class = "LogRatio",
   slots = c(
+    totals = "numeric",
+    samples = "character",
+    groups = "character",
+
     parts = "character",
     ratio = "character",
     order = "integer",
@@ -132,6 +136,7 @@ NULL
     distances = "numeric",
     outliers = "logical",
     limit = "numeric",
-    robust = "logical"
+    robust = "logical",
+    df = "integer"
   )
 )
