@@ -13,17 +13,6 @@
 <a href="https://tesselle.r-universe.dev" class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/nexus"
 alt="r-universe" /></a>
-<a href="https://cran.r-project.org/package=nexus"
-class="pkgdown-release"><img
-src="http://www.r-pkg.org/badges/version/nexus"
-alt="CRAN Version" /></a>
-<a href="https://cran.r-project.org/web/checks/check_results_nexus.html"
-class="pkgdown-release"><img
-src="https://cranchecks.info/badges/worst/nexus"
-alt="CRAN checks" /></a>
-<a href="https://cran.r-project.org/package=nexus"
-class="pkgdown-release"><img
-src="http://cranlogs.r-pkg.org/badges/nexus" alt="CRAN Downloads" /></a>
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
@@ -50,6 +39,60 @@ And the development version from [GitHub](https://github.com/) with:
 ``` r
 # install.packages("remotes")
 remotes::install_github("tesselle/nexus")
+```
+
+## Usage
+
+``` r
+## Load the package
+library(nexus)
+```
+
+**nexus** provides a set of S4 classes that represent different special
+types of matrix.
+
+-   `CompositionMatrix` represents relative frequency data (composition
+    data),
+-   `LogRatio` represents log-ratio matrix.
+
+*It assumes that you keep your data tidy*: each variable must be saved
+in its own column and each observation (sample) must be saved in its own
+row.
+
+These new classes are of simple use as they inherit from base `matrix`:
+
+``` r
+## Coerce to compositonal data
+data("hongite")
+coda <- as_composition(hongite)
+```
+
+The `CompositionMatrix` and `LogRatio` classes have special slots:
+
+-   `samples` for replicated measurements/observation,
+-   `groups` to group data by site/area.
+
+When coercing a `data.frame` to a `CompositionMatrix` object, an attempt
+is made to automatically assign values to these slots by mapping column
+names. This behavior can be disabled by setting
+`options(arkhe.autodetect = FALSE)`.
+
+``` r
+X <- matrix(data = sample(0:10, 75, TRUE), nrow = 15, ncol = 5)
+X <- as.data.frame(X)
+X$samples <- sample(c("a", "b", "c", "d", "e"), 15, TRUE)
+X$groups <- sample(c("A", "B", "C"), 15, TRUE)
+
+## Coerce to a count matrix
+Y <- as_composition(X)
+
+## Get groups
+get_samples(Y)
+#>  [1] "d" "c" "c" "d" "e" "c" "b" "a" "c" "a" "b" "e" "a" "d" "d"
+
+## Get groups
+get_groups(Y)
+#>  [1] "A" "C" "C" "B" "C" "A" "B" "A" "A" "A" "C" "A" "B" "B" "C"
 ```
 
 ## Contributing
