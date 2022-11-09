@@ -41,9 +41,9 @@
 "_PACKAGE"
 
 #' @import arkhe
-#' @importFrom ggplot2 aes coord_flip element_blank facet_wrap geom_col
-#' geom_hline geom_jitter geom_point ggplot labs theme scale_x_continuous
-#' scale_y_continuous vars
+#' @importFrom ggplot2 aes coord_fixed coord_flip element_blank facet_wrap
+#' geom_col geom_hline geom_jitter geom_point ggplot labs theme
+#' scale_x_continuous scale_y_continuous vars
 #' @importFrom methods as as<- callGeneric callNextMethod
 #' .hasSlot initialize is new setClass
 #' setGeneric setMethod slot slot<- slotNames validObject .valueClassTest

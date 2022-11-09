@@ -6,6 +6,7 @@ NULL
 setGeneric("dist", package = "stats")
 setGeneric("var", package = "stats")
 setGeneric("cov", package = "stats")
+setGeneric("mahalanobis", package = "stats")
 setGeneric("autoplot", package = "ggplot2")
 
 # Coerce =======================================================================
@@ -138,13 +139,6 @@ setGeneric(
 setGeneric(
   name = "set_totals<-",
   def = function(x, value) standardGeneric("set_totals<-")
-)
-
-#' @rdname mutators
-#' @aliases get_outliers-method
-setGeneric(
-  name = "get_outliers",
-  def = function(x) standardGeneric("get_outliers")
 )
 
 ## Subset ----------------------------------------------------------------------
@@ -407,9 +401,9 @@ setGeneric(
 #' @param upper A [`logical`] scalar indicating whether the upper triangle of
 #'  the distance matrix should be printed.
 #' @param p An [`integer`] giving the power of the Minkowski distance.
-#' @return A [`stats::dist`] object.
 #' @details
-#'  Distances are computed on CLR-transformed data.
+#'  Distances are computed on [CLR-transformed][transform_clr] data.
+#' @return A [`stats::dist`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
@@ -417,11 +411,33 @@ setGeneric(
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
 #' @example inst/examples/ex-distance.R
+#' @seealso [stats::dist()]
 #' @author N. Frerebeau
 #' @docType methods
 #' @family statistics
-#' @name distance
-#' @rdname distance
+#' @name dist
+#' @rdname dist
+NULL
+
+#' Mahalanobis Distance
+#'
+#' Computes the squared Mahalanobis distance of all rows in `x`.
+#' @param x A [CompositionMatrix-class] object.
+#' @param center A [`numeric`] vector giving the mean vector of the
+#'  distribution. If missing, will be estimated from `x`.
+#' @param cov A [`numeric`] matrix giving the covariance of the
+#'  distribution. If missing, will be estimated from `x`.
+#' @param robust A [`logical`] scalar: should robust location and scatter
+#'  estimation be used (see [robustbase::covMcd()])?
+#' @param ... Extra parameters to be passed to [robustbase::covMcd()].
+#'  Only used if `robust` is `TRUE`.
+#' @return A [`numeric`] vector.
+#' @seealso [stats::mahalanobis()]
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name mahalanobis
+#' @rdname mahalanobis
 NULL
 
 # Plot =========================================================================
@@ -451,22 +467,32 @@ NULL
 # Outliers =====================================================================
 #' Outlier Detection
 #'
-#' @param object An [OutlierIndex-class] object.
-#' @param level A length-one [`numeric`] vector giving the
-#'  significance level. `level` is used as a cut-off value for outlier
-#'  detection: observations with larger (squared) Mahalanobis distance are
-#'  considered as potential outliers.
-#' @param robust A [`logical`] scalar: should robust estimators be
-#'  used (see [robustbase::covMcd()])?
+#' @param object A [CompositionMatrix-class].
+#' @inheritParams mahalanobis
+#' @param level A length-one [`numeric`] vector giving the significance level.
+#'  `level` is used as a cut-off value for outlier detection: observations with
+#'  larger (squared) Mahalanobis distance are considered as potential outliers.
 #' @param alpha A length-one [`numeric`] vector controlling the size of the
 #'  subsets over which the determinant is minimized (see
 #'  [robustbase::covMcd()]). Only used if `robust` is `TRUE`.
-#' @param data A [CompositionMatrix-class] object.
-#' @param select A [`numeric`] or [`character`] vector giving the selection of
-#'  the parts that are drawn.
 #' @param ... Currently not used.
+#' @details
+#'  An outlier can be defined as having a very large Mahalanobis distance from
+#'  all observations. In this way, a certain proportion of the observations can
+#'  be identified, e.g. the top 2% of values (i.e. values above the 0.98th
+#'  percentile of the Chi-2 distribution).
+#'
+#'  On the one hand, the Mahalanobis distance is likely to be strongly
+#'  affected by the presence of outliers. Rousseeuw and van Zomeren (1990) thus
+#'  recommend using robust methods (which are not excessively affected by the
+#'  presence of outliers).
+#'
+#'  On the other hand, the choice of the threshold for classifying an
+#'  observation as an outlier should be discussed. There is no apparent reason
+#'  why a particular threshold should be applicable to all data sets
+#'  (Filzmoser, Garrett, and Reimann 2005).
 #' @return
-#'  `find_outliers()` returns an [OutlierIndex-class] object.
+#'  An [OutlierIndex-class] object.
 #' @references
 #'  Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier
 #'  detection in exploration geochemistry. *Computers & Geosciences*,
@@ -480,6 +506,10 @@ NULL
 #'  outliers for compositional data. *Computers & Geosciences*, 39, 77-85.
 #'  \doi{10.1016/j.cageo.2011.06.014}.
 #'
+#'  Rousseeuw, P. J. & van Zomeren, B. C. (1990). Unmasking Multivariate Outliers
+#'  and Leverage Points. *Journal of the American Statistical Association*,
+#'  85(411): 633-639. \doi{10.1080/01621459.1990.10474920}.
+#'
 #'  Santos, F. (2020). Modern methods for old data: An overview of some robust
 #'  methods for outliers detection with applications in osteology. *Journal of
 #'  Archaeological Science: Reports*, 32, 102423.
@@ -488,30 +518,42 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family outlier detection methods
-#' @name outliers
-#' @rdname outliers
+#' @aliases outliers-method
+setGeneric(
+  name = "outliers",
+  def = function(object, ...) standardGeneric("outliers")
+)
+
+#' Plot Outliers
+#'
+#' @param x,object An [OutlierIndex-class] object.
+#' @param qq A [`logical`] scalar: should a quantile-quantile plot be produced?
+#' @param limit A [`logical`] scalar: should the cut-off value for outlier
+#'  detection be displayed?
+#' @param ... Currently not used.
+#' @return
+#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
+#'  * `plot()` and `qqplot()` are called it for their side-effects: they result
+#'    in a graphic being displayed (invisibly return `x`).
+#' @references
+#'  Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier
+#'  detection in exploration geochemistry. *Computers & Geosciences*,
+#'  31(5), 579-587. \doi{10.1016/j.cageo.2004.11.013}.
+#'
+#'  Filzmoser, P. & Hron, K. (2008). Outlier Detection for Compositional Data
+#'  Using Robust Methods. *Mathematical Geosciences*, 40(3), 233-248.
+#'  \doi{10.1007/s11004-007-9141-5}.
+#'
+#'  Filzmoser, P., Hron, K. & Reimann, C. (2012). Interpretation of multivariate
+#'  outliers for compositional data. *Computers & Geosciences*, 39, 77-85.
+#'  \doi{10.1016/j.cageo.2011.06.014}.
+#' @example inst/examples/ex-outliers.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family outlier detection methods
+#' @name plot_outliers
+#' @rdname plot_outliers
 NULL
-
-#' @rdname outliers
-#' @aliases find_outliers-method
-setGeneric(
-  name = "find_outliers",
-  def = function(object, ...) standardGeneric("find_outliers")
-)
-
-#' @rdname outliers
-#' @aliases count_outliers-method
-setGeneric(
-  name = "count_outliers",
-  def = function(object) standardGeneric("count_outliers")
-)
-
-#' @rdname outliers
-#' @aliases plot_outliers-method
-setGeneric(
-  name = "plot_outliers",
-  def = function(object, data, ...) standardGeneric("plot_outliers")
-)
 
 # Isotopes =====================================================================
 #' Geological Model Age from Lead Isotope Analysis

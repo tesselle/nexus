@@ -46,7 +46,8 @@ Boca Raton: CRC Press.
 }
 \seealso{
 Other statistics: 
-\code{\link{distance}},
+\code{\link{dist}()},
+\code{\link{mahalanobis}()},
 \code{\link{variation}()}
 }
 \author{

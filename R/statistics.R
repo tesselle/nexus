@@ -75,49 +75,43 @@ setMethod(
 #' @method dist CompositionMatrix
 dist.CompositionMatrix <- function(x, method = "euclidean",
                                    diag = FALSE, upper = FALSE, p = 2) {
-  stats::dist(transform_clr(x), method = method, diag = diag, upper = upper,
-              p = p)
+  x <- transform_clr(x)
+  stats::dist(x, method = method, diag = diag, upper = upper, p = p)
 }
 
 #' @export
-#' @rdname distance
+#' @rdname dist
 #' @aliases dist,CompositionMatrix-method
 setMethod("dist", "CompositionMatrix", dist.CompositionMatrix)
 
-#' Mahalanobis Distance
-#'
-#' @param object A numeric matrix.
-#' @param group A numeric matrix.
-#' @param robust A [`logical`] scalar.
-#' @param alpha A length-one [`numeric`] vector controlling the size of the
-#'  subsets over which the determinant is minimized (see
-#'  [robustbase::covMcd()]). Only used if `robust` is `TRUE`.
-#' @param ... Extra parameter to be passed to [transform_pivot()].
-#' @return
-#'  A [`numeric`] vector giving the squared Mahalanobis distance of all rows in
-#'  `object`.
-#' @seealso [stats::mahalanobis()]
-#' @keywords internal
-#' @noRd
-stats_mahalanobis <- function(object, group, robust = TRUE, alpha = 0.5, ...) {
-  if (missing(group)) group <- object
 
-  ilr_object <- transform_plr(object, ...)
-  ilr_group <- transform_plr(group, ...)
+#' @export
+#' @method mahalanobis CompositionMatrix
+mahalanobis.CompositionMatrix <- function(x, center, cov, robust = TRUE, ...) {
+  ## Transformation
+  x <- transform_ilr(x)
 
-  x <- as.matrix(ilr_object)
-  y <- as.matrix(ilr_group)
-  if (robust) {
-    # Robust estimators
-    v <- robustbase::covMcd(y, alpha = alpha)
-    est <- list(mean = v$center, cov = v$cov)
-  } else {
-    # Standard estimators
-    est <- list(mean = colMeans(y, na.rm = TRUE), cov = stats::cov(y))
+  if (missingORnull(center) | missingORnull(cov)) {
+    if (robust) {
+      ## Robust estimators
+      v <- robustbase::covMcd(x, ...)
+    } else {
+      ## Standard estimators
+      v <- list(mean = colMeans(x), cov = stats::cov(x))
+    }
+
+    est <- list(center = NULL, cov = NULL)
+    est$center <- if (missingORnull(center)) v$center else center
+    est$cov <- if (missingORnull(cov)) v$cov else cov
   }
 
-  stats::mahalanobis(x, center = est$mean, cov = est$cov)
+  stats::mahalanobis(x, center = est$center, cov = est$cov)
 }
+
+#' @export
+#' @rdname mahalanobis
+#' @aliases mahalanobis,CompositionMatrix-method
+setMethod("mahalanobis", "CompositionMatrix", mahalanobis.CompositionMatrix)
 
 # Tools ========================================================================
 #' Geometric Mean

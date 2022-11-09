@@ -11,19 +11,22 @@ An S4 class to store the result of outlier detection.
 \section{Slots}{
 
 \describe{
-\item{\code{samples}}{A \code{\link{character}} vector XXX.}
+\item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
+(allows duplicates in case of replicated measurements).}
 
-\item{\code{groups}}{A \code{\link{character}} vector XXX.}
+\item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
 
-\item{\code{distances}}{A \code{\link{numeric}} vector XXX.}
+\item{\code{distances}}{A \code{\link{numeric}} vector giving the squared Mahalanobis distance.}
 
-\item{\code{outliers}}{A \code{\link{logical}} vector giving the squared Mahalanobis distance.}
+\item{\code{limit}}{An \code{\link{numeric}} value giving the cut-off value used for outlier
+detection.}
 
-\item{\code{limit}}{An \code{\link{numeric}} vector XXX.}
-
-\item{\code{robust}}{An \code{\link{logical}} vector XXX.}
+\item{\code{robust}}{An \code{\link{logical}} scalar: were robust estimators used?}
 }}
 
+\note{
+These classes inherit from \code{\link{logical}}.
+}
 \seealso{
 Other classes: 
 \code{\link{CompositionMatrix-class}},

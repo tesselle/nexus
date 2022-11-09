@@ -5,112 +5,98 @@ NULL
 # Find =========================================================================
 #' @export
 #' @rdname outliers
-#' @aliases find_outliers,CompositionMatrix-method
+#' @aliases outliers,CompositionMatrix-method
 setMethod(
-  f = "find_outliers",
+  f = "outliers",
   signature = signature(object = "CompositionMatrix"),
-  definition = function(object, level = 0.975, robust = TRUE, alpha = 0.5) {
+  definition = function(object, center = NULL, cov = NULL, robust = TRUE,
+                        alpha = 0.5, level = 0.975) {
 
-    distance <- sqrt(stats_mahalanobis(object, robust = robust, alpha = alpha))
-    limit <- sqrt(stats::qchisq(p = level, df = ncol(object) - 1))
+    df <- ncol(object) - 1L
+    distance <- sqrt(mahalanobis(object, center = center, cov = cov,
+                                 robust = robust, alpha = alpha))
+    limit <- sqrt(stats::qchisq(p = level, df = df))
+    out <- distance > limit
+    names(out) <- rownames(object)
 
     .OutlierIndex(
-      samples = rownames(object),
+      out,
+      samples = get_samples(object),
+      groups = get_groups(object),
       distances = distance,
-      outliers = distance > limit,
       limit = limit,
-      robust = robust
+      robust = robust,
+      df = df
     )
-  }
-)
-
-# Mutators =====================================================================
-#' @export
-#' @rdname outliers
-#' @aliases count_outliers,OutlierIndex-method
-setMethod(
-  f = "count_outliers",
-  signature = signature(object = "OutlierIndex"),
-  definition = function(object) {
-    if (has_groups(object)) {
-      tapply(
-        X = get_outliers(object),
-        INDEX = get_groups(object),
-        FUN = sum
-      )
-    } else {
-      sum(get_outliers(object))
-    }
   }
 )
 
 # Plot =========================================================================
 #' @export
-#' @rdname outliers
-#' @aliases plot_outliers,OutlierIndex,missing-method
-setMethod(
-  f = "plot_outliers",
-  signature = signature(object = "OutlierIndex", data = "missing"),
-  definition = function(object) {
-    data <- as.data.frame(object)
+#' @method autoplot OutlierIndex
+autoplot.OutlierIndex <- function(object, ..., qq = TRUE, limit = !qq) {
+  ## Prepare data
+  data <- as.data.frame(object)
 
-    facet_plot <- NULL
-    if (has_groups(object)) {
-      facet_plot <- ggplot2::facet_wrap(~ .data$groups, scales = "free_x")
-    }
-    ylab <- sprintf("%s Mahalanobis distance",
-                    ifelse(object@robust, "Robust", "Standard"))
+  gg_qqline <- NULL
+  if (qq) {
+    df <- object@df
+    data <- data[order(data$distance), ]
+    data$quantiles <- stats::qchisq(stats::ppoints(nrow(data)), df = df)
 
-    ggplot2::ggplot(data = data) +
-      facet_plot +
-      ggplot2::aes(x = .data$index, y = .data$distances,
-                   colour = .data$outlier, shape = .data$outlier,
-                   label = .data$samples) +
-      ggplot2::geom_point() +
-      ggplot2::geom_hline(yintercept = object@limit, linetype = 2) +
-      ggplot2::scale_x_continuous(name = "Index") +
-      ggplot2::scale_y_continuous(name = ylab)
+    gg_qqline <- list(
+      ggplot2::geom_qq_line(
+        mapping = ggplot2::aes(sample = .data$distance),
+        distribution = stats::qchisq, dparams = df,
+        inherit.aes = FALSE
+      ),
+      ggplot2::coord_fixed()
+    )
   }
-)
+
+  gg_limit <- NULL
+  if (limit) {
+    gg_limit <- ggplot2::geom_hline(yintercept = object@limit, linetype = 2)
+  }
+
+  gg_facet <- NULL
+  if (has_groups(object)) {
+    gg_facet <- ggplot2::facet_wrap(~ .data$group, scales = "free_x")
+  }
+
+  xval <- ifelse(qq, "quantiles", "index")
+  xlab <- ifelse(qq, "Theoretrical Quantiles", "Index")
+  ylab <- sprintf("%s Mahalanobis distance",
+                  ifelse(object@robust, "Robust", "Standard"))
+
+  ggplot2::ggplot(data = data) +
+    ggplot2::aes(x = .data[[xval]], y = .data$distance,
+                 colour = .data$outlier, shape = .data$outlier,
+                 label = .data$sample) +
+    gg_facet +
+    gg_qqline +
+    ggplot2::geom_point() +
+    gg_limit +
+    ggplot2::scale_x_continuous(name = xlab) +
+    ggplot2::scale_y_continuous(name = ylab)
+}
 
 #' @export
-#' @rdname outliers
-#' @aliases plot_outliers,OutlierIndex,CompositionMatrix-method
-setMethod(
-  f = "plot_outliers",
-  signature = signature(object = "OutlierIndex", data = "CompositionMatrix"),
-  definition = function(object, data, select = NULL) {
+#' @rdname plot_outliers
+#' @aliases autoplot,OutlierIndex-method
+setMethod("autoplot", "OutlierIndex", autoplot.OutlierIndex)
 
-    if (is.null(select)) {
-      select <- seq_len(ncol(data))
-    } else if (is.character(select)) {
-      select <- which(colnames(data) %in% select)
-    } else {
-      select <- as.integer(select)
-    }
+#' @export
+#' @method plot OutlierIndex
+plot.OutlierIndex <- function(x, qq = TRUE, limit = !qq, ...) {
+  gg <- autoplot(object = x, qq = qq, limit = limit) +
+    ggplot2::scale_colour_manual(values = c("#004488", "#DDAA33")) +
+    ggplot2::theme_bw()
+  print(gg)
+  invisible(x)
+}
 
-    ilr <- matrix(data = NA, nrow = nrow(data), ncol = length(select))
-    k <- 1
-    for (i in select) {
-      ilr[, k] <- transform_plr(data)[, 1]
-      k <- k + 1
-    }
-    colnames(ilr) <- colnames(data)[select]
-    ilr <- arkhe::as_long(ilr, factor = TRUE)
-    ilr$distance <- object@distances
-    ilr$outlier <- get_outliers(object)
-
-    ggplot2::ggplot(data = ilr) +
-      ggplot2::aes(x = 1, y = .data$value,
-                   colour = .data$distance, shape = .data$outlier,
-                   label = .data$row) +
-      ggplot2::facet_wrap(~ .data$column, nrow = 1, scales = "free_y") +
-      ggplot2::geom_jitter() +
-      ggplot2::scale_y_continuous(name = "Isometric log-ratio") +
-      ggplot2::theme(
-        axis.title.x = ggplot2::element_blank(),
-        axis.text.x = ggplot2::element_blank(),
-        axis.ticks.x = ggplot2::element_blank(),
-      )
-  }
-)
+#' @export
+#' @rdname plot_outliers
+#' @aliases plot,OutlierIndex,missing-method
+setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)

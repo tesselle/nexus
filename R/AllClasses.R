@@ -118,12 +118,15 @@ NULL
 #' Outliers
 #'
 #' An S4 class to store the result of outlier detection.
-#' @slot samples A [`character`] vector XXX.
-#' @slot groups A [`character`] vector XXX.
-#' @slot distances A [`numeric`] vector XXX.
-#' @slot outliers A [`logical`] vector giving the squared Mahalanobis distance.
-#' @slot limit An [`numeric`] vector XXX.
-#' @slot robust An [`logical`] vector XXX.
+#' @slot samples A [`character`] vector to store the sample identifiers
+#'  (allows duplicates in case of replicated measurements).
+#' @slot groups A [`character`] vector to store the group names (if any).
+#' @slot distances A [`numeric`] vector giving the squared Mahalanobis distance.
+#' @slot limit An [`numeric`] value giving the cut-off value used for outlier
+#'  detection.
+#' @slot robust An [`logical`] scalar: were robust estimators used?
+#' @note
+#'  These classes inherit from [`logical`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -134,9 +137,9 @@ NULL
     samples = "character",
     groups = "character",
     distances = "numeric",
-    outliers = "logical",
     limit = "numeric",
     robust = "logical",
     df = "integer"
-  )
+  ),
+  contains = "logical"
 )

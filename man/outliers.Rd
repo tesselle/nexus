@@ -3,77 +3,76 @@
 \docType{methods}
 \name{outliers}
 \alias{outliers}
-\alias{find_outliers}
-\alias{find_outliers-method}
-\alias{count_outliers}
-\alias{count_outliers-method}
-\alias{plot_outliers}
-\alias{plot_outliers-method}
-\alias{find_outliers,CompositionMatrix-method}
-\alias{count_outliers,OutlierIndex-method}
-\alias{plot_outliers,OutlierIndex,missing-method}
-\alias{plot_outliers,OutlierIndex,CompositionMatrix-method}
+\alias{outliers-method}
+\alias{outliers,CompositionMatrix-method}
 \title{Outlier Detection}
 \usage{
-find_outliers(object, ...)
+outliers(object, ...)
 
-count_outliers(object)
-
-plot_outliers(object, data, ...)
-
-\S4method{find_outliers}{CompositionMatrix}(object, level = 0.975, robust = TRUE, alpha = 0.5)
-
-\S4method{count_outliers}{OutlierIndex}(object)
-
-\S4method{plot_outliers}{OutlierIndex,missing}(object)
-
-\S4method{plot_outliers}{OutlierIndex,CompositionMatrix}(object, data, select = NULL)
+\S4method{outliers}{CompositionMatrix}(
+  object,
+  center = NULL,
+  cov = NULL,
+  robust = TRUE,
+  alpha = 0.5,
+  level = 0.975
+)
 }
 \arguments{
-\item{object}{An \linkS4class{OutlierIndex} object.}
+\item{object}{A \linkS4class{CompositionMatrix}.}
 
 \item{...}{Currently not used.}
 
-\item{data}{A \linkS4class{CompositionMatrix} object.}
+\item{center}{A \code{\link{numeric}} vector giving the mean vector of the
+distribution. If missing, will be estimated from \code{x}.}
 
-\item{level}{A length-one \code{\link{numeric}} vector giving the
-significance level. \code{level} is used as a cut-off value for outlier
-detection: observations with larger (squared) Mahalanobis distance are
-considered as potential outliers.}
+\item{cov}{A \code{\link{numeric}} matrix giving the covariance of the
+distribution. If missing, will be estimated from \code{x}.}
 
-\item{robust}{A \code{\link{logical}} scalar: should robust estimators be
-used (see \code{\link[robustbase:covMcd]{robustbase::covMcd()}})?}
+\item{robust}{A \code{\link{logical}} scalar: should robust location and scatter
+estimation be used (see \code{\link[robustbase:covMcd]{robustbase::covMcd()}})?}
 
 \item{alpha}{A length-one \code{\link{numeric}} vector controlling the size of the
 subsets over which the determinant is minimized (see
 \code{\link[robustbase:covMcd]{robustbase::covMcd()}}). Only used if \code{robust} is \code{TRUE}.}
 
-\item{select}{A \code{\link{numeric}} or \code{\link{character}} vector giving the selection of
-the parts that are drawn.}
+\item{level}{A length-one \code{\link{numeric}} vector giving the significance level.
+\code{level} is used as a cut-off value for outlier detection: observations with
+larger (squared) Mahalanobis distance are considered as potential outliers.}
 }
 \value{
-\code{find_outliers()} returns an \linkS4class{OutlierIndex} object.
+An \linkS4class{OutlierIndex} object.
 }
 \description{
 Outlier Detection
 }
+\details{
+An outlier can be defined as having a very large Mahalanobis distance from
+all observations. In this way, a certain proportion of the observations can
+be identified, e.g. the top 2\% of values (i.e. values above the 0.98th
+percentile of the Chi-2 distribution).
+
+On the one hand, the Mahalanobis distance is likely to be strongly
+affected by the presence of outliers. Rousseeuw and van Zomeren (1990) thus
+recommend using robust methods (which are not excessively affected by the
+presence of outliers).
+
+On the other hand, the choice of the threshold for classifying an
+observation as an outlier should be discussed. There is no apparent reason
+why a particular threshold should be applicable to all data sets
+(Filzmoser, Garrett, and Reimann 2005).
+}
 \examples{
 ## Coerce to chemical data
-data("kommos", package = "folio")
-kommos <- remove_NA(kommos, margin = 1)
-coda <- as_composition(kommos[, -c(1, 2)])
+data("hongite")
+coda <- as_composition(hongite)
 
 ## Detect outliers
-out <- find_outliers(coda)
-count_outliers(out)
+out <- outliers(coda)
 
 ## Plot
-plot_outliers(out) +
-  ggplot2::theme_bw() +
-  khroma::scale_colour_highcontrast()
-
-plot_outliers(out, coda, select = 1:6) +
-  khroma::scale_colour_YlOrBr(range = c(0.3, 1))
+plot(out, qq = TRUE)
+plot(out, qq = FALSE)
 }
 \references{
 Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier
@@ -88,10 +87,18 @@ Filzmoser, P., Hron, K. & Reimann, C. (2012). Interpretation of multivariate
 outliers for compositional data. \emph{Computers & Geosciences}, 39, 77-85.
 \doi{10.1016/j.cageo.2011.06.014}.
 
+Rousseeuw, P. J. & van Zomeren, B. C. (1990). Unmasking Multivariate Outliers
+and Leverage Points. \emph{Journal of the American Statistical Association},
+85(411): 633-639. \doi{10.1080/01621459.1990.10474920}.
+
 Santos, F. (2020). Modern methods for old data: An overview of some robust
 methods for outliers detection with applications in osteology. \emph{Journal of
 Archaeological Science: Reports}, 32, 102423.
 \doi{10.1016/j.jasrep.2020.102423}.
+}
+\seealso{
+Other outlier detection methods: 
+\code{\link{plot_outliers}}
 }
 \author{
 N. Frerebeau

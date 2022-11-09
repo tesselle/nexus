@@ -143,13 +143,14 @@ as.data.frame.LogRatio <- function(x, ...) {
 #' @method as.data.frame OutlierIndex
 #' @export
 as.data.frame.OutlierIndex <- function(x, ...) {
-  z <- data.frame(
-    index = seq_along(x@outliers),
-    samples = get_samples(x),
-    distances = x@distances,
-    outlier = get_outliers(x),
+  y <- methods::S3Part(x, strictS3 = TRUE)
+  data.frame(
+    index = seq_along(y),
+    sample = get_samples(x),
+    group = if (has_groups(x)) get_groups(x) else NA_character_,
+    distance = x@distances,
+    outlier = y,
+    row.names = NULL,
     stringsAsFactors = FALSE
   )
-  if (has_groups(x)) z$groups <- get_groups(x)
-  z
 }

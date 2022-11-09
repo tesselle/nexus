@@ -1,16 +1,10 @@
 ## Coerce to chemical data
-data("kommos", package = "folio")
-kommos <- remove_NA(kommos, margin = 1)
-coda <- as_composition(kommos[, -c(1, 2)])
+data("hongite")
+coda <- as_composition(hongite)
 
 ## Detect outliers
-out <- find_outliers(coda)
-count_outliers(out)
+out <- outliers(coda)
 
 ## Plot
-plot_outliers(out) +
-  ggplot2::theme_bw() +
-  khroma::scale_colour_highcontrast()
-
-plot_outliers(out, coda, select = 1:6) +
-  khroma::scale_colour_YlOrBr(range = c(0.3, 1))
+plot(out, qq = TRUE)
+plot(out, qq = FALSE)

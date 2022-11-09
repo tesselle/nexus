@@ -38,14 +38,6 @@ setMethod("get_groups", "OutlierIndex", function(x) x@groups)
 #' @aliases get_samples,OutlierIndex-method
 setMethod("get_samples", "OutlierIndex", function(x) x@samples)
 
-#' @export
-#' @rdname mutators
-#' @aliases get_outliers,OutlierIndex-method
-setMethod("get_outliers", "OutlierIndex", function(x) {
-  out <- x@outliers
-  names(out) <- x@samples
-  out
-})
 
 # Setters ======================================================================
 #' @export

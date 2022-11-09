@@ -19,8 +19,6 @@
 \alias{get_totals-method}
 \alias{set_totals<-}
 \alias{set_totals-method}
-\alias{get_outliers}
-\alias{get_outliers-method}
 \alias{has_groups,CompositionMatrix-method}
 \alias{get_groups,CompositionMatrix-method}
 \alias{get_samples,CompositionMatrix-method}
@@ -28,7 +26,6 @@
 \alias{has_groups,OutlierIndex-method}
 \alias{get_groups,OutlierIndex-method}
 \alias{get_samples,OutlierIndex-method}
-\alias{get_outliers,OutlierIndex-method}
 \alias{set_groups<-,CompositionMatrix-method}
 \alias{set_groups,CompositionMatrix-method}
 \alias{set_samples<-,CompositionMatrix-method}
@@ -51,8 +48,6 @@ get_totals(x)
 
 set_totals(x) <- value
 
-get_outliers(x)
-
 \S4method{has_groups}{CompositionMatrix}(x)
 
 \S4method{get_groups}{CompositionMatrix}(x)
@@ -66,8 +61,6 @@ get_outliers(x)
 \S4method{get_groups}{OutlierIndex}(x)
 
 \S4method{get_samples}{OutlierIndex}(x)
-
-\S4method{get_outliers}{OutlierIndex}(x)
 
 \S4method{set_groups}{CompositionMatrix}(x) <- value
 

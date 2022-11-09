@@ -48,7 +48,8 @@ London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
 \seealso{
 Other statistics: 
 \code{\link{covariance}},
-\code{\link{distance}}
+\code{\link{dist}()},
+\code{\link{mahalanobis}()}
 }
 \author{
 N. Frerebeau
