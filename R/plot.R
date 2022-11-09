@@ -8,7 +8,7 @@ NULL
 autoplot.CompositionMatrix <- function(object, ..., order = NULL,
                                        decreasing = FALSE, facet = TRUE) {
   ## Prepare data
-  coda <- arkhe::as_long(object, factor = TRUE)
+  coda <- arkhe::to_long(object, factor = TRUE)
   colnames(coda) <- c("Sample", "Part", "Value")
 
   ## Reorder levels
