@@ -6,7 +6,7 @@ NULL
 #' @export
 #' @rdname mutators
 #' @aliases has_groups,CompositionMatrix-method
-setMethod("has_groups", "CompositionMatrix", function(x) !is_empty(x@groups))
+setMethod("has_groups", "CompositionMatrix", function(x) !arkhe::is_empty(x@groups))
 
 #' @export
 #' @rdname mutators
@@ -25,8 +25,23 @@ setMethod("get_totals", "CompositionMatrix", function(x) x@totals)
 
 #' @export
 #' @rdname mutators
+#' @aliases has_groups,LogRatio-method
+setMethod("has_groups", "LogRatio", function(x) !arkhe::is_empty(x@groups))
+
+#' @export
+#' @rdname mutators
+#' @aliases get_groups,LogRatio-method
+setMethod("get_groups", "LogRatio", function(x) x@groups)
+
+#' @export
+#' @rdname mutators
+#' @aliases get_samples,LogRatio-method
+setMethod("get_samples", "LogRatio", function(x) x@samples)
+
+#' @export
+#' @rdname mutators
 #' @aliases has_groups,OutlierIndex-method
-setMethod("has_groups", "OutlierIndex", function(x) length(x@groups) > 0)
+setMethod("has_groups", "OutlierIndex", function(x) !arkhe::is_empty(x@groups))
 
 #' @export
 #' @rdname mutators

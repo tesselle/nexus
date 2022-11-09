@@ -137,6 +137,8 @@ as.data.frame.CompositionMatrix <- function(x, ...) {
 as.data.frame.LogRatio <- function(x, ...) {
   z <- as.data.frame(methods::as(x, "matrix"))
 
+  z$samples <- get_samples(x)
+  if (has_groups(x)) z$groups <- get_groups(x)
   z
 }
 

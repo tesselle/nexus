@@ -23,6 +23,9 @@
 \alias{get_groups,CompositionMatrix-method}
 \alias{get_samples,CompositionMatrix-method}
 \alias{get_totals,CompositionMatrix-method}
+\alias{has_groups,LogRatio-method}
+\alias{get_groups,LogRatio-method}
+\alias{get_samples,LogRatio-method}
 \alias{has_groups,OutlierIndex-method}
 \alias{get_groups,OutlierIndex-method}
 \alias{get_samples,OutlierIndex-method}
@@ -55,6 +58,12 @@ set_totals(x) <- value
 \S4method{get_samples}{CompositionMatrix}(x)
 
 \S4method{get_totals}{CompositionMatrix}(x)
+
+\S4method{has_groups}{LogRatio}(x)
+
+\S4method{get_groups}{LogRatio}(x)
+
+\S4method{get_samples}{LogRatio}(x)
 
 \S4method{has_groups}{OutlierIndex}(x)
 
