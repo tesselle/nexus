@@ -497,10 +497,10 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family plot methods
-#' @aliases graph-method
+#' @aliases as_graph-method
 setGeneric(
-  name = "graph",
-  def = function(object, ...) standardGeneric("graph")
+  name = "as_graph",
+  def = function(object, ...) standardGeneric("as_graph")
 )
 
 # PCA ==========================================================================

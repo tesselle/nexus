@@ -3,10 +3,10 @@
 NULL
 
 #' @export
-#' @rdname graph
-#' @aliases graph,LR-method
+#' @rdname as_graph
+#' @aliases as_graph,LR-method
 setMethod(
-  f = "graph",
+  f = "as_graph",
   signature = signature(object = "LR"),
   definition = function(object) {
     ## Validation
@@ -20,10 +20,10 @@ setMethod(
 )
 
 #' @export
-#' @rdname graph
-#' @aliases graph,ALR-method
+#' @rdname as_graph
+#' @aliases as_graph,ALR-method
 setMethod(
-  f = "graph",
+  f = "as_graph",
   signature = signature(object = "ALR"),
   definition = function(object) {
     ## Validation
@@ -37,10 +37,10 @@ setMethod(
 )
 
 #' @export
-#' @rdname graph
-#' @aliases graph,ILR-method
+#' @rdname as_graph
+#' @aliases as_graph,ILR-method
 setMethod(
-  f = "graph",
+  f = "as_graph",
   signature = signature(object = "ILR"),
   definition = function(object) {
     ## Validation

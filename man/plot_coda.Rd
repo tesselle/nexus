@@ -56,7 +56,7 @@ plot(clr, facet = FALSE)
 }
 \seealso{
 Other plot methods: 
-\code{\link{graph}()},
+\code{\link{as_graph}()},
 \code{\link{plot_logratio}}
 }
 \author{
