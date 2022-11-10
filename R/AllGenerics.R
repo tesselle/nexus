@@ -441,12 +441,12 @@ NULL
 NULL
 
 # Plot =========================================================================
-#' Plot
+#' Plot Compositional Data
 #'
 #' Displays a compositional bar chart.
 #' @param x,object A [CompositionMatrix-class] object.
-#' @param order An [`integer`] vector giving the index of the column to be used for
-#'  the ordering of the data.
+#' @param order An [`integer`] vector giving the index of the column to be used
+#'  for the ordering of the data.
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
 #'  or decreasing?
 #' @param facet A [`logical`] scalar: should a matrix of panels defined by
@@ -460,8 +460,30 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family plot methods
-#' @name plot
-#' @rdname plot
+#' @name plot_coda
+#' @rdname plot_coda
+NULL
+
+#' Plot Log-Ratios
+#'
+#' Displays a compositional bar chart.
+#' @param x,object A [CompositionMatrix-class] object.
+#' @param order A [`logical`] scalar: should the ratio be ordered?
+#' @param decreasing A [`logical`] scalar: should the sort order be increasing
+#'  or decreasing?
+#' @param facet A [`logical`] scalar: should a matrix of panels defined by
+#'  groups be drawn? Only used if `x` [has groups defined][has_groups].
+#' @param ... Currently not used.
+#' @return
+#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
+#'  * `plot()` is called it for its side-effects: it results in a graphic being
+#'    displayed (invisibly returns `x`).
+#' @example inst/examples/ex-plot.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family plot methods
+#' @name plot_logratio
+#' @rdname plot_logratio
 NULL
 
 #' Graph of Log-ratios

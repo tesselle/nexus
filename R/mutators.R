@@ -3,6 +3,17 @@
 NULL
 
 # Getters ======================================================================
+get_transformation <- function(x) {
+  switch(
+    class(x),
+    LR = "Pairwise Log-Ratio",
+    CLR = "Centered Log-Ratio",
+    ALR = "Additive Log-Ratio",
+    ILR = "Isometric Log-Ratio",
+    PLR = "Pivot Log-Ratio"
+  )
+}
+
 #' @export
 #' @rdname mutators
 #' @aliases has_groups,CompositionMatrix-method
