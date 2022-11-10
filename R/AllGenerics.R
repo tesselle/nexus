@@ -464,6 +464,23 @@ NULL
 #' @rdname plot
 NULL
 
+#' Graph of Log-ratios
+#'
+#' Produces a graph of log-ratios.
+#' @param object A [LogRatio-class] object.
+#' @param ... Currently not used.
+#' @return
+#'  An \pkg{igraph} graph object.
+#' @example inst/examples/ex-graph.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family plot methods
+#' @aliases graph-method
+setGeneric(
+  name = "graph",
+  def = function(object, ...) standardGeneric("graph")
+)
+
 # PCA ==========================================================================
 #' Principal Components Analysis
 #'

@@ -38,6 +38,7 @@ Imports:
     utils
 Suggests: 
     folio,
+    igraph,
     khroma,
     knitr,
     rmarkdown,
@@ -54,6 +55,7 @@ Collate:
     'AllGenerics.R'
     'coerce.R'
     'data.R'
+    'graph.R'
     'lead.R'
     'mutators.R'
     'nexus-package.R'

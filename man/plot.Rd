@@ -50,6 +50,10 @@ coda <- as_composition(kommos, groups = 1)
 
 plot(coda)
 }
+\seealso{
+Other plot methods: 
+\code{\link{graph}()}
+}
 \author{
 N. Frerebeau
 }

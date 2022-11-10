@@ -17,3 +17,12 @@
 missingORnull <- function(x) {
   missing(x) || is.null(x)
 }
+
+# Move this to arkhe
+needs <- function(x) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    msg <- "Package %s needed for this function to work. Please install it."
+    stop(sprintf(msg, x), call. = FALSE)
+  }
+  invisible(NULL)
+}
