@@ -2,6 +2,19 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
+# Mean =========================================================================
+#' @export
+#' @method mean CompositionMatrix
+mean.CompositionMatrix <- function(x, ...) {
+  m <- apply(X = x, MARGIN = 2, FUN = gmean, ..., simplify = TRUE)
+  closure(m)
+}
+
+#' @export
+#' @rdname mean
+#' @aliases mean,CompositionMatrix-method
+setMethod("mean", "CompositionMatrix", mean.CompositionMatrix)
+
 # Variance =====================================================================
 #' @export
 #' @method var CompositionMatrix
@@ -117,10 +130,15 @@ setMethod("mahalanobis", "CompositionMatrix", mahalanobis.CompositionMatrix)
 #' Geometric Mean
 #'
 #' @param x A [`numeric`] vector.
+#' @param trim A length-one [`numeric`] vector specifying the fraction (0 to 0.5)
+#'  of observations to be trimmed from each end of `x` before the mean is
+#'  computed.
+#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
+#'  computation proceeds?
 #' @return A [`numeric`] vector.
 #' @keywords internal
 #' @noRd
-gmean <- function(x) {
+gmean <- function(x, trim = 0, na.rm = FALSE) {
   index <- is.finite(x) & x > 0
-  exp(mean(log(unclass(x)[index])))
+  exp(mean(log(unclass(x)[index]), trim = trim, na.rm = na.rm))
 }

@@ -391,6 +391,24 @@ setGeneric(
 )
 
 # Statistics ===================================================================
+#' Compositional Mean
+#'
+#' @param x A [CompositionMatrix-class] object.
+#' @param ... Further argument to be passed to other methods.
+#' @details
+#'  Closed vector of the columns geometric means.
+#' @return A [`numeric`] vector.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#' @example inst/examples/ex-mean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name mean
+#' @rdname mean
+NULL
+
 #' Variance and Covariance
 #'
 #' @description
