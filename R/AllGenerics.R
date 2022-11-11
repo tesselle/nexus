@@ -9,7 +9,7 @@ setGeneric("cov", package = "stats")
 setGeneric("mahalanobis", package = "stats")
 setGeneric("autoplot", package = "ggplot2")
 
-# Coerce =======================================================================
+# CoDa =========================================================================
 #' Coerce
 #'
 #' Coerces an object to a `CompositionMatrix` object.
@@ -80,6 +80,25 @@ setGeneric(
 setGeneric(
   name = "set_totals<-",
   def = function(x, value) standardGeneric("set_totals<-")
+)
+
+#' Closure Operation
+#'
+#' Closes compositions to sum up to 1.
+#' @param object A [`numeric`] vector or matrix.
+#' @param total A [numeric] vector specifying the total amount to which the
+#'  compositions should be closed (defaults to 1).
+#' @section Missing Values Policy:
+#'  Missing values will be omitted from the calculations.
+#' @return A [`numeric`] vector or matrix (same as `object`).
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family classes
+#' @aliases closure-method
+setGeneric(
+  name = "closure",
+  def = function(object, ...) standardGeneric("closure")
 )
 
 # Extract ======================================================================
