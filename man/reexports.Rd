@@ -4,9 +4,9 @@
 \name{reexports}
 \alias{reexports}
 \alias{replace_NA}
+\alias{replace_zero}
 \alias{remove_NA}
 \alias{remove_zero}
-\alias{remove_empty}
 \alias{biplot}
 \alias{plot_contributions}
 \alias{plot_cos2}
@@ -20,7 +20,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:deprecate]{remove_empty}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}}
+  \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
 
   \item{dimensio}{\code{\link[dimensio]{biplot}}, \code{\link[dimensio]{plot_contributions}}, \code{\link[dimensio:plot_contributions]{plot_cos2}}, \code{\link[dimensio:plot_coordinates]{plot_individuals}}, \code{\link[dimensio:plot_coordinates]{plot_variables}}, \code{\link[dimensio:plot_eigenvalues]{plot_variance}}}
 }}
