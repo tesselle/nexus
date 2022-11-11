@@ -53,6 +53,7 @@ Boca Raton: CRC Press.
 \code{\link[stats:dist]{stats::dist()}}
 
 Other statistics: 
+\code{\link{aggregate}()},
 \code{\link{covariance}},
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},

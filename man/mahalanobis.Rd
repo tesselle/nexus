@@ -33,6 +33,7 @@ Computes the squared Mahalanobis distance of all rows in \code{x}.
 \code{\link[stats:mahalanobis]{stats::mahalanobis()}}
 
 Other statistics: 
+\code{\link{aggregate}()},
 \code{\link{covariance}},
 \code{\link{dist}()},
 \code{\link{mean}()},

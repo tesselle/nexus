@@ -36,6 +36,7 @@ London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
 }
 \seealso{
 Other statistics: 
+\code{\link{aggregate}()},
 \code{\link{covariance}},
 \code{\link{dist}()},
 \code{\link{mahalanobis}()},

@@ -2,6 +2,42 @@
 #' @include AllGenerics.R AllClasses.R
 NULL
 
+# Aggregate ====================================================================
+#' @export
+#' @method aggregate CompositionMatrix
+aggregate.CompositionMatrix <- function(x, by, FUN, ...) {
+  ## Validation
+  by <- match.arg(by, choices = c("samples", "groups"), several.ok = FALSE)
+
+  if (by == "samples") {
+    if (!has_duplicates(x)) {
+      warning("No observations are repeated.", call. = FALSE)
+    }
+    index <- get_samples(x)
+  }
+  if (by == "groups") {
+    if (!has_groups(x)) {
+      stop("No group is defined.", call. = FALSE)
+    }
+    index <- get_groups(x)
+  }
+
+  m <- tapply(
+    X = seq_len(nrow(x)),
+    INDEX = index,
+    FUN = function(i, data, fun, ...) fun(data[i, , drop = FALSE], ...),
+    data = x,
+    fun = FUN,
+    ...
+  )
+  do.call(rbind, m)
+}
+
+#' @export
+#' @rdname aggregate
+#' @aliases aggregate,CompositionMatrix-method
+setMethod("aggregate", "CompositionMatrix", aggregate.CompositionMatrix)
+
 # Mean =========================================================================
 #' @export
 #' @method mean CompositionMatrix

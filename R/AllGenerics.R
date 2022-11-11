@@ -391,6 +391,24 @@ setGeneric(
 )
 
 # Statistics ===================================================================
+#' Compute Summary Statistics of Data Subsets
+#'
+#' Splits the data into subsets, computes summary statistics for each, and
+#' returns the result.
+#' @param x A [CompositionMatrix-class] object.
+#' @param by A [`character`] string specifying the grouping element. It must be
+#'  one of "`samples`" or "`groups`". Any unambiguous substring can be given.
+#' @param FUN A [`function`] to compute the summary statistics.
+#' @param ... Further arguments to be passed to `FUN`.
+#' @return A [`matrix`].
+#' @example inst/examples/ex-aggregate.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name aggregate
+#' @rdname aggregate
+NULL
+
 #' Compositional Mean
 #'
 #' @param x A [CompositionMatrix-class] object.
