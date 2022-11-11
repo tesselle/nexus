@@ -2,7 +2,7 @@
 #' @include AllClasses.R AllGenerics.R
 NULL
 
-# Getters ======================================================================
+# Not exported
 get_transformation <- function(x) {
   switch(
     class(x),
@@ -14,60 +14,39 @@ get_transformation <- function(x) {
   )
 }
 
+# Groups =======================================================================
 #' @export
-#' @rdname mutators
+#' @rdname groups
 #' @aliases has_groups,CompositionMatrix-method
 setMethod("has_groups", "CompositionMatrix", function(x) !arkhe::is_empty(x@groups))
 
 #' @export
-#' @rdname mutators
-#' @aliases get_groups,CompositionMatrix-method
-setMethod("get_groups", "CompositionMatrix", function(x) x@groups)
-
-#' @export
-#' @rdname mutators
-#' @aliases get_samples,CompositionMatrix-method
-setMethod("get_samples", "CompositionMatrix", function(x) x@samples)
-
-#' @export
-#' @rdname mutators
-#' @aliases get_totals,CompositionMatrix-method
-setMethod("get_totals", "CompositionMatrix", function(x) x@totals)
-
-#' @export
-#' @rdname mutators
+#' @rdname groups
 #' @aliases has_groups,LogRatio-method
 setMethod("has_groups", "LogRatio", function(x) !arkhe::is_empty(x@groups))
 
 #' @export
-#' @rdname mutators
-#' @aliases get_groups,LogRatio-method
-setMethod("get_groups", "LogRatio", function(x) x@groups)
-
-#' @export
-#' @rdname mutators
-#' @aliases get_samples,LogRatio-method
-setMethod("get_samples", "LogRatio", function(x) x@samples)
-
-#' @export
-#' @rdname mutators
+#' @rdname groups
 #' @aliases has_groups,OutlierIndex-method
 setMethod("has_groups", "OutlierIndex", function(x) !arkhe::is_empty(x@groups))
 
 #' @export
-#' @rdname mutators
+#' @rdname groups
+#' @aliases get_groups,CompositionMatrix-method
+setMethod("get_groups", "CompositionMatrix", function(x) x@groups)
+
+#' @export
+#' @rdname groups
+#' @aliases get_groups,LogRatio-method
+setMethod("get_groups", "LogRatio", function(x) x@groups)
+
+#' @export
+#' @rdname groups
 #' @aliases get_groups,OutlierIndex-method
 setMethod("get_groups", "OutlierIndex", function(x) x@groups)
 
 #' @export
-#' @rdname mutators
-#' @aliases get_samples,OutlierIndex-method
-setMethod("get_samples", "OutlierIndex", function(x) x@samples)
-
-
-# Setters ======================================================================
-#' @export
-#' @rdname mutators
+#' @rdname groups
 #' @aliases set_groups,CompositionMatrix-method
 setMethod(
   f = "set_groups<-",
@@ -79,8 +58,39 @@ setMethod(
   }
 )
 
+# Samples ======================================================================
 #' @export
-#' @rdname mutators
+#' @rdname samples
+#' @aliases has_replicates,CompositionMatrix-method
+setMethod("has_replicates", "CompositionMatrix", function(x) any(duplicated(x@samples)))
+
+#' @export
+#' @rdname samples
+#' @aliases has_replicates,LogRatio-method
+setMethod("has_replicates", "LogRatio", function(x) any(duplicated(x@samples)))
+
+#' @export
+#' @rdname samples
+#' @aliases has_replicates,OutlierIndex-method
+setMethod("has_replicates", "OutlierIndex", function(x) any(duplicated(x@samples)))
+
+#' @export
+#' @rdname samples
+#' @aliases get_samples,CompositionMatrix-method
+setMethod("get_samples", "CompositionMatrix", function(x) x@samples)
+
+#' @export
+#' @rdname samples
+#' @aliases get_samples,LogRatio-method
+setMethod("get_samples", "LogRatio", function(x) x@samples)
+
+#' @export
+#' @rdname samples
+#' @aliases get_samples,OutlierIndex-method
+setMethod("get_samples", "OutlierIndex", function(x) x@samples)
+
+#' @export
+#' @rdname samples
 #' @aliases set_samples,CompositionMatrix-method
 setMethod(
   f = "set_samples<-",
@@ -92,8 +102,14 @@ setMethod(
   }
 )
 
+# Totals =======================================================================
 #' @export
-#' @rdname mutators
+#' @rdname coerce
+#' @aliases get_totals,CompositionMatrix-method
+setMethod("get_totals", "CompositionMatrix", function(x) x@totals)
+
+#' @export
+#' @rdname coerce
 #' @aliases set_totals,CompositionMatrix-method
 setMethod(
   f = "set_totals<-",

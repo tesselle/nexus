@@ -65,7 +65,8 @@ coda[, 1:3] # Get the first three column
 }
 \seealso{
 Other mutators: 
-\code{\link{mutators}}
+\code{\link{groups}},
+\code{\link{samples}}
 }
 \author{
 N. Frerebeau

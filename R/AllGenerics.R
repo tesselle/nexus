@@ -19,6 +19,8 @@ setGeneric("autoplot", package = "ggplot2")
 #'  If `NULL` (the default), row names will be used as sample IDs.
 #' @param groups An [`integer`] giving the index of the column to be used to
 #'  group the samples. If `NULL` (the default), no grouping is stored.
+#' @param x An object from which to get or set element(s).
+#' @param value A possible value for the element(s) of `x`.
 #' @param ... Currently not used.
 #' @details
 #'  The following methods are available:
@@ -29,6 +31,8 @@ setGeneric("autoplot", package = "ggplot2")
 #'   `as_count()` \tab [CompositionMatrix-class] \tab [`matrix`] \cr
 #'  }
 #'
+#'  Note that all non-numeric variable will be removed.
+#'
 #'  The [CompositionMatrix-class] class has special slots:
 #'
 #'  * `samples` for replicated measurements/observation,
@@ -37,7 +41,7 @@ setGeneric("autoplot", package = "ggplot2")
 #'  When coercing a `data.frame` to a [CompositionMatrix-class] object, an
 #'  attempt is made to automatically assign values to these slots by mapping
 #'  column names (case insensitive, plural insensitive). This behavior can be
-#'  disabled by setting `options(nexus.autodetect = FALSE)` or overrided by
+#'  disabled by setting `options(nexus.autodetect = FALSE)` or overridden by
 #'  explicitly specifying the columns to be used in `as_composition()`.
 #' @return A coerced object.
 #' @example inst/examples/ex-coerce.R
@@ -64,81 +68,105 @@ setGeneric(
   valueClass = "CompositionMatrix"
 )
 
-# Extract ======================================================================
-## Mutators --------------------------------------------------------------------
-#' Get or Set Parts of an Object
-#'
-#' Getters and setters to retrieve or set parts of an object.
-#' @param x An object from which to get or set element(s) (typically a `*Matrix`
-#'  object).
-#' @param value A possible value for the element(s) of `x`.
-#' @details
-#'  \describe{
-#'   \item{`get_samples(x)` and `get_samples(x) <- value`}{Get or set
-#'   the sample names of `x`.}
-#'   \item{`get_groups(x)` and `set_groups(x) <- value`}{Get or set
-#'   the groups of `x`.}
-#'  }
-#' @return
-#'  * `set_*()` returns an object of the same sort as `x` with the new values
-#'    assigned.
-#'  * `get_*()` returns the part of `x`.
-#'  * `has_*()` returns a [`logical`] scalar.
-#' @author N. Frerebeau
-#' @docType methods
-#' @family mutators
-#' @name mutators
-#' @rdname mutators
-#' @aliases get set
-NULL
-
-#' @rdname mutators
-#' @aliases has_groups-method
-setGeneric(
-  name = "has_groups",
-  def = function(x) standardGeneric("has_groups")
-)
-
-#' @rdname mutators
-#' @aliases get_groups-method
-setGeneric(
-  name = "get_groups",
-  def = function(x) standardGeneric("get_groups")
-)
-
-#' @rdname mutators
-#' @aliases set_groups-method
-setGeneric(
-  name = "set_groups<-",
-  def = function(x, value) standardGeneric("set_groups<-")
-)
-
-#' @rdname mutators
-#' @aliases get_samples-method
-setGeneric(
-  name = "get_samples",
-  def = function(x) standardGeneric("get_samples")
-)
-
-#' @rdname mutators
-#' @aliases set_samples-method
-setGeneric(
-  name = "set_samples<-",
-  def = function(x, value) standardGeneric("set_samples<-")
-)
-
-#' @rdname mutators
+#' @rdname coerce
 #' @aliases get_totals-method
 setGeneric(
   name = "get_totals",
   def = function(x) standardGeneric("get_totals")
 )
 
-#' @rdname mutators
+#' @rdname coerce
 #' @aliases set_totals-method
 setGeneric(
   name = "set_totals<-",
   def = function(x, value) standardGeneric("set_totals<-")
+)
+
+# Extract ======================================================================
+## Mutators --------------------------------------------------------------------
+#' Deal With Groups
+#'
+#' Retrieves or defines the groups to which the observations belong.
+#' @param x An object from which to get or set `groups`.
+#' @param value A possible value for the `groups` of `x`.
+#' @details
+#'  See `vignette("manual")`.
+#' @return
+#'  * `set_groups()` returns an object of the same sort as `x` with the new
+#'    group names assigned.
+#'  * `get_groups()` returns the group names of `x`.
+#'  * `has_groups()` returns a [`logical`] scalar.
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name groups
+#' @rdname groups
+NULL
+
+#' @rdname groups
+#' @aliases has_groups-method
+setGeneric(
+  name = "has_groups",
+  def = function(x) standardGeneric("has_groups")
+)
+
+#' @rdname groups
+#' @aliases get_groups-method
+setGeneric(
+  name = "get_groups",
+  def = function(x) standardGeneric("get_groups")
+)
+
+#' @rdname groups
+#' @aliases set_groups-method
+setGeneric(
+  name = "set_groups<-",
+  def = function(x, value) standardGeneric("set_groups<-")
+)
+
+#' Deal With Samples
+#'
+#' Retrieves or defines the sample names.
+#' @param x An object from which to get or set `samples`.
+#' @param value A possible value for the `samples` of `x`.
+#' @details
+#'  In some situations, measurements may have been repeated (e.g. multiple
+#'  chemical analyses on the same sample). The presence of repeated
+#'  measurements can be specified by giving several observations the same
+#'  sample name.
+#'
+#'  See `vignette("manual")`.
+#' @return
+#'  * `set_samples()` returns an object of the same sort as `x` with the new
+#'    sample names assigned.
+#'  * `get_samples()` returns the sample names of `x`.
+#'  * `has_replicates()` returns a [`logical`] scalar.
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name samples
+#' @rdname samples
+NULL
+
+#' @rdname samples
+#' @aliases has_replicates-method
+setGeneric(
+  name = "has_replicates",
+  def = function(x) standardGeneric("has_replicates")
+)
+
+#' @rdname samples
+#' @aliases get_samples-method
+setGeneric(
+  name = "get_samples",
+  def = function(x) standardGeneric("get_samples")
+)
+
+#' @rdname samples
+#' @aliases set_samples-method
+setGeneric(
+  name = "set_samples<-",
+  def = function(x, value) standardGeneric("set_samples<-")
 )
 
 ## Subset ----------------------------------------------------------------------
