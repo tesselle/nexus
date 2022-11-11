@@ -1,0 +1,147 @@
+---
+title: "Manual"
+author: "N. Frerebeau"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+bibliography: bibliography.bib
+vignette: >
+  %\VignetteIndexEntry{Manual}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Provenance studies rely on the identification of probable sources, such that the variability between two sources is greater than the internal variability of a single source [the so-called *provenance postulate*, @weigand1977]. This assumes that a unique signature can be identified for each source on the basis of several criteria.
+
+**nexus** is designed for chemical fingerprinting and source tracking of ancient materials. It provides provides tools for exploration and analysis of compositional data in the framework of @aitchison1986.
+
+## Get started
+
+You can install the released version of **nexus** from [CRAN](https://CRAN.R-project.org) with:
+
+```{r cran-installation, eval=FALSE}
+install.packages("nexus")
+```
+
+Once installed, load the package and start working:
+
+```{r setup}
+library(nexus)
+```
+
+**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (nonnegative) descriptions of the parts of some whole, carrying relative, rather than absolute, information [@aitchison1986; @greenacre2021].
+
+*It assumes that you keep your data tidy*: each variable must be saved in its own column and each observation (sample) must be saved in its own row.
+
+This class is of simple use as it inherits from base `matrix`:
+
+```{r}
+## Mineral compositions of rock specimens
+data("hongite")
+head(hongite)
+
+## Coerce to compositional data
+coda <- as_composition(hongite)
+head(coda)
+```
+
+A `CompositionMatrix` represents a *closed* composition matrix: each row of the matrix sum up to 1 (only relative changes are relevant in compositional data analysis).
+
+The original row sums are kept internally, so that the source data can be restored:
+
+```{r}
+## Coerce to count data
+counts <- as_count(coda)
+
+all.equal(hongite, as.data.frame(counts))
+```
+
+`get_totals(x)` and `set_totals(x) <- value` allow to retrieve or modify row sums of an existing `CompositionMatrix`.
+
+### Working with (reference) groups
+
+Provenance studies typically rely on two approaches, which can be used together:
+
+* Identification of groups among the artifacts being studied, based on mineralogical or geochemical criteria (*clustering*).
+* Comparison with so-called reference groups, i.e. known geological sources or productive contexts (*classification*).
+
+**nexus** allows to specify whether an observation belongs to a specific group (or not). When coercing a `data.frame` to a `CompositionMatrix` object, an attempt is made to automatically detect groups by mapping column names.
+
+```{r}
+## Create a data.frame
+X <- data.frame(
+  groups = c("A", "A", "B", "A", "B", "C", "C", "C", "B"),
+  Ca = c(7.72, 7.32, 3.11, 7.19, 7.41, 5, 4.18, 1, 4.51),
+  Fe = c(6.12, 5.88, 5.12, 6.18, 6.02, 7.14, 5.25, 5.28, 5.72),
+  Na = c(0.97, 1.59, 1.25, 0.86, 0.76, 0.51, 0.75, 0.52, 0.56)
+)
+
+## Coerce to a compositional matrix
+Y <- as_composition(X)
+has_groups(Y)
+```
+
+This behavior can be disabled by setting `options(nexus.autodetect = FALSE)` or overridden by explicitly specifying the column to be used with the `groups` argument of `as_composition()`.
+
+`get_groups(x)` and `set_groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix` (`NA` can be used to specify that a sample does not belong to any group):
+
+```{r}
+## Set groups (NA means no group)
+set_groups(Y) <- c("X", "X", "Y", "X", "Y", NA, NA, NA, "Y")
+
+## Retrieve groups
+get_groups(Y)
+```
+
+Once groups have been defined, they can be used by further methods (e.g. plotting).
+
+### Working with replicated measurements
+
+In some situations, measurements may have been repeated (e.g. multiple chemical analyses on the same sample). The presence of repeated measurements can be specified by giving several observations the same sample name.
+
+When coercing a `data.frame` to a `CompositionMatrix` object, an attempt is made to automatically detect samples by mapping column names. If no matching column is found, row names will be used by default.
+
+```{r}
+## Create a data.frame
+X <- data.frame(
+  samples = c("A", "A", "A", "B", "B", "B", "C", "C", "C"),
+  Ca = c(7.72, 7.32, 3.11, 7.19, 7.41, 5, 4.18, 1, 4.51),
+  Fe = c(6.12, 5.88, 5.12, 6.18, 6.02, 7.14, 5.25, 5.28, 5.72),
+  Na = c(0.97, 1.59, 1.25, 0.86, 0.76, 0.51, 0.75, 0.52, 0.56)
+)
+
+## Coerce to a compositional matrix
+Y <- as_composition(X)
+has_replicates(Y)
+```
+
+This behavior can be disabled by setting `options(nexus.autodetect = FALSE)` or overridden by explicitly specifying the column to be used with the `samples` argument of `as_composition()`.
+
+`get_samples(x)` and `set_samples(x) <- value` allow to retrieve or set sample names of an existing `CompositionMatrix` (missing values are not allowed):
+
+```{r}
+## Set sample names
+set_samples(Y) <- c("A", "B", "C", "D", "E", "F", "G", "H", "I")
+
+## Retrieve groups
+get_samples(Y)
+```
+
+Note that the presence of repeated measurements may affect some calculations (read the documentation carefully).
+
+## Log-ratio transformations
+
+## Use cases
+### Glass compositions
+
+### Slag inclusions
+
+## References
