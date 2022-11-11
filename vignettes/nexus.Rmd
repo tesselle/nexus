@@ -59,7 +59,7 @@ The original row sums are kept internally, so that the source data can be restor
 
 ```{r}
 ## Coerce to count data
-counts <- as_count(coda)
+counts <- as_amounts(coda)
 
 all.equal(hongite, as.data.frame(counts))
 ```

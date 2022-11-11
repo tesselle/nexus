@@ -53,38 +53,43 @@ remotes::install_github("tesselle/nexus")
 library(nexus)
 ```
 
-**nexus** provides a set of S4 classes that represent different special types of matrix.
-
-* `CompositionMatrix` represents relative frequency data (composition data),
-* `LogRatio` represents log-ratio matrix.
+**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (nonnegative) descriptions of the parts of some whole, carrying relative, rather than absolute, information [@aitchison1986].
 
 *It assumes that you keep your data tidy*: each variable must be saved in its own column and each observation (sample) must be saved in its own row.
 
 These new classes are of simple use as they inherit from base `matrix`:
   
 ```{r create}
-## Coerce to compositonal data
+## Mineral compositions of rock specimens
 data("hongite")
+head(hongite)
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
+head(coda)
 ```
 
-The `CompositionMatrix` and `LogRatio` classes have special slots:
+The `CompositionMatrix` class has special slots (see `vignette("manual")`):
   
-* `samples` for replicated measurements/observation,
+* `samples` for repeated measurements/observation,
 * `groups` to group data by site/area.
 
-When coercing a `data.frame` to a `CompositionMatrix` object, an attempt is made to automatically assign values to these slots by mapping column names. This behavior can be disabled by setting `options(arkhe.autodetect = FALSE)`.
+When coercing a `data.frame` to a `CompositionMatrix` object, an attempt is made to automatically assign values to these slots by mapping column names. This behavior can be disabled by setting `options(nexus.autodetect = FALSE)`.
 
 ```{r group}
-X <- matrix(data = sample(0:10, 75, TRUE), nrow = 15, ncol = 5)
-X <- as.data.frame(X)
-X$samples <- sample(c("a", "b", "c", "d", "e"), 15, TRUE)
-X$groups <- sample(c("A", "B", "C"), 15, TRUE)
+## Create a data.frame
+X <- data.frame(
+  samples = c("A", "A", "A", "B", "B", "B", "C", "C", "C"),
+  groups = c("X", "X", "X", "X", "X", "X", "Y", "Y", "Y"),
+  Ca = c(7.72, 7.32, 3.11, 7.19, 7.41, 5, 4.18, 1, 4.51),
+  Fe = c(6.12, 5.88, 5.12, 6.18, 6.02, 7.14, 5.25, 5.28, 5.72),
+  Na = c(0.97, 1.59, 1.25, 0.86, 0.76, 0.51, 0.75, 0.52, 0.56)
+)
 
-## Coerce to a count matrix
+## Coerce to a compositional matrix
 Y <- as_composition(X)
 
-## Get groups
+## Get samples
 get_samples(Y)
 
 ## Get groups

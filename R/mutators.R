@@ -104,12 +104,12 @@ setMethod(
 
 # Totals =======================================================================
 #' @export
-#' @rdname coerce
+#' @rdname totals
 #' @aliases get_totals,CompositionMatrix-method
 setMethod("get_totals", "CompositionMatrix", function(x) x@totals)
 
 #' @export
-#' @rdname coerce
+#' @rdname totals
 #' @aliases set_totals,CompositionMatrix-method
 setMethod(
   f = "set_totals<-",

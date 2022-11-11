@@ -61,7 +61,8 @@ See \code{vignette("manual")}.
 \seealso{
 Other mutators: 
 \code{\link{samples}},
-\code{\link{subset}()}
+\code{\link{subset}()},
+\code{\link{totals}}
 }
 \author{
 N. Frerebeau

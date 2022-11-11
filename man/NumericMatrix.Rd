@@ -16,9 +16,7 @@ Other classes:
 \code{\link{CompositionMatrix-class}},
 \code{\link{LogRatio-class}},
 \code{\link{LogicalMatrix-class}},
-\code{\link{OutlierIndex-class}},
-\code{\link{closure}()},
-\code{\link{coerce}()}
+\code{\link{OutlierIndex-class}}
 }
 \author{
 N. Frerebeau

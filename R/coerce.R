@@ -49,7 +49,7 @@ setAs(
 )
 
 #' @export
-#' @rdname coerce
+#' @rdname as_composition
 #' @aliases as_composition,matrix-method
 setMethod(
   f = "as_composition",
@@ -60,7 +60,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname coerce
+#' @rdname as_composition
 #' @aliases as_composition,data.frame-method
 setMethod(
   f = "as_composition",
@@ -130,10 +130,10 @@ make_dimnames <- function(x) {
 }
 
 #' @export
-#' @rdname coerce
-#' @aliases as_count,CompositionMatrix-method
+#' @rdname as_amounts
+#' @aliases as_amounts,CompositionMatrix-method
 setMethod(
-  f = "as_count",
+  f = "as_amounts",
   signature = signature(from = "CompositionMatrix"),
   definition = function(from) {
     totals <- from@totals

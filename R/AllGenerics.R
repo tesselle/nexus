@@ -10,57 +10,35 @@ setGeneric("mahalanobis", package = "stats")
 setGeneric("autoplot", package = "ggplot2")
 
 # CoDa =========================================================================
-#' Coerce
+#' Coerce to a Closed Compositional Matrix
 #'
 #' Coerces an object to a `CompositionMatrix` object.
-#' @param from An object to be coerced.
+#' @param from A [`matrix`] or [`data.frame`] to be coerced.
 #' @param samples An [`integer`] giving the index of the column to be used for
 #'  sample identification: allows to identify replicated measurements.
 #'  If `NULL` (the default), row names will be used as sample IDs.
 #' @param groups An [`integer`] giving the index of the column to be used to
 #'  group the samples. If `NULL` (the default), no grouping is stored.
-#' @param x An object from which to get or set element(s).
-#' @param value A possible value for the element(s) of `x`.
 #' @param ... Currently not used.
 #' @details
-#'  The following methods are available:
+#'  The [CompositionMatrix-class] class has special slots
+#'  (see `vignette("manual")`):
 #'
-#'  \tabular{lll}{
-#'   **Method** \tab **From** \tab **To** \cr
-#'   `as_composition()` \tab [`matrix`] or [`data.frame`] \tab [CompositionMatrix-class] \cr
-#'   `as_count()` \tab [CompositionMatrix-class] \tab [`matrix`] \cr
-#'  }
-#'
-#'  Note that all non-numeric variable will be removed.
-#'
-#'  The [CompositionMatrix-class] class has special slots:
-#'
-#'  * `samples` for replicated measurements/observation,
+#'  * `samples` for repeated measurements/observation,
 #'  * `groups` to group data by site/area.
 #'
 #'  When coercing a `data.frame` to a [CompositionMatrix-class] object, an
 #'  attempt is made to automatically assign values to these slots by mapping
 #'  column names (case insensitive, plural insensitive). This behavior can be
 #'  disabled by setting `options(nexus.autodetect = FALSE)` or overridden by
-#'  explicitly specifying the columns to be used in `as_composition()`.
-#' @return A coerced object.
+#'  explicitly specifying the columns to be used.
+#' @note
+#'  All non-numeric variable will be removed.
+#' @return A [CompositionMatrix-class] object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family classes
-#' @name coerce
-#' @rdname coerce
-NULL
-
-#' @rdname coerce
-#' @aliases as_count-method
-setGeneric(
-  name = "as_count",
-  def = function(from, ...) standardGeneric("as_count"),
-  valueClass = "matrix"
-)
-
-#' @rdname coerce
+#' @family compositional data tools
 #' @aliases as_composition-method
 setGeneric(
   name = "as_composition",
@@ -68,18 +46,20 @@ setGeneric(
   valueClass = "CompositionMatrix"
 )
 
-#' @rdname coerce
-#' @aliases get_totals-method
+#' Coerce to Amounts
+#'
+#' @param from A [CompositionMatrix-class] object.
+#' @param ... Currently not used.
+#' @return A [`numeric`] [`matrix`].
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family compositional data tools
+#' @aliases as_amounts-method
 setGeneric(
-  name = "get_totals",
-  def = function(x) standardGeneric("get_totals")
-)
-
-#' @rdname coerce
-#' @aliases set_totals-method
-setGeneric(
-  name = "set_totals<-",
-  def = function(x, value) standardGeneric("set_totals<-")
+  name = "as_amounts",
+  def = function(from, ...) standardGeneric("as_amounts"),
+  valueClass = "matrix"
 )
 
 #' Closure Operation
@@ -95,7 +75,7 @@ setGeneric(
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family classes
+#' @family compositional data tools
 #' @aliases closure-method
 setGeneric(
   name = "closure",
@@ -187,6 +167,36 @@ setGeneric(
 setGeneric(
   name = "set_samples<-",
   def = function(x, value) standardGeneric("set_samples<-")
+)
+
+#' Row Sums
+#'
+#' Retrieves or defines the row sums (before closure).
+#' @param x An object from which to get or set `totals`.
+#' @param value A possible value for the `totals` of `x`.
+#' @return
+#'  * `set_totals()` returns an object of the same sort as `x` with the new
+#'    row sums assigned.
+#'  * `get_totals()` returns the row sums of `x`.
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name totals
+#' @rdname totals
+NULL
+
+#' @rdname totals
+#' @aliases get_totals-method
+setGeneric(
+  name = "get_totals",
+  def = function(x) standardGeneric("get_totals")
+)
+
+#' @rdname totals
+#' @aliases set_totals-method
+setGeneric(
+  name = "set_totals<-",
+  def = function(x, value) standardGeneric("set_totals<-")
 )
 
 ## Subset ----------------------------------------------------------------------

@@ -7,7 +7,7 @@ B <- as_composition(A1)
 ## Row sums are internally stored before coercing to relative frequencies
 ## (use get_totals() to retrieve these values)
 ## This allows to restore the source data
-A2 <- as_count(B)
+A2 <- as_amounts(B)
 
 ## Coerce to an S3 data.frame
 X <- data.frame(B)
