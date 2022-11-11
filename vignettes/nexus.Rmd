@@ -103,7 +103,7 @@ get_groups(Y)
 
 Once groups have been defined, they can be used by further methods (e.g. plotting).
 
-### Working with replicated measurements
+### Working with repeated measurements
 
 In some situations, measurements may have been repeated (e.g. multiple chemical analyses on the same sample). The presence of repeated measurements can be specified by giving several observations the same sample name.
 

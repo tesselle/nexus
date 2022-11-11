@@ -15,7 +15,7 @@ An S4 class to represent compositional data.
 the closure of the compositions).}
 
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
-(allows duplicates in case of replicated measurements).}
+(allows duplicates in case of repeated measurements).}
 
 \item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
 }}
@@ -24,7 +24,7 @@ the closure of the compositions).}
 This class inherits from \code{\link{matrix}}.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

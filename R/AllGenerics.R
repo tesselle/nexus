@@ -193,7 +193,7 @@ setGeneric(
 #'
 #' Operators acting on objects to extract or replace parts.
 #' @param x An object from which to extract element(s) or in which to replace
-#'  element(s) (typically a `*Matrix` object).
+#'  element(s).
 #' @param i,j Indices specifying elements to extract or replace. Indices are
 #'  [`numeric`], [`integer`] or [`character`] vectors or empty (missing) or
 #'  `NULL`. Numeric values are coerced to [`integer`] as by [as.integer()]
