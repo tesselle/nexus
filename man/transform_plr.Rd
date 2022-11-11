@@ -25,7 +25,7 @@ A \linkS4class{PLR} object.
 Computes PLR transformations.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

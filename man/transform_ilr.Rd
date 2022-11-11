@@ -28,7 +28,7 @@ respect to a given orthonormal basis. \code{transform_ilr()} uses the orthonorma
 basis (Helmert matrix) originally defined by Egozcue \emph{et al.} (2003).
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

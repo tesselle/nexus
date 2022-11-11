@@ -35,7 +35,7 @@ displayed (invisibly returns \code{x}).
 Displays a compositional bar chart.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

@@ -25,7 +25,7 @@ An \linkS4class{ALR} object.
 Computes ALR transformation.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

@@ -32,7 +32,7 @@ Computes the log-ratio variance matrix.
 Distances are computed on \link[=transform_clr]{CLR-transformed} data.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

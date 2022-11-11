@@ -29,7 +29,7 @@ An \pkg{igraph} graph object.
 Produces a graph of log-ratios.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

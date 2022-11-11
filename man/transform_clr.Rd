@@ -27,7 +27,7 @@ A \linkS4class{CLR} object.
 Computes CLR transformation.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

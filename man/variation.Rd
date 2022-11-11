@@ -28,7 +28,7 @@ triangular part displays the log-ratio variances and the lower triangular
 part displays the log-ratio means.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 

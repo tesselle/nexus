@@ -40,7 +40,7 @@ A subsetted object of the same sort as \code{x}.
 Operators acting on objects to extract or replace parts.
 }
 \examples{
-## Coerce to compositonal data
+## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 
