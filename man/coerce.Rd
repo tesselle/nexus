@@ -102,8 +102,9 @@ head(X)
 Other classes: 
 \code{\link{CompositionMatrix-class}},
 \code{\link{LogRatio-class}},
+\code{\link{LogicalMatrix-class}},
 \code{\link{NumericMatrix-class}},
-\code{\link{OutlierIndex-class}}
+\code{\link{OutlierIndex-class}},
 \code{\link{closure}()}
 }
 \author{

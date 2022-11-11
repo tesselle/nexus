@@ -88,6 +88,7 @@ setGeneric(
 #' @param object A [`numeric`] vector or matrix.
 #' @param total A [numeric] vector specifying the total amount to which the
 #'  compositions should be closed (defaults to 1).
+#' @param ... Currently not used.
 #' @section Missing Values Policy:
 #'  Missing values will be omitted from the calculations.
 #' @return A [`numeric`] vector or matrix (same as `object`).

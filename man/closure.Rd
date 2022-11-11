@@ -17,6 +17,8 @@ closure(object, ...)
 \arguments{
 \item{object}{A \code{\link{numeric}} vector or matrix.}
 
+\item{...}{Currently not used.}
+
 \item{total}{A \link{numeric} vector specifying the total amount to which the
 compositions should be closed (defaults to 1).}
 }

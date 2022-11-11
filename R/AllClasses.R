@@ -18,13 +18,29 @@ NULL
   contains = "matrix"
 )
 
+#' Logical Matrix
+#'
+#' S4 classes that represent a \eqn{m \times p}{m x p} logical matrix.
+#' @note
+#'  This class inherits from [`matrix`].
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @rdname LogicalMatrix
+#' @aliases LogicalMatrix-class
+#' @keywords internal
+.LogicalMatrix <- setClass(
+  Class = "LogicalMatrix",
+  contains = "matrix"
+)
+
 #' Compositional Matrix
 #'
 #' An S4 class to represent compositional data.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
 #' @slot samples A [`character`] vector to store the sample identifiers
-#'  (allows duplicates in case of replicated measurements).
+#'  (allows duplicates in case of repeated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
 #' @note
 #'  This class inherits from [`matrix`].
@@ -48,6 +64,11 @@ NULL
 #' Log-Ratio Matrix
 #'
 #' S4 classes to represent log-ratio data transformations.
+#' @slot totals A [`numeric`] vector to store the absolute row sums (before
+#'  the closure of the compositions).
+#' @slot samples A [`character`] vector to store the sample identifiers
+#'  (allows duplicates in case of repeated measurements).
+#' @slot groups A [`character`] vector to store the group names (if any).
 #' @slot parts A [`character`] vector to store the part names.
 #' @slot ratio A [`character`] vector to store the ratio names.
 #' @slot order An [`integer`] vector to store the original ordering of the
@@ -119,7 +140,7 @@ NULL
 #'
 #' An S4 class to store the result of outlier detection.
 #' @slot samples A [`character`] vector to store the sample identifiers
-#'  (allows duplicates in case of replicated measurements).
+#'  (allows duplicates in case of repeated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
 #' @slot distances A [`numeric`] vector giving the squared Mahalanobis distance.
 #' @slot limit An [`numeric`] value giving the cut-off value used for outlier

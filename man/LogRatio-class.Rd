@@ -21,6 +21,14 @@ S4 classes to represent log-ratio data transformations.
 \section{Slots}{
 
 \describe{
+\item{\code{totals}}{A \code{\link{numeric}} vector to store the absolute row sums (before
+the closure of the compositions).}
+
+\item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
+(allows duplicates in case of repeated measurements).}
+
+\item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
+
 \item{\code{parts}}{A \code{\link{character}} vector to store the part names.}
 
 \item{\code{ratio}}{A \code{\link{character}} vector to store the ratio names.}
@@ -43,6 +51,7 @@ These classes inherit from \code{\link{matrix}}.
 
 Other classes: 
 \code{\link{CompositionMatrix-class}},
+\code{\link{LogicalMatrix-class}},
 \code{\link{NumericMatrix-class}},
 \code{\link{OutlierIndex-class}},
 \code{\link{closure}()},

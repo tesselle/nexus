@@ -62,17 +62,17 @@ setMethod(
 #' @export
 #' @rdname samples
 #' @aliases has_replicates,CompositionMatrix-method
-setMethod("has_replicates", "CompositionMatrix", function(x) any(duplicated(x@samples)))
+setMethod("has_replicates", "CompositionMatrix", function(x) arkhe::has_duplicates(x@samples))
 
 #' @export
 #' @rdname samples
 #' @aliases has_replicates,LogRatio-method
-setMethod("has_replicates", "LogRatio", function(x) any(duplicated(x@samples)))
+setMethod("has_replicates", "LogRatio", function(x) arkhe::has_duplicates(x@samples))
 
 #' @export
 #' @rdname samples
 #' @aliases has_replicates,OutlierIndex-method
-setMethod("has_replicates", "OutlierIndex", function(x) any(duplicated(x@samples)))
+setMethod("has_replicates", "OutlierIndex", function(x) arkhe::has_duplicates(x@samples))
 
 #' @export
 #' @rdname samples

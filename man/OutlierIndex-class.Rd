@@ -12,7 +12,7 @@ An S4 class to store the result of outlier detection.
 
 \describe{
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
-(allows duplicates in case of replicated measurements).}
+(allows duplicates in case of repeated measurements).}
 
 \item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
 
@@ -31,7 +31,9 @@ These classes inherit from \code{\link{logical}}.
 Other classes: 
 \code{\link{CompositionMatrix-class}},
 \code{\link{LogRatio-class}},
+\code{\link{LogicalMatrix-class}},
 \code{\link{NumericMatrix-class}},
+\code{\link{closure}()},
 \code{\link{coerce}()}
 }
 \author{
