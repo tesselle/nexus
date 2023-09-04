@@ -146,7 +146,7 @@ mahalanobis.CompositionMatrix <- function(x, center, cov, ..., robust = TRUE) {
       v <- robustbase::covMcd(x, ...)
     } else {
       ## Standard estimators
-      v <- list(mean = colMeans(x), cov = stats::cov(x))
+      v <- list(center = colMeans(x), cov = stats::cov(x))
     }
 
     est <- list(center = NULL, cov = NULL)

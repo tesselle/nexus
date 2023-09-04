@@ -2,7 +2,7 @@ data("hongite")
 coda <- as_composition(hongite)
 
 # Detect outliers ==============================================================
-out <- outliers(coda)
+out <- outliers(coda, robust = FALSE)
 expect_equal_to_reference(as.data.frame(out), file = "_snaps/outliers.rds")
 
 # Plot =========================================================================

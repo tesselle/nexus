@@ -13,7 +13,7 @@ outliers(object, ...)
   object,
   center = NULL,
   cov = NULL,
-  robust = TRUE,
+  robust = FALSE,
   alpha = 0.5,
   level = 0.975
 )

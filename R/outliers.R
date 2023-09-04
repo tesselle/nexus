@@ -9,7 +9,7 @@ NULL
 setMethod(
   f = "outliers",
   signature = c(object = "CompositionMatrix"),
-  definition = function(object, center = NULL, cov = NULL, robust = TRUE,
+  definition = function(object, center = NULL, cov = NULL, robust = FALSE,
                         alpha = 0.5, level = 0.975) {
 
     df <- ncol(object) - 1L
