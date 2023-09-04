@@ -5,8 +5,7 @@ NULL
 # S4 dispatch to base S3 generic ===============================================
 setGeneric("dist", package = "stats")
 setGeneric("mahalanobis", package = "stats")
-setGeneric("qqplot", package = "stats")
-# setGeneric("pca", package = "dimensio")
+setGeneric("pca")
 
 # CoDa =========================================================================
 #' Coerce to a Closed Compositional Matrix
@@ -654,8 +653,8 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family multivariate analysis
-#' @name pca
-#' @rdname pca
+#' @name pca_coda
+#' @rdname pca_coda
 NULL
 
 # Outliers =====================================================================

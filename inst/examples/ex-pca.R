@@ -10,3 +10,4 @@ X <- pca(clr)
 
 ## Plot
 viz_individuals(X)
+viz_variables(X)

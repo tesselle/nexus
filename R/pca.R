@@ -3,24 +3,24 @@
 NULL
 
 #' @export
-#' @rdname pca
+#' @rdname pca_coda
 #' @aliases pca,CompositionMatrix-method
 setMethod(
   f = "pca",
-  signature = signature(object = "CompositionMatrix"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object, center = TRUE, scale = TRUE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
-    stop("You shouldn't do that! Transform your data first.", call. = FALSE)
+    stop("You shoul not do that! Transform your data first.", call. = FALSE)
   }
 )
 
 #' @export
-#' @rdname pca
+#' @rdname pca_coda
 #' @aliases pca,LogRatio-method
 setMethod(
   f = "pca",
-  signature = signature(object = "LogRatio"),
+  signature = c(object = "LogRatio"),
   definition = function(object, center = TRUE, scale = TRUE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
