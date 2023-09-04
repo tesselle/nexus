@@ -25,6 +25,27 @@ fingerprinting and source tracking of ancient materials.
 
 **Initial development is in progress.**
 
+    To cite nexus in publications use:
+
+      Frerebeau N (2023). _nexus: Sourcing Archaeological Materials by
+      Chemical Composition_. Université Bordeaux Montaigne, Pessac, France.
+      R package version 0.0.0.9000, <https://packages.tesselle.org/nexus/>.
+
+    Une entrée BibTeX pour les utilisateurs LaTeX est
+
+      @Manual{,
+        author = {Nicolas Frerebeau},
+        title = {{nexus: Sourcing Archaeological Materials by Chemical Composition}},
+        year = {2023},
+        organization = {Université Bordeaux Montaigne},
+        address = {Pessac, France},
+        note = {R package version 0.0.0.9000},
+        url = {https://packages.tesselle.org/nexus/},
+      }
+
+    This package is a part of the tesselle project
+    <https://www.tesselle.org>.
+
 ## Installation
 
 You can install the released version of **nexus** from
@@ -93,8 +114,8 @@ head(coda)
 The `CompositionMatrix` class has special slots (see
 `vignette("manual")`):
 
--   `samples` for repeated measurements/observation,
--   `groups` to group data by site/area.
+- `samples` for repeated measurements/observation,
+- `groups` to group data by site/area.
 
 When coercing a `data.frame` to a `CompositionMatrix` object, an attempt
 is made to automatically assign values to these slots by mapping column

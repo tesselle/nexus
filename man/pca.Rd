@@ -75,7 +75,7 @@ clr <- transform_clr(coda)
 X <- pca(clr)
 
 ## Plot
-plot_individuals(X)
+viz_individuals(X)
 }
 \seealso{
 \code{\link[dimensio:pca]{dimensio::pca()}}, \code{\link[dimensio:biplot]{dimensio::biplot()}}

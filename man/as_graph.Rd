@@ -29,6 +29,8 @@ An \pkg{igraph} graph object.
 Produces a graph of log-ratios.
 }
 \examples{
+library(igraph)
+
 ## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)

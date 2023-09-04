@@ -10,7 +10,7 @@ aggregate.CompositionMatrix <- function(x, by, FUN, ...) {
   by <- match.arg(by, choices = c("samples", "groups"), several.ok = FALSE)
 
   if (by == "samples") {
-    if (!has_duplicates(x)) {
+    if (!has_replicates(x)) {
       warning("No observations are repeated.", call. = FALSE)
     }
     index <- get_samples(x)
@@ -92,7 +92,7 @@ cov.CompositionMatrix <- function(x) {
 #' @export
 #' @rdname covariance
 #' @aliases cov,CompositionMatrix-method
-setMethod("cov", "CompositionMatrix", cov.CompositionMatrix)
+setMethod("cov", c(x = "CompositionMatrix"), cov.CompositionMatrix)
 
 # Variation ====================================================================
 #' @export
@@ -136,7 +136,7 @@ setMethod("dist", "CompositionMatrix", dist.CompositionMatrix)
 
 #' @export
 #' @method mahalanobis CompositionMatrix
-mahalanobis.CompositionMatrix <- function(x, center, cov, robust = TRUE, ...) {
+mahalanobis.CompositionMatrix <- function(x, center, cov, ..., robust = TRUE) {
   ## Transformation
   x <- transform_ilr(x)
 

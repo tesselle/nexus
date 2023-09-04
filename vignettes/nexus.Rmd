@@ -1,5 +1,5 @@
 ---
-title: "Manual"
+title: "Introduction to nexus"
 author: "N. Frerebeau"
 date: "`r Sys.Date()`"
 output:
@@ -7,7 +7,7 @@ output:
     toc: true
 bibliography: bibliography.bib
 vignette: >
-  %\VignetteIndexEntry{Manual}
+  %\VignetteIndexEntry{Introduction to nexus}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -24,14 +24,6 @@ Provenance studies rely on the identification of probable sources, such that the
 **nexus** is designed for chemical fingerprinting and source tracking of ancient materials. It provides provides tools for exploration and analysis of compositional data in the framework of @aitchison1986.
 
 ## Get started
-
-You can install the released version of **nexus** from [CRAN](https://CRAN.R-project.org) with:
-
-```{r cran-installation, eval=FALSE}
-install.packages("nexus")
-```
-
-Once installed, load the package and start working:
 
 ```{r setup}
 library(nexus)
@@ -64,7 +56,10 @@ counts <- as_amounts(coda)
 all.equal(hongite, as.data.frame(counts))
 ```
 
-`get_totals(x)` and `set_totals(x) <- value` allow to retrieve or modify row sums of an existing `CompositionMatrix`.
+```{r, fig.width=7, fig.height=5, out.width='100%'}
+## Compositional bar plot
+plot(coda, order = "A")
+```
 
 ### Working with (reference) groups
 
@@ -138,6 +133,8 @@ get_samples(Y)
 Note that the presence of repeated measurements may affect some calculations (read the documentation carefully).
 
 ## Log-ratio transformations
+
+The amount of every part is limited to the whole. The absolute amount of the whole is noninformative since it is typically due to artifacts on the measurement procedure. Thus only relative changes are relevant. If the relative amount of one part increases, the amounts of other parts must decrease, introducing spurious anticorrelation.
 
 ## Use cases
 ### Glass compositions

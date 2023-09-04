@@ -3,30 +3,92 @@
 \docType{methods}
 \name{plot_outliers}
 \alias{plot_outliers}
-\alias{autoplot,OutlierIndex-method}
+\alias{qqplot,OutlierIndex,missing-method}
 \alias{plot,OutlierIndex,missing-method}
 \title{Plot Outliers}
 \usage{
-\S4method{autoplot}{OutlierIndex}(object, ..., qq = TRUE, limit = !qq)
+\S4method{qqplot}{OutlierIndex,missing}(
+  x,
+  xlab = NULL,
+  ylab = NULL,
+  ...,
+  probs = c(0.25, 0.75),
+  main = NULL,
+  sub = NULL,
+  col.points = "black",
+  col.line = "red",
+  conf.level = NULL,
+  conf.args = list(exact = NULL, simulate.p.value = FALSE, B = 2000, col = NA, border =
+    NULL)
+)
 
-\S4method{plot}{OutlierIndex,missing}(x, qq = TRUE, limit = !qq, ...)
+\S4method{plot}{OutlierIndex,missing}(
+  x,
+  limit = TRUE,
+  col = c("#004488", "#DDAA33"),
+  pch = c(15, 16),
+  xlab = NULL,
+  ylab = NULL,
+  main = NULL,
+  sub = NULL,
+  ann = graphics::par("ann"),
+  axes = TRUE,
+  frame.plot = axes,
+  panel.first = NULL,
+  panel.last = NULL,
+  ...
+)
 }
 \arguments{
-\item{...}{Currently not used.}
+\item{x}{An \linkS4class{OutlierIndex} object.}
 
-\item{qq}{A \code{\link{logical}} scalar: should a quantile-quantile plot be produced?}
+\item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
+
+\item{...}{Further \link[graphics:par]{graphical parameters}.}
+
+\item{probs}{numeric vector of length two, representing probabilities.
+    Corresponding quantile pairs define the line drawn.}
+
+\item{main}{A \code{\link{character}} string giving a main title for the plot.}
+
+\item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
+
+\item{conf.level}{confidence level of the band. The default, \code{NULL},
+    does not lead to the computation of a confidence band.}
+
+\item{conf.args}{list of arguments defining confidence band computation
+    and visualisation: \code{exact} is \code{NULL} (see details) or a logical indicating whether an exact
+    p-value should be computed,  \code{simulate.p.value} is a logical indicating whether to compute
+    p-values by Monte Carlo simulation, \code{B} defines the number of replicates used in the
+    Monte Carlo test, \code{col} and \code{border} define the color for filling
+    and border of the confidence band (the default, \code{NA} and \code{NULL}, is to leave the band unfilled
+    with black borders.}
 
 \item{limit}{A \code{\link{logical}} scalar: should the cut-off value for outlier
 detection be displayed?}
 
-\item{x, object}{An \linkS4class{OutlierIndex} object.}
+\item{col, col.points, col.line}{A vector of colors.}
+
+\item{pch}{A vector of plotting \code{character} (symbol).}
+
+\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
+and y axis labels) appear on the plot?}
+
+\item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
+
+\item{frame.plot}{A \code{\link{logical}} scalar: should a box be drawn around the
+plot?}
+
+\item{panel.first}{An an \code{expression} to be evaluated after the plot axes are
+set up but before any plotting takes place. This can be useful for drawing
+background grids.}
+
+\item{panel.last}{An \code{expression} to be evaluated after plotting has taken
+place but before the axes, title and box are added.}
 }
 \value{
-\itemize{
-\item \code{autoplot()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
-\item \code{plot()} and \code{qqplot()} are called it for their side-effects: they result
+\code{plot()} and \code{qqplot()} are called it for their side-effects: they result
 in a graphic being displayed (invisibly return \code{x}).
-}
 }
 \description{
 Plot Outliers
@@ -39,9 +101,11 @@ coda <- as_composition(hongite)
 ## Detect outliers
 out <- outliers(coda)
 
+## Quantile-Quantile plot
+qqplot(out)
+
 ## Plot
-plot(out, qq = TRUE)
-plot(out, qq = FALSE)
+plot(out)
 }
 \references{
 Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier

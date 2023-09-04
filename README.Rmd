@@ -31,6 +31,10 @@ Exploration and analysis of compositional data in the framework of @aitchison198
 
 **Initial development is in progress.**
 
+```{r citation, echo=FALSE, comment=''}
+utils::citation("nexus")
+```
+
 ## Installation
 
 You can install the released version of **nexus** from [CRAN](https://CRAN.R-project.org) with:

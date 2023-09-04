@@ -7,7 +7,9 @@ setGeneric("dist", package = "stats")
 setGeneric("var", package = "stats")
 setGeneric("cov", package = "stats")
 setGeneric("mahalanobis", package = "stats")
-setGeneric("autoplot", package = "ggplot2")
+setGeneric("qqplot", package = "stats")
+
+# setGeneric("pca", package = "dimensio")
 
 # CoDa =========================================================================
 #' Coerce to a Closed Compositional Matrix
@@ -538,18 +540,27 @@ NULL
 #' Plot Compositional Data
 #'
 #' Displays a compositional bar chart.
-#' @param x,object A [CompositionMatrix-class] object.
+#' @param x A [CompositionMatrix-class] object.
 #' @param order An [`integer`] vector giving the index of the column to be used
 #'  for the ordering of the data.
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
 #'  or decreasing?
-#' @param facet A [`logical`] scalar: should a matrix of panels defined by
-#'  groups be drawn? Only used if `x` [has groups defined][has_groups].
-#' @param ... Currently not used.
+#' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
+#'  defines the grouping. If set, a matrix of panels defined by `groups` will be
+#'  drawn.
+#' @param horiz A [`logical`] scalar. If `FALSE`, the bars are drawn vertically
+#'  with the first bar to the left. If `TRUE` (the default), the bars are drawn
+#'  horizontally with the first at the bottom.
+#' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x
+#'  and y axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param ... Further parameters to be passed to [graphics::barplot()].
 #' @return
-#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
-#'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'    displayed (invisibly returns `x`).
+#'  `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
 #' @example inst/examples/ex-plot.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -560,19 +571,40 @@ NULL
 
 #' Plot Log-Ratios
 #'
-#' Displays a compositional bar chart.
-#' @param x,object A [CompositionMatrix-class] object.
+#' Displays a density plot.
+#' @param x A [LogRatio-class] object.
 #' @param order A [`logical`] scalar: should the ratio be ordered?
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
 #'  or decreasing?
-#' @param facet A [`logical`] scalar: should a matrix of panels defined by
-#'  groups be drawn? Only used if `x` [has groups defined][has_groups].
-#' @param ... Currently not used.
+#' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
+#'  defines the grouping. If set, a matrix of panels defined by `groups` will be
+#'  drawn.
+#' @param rug A [`logical`] scalar: should a *rug* representation (1-d plot) of
+#'  the data be added to the plot?
+#' @param ticksize A length-one [`numeric`] vector giving the length of the
+#'  ticks making up the *rug*. Positive lengths give inwards ticks. Only used if
+#'  `rug` is `TRUE`.
+#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
+#'  flipped from side 2 (left) to 4 (right) from series to series when `facet`
+#'  is "`multiple`"?
+#' @param ncol An [`integer`] specifying the number of columns to use when
+#'  `facet` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
+#' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x
+#'  and y axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
+#'  plot?
+#' @param legend A [`list`] of additional arguments to be passed to
+#'  [graphics::legend()]; names of the list are used as argument names.
+#'  If `NULL`, no legend is displayed.
+#' @param ... Further [graphical parameters][graphics::par()], particularly,
+#'  `border` and `col`.
 #' @return
-#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
-#'  * `plot()` is called it for its side-effects: it results in a graphic being
-#'    displayed (invisibly returns `x`).
-#' @example inst/examples/ex-plot.R
+#'  `plot()` is called it for its side-effects: it results in a graphic being
+#'  displayed (invisibly returns `x`).
+#' @example inst/examples/ex-plot-logratio.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family plot methods
@@ -677,15 +709,29 @@ setGeneric(
 
 #' Plot Outliers
 #'
-#' @param x,object An [OutlierIndex-class] object.
-#' @param qq A [`logical`] scalar: should a quantile-quantile plot be produced?
+#' @param x An [OutlierIndex-class] object.
 #' @param limit A [`logical`] scalar: should the cut-off value for outlier
 #'  detection be displayed?
-#' @param ... Currently not used.
+#' @param col,col.points,col.line A vector of colors.
+#' @param pch A vector of plotting `character` (symbol).
+#' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x
+#'  and y axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param panel.first An an `expression` to be evaluated after the plot axes are
+#'  set up but before any plotting takes place. This can be useful for drawing
+#'  background grids.
+#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
+#'  plot?
+#' @param panel.last An `expression` to be evaluated after plotting has taken
+#'  place but before the axes, title and box are added.
+#' @param ... Further [graphical parameters][graphics::par()].
+#' @inheritParams stats::qqplot
 #' @return
-#'  * `autoplot()` returns a [`ggplot`][ggplot2::ggplot] object.
-#'  * `plot()` and `qqplot()` are called it for their side-effects: they result
-#'    in a graphic being displayed (invisibly return `x`).
+#'  `plot()` and `qqplot()` are called it for their side-effects: they result
+#'  in a graphic being displayed (invisibly return `x`).
 #' @references
 #'  Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier
 #'  detection in exploration geochemistry. *Computers & Geosciences*,

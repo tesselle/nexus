@@ -4,12 +4,13 @@
 \name{covariance}
 \alias{covariance}
 \alias{var,CompositionMatrix-method}
+\alias{cov,CompositionMatrix,ANY-method}
 \alias{cov,CompositionMatrix-method}
 \title{Variance and Covariance}
 \usage{
 \S4method{var}{CompositionMatrix}(x)
 
-\S4method{cov}{CompositionMatrix}(x)
+\S4method{cov}{CompositionMatrix,ANY}(x)
 }
 \arguments{
 \item{x}{A \linkS4class{CompositionMatrix} object.}

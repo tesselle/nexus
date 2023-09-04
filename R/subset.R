@@ -13,9 +13,7 @@ setMethod(
   function(x, i, j, ..., drop = TRUE) {
     z <- methods::callNextMethod()
 
-    if (is.null(dim(z))) {
-      return(z)
-    }
+    if (is.null(dim(z))) return(z)
 
     if (!missing(i)) {
       samples <- x@samples

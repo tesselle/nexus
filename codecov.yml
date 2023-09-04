@@ -1,7 +1,7 @@
 comment: false
 
 ignore:
-  - "R/deprecate.R"
+  - "R/nexus-deprecated.R"
   - "R/zzz.R"
 
 coverage:

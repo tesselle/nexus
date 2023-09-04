@@ -41,14 +41,12 @@
 "_PACKAGE"
 
 #' @import arkhe
-#' @importFrom ggplot2 aes coord_fixed coord_flip element_blank facet_wrap
-#' geom_col geom_hline geom_jitter geom_point ggplot labs theme
-#' scale_x_continuous scale_y_continuous vars
+#' @importFrom dimensio pca biplot screeplot viz_individuals viz_variables
 #' @importFrom methods as as<- callGeneric callNextMethod
 #' .hasSlot initialize is new setClass
 #' setGeneric setMethod slot slot<- slotNames validObject .valueClassTest
 #' @importFrom robustbase covMcd
-#' @importFrom rlang .data
-#' @importFrom stats as.dist contr.helmert cov mahalanobis ppoints qchisq
+#' @importFrom stats as.dist contr.helmert cov dist mahalanobis ppoints qchisq
+#'  var
 #' @importFrom utils combn
 NULL

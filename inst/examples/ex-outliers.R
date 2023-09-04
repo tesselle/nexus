@@ -5,6 +5,8 @@ coda <- as_composition(hongite)
 ## Detect outliers
 out <- outliers(coda)
 
+## Quantile-Quantile plot
+qqplot(out)
+
 ## Plot
-plot(out, qq = TRUE)
-plot(out, qq = FALSE)
+plot(out)

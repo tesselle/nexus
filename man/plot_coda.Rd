@@ -3,16 +3,26 @@
 \docType{methods}
 \name{plot_coda}
 \alias{plot_coda}
-\alias{autoplot,CompositionMatrix-method}
 \alias{plot,CompositionMatrix,missing-method}
 \title{Plot Compositional Data}
 \usage{
-\S4method{autoplot}{CompositionMatrix}(object, ..., order = NULL, decreasing = FALSE, facet = TRUE)
-
-\S4method{plot}{CompositionMatrix,missing}(x, order = NULL, decreasing = FALSE, facet = TRUE, ...)
+\S4method{plot}{CompositionMatrix,missing}(
+  x,
+  order = NULL,
+  decreasing = FALSE,
+  groups = get_groups(x),
+  horiz = TRUE,
+  xlab = NULL,
+  ylab = NULL,
+  main = NULL,
+  sub = NULL,
+  ann = graphics::par("ann"),
+  axes = TRUE,
+  ...
+)
 }
 \arguments{
-\item{...}{Currently not used.}
+\item{x}{A \linkS4class{CompositionMatrix} object.}
 
 \item{order}{An \code{\link{integer}} vector giving the index of the column to be used
 for the ordering of the data.}
@@ -20,17 +30,30 @@ for the ordering of the data.}
 \item{decreasing}{A \code{\link{logical}} scalar: should the sort order be increasing
 or decreasing?}
 
-\item{facet}{A \code{\link{logical}} scalar: should a matrix of panels defined by
-groups be drawn? Only used if \code{x} \link[=has_groups]{has groups defined}.}
+\item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
+defines the grouping. If set, a matrix of panels defined by \code{groups} will be
+drawn.}
 
-\item{x, object}{A \linkS4class{CompositionMatrix} object.}
+\item{horiz}{A \code{\link{logical}} scalar. If \code{FALSE}, the bars are drawn vertically
+with the first bar to the left. If \code{TRUE} (the default), the bars are drawn
+horizontally with the first at the bottom.}
+
+\item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
+
+\item{main}{A \code{\link{character}} string giving a main title for the plot.}
+
+\item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
+
+\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
+and y axis labels) appear on the plot?}
+
+\item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
+
+\item{...}{Further parameters to be passed to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 }
 \value{
-\itemize{
-\item \code{autoplot()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
-\item \code{plot()} is called it for its side-effects: it results in a graphic being
+\code{plot()} is called it for its side-effects: it results in a graphic being
 displayed (invisibly returns \code{x}).
-}
 }
 \description{
 Displays a compositional bar chart.
@@ -48,11 +71,8 @@ data("kommos", package = "folio")
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1)
 
-plot(coda, order = 1)
-
-## Log ratio
-clr <- transform_clr(coda)
-plot(clr, facet = FALSE)
+plot(coda, order = 1, main = "Kommos Ceramics")
+plot(coda, order = 1, horiz = FALSE, main = "Kommos Ceramics")
 }
 \seealso{
 Other plot methods: 

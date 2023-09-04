@@ -3,55 +3,91 @@
 \docType{methods}
 \name{plot_logratio}
 \alias{plot_logratio}
-\alias{autoplot,LogRatio-method}
 \alias{plot,LogRatio,missing-method}
 \title{Plot Log-Ratios}
 \usage{
-\S4method{autoplot}{LogRatio}(object, ..., order = FALSE, decreasing = FALSE, facet = TRUE)
-
-\S4method{plot}{LogRatio,missing}(x, order = FALSE, decreasing = FALSE, facet = TRUE, ...)
+\S4method{plot}{LogRatio,missing}(
+  x,
+  order = NULL,
+  decreasing = FALSE,
+  groups = get_groups(x),
+  rug = TRUE,
+  ticksize = 0.05,
+  ncol = NULL,
+  flip = FALSE,
+  xlab = NULL,
+  ylab = NULL,
+  main = NULL,
+  ann = graphics::par("ann"),
+  axes = TRUE,
+  frame.plot = axes,
+  legend = list(x = "topright"),
+  ...
+)
 }
 \arguments{
-\item{...}{Currently not used.}
+\item{x}{A \linkS4class{LogRatio} object.}
 
 \item{order}{A \code{\link{logical}} scalar: should the ratio be ordered?}
 
 \item{decreasing}{A \code{\link{logical}} scalar: should the sort order be increasing
 or decreasing?}
 
-\item{facet}{A \code{\link{logical}} scalar: should a matrix of panels defined by
-groups be drawn? Only used if \code{x} \link[=has_groups]{has groups defined}.}
+\item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
+defines the grouping. If set, a matrix of panels defined by \code{groups} will be
+drawn.}
 
-\item{x, object}{A \linkS4class{CompositionMatrix} object.}
+\item{rug}{A \code{\link{logical}} scalar: should a \emph{rug} representation (1-d plot) of
+the data be added to the plot?}
+
+\item{ticksize}{A length-one \code{\link{numeric}} vector giving the length of the
+ticks making up the \emph{rug}. Positive lengths give inwards ticks. Only used if
+\code{rug} is \code{TRUE}.}
+
+\item{ncol}{An \code{\link{integer}} specifying the number of columns to use when
+\code{facet} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
+
+\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
+flipped from side 2 (left) to 4 (right) from series to series when \code{facet}
+is "\code{multiple}"?}
+
+\item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
+
+\item{main}{A \code{\link{character}} string giving a main title for the plot.}
+
+\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
+and y axis labels) appear on the plot?}
+
+\item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
+
+\item{frame.plot}{A \code{\link{logical}} scalar: should a box be drawn around the
+plot?}
+
+\item{legend}{A \code{\link{list}} of additional arguments to be passed to
+\code{\link[graphics:legend]{graphics::legend()}}; names of the list are used as argument names.
+If \code{NULL}, no legend is displayed.}
+
+\item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
+\code{border} and \code{col}.}
 }
 \value{
-\itemize{
-\item \code{autoplot()} returns a \code{\link[ggplot2:ggplot]{ggplot}} object.
-\item \code{plot()} is called it for its side-effects: it results in a graphic being
+\code{plot()} is called it for its side-effects: it results in a graphic being
 displayed (invisibly returns \code{x}).
 }
-}
 \description{
-Displays a compositional bar chart.
+Displays a density plot.
 }
 \examples{
 ## Coerce to compositional data
-data("hongite")
-coda <- as_composition(hongite)
-
-## Bar plot
-plot(coda, order = 2)
-
 ## Use ceramic types for grouping
 data("kommos", package = "folio")
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1)
 
-plot(coda, order = 1)
-
 ## Log ratio
 clr <- transform_clr(coda)
-plot(clr, facet = FALSE)
+plot(clr, group = NULL, flip = TRUE, border = "black", col = NA)
+plot(clr, flip = TRUE)
 }
 \seealso{
 Other plot methods: 

@@ -9,4 +9,4 @@ clr <- transform_clr(coda)
 X <- pca(clr)
 
 ## Plot
-plot_individuals(X)
+viz_individuals(X)

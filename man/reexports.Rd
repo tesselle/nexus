@@ -7,12 +7,11 @@
 \alias{replace_zero}
 \alias{remove_NA}
 \alias{remove_zero}
+\alias{pca}
 \alias{biplot}
-\alias{plot_contributions}
-\alias{plot_cos2}
-\alias{plot_individuals}
-\alias{plot_variables}
-\alias{plot_variance}
+\alias{screeplot}
+\alias{viz_individuals}
+\alias{viz_variables}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -22,6 +21,6 @@ below to see their documentation.
 \describe{
   \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
 
-  \item{dimensio}{\code{\link[dimensio]{biplot}}, \code{\link[dimensio]{plot_contributions}}, \code{\link[dimensio:plot_contributions]{plot_cos2}}, \code{\link[dimensio:plot_coordinates]{plot_individuals}}, \code{\link[dimensio:plot_coordinates]{plot_variables}}, \code{\link[dimensio:plot_eigenvalues]{plot_variance}}}
+  \item{dimensio}{\code{\link[dimensio]{biplot}}, \code{\link[dimensio]{pca}}, \code{\link[dimensio]{screeplot}}, \code{\link[dimensio]{viz_individuals}}, \code{\link[dimensio]{viz_variables}}}
 }}
 

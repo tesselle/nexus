@@ -6,7 +6,7 @@
 \alias{mahalanobis,CompositionMatrix-method}
 \title{Mahalanobis Distance}
 \usage{
-\S4method{mahalanobis}{CompositionMatrix}(x, center, cov, robust = TRUE, ...)
+\S4method{mahalanobis}{CompositionMatrix}(x, center, cov, ..., robust = TRUE)
 }
 \arguments{
 \item{x}{A \linkS4class{CompositionMatrix} object.}
@@ -17,11 +17,11 @@ distribution. If missing, will be estimated from \code{x}.}
 \item{cov}{A \code{\link{numeric}} matrix giving the covariance of the
 distribution. If missing, will be estimated from \code{x}.}
 
-\item{robust}{A \code{\link{logical}} scalar: should robust location and scatter
-estimation be used (see \code{\link[robustbase:covMcd]{robustbase::covMcd()}})?}
-
 \item{...}{Extra parameters to be passed to \code{\link[robustbase:covMcd]{robustbase::covMcd()}}.
 Only used if \code{robust} is \code{TRUE}.}
+
+\item{robust}{A \code{\link{logical}} scalar: should robust location and scatter
+estimation be used (see \code{\link[robustbase:covMcd]{robustbase::covMcd()}})?}
 }
 \value{
 A \code{\link{numeric}} vector.
