@@ -1,5 +1,5 @@
 # DATA TRANSFORMATION
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 # LR ===========================================================================
@@ -8,7 +8,7 @@ NULL
 #' @aliases transform_lr,CompositionMatrix-method
 setMethod(
   f = "transform_lr",
-  signature = signature(object = "CompositionMatrix"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object) {
     J <- ncol(object)
     parts <- colnames(object)
@@ -49,7 +49,7 @@ setMethod(
 #' @aliases transform_clr,CompositionMatrix-method
 setMethod(
   f = "transform_clr",
-  signature = signature(object = "CompositionMatrix"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object, weights = FALSE) {
     J <- ncol(object)
     parts <- colnames(object)
@@ -85,7 +85,7 @@ setMethod(
 #' @aliases transform_alr,CompositionMatrix-method
 setMethod(
   f = "transform_alr",
-  signature = signature(object = "CompositionMatrix"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object, j = ncol(object)) {
     D <- ncol(object)
     parts <- colnames(object)
@@ -126,7 +126,7 @@ setMethod(
 #' @aliases transform_ilr,CompositionMatrix-method
 setMethod(
   f = "transform_ilr",
-  signature = signature(object = "CompositionMatrix"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object) {
     D <- ncol(object)
     seq_parts <- seq_len(D - 1)
@@ -175,7 +175,7 @@ setMethod(
 #' @aliases transform_plr,CompositionMatrix-method
 setMethod(
   f = "transform_plr",
-  signature = signature(object = "CompositionMatrix"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object, pivot = 1) {
     J <- ncol(object)
     parts <- colnames(object)
@@ -229,7 +229,7 @@ setMethod(
 #' @aliases transform_inverse,CLR-method
 setMethod(
   f = "transform_inverse",
-  signature = signature(object = "CLR"),
+  signature = c(object = "CLR"),
   definition = function(object) {
     y <- methods::S3Part(object, strictS3 = TRUE) # Drop slots
     y <- exp(y)
@@ -250,7 +250,7 @@ setMethod(
 #' @aliases transform_inverse,ALR-method
 setMethod(
   f = "transform_inverse",
-  signature = signature(object = "ALR"),
+  signature = c(object = "ALR"),
   definition = function(object) {
     y <- exp(object)
     y <- y / (1 + rowSums(y))
@@ -274,7 +274,7 @@ setMethod(
 #' @aliases transform_inverse,ILR-method
 setMethod(
   f = "transform_inverse",
-  signature = signature(object = "ILR"),
+  signature = c(object = "ILR"),
   definition = function(object) {
     y <- tcrossprod(object, object@base)
     y <- exp(y)

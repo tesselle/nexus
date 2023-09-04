@@ -1,5 +1,5 @@
 # PLOT
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 # CompositionMatrix ============================================================

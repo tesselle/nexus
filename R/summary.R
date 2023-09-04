@@ -1,5 +1,5 @@
 # SUMMARY
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 # @export

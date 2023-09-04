@@ -1,5 +1,5 @@
 # GRAPH
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 #' @export
@@ -7,10 +7,10 @@ NULL
 #' @aliases as_graph,LR-method
 setMethod(
   f = "as_graph",
-  signature = signature(object = "LR"),
+  signature = c(object = "LR"),
   definition = function(object) {
     ## Validation
-    needs("igraph")
+    arkhe::needs("igraph")
 
     ratio <- object@ratio
     edges <- do.call(rbind, strsplit(ratio, "_"))
@@ -24,10 +24,10 @@ setMethod(
 #' @aliases as_graph,ALR-method
 setMethod(
   f = "as_graph",
-  signature = signature(object = "ALR"),
+  signature = c(object = "ALR"),
   definition = function(object) {
     ## Validation
-    needs("igraph")
+    arkhe::needs("igraph")
 
     ratio <- object@ratio
     edges <- do.call(rbind, strsplit(ratio, "_"))
@@ -41,10 +41,10 @@ setMethod(
 #' @aliases as_graph,ILR-method
 setMethod(
   f = "as_graph",
-  signature = signature(object = "ILR"),
+  signature = c(object = "ILR"),
   definition = function(object) {
     ## Validation
-    needs("igraph")
+    arkhe::needs("igraph")
 
     ratio <- object@ratio
     edges <- lapply(

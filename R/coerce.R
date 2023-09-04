@@ -1,5 +1,5 @@
 # COERCION
-#' @include AllGenerics.R AllClasses.R
+#' @include AllGenerics.R
 NULL
 
 #' @export
@@ -7,7 +7,7 @@ NULL
 #' @aliases closure,numeric-method
 setMethod(
   f = "closure",
-  signature = signature(object = "numeric"),
+  signature = c(object = "numeric"),
   definition = function(object, total = 1) {
     object * total / sum(object, na.rm = TRUE)
   }
@@ -18,7 +18,7 @@ setMethod(
 #' @aliases closure,matrix-method
 setMethod(
   f = "closure",
-  signature = signature(object = "matrix"),
+  signature = c(object = "matrix"),
   definition = function(object, total = 1) {
     object * total / rowSums(object, na.rm = TRUE)
   }
@@ -53,7 +53,7 @@ setAs(
 #' @aliases as_composition,matrix-method
 setMethod(
   f = "as_composition",
-  signature = signature(from = "matrix"),
+  signature = c(from = "matrix"),
   definition = function(from) {
     methods::as(from, "CompositionMatrix")
   }
@@ -64,7 +64,7 @@ setMethod(
 #' @aliases as_composition,data.frame-method
 setMethod(
   f = "as_composition",
-  signature = signature(from = "data.frame"),
+  signature = c(from = "data.frame"),
   definition = function(from, samples = NULL, groups = NULL) {
 
     cols <- make_names(colnames(from), n = ncol(from), prefix = "col")
@@ -134,7 +134,7 @@ make_dimnames <- function(x) {
 #' @aliases as_amounts,CompositionMatrix-method
 setMethod(
   f = "as_amounts",
-  signature = signature(from = "CompositionMatrix"),
+  signature = c(from = "CompositionMatrix"),
   definition = function(from) {
     totals <- from@totals
     counts <- from * totals

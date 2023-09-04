@@ -1,5 +1,5 @@
 # STATISTICS
-#' @include AllGenerics.R AllClasses.R
+#' @include AllGenerics.R
 NULL
 
 # Aggregate ====================================================================
@@ -100,7 +100,7 @@ setMethod(
 #' @aliases variation,CompositionMatrix-method
 setMethod(
   f = "variation",
-  signature = signature(object = "CompositionMatrix"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object) {
     J <- ncol(object)
     cbn <- utils::combn(seq_len(J), 2)

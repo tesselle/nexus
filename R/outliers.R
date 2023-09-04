@@ -1,5 +1,5 @@
 # OUTLIERS
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
 # Find =========================================================================
@@ -8,7 +8,7 @@ NULL
 #' @aliases outliers,CompositionMatrix-method
 setMethod(
   f = "outliers",
-  signature = signature(object = "CompositionMatrix"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object, center = NULL, cov = NULL, robust = TRUE,
                         alpha = 0.5, level = 0.975) {
 
