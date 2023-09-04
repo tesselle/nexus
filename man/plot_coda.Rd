@@ -52,8 +52,8 @@ and y axis labels) appear on the plot?}
 \item{...}{Further parameters to be passed to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 }
 \value{
-\code{plot()} is called it for its side-effects: it results in a graphic being
-displayed (invisibly returns \code{x}).
+\code{plot()} is called for its side-effects: is results in a graphic being
+displayed (invisibly return \code{x}).
 }
 \description{
 Displays a compositional bar chart.

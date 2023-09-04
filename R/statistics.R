@@ -53,46 +53,46 @@ setMethod("mean", "CompositionMatrix", mean.CompositionMatrix)
 
 # Variance =====================================================================
 #' @export
-#' @method var CompositionMatrix
-var.CompositionMatrix <- function(x) {
-  J <- ncol(x)
-  parts <- colnames(x)
-
-  cbn <- utils::combn(seq_len(J), 2)
-  varia <- apply(
-    X = cbn,
-    MARGIN = 2,
-    FUN = function(j, x) {
-      stats::var(log(x[, j[1]] / x[, j[2]], base = exp(1)))
-    },
-    x = x
-  )
-
-  mtx <- matrix(data = 0, nrow = J, ncol = J)
-  mtx[lower.tri(mtx, diag = FALSE)] <- varia
-  mtx <- t(mtx)
-  mtx[lower.tri(mtx, diag = FALSE)] <- varia
-
-  dimnames(mtx) <- list(parts, parts)
-  mtx
-}
-
-#' @export
 #' @rdname covariance
-#' @aliases var,CompositionMatrix-method
-setMethod("var", "CompositionMatrix", var.CompositionMatrix)
+#' @aliases variance,CompositionMatrix-method
+setMethod(
+  f = "variance",
+  signature = c(x = "CompositionMatrix"),
+  definition = function(x) {
+    J <- ncol(x)
+    parts <- colnames(x)
+
+    cbn <- utils::combn(seq_len(J), 2)
+    varia <- apply(
+      X = cbn,
+      MARGIN = 2,
+      FUN = function(j, x) {
+        stats::var(log(x[, j[1]] / x[, j[2]], base = exp(1)))
+      },
+      x = x
+    )
+
+    mtx <- matrix(data = 0, nrow = J, ncol = J)
+    mtx[lower.tri(mtx, diag = FALSE)] <- varia
+    mtx <- t(mtx)
+    mtx[lower.tri(mtx, diag = FALSE)] <- varia
+
+    dimnames(mtx) <- list(parts, parts)
+    mtx
+  }
+)
 
 # Covariance ===================================================================
 #' @export
-#' @method cov CompositionMatrix
-cov.CompositionMatrix <- function(x) {
-  stats::cov(transform_lr(x))
-}
-
-#' @export
 #' @rdname covariance
 #' @aliases cov,CompositionMatrix-method
-setMethod("cov", c(x = "CompositionMatrix"), cov.CompositionMatrix)
+setMethod(
+  f = "covariance",
+  signature = c(x = "CompositionMatrix"),
+  definition = function(x, method = "pearson") {
+    stats::cov(transform_lr(x), method = method)
+  }
+)
 
 # Variation ====================================================================
 #' @export
@@ -113,7 +113,7 @@ setMethod(
       x = object
     )
 
-    mtx <- var(object)
+    mtx <- variance(object)
     mtx[lower.tri(mtx, diag = FALSE)] <- varia
     mtx
   }

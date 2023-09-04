@@ -3,25 +3,37 @@
 \docType{methods}
 \name{covariance}
 \alias{covariance}
-\alias{var,CompositionMatrix-method}
-\alias{cov,CompositionMatrix,ANY-method}
+\alias{covariance-method}
+\alias{variance}
+\alias{variance-method}
+\alias{variance,CompositionMatrix-method}
+\alias{covariance,CompositionMatrix-method}
 \alias{cov,CompositionMatrix-method}
 \title{Variance and Covariance}
 \usage{
-\S4method{var}{CompositionMatrix}(x)
+covariance(x, ...)
 
-\S4method{cov}{CompositionMatrix,ANY}(x)
+variance(x, ...)
+
+\S4method{variance}{CompositionMatrix}(x)
+
+\S4method{covariance}{CompositionMatrix}(x, method = "pearson")
 }
 \arguments{
 \item{x}{A \linkS4class{CompositionMatrix} object.}
+
+\item{...}{Currently not used.}
+
+\item{method}{A \code{\link{character}} string indicating which correlation coefficient
+(or covariance) is to be computed (see \code{\link[stats:cor]{stats::cov()}}).}
 }
 \value{
 A \code{\link{matrix}}.
 }
 \description{
 \itemize{
-\item \code{var()} computes the log-ratio variance matrix.
-\item \code{cov()} computes the log-ratio covariance matrix.
+\item \code{variance()} computes the log-ratio variance matrix.
+\item \code{covariance()} computes the log-ratio covariance matrix.
 }
 }
 \examples{

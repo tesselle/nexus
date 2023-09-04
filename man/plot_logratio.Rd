@@ -71,8 +71,8 @@ If \code{NULL}, no legend is displayed.}
 \code{border} and \code{col}.}
 }
 \value{
-\code{plot()} is called it for its side-effects: it results in a graphic being
-displayed (invisibly returns \code{x}).
+\code{plot()} is called for its side-effects: is results in a graphic being
+displayed (invisibly return \code{x}).
 }
 \description{
 Displays a density plot.

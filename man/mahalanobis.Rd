@@ -34,7 +34,7 @@ Computes the squared Mahalanobis distance of all rows in \code{x}.
 
 Other statistics: 
 \code{\link{aggregate}()},
-\code{\link{covariance}},
+\code{\link{covariance}()},
 \code{\link{dist}()},
 \code{\link{mean}()},
 \code{\link{variation}()}

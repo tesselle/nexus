@@ -4,11 +4,8 @@ NULL
 
 # S4 dispatch to base S3 generic ===============================================
 setGeneric("dist", package = "stats")
-setGeneric("var", package = "stats")
-setGeneric("cov", package = "stats")
 setGeneric("mahalanobis", package = "stats")
 setGeneric("qqplot", package = "stats")
-
 # setGeneric("pca", package = "dimensio")
 
 # CoDa =========================================================================
@@ -443,9 +440,12 @@ NULL
 #' Variance and Covariance
 #'
 #' @description
-#'  * `var()` computes the log-ratio variance matrix.
-#'  * `cov()` computes the log-ratio covariance matrix.
+#'  * `variance()` computes the log-ratio variance matrix.
+#'  * `covariance()` computes the log-ratio covariance matrix.
 #' @param x A [CompositionMatrix-class] object.
+#' @param method A [`character`] string indicating which correlation coefficient
+#'  (or covariance) is to be computed (see [stats::cov()]).
+#' @param ... Currently not used.
 #' @return A [`matrix`].
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
@@ -457,9 +457,20 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family statistics
-#' @name covariance
+#' @aliases covariance-method
+setGeneric(
+  name = "covariance",
+  def = function(x, ...) standardGeneric("covariance"),
+  valueClass = "matrix"
+)
+
+#' @aliases variance-method
 #' @rdname covariance
-NULL
+setGeneric(
+  name = "variance",
+  def = function(x, ...) standardGeneric("variance"),
+  valueClass = "matrix"
+)
 
 #' Variation Matrix
 #'
@@ -559,8 +570,8 @@ NULL
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
 #' @param ... Further parameters to be passed to [graphics::barplot()].
 #' @return
-#'  `plot()` is called it for its side-effects: it results in a graphic being
-#'  displayed (invisibly returns `x`).
+#'  `plot()` is called for its side-effects: is results in a graphic being
+#'  displayed (invisibly return `x`).
 #' @example inst/examples/ex-plot.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -602,8 +613,8 @@ NULL
 #' @param ... Further [graphical parameters][graphics::par()], particularly,
 #'  `border` and `col`.
 #' @return
-#'  `plot()` is called it for its side-effects: it results in a graphic being
-#'  displayed (invisibly returns `x`).
+#'  `plot()` is called for its side-effects: is results in a graphic being
+#'  displayed (invisibly return `x`).
 #' @example inst/examples/ex-plot-logratio.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -710,9 +721,13 @@ setGeneric(
 #' Plot Outliers
 #'
 #' @param x An [OutlierIndex-class] object.
+#' @param qq A [`logical`] scalar: should a quantile-quantile plot be produced?
+#' @param probs A length-two [`numeric`] vector representing probabilities.
+#'  Corresponding quantile pairs define the line drawn (see [stats::qqline()]).
+#'  Only used if `qq` is `TRUE`.
 #' @param limit A [`logical`] scalar: should the cut-off value for outlier
-#'  detection be displayed?
-#' @param col,col.points,col.line A vector of colors.
+#'  detection be displayed? Only used if `qq` is `FALSE`.
+#' @param col A vector of colors.
 #' @param pch A vector of plotting `character` (symbol).
 #' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
 #' @param main A [`character`] string giving a main title for the plot.
@@ -728,10 +743,9 @@ setGeneric(
 #' @param panel.last An `expression` to be evaluated after plotting has taken
 #'  place but before the axes, title and box are added.
 #' @param ... Further [graphical parameters][graphics::par()].
-#' @inheritParams stats::qqplot
 #' @return
-#'  `plot()` and `qqplot()` are called it for their side-effects: they result
-#'  in a graphic being displayed (invisibly return `x`).
+#'  `plot()` is called for its side-effects: is results in a graphic being
+#'  displayed (invisibly return `x`).
 #' @references
 #'  Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier
 #'  detection in exploration geochemistry. *Computers & Geosciences*,

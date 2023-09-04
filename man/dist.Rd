@@ -54,7 +54,7 @@ Boca Raton: CRC Press.
 
 Other statistics: 
 \code{\link{aggregate}()},
-\code{\link{covariance}},
+\code{\link{covariance}()},
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},
 \code{\link{variation}()}

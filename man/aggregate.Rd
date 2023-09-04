@@ -46,7 +46,7 @@ aggregate(Y, by = "groups", FUN = mean)
 }
 \seealso{
 Other statistics: 
-\code{\link{covariance}},
+\code{\link{covariance}()},
 \code{\link{dist}()},
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},

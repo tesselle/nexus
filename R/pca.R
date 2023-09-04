@@ -1,8 +1,7 @@
 # PCA
-#' @include AllClasses.R AllGenerics.R
+#' @include AllGenerics.R
 NULL
 
-#' @importFrom dimensio pca
 #' @export
 #' @rdname pca
 #' @aliases pca,CompositionMatrix-method
@@ -16,7 +15,6 @@ setMethod(
   }
 )
 
-#' @importFrom dimensio pca
 #' @export
 #' @rdname pca
 #' @aliases pca,LogRatio-method

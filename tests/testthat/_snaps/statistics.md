@@ -1,7 +1,7 @@
 # Variance
 
     Code
-      var(coda)
+      variance(coda)
     Output
                  A         B         C          D         E
       A 0.00000000 0.2592742 1.5328586 0.08281464 0.1385604
@@ -13,7 +13,7 @@
 # Covariance
 
     Code
-      cov(coda)
+      covariance(coda)
     Output
                   A_B        A_C         A_D         A_E        B_C         B_D
       A_B  0.25927416 -0.6042738 -0.10259133 -0.12558948 -0.8635479 -0.36186549

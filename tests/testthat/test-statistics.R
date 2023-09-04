@@ -2,13 +2,13 @@ test_that("Variance", {
   data("hongite")
   coda <- as_composition(hongite)
 
-  expect_snapshot(var(coda))
+  expect_snapshot(variance(coda))
 })
 test_that("Covariance", {
   data("hongite")
   coda <- as_composition(hongite)
 
-  expect_snapshot(cov(coda))
+  expect_snapshot(covariance(coda))
 })
 test_that("Variation", {
   data("hongite")

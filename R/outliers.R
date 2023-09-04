@@ -33,41 +33,9 @@ setMethod(
 
 # Plot =========================================================================
 #' @export
-#' @method qqplot OutlierIndex
-qqplot.OutlierIndex <- function(x, xlab = NULL, ylab = NULL, ...,
-                                probs = c(0.25, 0.75),
-                                main = NULL, sub = NULL,
-                                col.points = "black", col.line = "red",
-                                conf.level = NULL,
-                                conf.args = list(exact = NULL, simulate.p.value = FALSE,
-                                                 B = 2000, col = NA, border = NULL)) {
-  ## Prepare data
-  data <- as.data.frame(x)
-  dof <- x@df
-  qq <- stats::qchisq(stats::ppoints(nrow(data)), df = dof)
-  spl <- data$distance
-
-  ## Plot
-  xlab <- xlab %||% "Theoretrical Quantiles"
-  rob <- ifelse(x@robust, "Robust", "Standard")
-  ylab <- ylab %||% sprintf("%s Mahalanobis distance", rob)
-  stats::qqplot(x = qq, y = spl, col = col.points,
-                xlab = xlab, ylab = ylab, main = main, sub = sub,
-                las = 1, ..., conf.level = conf.level, conf.args = conf.args)
-  stats::qqline(y = spl, distribution = function(p) stats::qchisq(p, df = dof),
-                probs = probs, col = col.line, ...)
-
-  invisible(x)
-}
-
-#' @export
-#' @rdname plot_outliers
-#' @aliases qqplot,OutlierIndex,missing-method
-setMethod("qqplot", c(x = "OutlierIndex", y = "missing"), qqplot.OutlierIndex)
-
-#' @export
 #' @method plot OutlierIndex
-plot.OutlierIndex <- function(x, limit = TRUE,
+plot.OutlierIndex <- function(x, qq = FALSE, limit = TRUE,
+                              probs = c(0.25, 0.75),
                               col = c("#004488", "#DDAA33"),
                               pch = c(15, 16),
                               xlab = NULL, ylab = NULL,
@@ -77,6 +45,11 @@ plot.OutlierIndex <- function(x, limit = TRUE,
                               panel.first = NULL, panel.last = NULL, ...) {
   ## Prepare data
   data <- as.data.frame(x)
+  dof <- x@df
+  khi <- stats::qchisq(stats::ppoints(nrow(data)), df = dof)
+  i <- if (qq) order(data$distance) else seq_len(nrow(data))
+  data_x <- if (qq) khi else data$index
+  data_y <- data$distance[i]
 
   ## Open new window
   grDevices::dev.hold()
@@ -84,18 +57,25 @@ plot.OutlierIndex <- function(x, limit = TRUE,
   graphics::plot.new()
 
   ## Set plotting coordinates
-  xlim <- range(data$index)
-  ylim <- range(data$distance)
-  graphics::plot.window(xlim = xlim, ylim = ylim)
+  xlim <- range(data_x)
+  ylim <- range(data_y)
+  graphics::plot.window(xlim = xlim, ylim = ylim, asp = 1)
 
   ## Evaluate pre-plot expressions
   panel.first
 
   ## Plot
-  col <- col[as.factor(data$outlier)]
-  pch <- pch[as.factor(data$outlier)]
-  graphics::points(x = data$index, y = data$distance, col = col, pch = pch, ...)
-  if (limit) graphics::abline(h = x@limit, lty = 2)
+  col <- col[as.factor(data$outlier[i])]
+  pch <- pch[as.factor(data$outlier[i])]
+  graphics::points(x = data_x, y = data_y, col = col, pch = pch, ...)
+  if (qq) {
+    stats::qqline(
+      y = data_y,
+      distribution = function(p) stats::qchisq(p, df = dof),
+      probs = probs, col = "red", ...
+    )
+  }
+  if (!qq && limit) graphics::abline(h = x@limit, lty = 2)
 
   ## Evaluate post-plot and pre-axis expressions
   panel.last
@@ -113,7 +93,7 @@ plot.OutlierIndex <- function(x, limit = TRUE,
 
   ## Add annotation
   if (ann) {
-    xlab <- xlab %||% "Index"
+    xlab <- xlab %||% ifelse(qq, "Theoretrical Quantiles", "Index")
     rob <- ifelse(x@robust, "Robust", "Standard")
     ylab <- ylab %||% sprintf("%s Mahalanobis distance", rob)
     graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab)
