@@ -18,7 +18,7 @@ expect_error(set_samples(coda) <- LETTERS, class = "arkhe_error_class")
 data("hongite")
 coda <- as_composition(hongite)
 
-expect_equal(get_groups(coda), character(0))
+expect_equal(get_groups(coda), rep(NA_character_, nrow(coda)))
 expect_false(has_groups(coda))
 
 set_groups(coda) <- rep(c("A", "B", "C", "D", "E"), each = 5)

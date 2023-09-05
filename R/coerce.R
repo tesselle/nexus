@@ -55,7 +55,8 @@ setMethod(
   f = "as_composition",
   signature = c(from = "matrix"),
   definition = function(from) {
-    methods::as(from, "CompositionMatrix")
+    from <- as.data.frame(from)
+    methods::callGeneric(from)
   }
 )
 
@@ -68,18 +69,19 @@ setMethod(
   definition = function(from, samples = NULL, groups = NULL) {
 
     cols <- make_names(colnames(from), n = ncol(from), prefix = "col")
+    empty <- rep(NA_character_, nrow(from))
     auto <- getOption("nexus.autodetect")
     index <- function(what, where) {
       grep(what, where, ignore.case = TRUE, value = FALSE)
     }
 
     ## Samples
-    spl <- rownames(from) %||% character(0)
+    spl <- rownames(from) %||% empty
     if (is.null(samples) && auto) samples <- index("^sample[s]{0,1}$", cols)
     if (arkhe::has_length(samples, 1)) spl <- as.character(from[[samples]])
 
     ## Groups
-    grp <- character(0)
+    grp <- empty
     if (is.null(groups) && auto) groups <- index("^group[s]{0,1}$", cols)
     if (arkhe::has_length(groups, 1)) grp <- as.character(from[[groups]])
 

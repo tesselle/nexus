@@ -18,17 +18,17 @@ get_transformation <- function(x) {
 #' @export
 #' @rdname groups
 #' @aliases has_groups,CompositionMatrix-method
-setMethod("has_groups", "CompositionMatrix", function(x) !arkhe::is_empty(x@groups))
+setMethod("has_groups", "CompositionMatrix", function(x) !all(is.na(x@groups)))
 
 #' @export
 #' @rdname groups
 #' @aliases has_groups,LogRatio-method
-setMethod("has_groups", "LogRatio", function(x) !arkhe::is_empty(x@groups))
+setMethod("has_groups", "LogRatio", function(x) !all(is.na(x@groups)))
 
 #' @export
 #' @rdname groups
 #' @aliases has_groups,OutlierIndex-method
-setMethod("has_groups", "OutlierIndex", function(x) !arkhe::is_empty(x@groups))
+setMethod("has_groups", "OutlierIndex", function(x) !all(is.na(x@groups)))
 
 #' @export
 #' @rdname groups
@@ -52,7 +52,8 @@ setMethod(
   f = "set_groups<-",
   signature = "CompositionMatrix",
   definition = function(x, value) {
-    x@groups <- if (is.null(value)) character(0) else as.character(value)
+    empty <- rep(NA_character_, nrow(x))
+    x@groups <- if (is.null(value)) empty else as.character(value)
     methods::validObject(x)
     x
   }

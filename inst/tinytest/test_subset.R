@@ -14,11 +14,11 @@ expect_true(all(cts[1, , drop = TRUE] == mtx[1, , drop = TRUE]))
 expect_true(all(cts[, 1, drop = FALSE] == mtx[, 1, drop = FALSE]))
 
 cts[1] <- 1L
-expect_equal(cts[1], 1)
+expect_equivalent(cts[1], 1)
 expect_inherits(cts, "CompositionMatrix")
 
 cts[1, 5] <- 0L
-expect_equal(cts[1, 5], 0)
+expect_equivalent(cts[1, 5], 0)
 expect_inherits(cts, "CompositionMatrix")
 
 cts[1, ] <- 0L

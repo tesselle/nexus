@@ -11,7 +11,7 @@ setMethod(
   definition = function(object, center = TRUE, scale = TRUE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
-    stop("You shoul not do that! Transform your data first.", call. = FALSE)
+    stop("You should not do that! Transform your data first.", call. = FALSE)
   }
 )
 
@@ -24,6 +24,8 @@ setMethod(
   definition = function(object, center = TRUE, scale = TRUE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
-    methods::callNextMethod()
+    z <- methods::callNextMethod()
+    if (has_groups(object)) z@rows@groups <- get_groups(object)
+    z
   }
 )

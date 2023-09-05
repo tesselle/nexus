@@ -24,7 +24,7 @@ setValidity(
     cnd <- list(
       arkhe::validate(arkhe::assert_missing(samples)),
       arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_length(groups, n, empty = TRUE)),
+      arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_positive(object, strict = FALSE, na.rm = TRUE))
     )
@@ -53,7 +53,7 @@ setValidity(
     cnd <- list(
       arkhe::validate(arkhe::assert_missing(samples)),
       arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_length(groups, n, empty = TRUE)),
+      arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
 
       arkhe::validate(arkhe::assert_length(order, m, empty = FALSE))
