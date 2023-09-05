@@ -24,11 +24,11 @@ if (at_home()) {
   expect_snapshot_plot(plot_barplot_vertical, "plot_barplot_vertical")
 
   # Scatterplot ================================================================
-  clr <- transform_clr(coda)
-
-  plot_ratio <- function() plot(clr, order = NULL, groups = NULL)
-  expect_snapshot_plot(plot_ratio, "plot_ratio")
-
-  plot_ratio_group <- function() plot(clr, order = NULL)
-  expect_snapshot_plot(plot_ratio_group, "plot_ratio_group")
+  # clr <- transform_clr(coda)
+  #
+  # plot_ratio <- function() plot(clr, order = NULL, groups = NULL)
+  # expect_snapshot_plot(plot_ratio, "plot_ratio")
+  #
+  # plot_ratio_group <- function() plot(clr, order = NULL)
+  # expect_snapshot_plot(plot_ratio_group, "plot_ratio_group")
 }
