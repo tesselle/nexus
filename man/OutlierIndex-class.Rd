@@ -11,6 +11,8 @@ An S4 class to store the result of outlier detection.
 \section{Slots}{
 
 \describe{
+\item{\code{.Data}}{A \code{\link{logical}} vector.}
+
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
 (allows duplicates in case of repeated measurements).}
 
@@ -18,10 +20,12 @@ An S4 class to store the result of outlier detection.
 
 \item{\code{distances}}{A \code{\link{numeric}} vector giving the squared Mahalanobis distance.}
 
-\item{\code{limit}}{An \code{\link{numeric}} value giving the cut-off value used for outlier
+\item{\code{limit}}{A \code{\link{numeric}} value giving the cut-off value used for outlier
 detection.}
 
 \item{\code{robust}}{An \code{\link{logical}} scalar: were robust estimators used?}
+
+\item{\code{df}}{A (non-negative) \code{\link{numeric}} value giving the degrees of freedom.}
 }}
 
 \note{
@@ -38,3 +42,4 @@ Other classes:
 N. Frerebeau
 }
 \concept{classes}
+\keyword{internal}

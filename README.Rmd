@@ -73,7 +73,7 @@ coda <- as_composition(hongite)
 head(coda)
 ```
 
-The `CompositionMatrix` class has special slots (see `vignette("manual")`):
+The `CompositionMatrix` class has special slots (see `vignette("nexus")`):
   
 * `samples` for repeated measurements/observation,
 * `groups` to group data by site/area.

@@ -19,7 +19,7 @@ setGeneric("mahalanobis", package = "stats")
 #' @param ... Currently not used.
 #' @details
 #'  The [CompositionMatrix-class] class has special slots
-#'  (see `vignette("manual")`):
+#'  (see `vignette("nexus")`):
 #'
 #'  * `samples` for repeated measurements/observation,
 #'  * `groups` to group data by site/area.
@@ -87,7 +87,7 @@ setGeneric(
 #' @param x An object from which to get or set `groups`.
 #' @param value A possible value for the `groups` of `x`.
 #' @details
-#'  See `vignette("manual")`.
+#'  See `vignette("nexus")`.
 #' @return
 #'  * `set_groups()` returns an object of the same sort as `x` with the new
 #'    group names assigned.
@@ -132,7 +132,7 @@ setGeneric(
 #'  measurements can be specified by giving several observations the same
 #'  sample name.
 #'
-#'  See `vignette("manual")`.
+#'  See `vignette("nexus")`.
 #' @return
 #'  * `set_samples()` returns an object of the same sort as `x` with the new
 #'    sample names assigned.

@@ -67,11 +67,6 @@ remotes::install_github("tesselle/nexus")
 ``` r
 ## Load the package
 library(nexus)
-#> 
-#> Attachement du package : 'nexus'
-#> L'objet suivant est masqué depuis 'package:stats':
-#> 
-#>     biplot
 ```
 
 **nexus** provides a set of S4 classes that represent different special
@@ -112,7 +107,7 @@ head(coda)
 ```
 
 The `CompositionMatrix` class has special slots (see
-`vignette("manual")`):
+`vignette("nexus")`):
 
 - `samples` for repeated measurements/observation,
 - `groups` to group data by site/area.

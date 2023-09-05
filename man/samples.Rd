@@ -61,7 +61,7 @@ chemical analyses on the same sample). The presence of repeated
 measurements can be specified by giving several observations the same
 sample name.
 
-See \code{vignette("manual")}.
+See \code{vignette("nexus")}.
 }
 \seealso{
 Other mutators: 

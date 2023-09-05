@@ -5,12 +5,12 @@ NULL
 #' Numeric Matrix
 #'
 #' S4 classes that represent a \eqn{m \times p}{m x p} numeric matrix.
+#' @slot .Data A \eqn{m \times p}{m x p} `numeric` [`matrix`].
 #' @note
 #'  This class inherits from [`matrix`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
-#' @rdname NumericMatrix
 #' @aliases NumericMatrix-class
 #' @keywords internal
 .NumericMatrix <- setClass(
@@ -21,12 +21,12 @@ NULL
 #' Logical Matrix
 #'
 #' S4 classes that represent a \eqn{m \times p}{m x p} logical matrix.
+#' @slot .Data A \eqn{m \times p}{m x p} `logical` [`matrix`].
 #' @note
 #'  This class inherits from [`matrix`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
-#' @rdname LogicalMatrix
 #' @aliases LogicalMatrix-class
 #' @keywords internal
 .LogicalMatrix <- setClass(
@@ -50,6 +50,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases CompositionMatrix-class
+#' @keywords internal
 .CompositionMatrix <- setClass(
   Class = "CompositionMatrix",
   slots = c(
@@ -84,6 +85,7 @@ NULL
 #' @family classes
 #' @docType class
 #' @aliases LogRatio-class
+#' @keywords internal
 .LogRatio <- setClass(
   Class = "LogRatio",
   slots = c(
@@ -139,19 +141,22 @@ NULL
 #' Outliers
 #'
 #' An S4 class to store the result of outlier detection.
+#' @slot .Data A [`logical`] vector.
 #' @slot samples A [`character`] vector to store the sample identifiers
 #'  (allows duplicates in case of repeated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
 #' @slot distances A [`numeric`] vector giving the squared Mahalanobis distance.
-#' @slot limit An [`numeric`] value giving the cut-off value used for outlier
+#' @slot limit A [`numeric`] value giving the cut-off value used for outlier
 #'  detection.
 #' @slot robust An [`logical`] scalar: were robust estimators used?
+#' @slot df A (non-negative) [`numeric`] value giving the degrees of freedom.
 #' @note
 #'  These classes inherit from [`logical`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
 #' @aliases OutlierIndex-class
+#' @keywords internal
 .OutlierIndex <- setClass(
   Class = "OutlierIndex",
   slots = c(

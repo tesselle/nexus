@@ -34,7 +34,7 @@ Coerces an object to a \code{CompositionMatrix} object.
 }
 \details{
 The \linkS4class{CompositionMatrix} class has special slots
-(see \code{vignette("manual")}):
+(see \code{vignette("nexus")}):
 \itemize{
 \item \code{samples} for repeated measurements/observation,
 \item \code{groups} to group data by site/area.

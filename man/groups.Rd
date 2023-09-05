@@ -56,7 +56,7 @@ group names assigned.
 Retrieves or defines the groups to which the observations belong.
 }
 \details{
-See \code{vignette("manual")}.
+See \code{vignette("nexus")}.
 }
 \seealso{
 Other mutators: 
