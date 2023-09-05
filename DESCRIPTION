@@ -51,7 +51,6 @@ Collate:
     'coerce.R'
     'data.R'
     'graph.R'
-    'lead.R'
     'mutators.R'
     'nexus-internal.R'
     'nexus-package.R'
