@@ -7,7 +7,7 @@ NULL
 #' @aliases pca,CompositionMatrix-method
 setMethod(
   f = "pca",
-  signature = c(object = "CompositionMatrix"),
+  signature = c("CompositionMatrix"),
   definition = function(object, center = TRUE, scale = TRUE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
@@ -20,7 +20,7 @@ setMethod(
 #' @aliases pca,LogRatio-method
 setMethod(
   f = "pca",
-  signature = c(object = "LogRatio"),
+  signature = c("LogRatio"),
   definition = function(object, center = TRUE, scale = TRUE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {

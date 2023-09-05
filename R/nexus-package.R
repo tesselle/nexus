@@ -41,7 +41,8 @@
 "_PACKAGE"
 
 #' @import arkhe
-#' @importFrom dimensio pca biplot screeplot viz_individuals viz_variables
+#' @importMethodsFrom dimensio pca
+# @importFrom dimensio pca biplot screeplot viz_individuals viz_variables
 #' @importFrom methods as as<- callGeneric callNextMethod
 #'  .hasSlot initialize is new setClass setGeneric setMethod slot slot<-
 #'  slotNames validObject .valueClassTest

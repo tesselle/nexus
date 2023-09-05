@@ -5,7 +5,6 @@ NULL
 # S4 dispatch to base S3 generic ===============================================
 setGeneric("dist", package = "stats")
 setGeneric("mahalanobis", package = "stats")
-setGeneric("pca")
 
 # CoDa =========================================================================
 #' Coerce to a Closed Compositional Matrix

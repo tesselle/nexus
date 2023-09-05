@@ -4,6 +4,8 @@ author: "N. Frerebeau"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
+    number_sections: yes
+    fig_caption: yes
     toc: true
 bibliography: bibliography.bib
 vignette: >
@@ -23,7 +25,7 @@ Provenance studies rely on the identification of probable sources, such that the
 
 **nexus** is designed for chemical fingerprinting and source tracking of ancient materials. It provides provides tools for exploration and analysis of compositional data in the framework of @aitchison1986.
 
-## Get started
+# Get started
 
 ```{r setup}
 library(nexus)
@@ -56,12 +58,12 @@ counts <- as_amounts(coda)
 all.equal(hongite, as.data.frame(counts))
 ```
 
-```{r, fig.width=7, fig.height=5, out.width='100%'}
+```{r barplot, fig.width=7, fig.height=5, out.width='100%'}
 ## Compositional bar plot
 plot(coda, order = "A")
 ```
 
-### Working with (reference) groups
+## Working with (reference) groups
 
 Provenance studies typically rely on two approaches, which can be used together:
 
@@ -98,7 +100,7 @@ get_groups(Y)
 
 Once groups have been defined, they can be used by further methods (e.g. plotting).
 
-### Working with repeated measurements
+## Working with repeated measurements
 
 In some situations, measurements may have been repeated (e.g. multiple chemical analyses on the same sample). The presence of repeated measurements can be specified by giving several observations the same sample name.
 
@@ -136,9 +138,43 @@ Note that the presence of repeated measurements may affect some calculations (re
 
 The amount of every part is limited to the whole. The absolute amount of the whole is noninformative since it is typically due to artifacts on the measurement procedure. Thus only relative changes are relevant. If the relative amount of one part increases, the amounts of other parts must decrease, introducing spurious anticorrelation.
 
-## Use cases
-### Glass compositions
+# Use cases
+## Ceramic compositions
 
-### Slag inclusions
+```{r ceramics}
+## Data from Day et al. 2011
+data("kommos", package = "folio")
 
-## References
+## Remove rows with missing values
+kommos <- remove_NA(kommos, margin = 1)
+
+## Coerce to a compositional matrix
+coda <- as_composition(kommos)
+
+## Set groups
+set_groups(coda) <- kommos$type
+```
+
+```{r ceramics-barplot, fig.width=7, fig.height=7, out.width='100%'}
+## Compositional bar plot
+plot(coda, order = "Ca")
+```
+
+```{r ceramics-clr, fig.width=7, fig.height=8, out.width='100%'}
+## CLR
+clr <- transform_clr(coda)
+plot(clr, border = c("#EE7733", "#0077BB", "#33BBEE", "#EE3377"))
+```
+
+```{r ceramics-pca, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
+## PCA
+clr_pca <- pca(clr, scale = FALSE)
+
+viz_individuals(clr_pca, highlight = get_groups(coda), pch = 16, 
+                col = c("#EE7733", "#0077BB", "#33BBEE", "#EE3377"))
+viz_variables(clr_pca)
+```
+
+## Slag inclusions
+
+# References

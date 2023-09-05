@@ -7,9 +7,6 @@
 \alias{replace_zero}
 \alias{remove_NA}
 \alias{remove_zero}
-\alias{pca}
-\alias{biplot}
-\alias{screeplot}
 \alias{viz_individuals}
 \alias{viz_variables}
 \title{Objects exported from other packages}
@@ -21,6 +18,6 @@ below to see their documentation.
 \describe{
   \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
 
-  \item{dimensio}{\code{\link[dimensio]{biplot}}, \code{\link[dimensio]{pca}}, \code{\link[dimensio]{screeplot}}, \code{\link[dimensio]{viz_individuals}}, \code{\link[dimensio]{viz_variables}}}
+  \item{dimensio}{\code{\link[dimensio]{viz_individuals}}, \code{\link[dimensio]{viz_variables}}}
 }}
 

@@ -18,18 +18,6 @@ arkhe::remove_zero
 
 # REEXPORT FROM DIMENSIO
 
-#' @importFrom dimensio pca
-#' @export
-dimensio::pca
-
-#' @importFrom dimensio biplot
-#' @export
-dimensio::biplot
-
-#' @importFrom dimensio screeplot
-#' @export
-dimensio::screeplot
-
 #' @importFrom dimensio viz_individuals
 #' @export
 dimensio::viz_individuals
