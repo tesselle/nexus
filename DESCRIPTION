@@ -23,6 +23,7 @@ Depends:
 Imports: 
     arkhe (>= 1.3.0),
     dimensio (>= 0.4.0),
+    isopleuros (>= 1.0.0),
     graphics,
     grDevices,
     methods,

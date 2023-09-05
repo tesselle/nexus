@@ -25,3 +25,9 @@ dimensio::viz_individuals
 #' @importFrom dimensio viz_variables
 #' @export
 dimensio::viz_variables
+
+# REEXPORT FROM ISOPLEUROS
+
+#' @importFrom isopleuros ternary_plot
+#' @export
+isopleuros::ternary_plot
