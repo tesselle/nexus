@@ -13,7 +13,8 @@ outliers(object, ...)
   object,
   center = NULL,
   cov = NULL,
-  robust = FALSE,
+  robust = TRUE,
+  method = c("mve", "mcd"),
   quantile = 0.975,
   ...
 )
@@ -21,7 +22,8 @@ outliers(object, ...)
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}}.}
 
-\item{...}{Extra parameters to be passed to \code{\link[robustbase:covMcd]{robustbase::covMcd()}}.}
+\item{...}{Extra parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.
+Only used if \code{robust} is \code{TRUE}.}
 
 \item{center}{A \code{\link{numeric}} vector giving the mean vector of the
 distribution. If missing, will be estimated from \code{x}.}
@@ -30,7 +32,11 @@ distribution. If missing, will be estimated from \code{x}.}
 distribution. If missing, will be estimated from \code{x}.}
 
 \item{robust}{A \code{\link{logical}} scalar: should robust location and scatter
-estimation be used (see \code{\link[robustbase:covMcd]{robustbase::covMcd()}})?}
+estimation be used?}
+
+\item{method}{A \code{\link{character}} string specifying the method to be used.
+It must be one of "\code{mve}" (minimum volume ellipsoid) or "\code{mcd}" (minimum
+covariance determinant). Only used if \code{robust} is \code{TRUE}.}
 
 \item{quantile}{A length-one \code{\link{numeric}} vector giving the significance level.
 \code{quantile} is used as a cut-off value for outlier detection: observations

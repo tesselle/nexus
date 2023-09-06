@@ -27,7 +27,7 @@ Imports:
     graphics,
     grDevices,
     methods,
-    robustbase,
+    MASS,
     stats,
     utils
 Suggests: 

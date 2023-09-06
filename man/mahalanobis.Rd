@@ -4,12 +4,15 @@
 \name{mahalanobis}
 \alias{mahalanobis}
 \alias{mahalanobis,CompositionMatrix-method}
+\alias{mahalanobis,ILR-method}
 \title{Mahalanobis Distance}
 \usage{
-\S4method{mahalanobis}{CompositionMatrix}(x, center, cov, ..., robust = TRUE)
+\S4method{mahalanobis}{CompositionMatrix}(x, center, cov, ..., robust = TRUE, method = c("mve", "mcd"))
+
+\S4method{mahalanobis}{ILR}(x, center, cov, ..., robust = TRUE, method = c("mve", "mcd"))
 }
 \arguments{
-\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} or an \code{\linkS4class{ILR}} object.}
 
 \item{center}{A \code{\link{numeric}} vector giving the mean vector of the
 distribution. If missing, will be estimated from \code{x}.}
@@ -17,11 +20,15 @@ distribution. If missing, will be estimated from \code{x}.}
 \item{cov}{A \code{\link{numeric}} matrix giving the covariance of the
 distribution. If missing, will be estimated from \code{x}.}
 
-\item{...}{Extra parameters to be passed to \code{\link[robustbase:covMcd]{robustbase::covMcd()}}.
+\item{...}{Extra parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.
 Only used if \code{robust} is \code{TRUE}.}
 
 \item{robust}{A \code{\link{logical}} scalar: should robust location and scatter
-estimation be used (see \code{\link[robustbase:covMcd]{robustbase::covMcd()}})?}
+estimation be used?}
+
+\item{method}{A \code{\link{character}} string specifying the method to be used.
+It must be one of "\code{mve}" (minimum volume ellipsoid) or "\code{mcd}" (minimum
+covariance determinant). Only used if \code{robust} is \code{TRUE}.}
 }
 \value{
 A \code{\link{numeric}} vector.

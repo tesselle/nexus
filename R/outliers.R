@@ -9,11 +9,12 @@ NULL
 setMethod(
   f = "outliers",
   signature = c(object = "CompositionMatrix"),
-  definition = function(object, center = NULL, cov = NULL, robust = FALSE,
-                        quantile = 0.975, ...) {
+  definition = function(object, center = NULL, cov = NULL, robust = TRUE,
+                        method = c("mve", "mcd"), quantile = 0.975, ...) {
 
     dof <- ncol(object) - 1L
-    d2 <- mahalanobis(object, center = center, cov = cov, ..., robust = robust)
+    d2 <- mahalanobis(object, center = center, cov = cov, ...,
+                      robust = robust, method = method)
     d <- sqrt(d2)
     limit <- sqrt(stats::qchisq(p = quantile, df = dof))
     out <- d > limit

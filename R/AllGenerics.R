@@ -528,14 +528,17 @@ NULL
 #' Mahalanobis Distance
 #'
 #' Computes the squared Mahalanobis distance of all rows in `x`.
-#' @param x A [`CompositionMatrix-class`] object.
+#' @param x A [`CompositionMatrix-class`] or an [`ILR-class`] object.
 #' @param center A [`numeric`] vector giving the mean vector of the
 #'  distribution. If missing, will be estimated from `x`.
 #' @param cov A [`numeric`] matrix giving the covariance of the
 #'  distribution. If missing, will be estimated from `x`.
 #' @param robust A [`logical`] scalar: should robust location and scatter
-#'  estimation be used (see [robustbase::covMcd()])?
-#' @param ... Extra parameters to be passed to [robustbase::covMcd()].
+#'  estimation be used?
+#' @param method A [`character`] string specifying the method to be used.
+#'  It must be one of "`mve`" (minimum volume ellipsoid) or "`mcd`" (minimum
+#'  covariance determinant). Only used if `robust` is `TRUE`.
+#' @param ... Extra parameters to be passed to [MASS::cov.rob()].
 #'  Only used if `robust` is `TRUE`.
 #' @return A [`numeric`] vector.
 #' @seealso [stats::mahalanobis()]
@@ -666,7 +669,6 @@ NULL
 #'  `quantile` is used as a cut-off value for outlier detection: observations
 #'  with larger (squared) Mahalanobis distance are considered as potential
 #'  outliers.
-#' @param ... Extra parameters to be passed to [robustbase::covMcd()].
 #' @details
 #'  An outlier can be defined as having a very large Mahalanobis distance from
 #'  all observations. In this way, a certain proportion of the observations can
