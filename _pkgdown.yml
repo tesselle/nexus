@@ -25,9 +25,6 @@ reference:
 - title: Outlier Detection
   contents:
   - has_concept("outlier detection methods")
-- title: Isotope Analysis
-  contents:
-  - has_concept("isotope analysis")
 - title: Getters and Setters
   contents:
   - has_concept("mutators")

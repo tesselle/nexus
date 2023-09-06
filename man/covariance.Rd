@@ -20,7 +20,7 @@ variance(x, ...)
 \S4method{covariance}{CompositionMatrix}(x, method = "pearson")
 }
 \arguments{
-\item{x}{A \linkS4class{CompositionMatrix} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 

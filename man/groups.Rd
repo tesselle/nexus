@@ -17,7 +17,7 @@
 \alias{get_groups,OutlierIndex-method}
 \alias{set_groups<-,CompositionMatrix-method}
 \alias{set_groups,CompositionMatrix-method}
-\title{Deal With Groups}
+\title{Working With Groups}
 \usage{
 has_groups(x)
 

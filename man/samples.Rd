@@ -17,7 +17,7 @@
 \alias{get_samples,OutlierIndex-method}
 \alias{set_samples<-,CompositionMatrix-method}
 \alias{set_samples,CompositionMatrix-method}
-\title{Deal With Samples}
+\title{Working With Samples}
 \usage{
 has_replicates(x)
 

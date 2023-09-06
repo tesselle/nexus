@@ -9,7 +9,7 @@
 \S4method{mahalanobis}{CompositionMatrix}(x, center, cov, ..., robust = TRUE)
 }
 \arguments{
-\item{x}{A \linkS4class{CompositionMatrix} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{center}{A \code{\link{numeric}} vector giving the mean vector of the
 distribution. If missing, will be estimated from \code{x}.}

@@ -152,7 +152,7 @@ as.data.frame.CompositionMatrix <- function(x, ...) {
   z <- as.data.frame(methods::as(x, "matrix"))
 
   z$samples <- get_samples(x)
-  if (has_groups(x)) z$groups <- get_groups(x)
+  z$groups <- get_groups(x)
   z
 }
 
@@ -162,7 +162,7 @@ as.data.frame.LogRatio <- function(x, ...) {
   z <- as.data.frame(methods::as(x, "matrix"))
 
   z$samples <- get_samples(x)
-  if (has_groups(x)) z$groups <- get_groups(x)
+  z$groups <- get_groups(x)
   z
 }
 
@@ -173,7 +173,7 @@ as.data.frame.OutlierIndex <- function(x, ...) {
   data.frame(
     index = seq_along(y),
     sample = get_samples(x),
-    group = if (has_groups(x)) get_groups(x) else NA_character_,
+    group = get_groups(x),
     distance = x@distances,
     outlier = y,
     row.names = NULL,

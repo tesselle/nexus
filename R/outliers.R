@@ -10,23 +10,23 @@ setMethod(
   f = "outliers",
   signature = c(object = "CompositionMatrix"),
   definition = function(object, center = NULL, cov = NULL, robust = FALSE,
-                        alpha = 0.5, level = 0.975) {
+                        quantile = 0.975, ...) {
 
-    df <- ncol(object) - 1L
-    distance <- sqrt(mahalanobis(object, center = center, cov = cov,
-                                 robust = robust, alpha = alpha))
-    limit <- sqrt(stats::qchisq(p = level, df = df))
-    out <- distance > limit
+    dof <- ncol(object) - 1L
+    d2 <- mahalanobis(object, center = center, cov = cov, ..., robust = robust)
+    d <- sqrt(d2)
+    limit <- sqrt(stats::qchisq(p = quantile, df = dof))
+    out <- d > limit
     names(out) <- rownames(object)
 
     .OutlierIndex(
       out,
       samples = get_samples(object),
       groups = get_groups(object),
-      distances = distance,
+      distances = d,
       limit = limit,
       robust = robust,
-      df = df
+      dof = dof
     )
   }
 )
@@ -45,7 +45,7 @@ plot.OutlierIndex <- function(x, qq = FALSE, limit = TRUE,
                               panel.first = NULL, panel.last = NULL, ...) {
   ## Prepare data
   data <- as.data.frame(x)
-  dof <- x@df
+  dof <- x@dof
   khi <- stats::qchisq(stats::ppoints(nrow(data)), df = dof)
   i <- if (qq) order(data$distance) else seq_len(nrow(data))
   data_x <- if (qq) khi else data$index
@@ -59,7 +59,7 @@ plot.OutlierIndex <- function(x, qq = FALSE, limit = TRUE,
   ## Set plotting coordinates
   xlim <- range(data_x)
   ylim <- range(data_y)
-  graphics::plot.window(xlim = xlim, ylim = ylim, asp = 1)
+  graphics::plot.window(xlim = xlim, ylim = ylim, asp = if (qq) 1 else NA)
 
   ## Evaluate pre-plot expressions
   panel.first

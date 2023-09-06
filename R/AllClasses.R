@@ -42,6 +42,11 @@ NULL
 #' @slot samples A [`character`] vector to store the sample identifiers
 #'  (allows duplicates in case of repeated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
+#' @section Coerce:
+#'  In the code snippets below, `x` is a `CompositionMatrix` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
 #' @note
 #'  This class inherits from [`matrix`].
 #' @seealso [as_composition()]
@@ -77,6 +82,11 @@ NULL
 #' @slot base A [`numeric`] matrix to store the basis of the transformation.
 #' @slot weights A [`numeric`] vector to store the weights assigned to the
 #'  respective log-ratios.
+#' @section Coerce:
+#'  In the code snippets below, `x` is a `LogRatio` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
 #' @note
 #'  These classes inherit from [`matrix`].
 #' @seealso [transform_lr()], [transform_clr()], [transform_alr()],
@@ -147,9 +157,14 @@ NULL
 #' @slot groups A [`character`] vector to store the group names (if any).
 #' @slot distances A [`numeric`] vector giving the squared Mahalanobis distance.
 #' @slot limit A [`numeric`] value giving the cut-off value used for outlier
-#'  detection.
+#'  detection (quantile of the Chi-squared distribution).
 #' @slot robust An [`logical`] scalar: were robust estimators used?
-#' @slot df A (non-negative) [`numeric`] value giving the degrees of freedom.
+#' @slot dof A (non-negative) [`numeric`] value giving the degrees of freedom.
+#' @section Coerce:
+#'  In the code snippets below, `x` is a `OutlierIndex` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
 #' @note
 #'  These classes inherit from [`logical`].
 #' @author N. Frerebeau
@@ -165,7 +180,7 @@ NULL
     distances = "numeric",
     limit = "numeric",
     robust = "logical",
-    df = "integer"
+    dof = "integer"
   ),
   contains = "logical"
 )

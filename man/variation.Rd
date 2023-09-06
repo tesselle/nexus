@@ -12,7 +12,7 @@ variation(object, ...)
 \S4method{variation}{CompositionMatrix}(object)
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix} object.}
+\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 }

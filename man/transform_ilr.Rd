@@ -12,12 +12,12 @@ transform_ilr(object, ...)
 \S4method{transform_ilr}{CompositionMatrix}(object)
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix} object.}
+\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 }
 \value{
-An \linkS4class{ILR} object.
+An \code{\linkS4class{ILR}} object.
 }
 \description{
 Computes ILR transformations.

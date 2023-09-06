@@ -22,7 +22,7 @@
 )
 }
 \arguments{
-\item{x}{A \linkS4class{CompositionMatrix} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{order}{An \code{\link{integer}} vector giving the index of the column to be used
 for the ordering of the data.}

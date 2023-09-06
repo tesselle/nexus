@@ -12,7 +12,7 @@ transform_clr(object, ...)
 \S4method{transform_clr}{CompositionMatrix}(object, weights = FALSE)
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix} object.}
+\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 
@@ -21,7 +21,7 @@ transform_clr(object, ...)
 positive \code{\link{numeric}} vector of weights can be specified.}
 }
 \value{
-A \linkS4class{CLR} object.
+A \code{\linkS4class{CLR}} object.
 }
 \description{
 Computes CLR transformation.

@@ -12,12 +12,12 @@ transform_lr(object, ...)
 \S4method{transform_lr}{CompositionMatrix}(object)
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix} object.}
+\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 }
 \value{
-A \linkS4class{LR} object.
+A \code{\linkS4class{LR}} object.
 }
 \description{
 Computes all pairwise log-ratio transformation.

@@ -9,7 +9,7 @@
 \S4method{mean}{CompositionMatrix}(x, ...)
 }
 \arguments{
-\item{x}{A \linkS4class{CompositionMatrix} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Further argument to be passed to other methods.}
 }

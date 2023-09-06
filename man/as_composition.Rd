@@ -27,24 +27,25 @@ If \code{NULL} (the default), row names will be used as sample IDs.}
 group the samples. If \code{NULL} (the default), no grouping is stored.}
 }
 \value{
-A \linkS4class{CompositionMatrix} object.
+A \code{\linkS4class{CompositionMatrix}} object.
 }
 \description{
 Coerces an object to a \code{CompositionMatrix} object.
 }
 \details{
-The \linkS4class{CompositionMatrix} class has special slots
-(see \code{vignette("nexus")}):
+The \code{\linkS4class{CompositionMatrix}} class has special slots:
 \itemize{
 \item \code{samples} for repeated measurements/observation,
 \item \code{groups} to group data by site/area.
 }
 
-When coercing a \code{data.frame} to a \linkS4class{CompositionMatrix} object, an
+When coercing a \code{data.frame} to a \code{\linkS4class{CompositionMatrix}} object, an
 attempt is made to automatically assign values to these slots by mapping
 column names (case insensitive, plural insensitive). This behavior can be
 disabled by setting \code{options(nexus.autodetect = FALSE)} or overridden by
 explicitly specifying the columns to be used.
+
+See \code{vignette("nexus")}.
 }
 \note{
 All non-numeric variable will be removed.

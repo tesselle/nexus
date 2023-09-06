@@ -23,6 +23,14 @@ the closure of the compositions).}
 \note{
 This class inherits from \code{\link{matrix}}.
 }
+\section{Coerce}{
+
+In the code snippets below, \code{x} is a \code{CompositionMatrix} object.
+\describe{
+\item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
+}
+}
+
 \examples{
 ## Coerce to compositional data
 data("hongite")

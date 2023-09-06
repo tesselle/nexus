@@ -18,12 +18,12 @@ transform_inverse(object, ...)
 \S4method{transform_inverse}{ILR}(object)
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix} object.}
+\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 }
 \value{
-A \linkS4class{CompositionMatrix} object.
+A \code{\linkS4class{CompositionMatrix}} object.
 }
 \description{
 Computes inverse log-ratio transformations.

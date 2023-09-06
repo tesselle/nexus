@@ -45,6 +45,14 @@ respective log-ratios.}
 \note{
 These classes inherit from \code{\link{matrix}}.
 }
+\section{Coerce}{
+
+In the code snippets below, \code{x} is a \code{LogRatio} object.
+\describe{
+\item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
+}
+}
+
 \seealso{
 \code{\link[=transform_lr]{transform_lr()}}, \code{\link[=transform_clr]{transform_clr()}}, \code{\link[=transform_alr]{transform_alr()}},
 \code{\link[=transform_ilr]{transform_ilr()}}, \code{\link[=transform_plr]{transform_plr()}}

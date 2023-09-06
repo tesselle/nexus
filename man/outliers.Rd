@@ -14,14 +14,14 @@ outliers(object, ...)
   center = NULL,
   cov = NULL,
   robust = FALSE,
-  alpha = 0.5,
-  level = 0.975
+  quantile = 0.975,
+  ...
 )
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix}.}
+\item{object}{A \code{\linkS4class{CompositionMatrix}}.}
 
-\item{...}{Currently not used.}
+\item{...}{Extra parameters to be passed to \code{\link[robustbase:covMcd]{robustbase::covMcd()}}.}
 
 \item{center}{A \code{\link{numeric}} vector giving the mean vector of the
 distribution. If missing, will be estimated from \code{x}.}
@@ -32,16 +32,13 @@ distribution. If missing, will be estimated from \code{x}.}
 \item{robust}{A \code{\link{logical}} scalar: should robust location and scatter
 estimation be used (see \code{\link[robustbase:covMcd]{robustbase::covMcd()}})?}
 
-\item{alpha}{A length-one \code{\link{numeric}} vector controlling the size of the
-subsets over which the determinant is minimized (see
-\code{\link[robustbase:covMcd]{robustbase::covMcd()}}). Only used if \code{robust} is \code{TRUE}.}
-
-\item{level}{A length-one \code{\link{numeric}} vector giving the significance level.
-\code{level} is used as a cut-off value for outlier detection: observations with
-larger (squared) Mahalanobis distance are considered as potential outliers.}
+\item{quantile}{A length-one \code{\link{numeric}} vector giving the significance level.
+\code{quantile} is used as a cut-off value for outlier detection: observations
+with larger (squared) Mahalanobis distance are considered as potential
+outliers.}
 }
 \value{
-An \linkS4class{OutlierIndex} object.
+An \code{\linkS4class{OutlierIndex}} object.
 }
 \description{
 Outlier Detection
@@ -63,9 +60,10 @@ why a particular threshold should be applicable to all data sets
 (Filzmoser, Garrett, and Reimann 2005).
 }
 \examples{
-## Coerce to chemical data
-data("hongite")
-coda <- as_composition(hongite)
+## Data from Day et al. 2011
+data("kommos", package = "folio") # Coerce to compositional data
+kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
+coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
 ## Detect outliers
 out <- outliers(coda)

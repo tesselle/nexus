@@ -9,7 +9,7 @@
 \S4method{dist}{CompositionMatrix}(x, method = "euclidean", diag = FALSE, upper = FALSE, p = 2)
 }
 \arguments{
-\item{x}{A \linkS4class{CompositionMatrix} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{method}{A \code{\link{character}} string specifying the distance measure to be
 used. See \code{\link[stats:dist]{stats::dist()}} for the available distances.}

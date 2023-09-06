@@ -12,14 +12,14 @@ transform_alr(object, ...)
 \S4method{transform_alr}{CompositionMatrix}(object, j = ncol(object))
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix} object.}
+\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 
 \item{j}{An \code{\link{integer}} giving the index of the rationing part (denominator).}
 }
 \value{
-An \linkS4class{ALR} object.
+An \code{\linkS4class{ALR}} object.
 }
 \description{
 Computes ALR transformation.

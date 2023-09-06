@@ -12,7 +12,7 @@ as_amounts(from, ...)
 \S4method{as_amounts}{CompositionMatrix}(from)
 }
 \arguments{
-\item{from}{A \linkS4class{CompositionMatrix} object.}
+\item{from}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 }

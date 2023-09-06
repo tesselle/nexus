@@ -18,7 +18,7 @@ as_graph(object, ...)
 \S4method{as_graph}{ILR}(object)
 }
 \arguments{
-\item{object}{A \linkS4class{LogRatio} object.}
+\item{object}{A \code{\linkS4class{LogRatio}} object.}
 
 \item{...}{Currently not used.}
 }

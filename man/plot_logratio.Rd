@@ -26,7 +26,7 @@
 )
 }
 \arguments{
-\item{x}{A \linkS4class{LogRatio} object.}
+\item{x}{A \code{\linkS4class{LogRatio}} object.}
 
 \item{order}{A \code{\link{logical}} scalar: should the ratio be ordered?}
 

@@ -9,7 +9,7 @@
 \S4method{aggregate}{CompositionMatrix}(x, by, FUN, ...)
 }
 \arguments{
-\item{x}{A \linkS4class{CompositionMatrix} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{by}{A \code{\link{character}} string specifying the grouping element. It must be
 one of "\code{samples}" or "\code{groups}". Any unambiguous substring can be given.}

@@ -12,14 +12,14 @@ transform_plr(object, ...)
 \S4method{transform_plr}{CompositionMatrix}(object, pivot = 1)
 }
 \arguments{
-\item{object}{A \linkS4class{CompositionMatrix} object.}
+\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 
 \item{pivot}{An \code{\link{integer}} giving the index of the pivotal variable.}
 }
 \value{
-A \linkS4class{PLR} object.
+A \code{\linkS4class{PLR}} object.
 }
 \description{
 Computes PLR transformations.

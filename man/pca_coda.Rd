@@ -30,7 +30,7 @@
 )
 }
 \arguments{
-\item{object}{A \linkS4class{LogRatio} object.}
+\item{object}{A \code{\linkS4class{LogRatio}} object.}
 
 \item{center}{A \code{\link{logical}} scalar: should the variables be shifted to be
 zero centered?}
@@ -57,7 +57,7 @@ internally normalized to sum 1}
 used.}
 }
 \value{
-A \link[dimensio:PCA-class]{dimensio::PCA} object.
+A \code{\link[dimensio:PCA-class]{dimensio::PCA}} object.
 }
 \description{
 Computes a principal components analysis based on the singular value

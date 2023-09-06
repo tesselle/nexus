@@ -21,16 +21,24 @@ An S4 class to store the result of outlier detection.
 \item{\code{distances}}{A \code{\link{numeric}} vector giving the squared Mahalanobis distance.}
 
 \item{\code{limit}}{A \code{\link{numeric}} value giving the cut-off value used for outlier
-detection.}
+detection (quantile of the Chi-squared distribution).}
 
 \item{\code{robust}}{An \code{\link{logical}} scalar: were robust estimators used?}
 
-\item{\code{df}}{A (non-negative) \code{\link{numeric}} value giving the degrees of freedom.}
+\item{\code{dof}}{A (non-negative) \code{\link{numeric}} value giving the degrees of freedom.}
 }}
 
 \note{
 These classes inherit from \code{\link{logical}}.
 }
+\section{Coerce}{
+
+In the code snippets below, \code{x} is a \code{OutlierIndex} object.
+\describe{
+\item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
+}
+}
+
 \seealso{
 Other classes: 
 \code{\link{CompositionMatrix-class}},

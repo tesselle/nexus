@@ -18,20 +18,21 @@ setGeneric("mahalanobis", package = "stats")
 #'  group the samples. If `NULL` (the default), no grouping is stored.
 #' @param ... Currently not used.
 #' @details
-#'  The [CompositionMatrix-class] class has special slots
-#'  (see `vignette("nexus")`):
+#'  The [`CompositionMatrix-class`] class has special slots:
 #'
 #'  * `samples` for repeated measurements/observation,
 #'  * `groups` to group data by site/area.
 #'
-#'  When coercing a `data.frame` to a [CompositionMatrix-class] object, an
+#'  When coercing a `data.frame` to a [`CompositionMatrix-class`] object, an
 #'  attempt is made to automatically assign values to these slots by mapping
 #'  column names (case insensitive, plural insensitive). This behavior can be
 #'  disabled by setting `options(nexus.autodetect = FALSE)` or overridden by
 #'  explicitly specifying the columns to be used.
+#'
+#'  See `vignette("nexus")`.
 #' @note
 #'  All non-numeric variable will be removed.
-#' @return A [CompositionMatrix-class] object.
+#' @return A [`CompositionMatrix-class`] object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -45,7 +46,7 @@ setGeneric(
 
 #' Coerce to Amounts
 #'
-#' @param from A [CompositionMatrix-class] object.
+#' @param from A [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @return A [`numeric`] [`matrix`].
 #' @example inst/examples/ex-coerce.R
@@ -81,7 +82,7 @@ setGeneric(
 
 # Extract ======================================================================
 ## Mutators --------------------------------------------------------------------
-#' Deal With Groups
+#' Working With Groups
 #'
 #' Retrieves or defines the groups to which the observations belong.
 #' @param x An object from which to get or set `groups`.
@@ -121,7 +122,7 @@ setGeneric(
   def = function(x, value) standardGeneric("set_groups<-")
 )
 
-#' Deal With Samples
+#' Working With Samples
 #'
 #' Retrieves or defines the sample names.
 #' @param x An object from which to get or set `samples`.
@@ -228,10 +229,10 @@ NULL
 #' Pairwise Log-Ratios (LR)
 #'
 #' Computes all pairwise log-ratio transformation.
-#' @param object A [CompositionMatrix-class] object.
+#' @param object A [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @return
-#'  A [LR-class] object.
+#'  A [`LR-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
@@ -253,13 +254,13 @@ setGeneric(
 #' Centered Log-Ratios (CLR)
 #'
 #' Computes CLR transformation.
-#' @param object A [CompositionMatrix-class] object.
+#' @param object A [`CompositionMatrix-class`] object.
 #' @param weights A [`logical`] scalar: sould a varying weight be used. If
 #'  `FALSE` (the default), equally-weighted parts are used. Alternatively, a
 #'  positive [`numeric`] vector of weights can be specified.
 #' @param ... Currently not used.
 #' @return
-#'  A [CLR-class] object.
+#'  A [`CLR-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
@@ -281,11 +282,11 @@ setGeneric(
 #' Additive Log-Ratios (ALR)
 #'
 #' Computes ALR transformation.
-#' @param object A [CompositionMatrix-class] object.
+#' @param object A [`CompositionMatrix-class`] object.
 #' @param j An [`integer`] giving the index of the rationing part (denominator).
 #' @param ... Currently not used.
 #' @return
-#'  An [ALR-class] object.
+#'  An [`ALR-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
@@ -307,14 +308,14 @@ setGeneric(
 #' Isometric Log-Ratios (ILR)
 #'
 #' Computes ILR transformations.
-#' @param object A [CompositionMatrix-class] object.
+#' @param object A [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @details
 #'  The ILR transformation provides the coordinates of any composition with
 #'  respect to a given orthonormal basis. `transform_ilr()` uses the orthonormal
 #'  basis (Helmert matrix) originally defined by Egozcue *et al.* (2003).
 #' @return
-#'  An [ILR-class] object.
+#'  An [`ILR-class`] object.
 #' @references
 #'  Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
 #'  (2003). Isometric Logratio Transformations for Compositional Data Analysis.
@@ -337,11 +338,11 @@ setGeneric(
 #' Pivot Log-Ratios (PLR)
 #'
 #' Computes PLR transformations.
-#' @param object A [CompositionMatrix-class] object.
+#' @param object A [`CompositionMatrix-class`] object.
 #' @param pivot An [`integer`] giving the index of the pivotal variable.
 #' @param ... Currently not used.
 #' @return
-#'  A [PLR-class] object.
+#'  A [`PLR-class`] object.
 #' @references
 #'  Fišerová, E. & Hron, K. (2011). On the Interpretation of Orthonormal
 #'  Coordinates for Compositional Data. *Mathematical Geosciences*, 43(4),
@@ -369,10 +370,10 @@ setGeneric(
 #' Inverse Log-Ratio Transformation
 #'
 #' Computes inverse log-ratio transformations.
-#' @param object A [CompositionMatrix-class] object.
+#' @param object A [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @return
-#'  A [CompositionMatrix-class] object.
+#'  A [`CompositionMatrix-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
@@ -403,7 +404,7 @@ setGeneric(
 #'
 #' Splits the data into subsets, computes summary statistics for each, and
 #' returns the result.
-#' @param x A [CompositionMatrix-class] object.
+#' @param x A [`CompositionMatrix-class`] object.
 #' @param by A [`character`] string specifying the grouping element. It must be
 #'  one of "`samples`" or "`groups`". Any unambiguous substring can be given.
 #' @param FUN A [`function`] to compute the summary statistics.
@@ -419,7 +420,7 @@ NULL
 
 #' Compositional Mean
 #'
-#' @param x A [CompositionMatrix-class] object.
+#' @param x A [`CompositionMatrix-class`] object.
 #' @param ... Further argument to be passed to other methods.
 #' @details
 #'  Closed vector of the columns geometric means.
@@ -440,7 +441,7 @@ NULL
 #' @description
 #'  * `variance()` computes the log-ratio variance matrix.
 #'  * `covariance()` computes the log-ratio covariance matrix.
-#' @param x A [CompositionMatrix-class] object.
+#' @param x A [`CompositionMatrix-class`] object.
 #' @param method A [`character`] string indicating which correlation coefficient
 #'  (or covariance) is to be computed (see [stats::cov()]).
 #' @param ... Currently not used.
@@ -473,7 +474,7 @@ setGeneric(
 #' Variation Matrix
 #'
 #' Computes the compositional variation array.
-#' @param object A [CompositionMatrix-class] object.
+#' @param object A [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @return A [`matrix`].
 #' @details
@@ -498,7 +499,7 @@ setGeneric(
 #' Distances
 #'
 #' Computes the log-ratio variance matrix.
-#' @param x A [CompositionMatrix-class] object.
+#' @param x A [`CompositionMatrix-class`] object.
 #' @param method A [`character`] string specifying the distance measure to be
 #'  used. See [stats::dist()] for the available distances.
 #' @param diag A [`logical`] scalar indicating whether the diagonal of the
@@ -527,7 +528,7 @@ NULL
 #' Mahalanobis Distance
 #'
 #' Computes the squared Mahalanobis distance of all rows in `x`.
-#' @param x A [CompositionMatrix-class] object.
+#' @param x A [`CompositionMatrix-class`] object.
 #' @param center A [`numeric`] vector giving the mean vector of the
 #'  distribution. If missing, will be estimated from `x`.
 #' @param cov A [`numeric`] matrix giving the covariance of the
@@ -549,7 +550,7 @@ NULL
 #' Plot Compositional Data
 #'
 #' Displays a compositional bar chart.
-#' @param x A [CompositionMatrix-class] object.
+#' @param x A [`CompositionMatrix-class`] object.
 #' @param order An [`integer`] vector giving the index of the column to be used
 #'  for the ordering of the data.
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
@@ -581,7 +582,7 @@ NULL
 #' Plot Log-Ratios
 #'
 #' Displays a density plot.
-#' @param x A [LogRatio-class] object.
+#' @param x A [`LogRatio-class`] object.
 #' @param order A [`logical`] scalar: should the ratio be ordered?
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
 #'  or decreasing?
@@ -624,7 +625,7 @@ NULL
 #' Graph of Log-ratios
 #'
 #' Produces a graph of log-ratios.
-#' @param object A [LogRatio-class] object.
+#' @param object A [`LogRatio-class`] object.
 #' @param ... Currently not used.
 #' @return
 #'  An \pkg{igraph} graph object.
@@ -643,10 +644,10 @@ setGeneric(
 #'
 #' Computes a principal components analysis based on the singular value
 #' decomposition.
-#' @param object A [LogRatio-class] object.
+#' @param object A [`LogRatio-class`] object.
 #' @inheritParams dimensio::pca
 #' @return
-#'  A [dimensio::PCA-class] object.
+#'  A [`dimensio::PCA-class`] object.
 #' @example inst/examples/ex-pca.R
 #' @seealso [dimensio::pca()], [dimensio::biplot()]
 #' @author N. Frerebeau
@@ -659,15 +660,13 @@ NULL
 # Outliers =====================================================================
 #' Outlier Detection
 #'
-#' @param object A [CompositionMatrix-class].
+#' @param object A [`CompositionMatrix-class`].
 #' @inheritParams mahalanobis
-#' @param level A length-one [`numeric`] vector giving the significance level.
-#'  `level` is used as a cut-off value for outlier detection: observations with
-#'  larger (squared) Mahalanobis distance are considered as potential outliers.
-#' @param alpha A length-one [`numeric`] vector controlling the size of the
-#'  subsets over which the determinant is minimized (see
-#'  [robustbase::covMcd()]). Only used if `robust` is `TRUE`.
-#' @param ... Currently not used.
+#' @param quantile A length-one [`numeric`] vector giving the significance level.
+#'  `quantile` is used as a cut-off value for outlier detection: observations
+#'  with larger (squared) Mahalanobis distance are considered as potential
+#'  outliers.
+#' @param ... Extra parameters to be passed to [robustbase::covMcd()].
 #' @details
 #'  An outlier can be defined as having a very large Mahalanobis distance from
 #'  all observations. In this way, a certain proportion of the observations can
@@ -684,7 +683,7 @@ NULL
 #'  why a particular threshold should be applicable to all data sets
 #'  (Filzmoser, Garrett, and Reimann 2005).
 #' @return
-#'  An [OutlierIndex-class] object.
+#'  An [`OutlierIndex-class`] object.
 #' @references
 #'  Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier
 #'  detection in exploration geochemistry. *Computers & Geosciences*,
@@ -718,7 +717,7 @@ setGeneric(
 
 #' Plot Outliers
 #'
-#' @param x An [OutlierIndex-class] object.
+#' @param x An [`OutlierIndex-class`] object.
 #' @param qq A [`logical`] scalar: should a quantile-quantile plot be produced?
 #' @param probs A length-two [`numeric`] vector representing probabilities.
 #'  Corresponding quantile pairs define the line drawn (see [stats::qqline()]).
