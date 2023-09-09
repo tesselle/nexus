@@ -62,14 +62,14 @@ setMethod(
     J <- ncol(x)
     parts <- colnames(x)
 
-    cbn <- utils::combn(seq_len(J), 2)
-    varia <- apply(
-      X = cbn,
-      MARGIN = 2,
-      FUN = function(j, x) {
-        stats::var(log(x[, j[1]] / x[, j[2]], base = exp(1)))
+    varia <- utils::combn(
+      x = seq_len(J),
+      m = 2,
+      FUN = function(i, coda) {
+        z <- log(coda[, i[1]] / coda[, i[2]], base = exp(1))
+        stats::var(z)
       },
-      x = x
+      coda = x
     )
 
     mtx <- matrix(data = 0, nrow = J, ncol = J)
@@ -85,12 +85,37 @@ setMethod(
 # Covariance ===================================================================
 #' @export
 #' @rdname covariance
-#' @aliases cov,CompositionMatrix-method
+#' @aliases covariance,CompositionMatrix-method
 setMethod(
   f = "covariance",
   signature = c(x = "CompositionMatrix"),
+  definition = function(x, center = FALSE, method = "pearson") {
+    x <- if (center) transform_clr(x) else transform_alr(x)
+    methods::callGeneric(x = x, method = method)
+  }
+)
+
+#' @export
+#' @describeIn covariance Computes the log-ratio covariance matrix
+#'  (Aitchison 1986, definition 4.5).
+#' @aliases covariance,ALR-method
+setMethod(
+  f = "covariance",
+  signature = c(x = "ALR"),
   definition = function(x, method = "pearson") {
-    stats::cov(transform_lr(x), method = method)
+    stats::cov(x, method = method)
+  }
+)
+
+#' @export
+#' @describeIn covariance Computes the centered log-ratio covariance matrix
+#'  (Aitchison 1986, definition 4.6).
+#' @aliases covariance,ALR-method
+setMethod(
+  f = "covariance",
+  signature = c(x = "CLR"),
+  definition = function(x, method = "pearson") {
+    stats::cov(x, method = method)
   }
 )
 

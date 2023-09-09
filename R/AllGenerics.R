@@ -439,9 +439,12 @@ NULL
 #' Variance and Covariance
 #'
 #' @description
-#'  * `variance()` computes the log-ratio variance matrix.
-#'  * `covariance()` computes the log-ratio covariance matrix.
+#'  * `variance()` computes the variation matrix (Aitchison 1986,
+#'    definition 4.4).
+#'  * `covariance()` computes the log-ratio covariance matrix (see below).
 #' @param x A [`CompositionMatrix-class`] object.
+#' @param center A [`logical`] scalar: should the *centered* log-ratio
+#'  covariance matrix be computed?
 #' @param method A [`character`] string indicating which correlation coefficient
 #'  (or covariance) is to be computed (see [stats::cov()]).
 #' @param ... Currently not used.
@@ -479,12 +482,12 @@ setGeneric(
 #' @return A [`matrix`].
 #' @details
 #'  The compositional variation array is a square matrix where the upper
-#'  triangular part displays the log-ratio variances and the lower triangular
-#'  part displays the log-ratio means.
+#'  triangular part displays the pairwise log-ratio variances and the lower
+#'  triangular part displays the pairwise log-ratio means.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
-#' @example inst/examples/ex-covariance.R
+#' @example inst/examples/ex-variation.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family statistics

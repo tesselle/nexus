@@ -24,19 +24,13 @@ Computes the compositional variation array.
 }
 \details{
 The compositional variation array is a square matrix where the upper
-triangular part displays the log-ratio variances and the lower triangular
-part displays the log-ratio means.
+triangular part displays the pairwise log-ratio variances and the lower
+triangular part displays the pairwise log-ratio means.
 }
 \examples{
 ## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
-
-## Variance matrix
-var(coda)
-
-## Covariance matrix
-cov(coda)
 
 ## Variation matrix
 variation(coda)

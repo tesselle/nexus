@@ -8,7 +8,8 @@
 \alias{variance-method}
 \alias{variance,CompositionMatrix-method}
 \alias{covariance,CompositionMatrix-method}
-\alias{cov,CompositionMatrix-method}
+\alias{covariance,ALR-method}
+\alias{covariance,CLR-method}
 \title{Variance and Covariance}
 \usage{
 covariance(x, ...)
@@ -17,12 +18,19 @@ variance(x, ...)
 
 \S4method{variance}{CompositionMatrix}(x)
 
-\S4method{covariance}{CompositionMatrix}(x, method = "pearson")
+\S4method{covariance}{CompositionMatrix}(x, center = FALSE, method = "pearson")
+
+\S4method{covariance}{ALR}(x, method = "pearson")
+
+\S4method{covariance}{CLR}(x, method = "pearson")
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
+
+\item{center}{A \code{\link{logical}} scalar: should the \emph{centered} log-ratio
+covariance matrix be computed?}
 
 \item{method}{A \code{\link{character}} string indicating which correlation coefficient
 (or covariance) is to be computed (see \code{\link[stats:cor]{stats::cov()}}).}
@@ -32,23 +40,36 @@ A \code{\link{matrix}}.
 }
 \description{
 \itemize{
-\item \code{variance()} computes the log-ratio variance matrix.
-\item \code{covariance()} computes the log-ratio covariance matrix.
+\item \code{variance()} computes the variation matrix (Aitchison 1986,
+definition 4.4).
+\item \code{covariance()} computes the log-ratio covariance matrix (see below).
 }
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{covariance(ALR)}: Computes the log-ratio covariance matrix
+(Aitchison 1986, definition 4.5).
+
+\item \code{covariance(CLR)}: Computes the centered log-ratio covariance matrix
+(Aitchison 1986, definition 4.6).
+
+}}
 \examples{
 ## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
 
-## Variance matrix
-var(coda)
-
-## Covariance matrix
-cov(coda)
-
 ## Variation matrix
-variation(coda)
+## (Aitchison 1986, definition 4.4)
+variance(coda)
+
+## Log-ratio covariance matrix
+## (Aitchison 1986, definition 4.5)
+covariance(coda, center = FALSE)
+
+## Centered log-ratio covariance matrix
+## (Aitchison 1986, definition 4.6)
+covariance(coda, center = TRUE)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
