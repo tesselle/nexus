@@ -53,10 +53,10 @@ setMethod("mean", "CompositionMatrix", mean.CompositionMatrix)
 
 # Variance =====================================================================
 #' @export
-#' @rdname covariance
-#' @aliases variance,CompositionMatrix-method
+#' @rdname variation
+#' @aliases variation,CompositionMatrix-method
 setMethod(
-  f = "variance",
+  f = "variation",
   signature = c(x = "CompositionMatrix"),
   definition = function(x) {
     J <- ncol(x)
@@ -119,30 +119,30 @@ setMethod(
   }
 )
 
-# Variation ====================================================================
-#' @export
-#' @rdname variation
-#' @aliases variation,CompositionMatrix-method
-setMethod(
-  f = "variation",
-  signature = c(object = "CompositionMatrix"),
-  definition = function(object) {
-    J <- ncol(object)
-    cbn <- utils::combn(seq_len(J), 2)
-    varia <- apply(
-      X = cbn,
-      MARGIN = 2,
-      FUN = function(j, x) {
-        mean(log(x[, j[1]] / x[, j[2]]))
-      },
-      x = object
-    )
-
-    mtx <- variance(object)
-    mtx[lower.tri(mtx, diag = FALSE)] <- varia
-    mtx
-  }
-)
+# Variation array ==============================================================
+# @export
+# @rdname variation_array
+# @aliases variation_array,CompositionMatrix-method
+# setMethod(
+#   f = "variation_array",
+#   signature = c(object = "CompositionMatrix"),
+#   definition = function(object) {
+#     J <- ncol(object)
+#     cbn <- utils::combn(seq_len(J), 2)
+#     varia <- apply(
+#       X = cbn,
+#       MARGIN = 2,
+#       FUN = function(j, x) {
+#         mean(log(x[, j[1]] / x[, j[2]]))
+#       },
+#       x = object
+#     )
+#
+#     mtx <- variation(object)
+#     mtx[lower.tri(mtx, diag = FALSE)] <- varia
+#     mtx
+#   }
+# )
 
 # Distances ====================================================================
 #' @export

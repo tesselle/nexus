@@ -3,5 +3,4 @@ data("hongite")
 coda <- as_composition(hongite)
 
 ## Variation matrix
-## (Aitchison 1986, definition 4.4)
-variation(coda)
+variation_array(coda)

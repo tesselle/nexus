@@ -4,19 +4,12 @@
 \name{covariance}
 \alias{covariance}
 \alias{covariance-method}
-\alias{variance}
-\alias{variance-method}
-\alias{variance,CompositionMatrix-method}
 \alias{covariance,CompositionMatrix-method}
 \alias{covariance,ALR-method}
 \alias{covariance,CLR-method}
-\title{Variance and Covariance}
+\title{Covariance Matrix}
 \usage{
 covariance(x, ...)
-
-variance(x, ...)
-
-\S4method{variance}{CompositionMatrix}(x)
 
 \S4method{covariance}{CompositionMatrix}(x, center = FALSE, method = "pearson")
 
@@ -32,18 +25,14 @@ variance(x, ...)
 \item{center}{A \code{\link{logical}} scalar: should the \emph{centered} log-ratio
 covariance matrix be computed?}
 
-\item{method}{A \code{\link{character}} string indicating which correlation coefficient
-(or covariance) is to be computed (see \code{\link[stats:cor]{stats::cov()}}).}
+\item{method}{A \code{\link{character}} string indicating which covariance is to be
+computed (see \code{\link[stats:cor]{stats::cov()}}).}
 }
 \value{
 A \code{\link{matrix}}.
 }
 \description{
-\itemize{
-\item \code{variance()} computes the variation matrix (Aitchison 1986,
-definition 4.4).
-\item \code{covariance()} computes the log-ratio covariance matrix (see below).
-}
+Computes the (centered) log-ratio covariance matrix (see below).
 }
 \section{Methods (by class)}{
 \itemize{
@@ -58,10 +47,6 @@ definition 4.4).
 ## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
-
-## Variation matrix
-## (Aitchison 1986, definition 4.4)
-variance(coda)
 
 ## Log-ratio covariance matrix
 ## (Aitchison 1986, definition 4.5)

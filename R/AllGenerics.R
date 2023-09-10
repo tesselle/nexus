@@ -436,17 +436,14 @@ NULL
 #' @rdname mean
 NULL
 
-#' Variance and Covariance
+#' Covariance Matrix
 #'
-#' @description
-#'  * `variance()` computes the variation matrix (Aitchison 1986,
-#'    definition 4.4).
-#'  * `covariance()` computes the log-ratio covariance matrix (see below).
+#' Computes the (centered) log-ratio covariance matrix (see below).
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param center A [`logical`] scalar: should the *centered* log-ratio
 #'  covariance matrix be computed?
-#' @param method A [`character`] string indicating which correlation coefficient
-#'  (or covariance) is to be computed (see [stats::cov()]).
+#' @param method A [`character`] string indicating which covariance is to be
+#'  computed (see [stats::cov()]).
 #' @param ... Currently not used.
 #' @return A [`matrix`].
 #' @references
@@ -466,27 +463,18 @@ setGeneric(
   valueClass = "matrix"
 )
 
-#' @aliases variance-method
-#' @rdname covariance
-setGeneric(
-  name = "variance",
-  def = function(x, ...) standardGeneric("variance"),
-  valueClass = "matrix"
-)
-
 #' Variation Matrix
 #'
-#' Computes the compositional variation array.
-#' @param object A [`CompositionMatrix-class`] object.
+#' Computes the variation matrix (Aitchison 1986, definition 4.4).
+#' @param x A [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @return A [`matrix`].
-#' @details
-#'  The compositional variation array is a square matrix where the upper
-#'  triangular part displays the pairwise log-ratio variances and the lower
-#'  triangular part displays the pairwise log-ratio means.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
 #' @example inst/examples/ex-variation.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -494,9 +482,33 @@ setGeneric(
 #' @aliases variation-method
 setGeneric(
   name = "variation",
-  def = function(object, ...) standardGeneric("variation"),
+  def = function(x, ...) standardGeneric("variation"),
   valueClass = "matrix"
 )
+
+# Variation Array
+#
+# Computes the compositional variation array.
+# @param object A [`CompositionMatrix-class`] object.
+# @param ... Currently not used.
+# @return A [`matrix`].
+# @details
+#  The compositional variation array is a square matrix where the upper
+#  triangular part displays the pairwise log-ratio variances and the lower
+#  triangular part displays the pairwise log-ratio means.
+# @references
+#  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+# @example inst/examples/ex-variation_array.R
+# @author N. Frerebeau
+# @docType methods
+# @family statistics
+# @aliases variation_array-method
+# setGeneric(
+#   name = "variation_array",
+#   def = function(object, ...) standardGeneric("variation_array"),
+#   valueClass = "matrix"
+# )
 
 # Distances ====================================================================
 #' Distances

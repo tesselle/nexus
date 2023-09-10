@@ -7,12 +7,12 @@
 \alias{variation,CompositionMatrix-method}
 \title{Variation Matrix}
 \usage{
-variation(object, ...)
+variation(x, ...)
 
-\S4method{variation}{CompositionMatrix}(object)
+\S4method{variation}{CompositionMatrix}(x)
 }
 \arguments{
-\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 }
@@ -20,12 +20,7 @@ variation(object, ...)
 A \code{\link{matrix}}.
 }
 \description{
-Computes the compositional variation array.
-}
-\details{
-The compositional variation array is a square matrix where the upper
-triangular part displays the pairwise log-ratio variances and the lower
-triangular part displays the pairwise log-ratio means.
+Computes the variation matrix (Aitchison 1986, definition 4.4).
 }
 \examples{
 ## Coerce to compositional data
@@ -33,11 +28,15 @@ data("hongite")
 coda <- as_composition(hongite)
 
 ## Variation matrix
+## (Aitchison 1986, definition 4.4)
 variation(coda)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
 London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+
+Greenacre, M. J. (2019). \emph{Compositional Data Analysis in Practice}.
+Boca Raton: CRC Press.
 }
 \seealso{
 Other statistics: 
