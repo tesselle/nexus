@@ -40,8 +40,7 @@ head(X)
 }
 \seealso{
 Other compositional data tools: 
-\code{\link{as_composition}()},
-\code{\link{closure}()}
+\code{\link{as_composition}()}
 }
 \author{
 N. Frerebeau

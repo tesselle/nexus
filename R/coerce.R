@@ -2,28 +2,6 @@
 #' @include AllGenerics.R
 NULL
 
-#' @export
-#' @rdname closure
-#' @aliases closure,numeric-method
-setMethod(
-  f = "closure",
-  signature = c(object = "numeric"),
-  definition = function(object, total = 1) {
-    object * total / sum(object, na.rm = TRUE)
-  }
-)
-
-#' @export
-#' @rdname closure
-#' @aliases closure,matrix-method
-setMethod(
-  f = "closure",
-  signature = c(object = "matrix"),
-  definition = function(object, total = 1) {
-    object * total / rowSums(object, na.rm = TRUE)
-  }
-)
-
 # To CompositionMatrix =========================================================
 setAs(
   from = "matrix",

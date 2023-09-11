@@ -41,8 +41,8 @@ setMethod("aggregate", "CompositionMatrix", aggregate.CompositionMatrix)
 # Mean =========================================================================
 #' @export
 #' @method mean CompositionMatrix
-mean.CompositionMatrix <- function(x, ...) {
-  m <- apply(X = x, MARGIN = 2, FUN = gmean, ..., simplify = TRUE)
+mean.CompositionMatrix <- function(x, na.rm = FALSE, ...) {
+  m <- apply(X = x, MARGIN = 2, FUN = gmean, na.rm = na.rm, simplify = TRUE)
   closure(m)
 }
 

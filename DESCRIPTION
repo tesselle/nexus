@@ -54,6 +54,7 @@ Collate:
     'mutators.R'
     'nexus-internal.R'
     'nexus-package.R'
+    'operators.R'
     'outliers.R'
     'pca.R'
     'plot.R'

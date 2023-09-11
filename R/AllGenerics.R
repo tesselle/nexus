@@ -60,24 +60,85 @@ setGeneric(
   valueClass = "matrix"
 )
 
+# Simplex ======================================================================
+#' Arithmetic Operators
+#'
+#' Operators performing operations in the simplex.
+#' @param e1,e2 A [`CompositionMatrix-class`] object or a [`numeric`] vector or
+#'  matrix.
+#' @details
+#'  \describe{
+#'   \item{`+`}{[Perturbation operation][perturbation()]}
+#'   \item{`-`}{[Perturbation operation][perturbation()]}
+#'   \item{`*`}{[Powering operation][powering()]}
+#' }
+#' @return
+#'  A [`CompositionMatrix-class`] object or a [`numeric`] vector (same as `e1`).
+#' @example inst/examples/ex-arith.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family operations in the simplex
+#' @name arithmetic
+#' @rdname arithmetic
+NULL
+
 #' Closure Operation
 #'
 #' Closes compositions to sum up to 1.
-#' @param object A [`numeric`] vector or matrix.
+#' @param x A [`numeric`] vector or matrix.
 #' @param total A [numeric] vector specifying the total amount to which the
 #'  compositions should be closed (defaults to 1).
+#' @param na.rm A [`logical`] scalar: should missing values be removed?
 #' @param ... Currently not used.
-#' @section Missing Values Policy:
-#'  Missing values will be omitted from the calculations.
-#' @return A [`numeric`] vector or matrix (same as `object`).
+#' @return A [`numeric`] vector or matrix (same as `x`).
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family compositional data tools
+#' @family operations in the simplex
 #' @aliases closure-method
 setGeneric(
   name = "closure",
-  def = function(object, ...) standardGeneric("closure")
+  def = function(x, ...) standardGeneric("closure")
+)
+
+#' Perturbation Operation
+#'
+#' Perturbation of two compositions.
+#' @param x,y A [`numeric`] vector of compositional data.
+#' @param ... Currently not used.
+#' @details
+#'  In compositional geometry, perturbation plays the role of sum (translation).
+#'  It is the closed component-wise product of two compositions.
+#' @return A [`numeric`] vector.
+#' @example inst/examples/ex-arith.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family operations in the simplex
+#' @aliases perturbation-method
+setGeneric(
+  name = "perturbation",
+  def = function(x, y, ...) standardGeneric("perturbation")
+)
+
+#' Powering Operation
+#'
+#' Perturbation of two compositions.
+#' @param x A [`numeric`] vector of compositional data.
+#' @param a A [`numeric`] constant.
+#' @param ... Currently not used.
+#' @details
+#'  In compositional geometry, powering replaces the product of a vector by a
+#'  scalar (scaling) and is defined as the closed powering of the components by
+#'  a given scalar.
+#' @return A [`numeric`] vector.
+#' @example inst/examples/ex-arith.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family operations in the simplex
+#' @aliases powering-method
+setGeneric(
+  name = "powering",
+  def = function(x, a, ...) standardGeneric("powering")
 )
 
 # Extract ======================================================================
@@ -421,7 +482,8 @@ NULL
 #' Compositional Mean
 #'
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param ... Further argument to be passed to other methods.
+#' @param na.rm A [`logical`] scalar: should missing values be removed?
+#' @param ... Currently not used.
 #' @details
 #'  Closed vector of the columns geometric means.
 #' @return A [`numeric`] vector.
