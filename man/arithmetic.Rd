@@ -3,35 +3,28 @@
 \docType{methods}
 \name{arithmetic}
 \alias{arithmetic}
-\alias{+,CompositionMatrix,numeric-method}
-\alias{`+`,CompositionMatrix,numeric-method}
-\alias{+,CompositionMatrix,matrix-method}
+\alias{+,CompositionMatrix,CompositionMatrix-method}
 \alias{`+`,CompositionMatrix,CompositionMatrix-method}
-\alias{-,CompositionMatrix,numeric-method}
-\alias{`-`,CompositionMatrix,numeric-method}
-\alias{-,CompositionMatrix,matrix-method}
+\alias{-,CompositionMatrix,CompositionMatrix-method}
 \alias{`-`,CompositionMatrix,CompositionMatrix-method}
 \alias{*,CompositionMatrix,numeric-method}
 \alias{`*`,CompositionMatrix,numeric-method}
 \alias{*,numeric,CompositionMatrix-method}
 \alias{`*`,numeric,CompositionMatrix-method}
-\title{Arithmetic Operators}
+\title{Operations in the Simplex}
 \usage{
-\S4method{+}{CompositionMatrix,numeric}(e1, e2)
+\S4method{+}{CompositionMatrix,CompositionMatrix}(e1, e2)
 
-\S4method{+}{CompositionMatrix,matrix}(e1, e2)
-
-\S4method{-}{CompositionMatrix,numeric}(e1, e2)
-
-\S4method{-}{CompositionMatrix,matrix}(e1, e2)
+\S4method{-}{CompositionMatrix,CompositionMatrix}(e1, e2)
 
 \S4method{*}{CompositionMatrix,numeric}(e1, e2)
 
 \S4method{*}{numeric,CompositionMatrix}(e1, e2)
 }
 \arguments{
-\item{e1, e2}{A \code{\linkS4class{CompositionMatrix}} object or a \code{\link{numeric}} vector or
-matrix.}
+\item{e1}{A \code{\linkS4class{CompositionMatrix}} object.}
+
+\item{e2}{A \code{\linkS4class{CompositionMatrix}} object or a \code{\link{numeric}} vector.}
 }
 \value{
 A \code{\linkS4class{CompositionMatrix}} object or a \code{\link{numeric}} vector (same as \code{e1}).
@@ -41,20 +34,22 @@ Operators performing operations in the simplex.
 }
 \details{
 \describe{
-\item{\code{+}}{\link[=perturbation]{Perturbation operation}}
-\item{\code{-}}{\link[=perturbation]{Perturbation operation}}
-\item{\code{*}}{\link[=powering]{Powering operation}}
+\item{\code{+}}{\link[=perturbation]{Perturbation operation}.}
+\item{\code{-}}{\link[=perturbation]{Perturbation operation}.}
+\item{\code{*}}{\link[=powering]{Powering operation}.}
 }
 }
 \examples{
-x <- c(1, 2, 3)
-y <- c(1, 2, 1)
+x <- as_composition(c(1, 2, 3))
+y <- as_composition(c(1, 2, 1))
 
 ## Perturbation
 perturbation(x, y)
+x + y
 
 ## Powering
 powering(y, 2)
+y * 2
 }
 \seealso{
 Other operations in the simplex: 

@@ -63,16 +63,16 @@ setGeneric(
 )
 
 # Simplex ======================================================================
-#' Arithmetic Operators
+#' Operations in the Simplex
 #'
 #' Operators performing operations in the simplex.
-#' @param e1,e2 A [`CompositionMatrix-class`] object or a [`numeric`] vector or
-#'  matrix.
+#' @param e1 A [`CompositionMatrix-class`] object.
+#' @param e2 A [`CompositionMatrix-class`] object or a [`numeric`] vector.
 #' @details
 #'  \describe{
-#'   \item{`+`}{[Perturbation operation][perturbation()]}
-#'   \item{`-`}{[Perturbation operation][perturbation()]}
-#'   \item{`*`}{[Powering operation][powering()]}
+#'   \item{`+`}{[Perturbation operation][perturbation()].}
+#'   \item{`-`}{[Perturbation operation][perturbation()].}
+#'   \item{`*`}{[Powering operation][powering()].}
 #' }
 #' @return
 #'  A [`CompositionMatrix-class`] object or a [`numeric`] vector (same as `e1`).

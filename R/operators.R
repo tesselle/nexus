@@ -2,6 +2,7 @@
 #' @include AllGenerics.R
 NULL
 
+# Closure ======================================================================
 #' @export
 #' @rdname closure
 #' @aliases closure,numeric-method
@@ -27,43 +28,17 @@ setMethod(
 # Perturbation =================================================================
 #' @export
 #' @rdname arithmetic
-#' @aliases `+`,CompositionMatrix,numeric-method
-setMethod(
-  f = "+",
-  signature = c(e1 = "CompositionMatrix", e2 = "numeric"),
-  definition = function (e1, e2) {
-    e2 <- matrix(data = e2, nrow = nrow(e1), ncol = length(e2))
-    methods::callGeneric(e1, e2)
-  }
-)
-
-#' @export
-#' @rdname arithmetic
 #' @aliases `+`,CompositionMatrix,CompositionMatrix-method
 setMethod(
   f = "+",
-  signature = c(e1 = "CompositionMatrix", e2 = "matrix"),
+  signature = c(e1 = "CompositionMatrix", e2 = "CompositionMatrix"),
   definition = function (e1, e2) {
     arkhe::assert_dimensions(e2, dim(e1))
-    z <- x * y
-    .CompositionMatrix(
-      closure(z),
-      totals = rowSums(z),
-      samples = get_samples(z),
-      groups = get_groups(z)
-    )
-  }
-)
-
-#' @export
-#' @rdname arithmetic
-#' @aliases `-`,CompositionMatrix,numeric-method
-setMethod(
-  f = "-",
-  signature = c(e1 = "CompositionMatrix", e2 = "numeric"),
-  definition = function (e1, e2) {
-    e2 <- matrix(data = e2, nrow = nrow(e1), ncol = length(e2))
-    methods::callGeneric(e1, e2)
+    z <- e1 * e2
+    z <- as_composition(z)
+    set_samples(z) <- get_samples(e1)
+    set_groups(z) <- get_groups(e1)
+    z
   }
 )
 
@@ -72,16 +47,14 @@ setMethod(
 #' @aliases `-`,CompositionMatrix,CompositionMatrix-method
 setMethod(
   f = "-",
-  signature = c(e1 = "CompositionMatrix", e2 = "matrix"),
+  signature = c(e1 = "CompositionMatrix", e2 = "CompositionMatrix"),
   definition = function (e1, e2) {
     arkhe::assert_dimensions(e2, dim(e1))
-    z <- x / y
-    .CompositionMatrix(
-      closure(z),
-      totals = rowSums(z),
-      samples = get_samples(z),
-      groups = get_groups(z)
-    )
+    z <- e1 / e2
+    z <- as_composition(z)
+    set_samples(z) <- get_samples(e1)
+    set_groups(z) <- get_groups(e1)
+    z
   }
 )
 
@@ -104,7 +77,7 @@ setMethod(
   f = "perturbation",
   signature = c(x = "CompositionMatrix", y = "numeric"),
   definition = function(x, y) {
-    x + y
+    x + as_composition(y)
   }
 )
 
@@ -115,7 +88,7 @@ setMethod(
   f = "perturbation",
   signature = c(x = "CompositionMatrix", y = "matrix"),
   definition = function(x, y) {
-    x + y
+    x + as_composition(y)
   }
 )
 
@@ -129,12 +102,10 @@ setMethod(
   definition = function (e1, e2) {
     arkhe::assert_length(e2, 1L)
     z <- e1 ^ e2
-    .CompositionMatrix(
-      closure(z),
-      totals = rowSums(z),
-      samples = get_samples(z),
-      groups = get_groups(z)
-    )
+    z <- as_composition(z)
+    set_samples(z) <- get_samples(e1)
+    set_groups(z) <- get_groups(e1)
+    z
   }
 )
 

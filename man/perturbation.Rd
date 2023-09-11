@@ -34,14 +34,16 @@ In compositional geometry, perturbation plays the role of sum (translation).
 It is the closed component-wise product of two compositions.
 }
 \examples{
-x <- c(1, 2, 3)
-y <- c(1, 2, 1)
+x <- as_composition(c(1, 2, 3))
+y <- as_composition(c(1, 2, 1))
 
 ## Perturbation
 perturbation(x, y)
+x + y
 
 ## Powering
 powering(y, 2)
+y * 2
 }
 \seealso{
 Other operations in the simplex: 
