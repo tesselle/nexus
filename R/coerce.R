@@ -3,25 +3,14 @@
 NULL
 
 # To CompositionMatrix =========================================================
-setAs(
-  from = "matrix",
-  to = "CompositionMatrix",
-  def = function(from) {
-    to <- data.matrix(from, rownames.force = NA)
-    totals <- rowSums(to, na.rm = TRUE)
-    to <- to / totals
-    dimnames(to) <- make_dimnames(from)
-
-    samples <- rownames(to) %||% character(0)
-    .CompositionMatrix(to, totals = totals, samples = samples)
-  }
-)
-
-setAs(
-  from = "data.frame",
-  to = "CompositionMatrix",
-  def = function(from) {
-    mtx <- data.matrix(from, rownames.force = NA)
+#' @export
+#' @rdname as_composition
+#' @aliases as_composition,numeric-method
+setMethod(
+  f = "as_composition",
+  signature = c(from = "numeric"),
+  definition = function(from) {
+    from <- matrix(data = from, nrow = 1, ncol = length(from))
     methods::callGeneric(from)
   }
 )
@@ -33,8 +22,13 @@ setMethod(
   f = "as_composition",
   signature = c(from = "matrix"),
   definition = function(from) {
-    from <- as.data.frame(from)
-    methods::callGeneric(from)
+    totals <- rowSums(from, na.rm = TRUE)
+    from <- from / totals
+    dimnames(from) <- make_dimnames(from)
+
+    samples <- rownames(from)
+    groups <- rep(NA_character_, nrow(from))
+    .CompositionMatrix(from, totals = totals, samples = samples, groups = groups)
   }
 )
 
@@ -44,9 +38,10 @@ setMethod(
 setMethod(
   f = "as_composition",
   signature = c(from = "data.frame"),
-  definition = function(from, samples = NULL, groups = NULL) {
+  definition = function(from, samples = NULL, groups = NULL,
+                        verbose = getOption("nexus.verbose")) {
 
-    cols <- make_names(colnames(from), n = ncol(from), prefix = "col")
+    cols <- make_names(colnames(from), n = ncol(from), prefix = "V")
     empty <- rep(NA_character_, nrow(from))
     auto <- getOption("nexus.autodetect")
     index <- function(what, where) {
@@ -56,16 +51,26 @@ setMethod(
     ## Samples
     spl <- rownames(from) %||% empty
     if (is.null(samples) && auto) samples <- index("^sample[s]{0,1}$", cols)
-    if (arkhe::has_length(samples, 1)) spl <- as.character(from[[samples]])
+    if (length(samples) == 1) spl <- as.character(from[[samples]])
+    n_spl <- length(unique(spl[!is.na(spl)]))
 
     ## Groups
     grp <- empty
     if (is.null(groups) && auto) groups <- index("^group[s]{0,1}$", cols)
-    if (arkhe::has_length(groups, 1)) grp <- as.character(from[[groups]])
+    if (length(groups) == 1) grp <- as.character(from[[groups]])
+    n_grp <- length(unique(grp[!is.na(grp)]))
 
     ## Drop extra columns (if any)
     drop <- c(samples, groups)
     data <- if (length(drop) > 0) from[, -drop, drop = FALSE] else from
+    if (verbose && n_spl > 0) {
+      msg <- ngettext(n_spl, "sample was", "samples were")
+      message(sprintf("%d unique %s found.", n_spl, msg))
+    }
+    if (verbose && n_grp > 0) {
+      msg <- ngettext(n_grp, "group was", "groups were")
+      message(sprintf("%d %s found.", n_grp, msg))
+    }
     arkhe::assert_filled(data)
 
     ## Remove non-numeric columns
@@ -93,19 +98,16 @@ setMethod(
   }
 )
 
-make_names <- function(x, n = 0, prefix = "var") {
-  if (is.null(x)) {
-    x <- if (n > 0) paste0(prefix, seq_len(n)) else character(0)
-  } else {
-    x <- make.unique(as.character(x), sep = "_")
-  }
+make_names <- function(x, n, prefix = "X") {
+  x <- if (n > 0) x %||% paste0(prefix, seq_len(n)) else character(0)
+  x <- make.unique(x, sep = "_")
   x
 }
 
 make_dimnames <- function(x) {
   list(
-    make_names(dimnames(x)[[1L]], nrow(x), "row"),
-    make_names(dimnames(x)[[2L]], ncol(x), "col")
+    make_names(dimnames(x)[[1L]], nrow(x), "S"),
+    make_names(dimnames(x)[[2L]], ncol(x), "V")
   )
 }
 
@@ -116,10 +118,7 @@ setMethod(
   f = "as_amounts",
   signature = c(from = "CompositionMatrix"),
   definition = function(from) {
-    totals <- from@totals
-    counts <- from * totals
-
-    methods::S3Part(counts, strictS3 = TRUE)
+    from@.Data * from@totals
   }
 )
 

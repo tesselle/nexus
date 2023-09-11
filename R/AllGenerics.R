@@ -16,12 +16,14 @@ setGeneric("mahalanobis", package = "stats")
 #'  If `NULL` (the default), row names will be used as sample IDs.
 #' @param groups An [`integer`] giving the index of the column to be used to
 #'  group the samples. If `NULL` (the default), no grouping is stored.
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
 #' @param ... Currently not used.
 #' @details
 #'  The [`CompositionMatrix-class`] class has special slots:
 #'
-#'  * `samples` for repeated measurements/observation,
-#'  * `groups` to group data by site/area.
+#'  * `samples` for [repeated measurements/observation][samples],
+#'  * `groups` to [group data by site/area][group].
 #'
 #'  When coercing a `data.frame` to a [`CompositionMatrix-class`] object, an
 #'  attempt is made to automatically assign values to these slots by mapping

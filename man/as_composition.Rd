@@ -4,15 +4,23 @@
 \name{as_composition}
 \alias{as_composition}
 \alias{as_composition-method}
+\alias{as_composition,numeric-method}
 \alias{as_composition,matrix-method}
 \alias{as_composition,data.frame-method}
 \title{Coerce to a Closed Compositional Matrix}
 \usage{
 as_composition(from, ...)
 
+\S4method{as_composition}{numeric}(from)
+
 \S4method{as_composition}{matrix}(from)
 
-\S4method{as_composition}{data.frame}(from, samples = NULL, groups = NULL)
+\S4method{as_composition}{data.frame}(
+  from,
+  samples = NULL,
+  groups = NULL,
+  verbose = getOption("nexus.verbose")
+)
 }
 \arguments{
 \item{from}{A \code{\link{matrix}} or \code{\link{data.frame}} to be coerced.}
@@ -25,6 +33,9 @@ If \code{NULL} (the default), row names will be used as sample IDs.}
 
 \item{groups}{An \code{\link{integer}} giving the index of the column to be used to
 group the samples. If \code{NULL} (the default), no grouping is stored.}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 }
 \value{
 A \code{\linkS4class{CompositionMatrix}} object.
@@ -35,8 +46,8 @@ Coerces an object to a \code{CompositionMatrix} object.
 \details{
 The \code{\linkS4class{CompositionMatrix}} class has special slots:
 \itemize{
-\item \code{samples} for repeated measurements/observation,
-\item \code{groups} to group data by site/area.
+\item \code{samples} for \link[=samples]{repeated measurements/observation},
+\item \code{groups} to \link[=group]{group data by site/area}.
 }
 
 When coercing a \code{data.frame} to a \code{\linkS4class{CompositionMatrix}} object, an
