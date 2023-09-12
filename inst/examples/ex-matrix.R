@@ -13,10 +13,3 @@ rownames(coda) <- LETTERS[1:25] # Set the row names
 rownames(coda) # Get the rownames
 colnames(coda) <- letters[21:25] # Set the column names
 colnames(coda) # Get the column names
-
-## Subset
-coda[[1, 1]] # Get the first value
-coda[1] # Get the first value
-coda[, ] # Get all values
-coda[1, , drop = FALSE] # Get the first row
-coda[, 1:3] # Get the first three column

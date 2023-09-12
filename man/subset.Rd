@@ -3,12 +3,33 @@
 \docType{methods}
 \name{subset}
 \alias{subset}
-\alias{[,CompositionMatrix-method}
+\alias{[,CompositionMatrix,missing,missing,missing-method}
+\alias{[,CompositionMatrix,missing,missing,logical-method}
+\alias{[,CompositionMatrix,index,missing,missing-method}
+\alias{[,CompositionMatrix,index,missing,logical-method}
+\alias{[,CompositionMatrix,missing,index,missing-method}
+\alias{[,CompositionMatrix,missing,index,logical-method}
+\alias{[,CompositionMatrix,index,index,missing-method}
+\alias{[,CompositionMatrix,index,index,logical-method}
 \alias{[<-,CompositionMatrix-method}
 \alias{[[<-,CompositionMatrix-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
-\S4method{[}{CompositionMatrix}(x, i, j, ..., drop = TRUE)
+\S4method{[}{CompositionMatrix,missing,missing,missing}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{CompositionMatrix,missing,missing,logical}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{CompositionMatrix,index,missing,missing}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{CompositionMatrix,index,missing,logical}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{CompositionMatrix,missing,index,missing}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{CompositionMatrix,missing,index,logical}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{CompositionMatrix,index,index,missing}(x, i, j, ..., drop = TRUE)
+
+\S4method{[}{CompositionMatrix,index,index,logical}(x, i, j, ..., drop = TRUE)
 
 \S4method{[}{CompositionMatrix}(x, i, j, ...) <- value
 
@@ -20,10 +41,10 @@ element(s).}
 
 \item{i, j}{Indices specifying elements to extract or replace. Indices are
 \code{\link{numeric}}, \code{\link{integer}} or \code{\link{character}} vectors or empty (missing) or
-\code{NULL}. Numeric values are coerced to \code{\link{integer}} as by \code{\link[=as.integer]{as.integer()}}
-(and hence truncated towards zero). Character vectors will be matched to
-the name of the elements. An empty index (a comma separated blank) indicates
-that all entries in that dimension are selected.}
+\code{NULL}. Numeric values are coerced to \code{\link{integer}} as by \code{\link[=as.integer]{as.integer()}}.
+Character vectors will be matched to the name of the elements.
+An empty index (a comma separated blank) indicates that all entries in that
+dimension are selected.}
 
 \item{...}{Currently not used.}
 
@@ -39,29 +60,28 @@ A subsetted object of the same sort as \code{x}.
 \description{
 Operators acting on objects to extract or replace parts.
 }
+\section{Subcomposition}{
+
+If \code{drop} is \code{FALSE}, subsetting some of the possible components of a
+\code{\linkS4class{CompositionMatrix}} object will produce a closed \emph{subcomposition}
+(see examples).
+}
+
 \examples{
 ## Coerce to compositional data
 data("hongite")
 coda <- as_composition(hongite)
-
-## codaccess
-dim(coda) # Get the matrix dimensions
-row(coda) # Get the row indexes
-col(coda, as.factor = TRUE) # Get the column indexes
-nrow(coda) # Get the number of rows
-ncol(coda) # Get the number of columns
-dimnames(coda) # Get the dimension names
-rownames(coda) <- LETTERS[1:25] # Set the row names
-rownames(coda) # Get the rownames
-colnames(coda) <- letters[21:25] # Set the column names
-colnames(coda) # Get the column names
+head(coda)
 
 ## Subset
 coda[[1, 1]] # Get the first value
 coda[1] # Get the first value
 coda[, ] # Get all values
 coda[1, , drop = FALSE] # Get the first row
-coda[, 1:3] # Get the first three column
+
+## Subcomposition
+subcoda <- coda[, 1:3, drop = FALSE] # Get the first three column
+head(subcoda)
 }
 \seealso{
 Other mutators: 

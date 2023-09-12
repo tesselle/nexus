@@ -268,18 +268,22 @@ setGeneric(
 #'  element(s).
 #' @param i,j Indices specifying elements to extract or replace. Indices are
 #'  [`numeric`], [`integer`] or [`character`] vectors or empty (missing) or
-#'  `NULL`. Numeric values are coerced to [`integer`] as by [as.integer()]
-#'  (and hence truncated towards zero). Character vectors will be matched to
-#'  the name of the elements. An empty index (a comma separated blank) indicates
-#'  that all entries in that dimension are selected.
+#'  `NULL`. Numeric values are coerced to [`integer`] as by [as.integer()].
+#'  Character vectors will be matched to the name of the elements.
+#'  An empty index (a comma separated blank) indicates that all entries in that
+#'  dimension are selected.
 #' @param value A possible value for the element(s) of `x`.
 #' @param drop A [`logical`] scalar: should the result be coerced to
 #'  the lowest possible dimension? This only works for extracting elements,
 #'  not for the replacement.
 #' @param ... Currently not used.
+#' @section Subcomposition:
+#'  If `drop` is `FALSE`, subsetting some of the possible components of a
+#'  [`CompositionMatrix-class`] object will produce a closed *subcomposition*
+#'  (see examples).
 #' @return
 #'  A subsetted object of the same sort as `x`.
-#' @example inst/examples/ex-matrix.R
+#' @example inst/examples/ex-subset.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators

@@ -1,6 +1,10 @@
 # CLASSES DEFINITION AND INITIALIZATION
 NULL
 
+## Index vectors
+## (for 'i' in x[i], x[i, ], x[, i], etc.)
+setClassUnion("index", members = c("logical", "numeric", "character"))
+
 # CompositionMatrix ============================================================
 #' Numeric Matrix
 #'

@@ -12,7 +12,7 @@ plot.CompositionMatrix <- function(x, order = NULL, decreasing = FALSE,
                                    ann = graphics::par("ann"), axes = TRUE,
                                    ...) {
   ## Get data
-  z <- x
+  z <- x@.Data
 
   ## Ordering
   if (!is.null(order)) {
@@ -37,7 +37,7 @@ plot.CompositionMatrix <- function(x, order = NULL, decreasing = FALSE,
     arkhe::assert_length(groups, nrow(z))
 
     groups <- factor(groups, exclude = NULL)
-    grp <- split(as.data.frame(z@.Data), f = groups)
+    grp <- split(as.data.frame(z), f = groups)
     n <- nlevels(groups)
 
     ## Save and restore

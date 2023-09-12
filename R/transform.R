@@ -94,13 +94,13 @@ setMethod(
     j <- if (is.character(j)) which(parts == j) else as.integer(j)
     ordering <- c(which(j != seq_len(D)), j)
     parts <- parts[ordering]
-    object <- object[, ordering]
+    z <- object[, ordering]
 
     base <- diag(1, nrow = D, ncol = D - 1)
     base[D, ] <- -1
 
-    alr <- log(object, base = exp(1)) %*% base
-    rownames(alr) <- rownames(object)
+    alr <- log(z, base = exp(1)) %*% base
+    rownames(alr) <- rownames(z)
     colnames(alr) <- paste(parts[-D], parts[D], sep = "_")
 
     w <- rep(1 / D, D)
@@ -184,7 +184,7 @@ setMethod(
     pivot <- if (is.character(pivot)) which(parts == pivot) else as.integer(pivot)
     ordering <- c(pivot, which(pivot != seq_len(J)))
     parts <- parts[ordering]
-    object <- object[, ordering]
+    obj <- object[, ordering]
 
     x <- seq_len(J - 1)
     balances <- diag(sqrt((J - x) / (J - x + 1)))
@@ -194,7 +194,7 @@ setMethod(
     z <- z[-nrow(z), ]
 
     H <- t(balances %*% z)
-    plr <- log(object, base = exp(1)) %*% H
+    plr <- log(obj, base = exp(1)) %*% H
 
     ratio <- vapply(
       X = seq_len(J - 1),
@@ -206,7 +206,7 @@ setMethod(
       parts = parts
     )
     colnames(plr) <- paste0("Z", seq_len(J - 1))
-    rownames(plr) <- rownames(object)
+    rownames(plr) <- rownames(obj)
 
     .PLR(
       plr,
