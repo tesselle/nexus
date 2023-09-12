@@ -51,6 +51,52 @@ mean.CompositionMatrix <- function(x, na.rm = FALSE, ...) {
 #' @aliases mean,CompositionMatrix-method
 setMethod("mean", "CompositionMatrix", mean.CompositionMatrix)
 
+#' Geometric Mean
+#'
+#' @param x A [`numeric`] vector.
+#' @param trim A length-one [`numeric`] vector specifying the fraction (0 to 0.5)
+#'  of observations to be trimmed from each end of `x` before the mean is
+#'  computed.
+#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
+#'  computation proceeds?
+#' @return A [`numeric`] vector.
+#' @keywords internal
+#' @noRd
+gmean <- function(x, trim = 0, na.rm = FALSE) {
+  index <- is.finite(x) & x > 0
+  exp(mean(log(unclass(x)[index]), trim = trim, na.rm = na.rm))
+}
+
+# Metric variance ==============================================================
+#' @export
+#' @rdname spread
+#' @aliases mvar,CompositionMatrix-method
+setMethod(
+  f = "mvar",
+  signature = c("CompositionMatrix"),
+  definition = function(x) {
+    d <- apply(
+      X = x,
+      MARGIN = 1,
+      FUN = function(x, xbar) norm(x / xbar),
+      xbar = mean(x)
+    )
+    (1 / (nrow(x) - 1)) * sum(d^2)
+  }
+)
+
+# Metric standard deviation ====================================================
+#' @export
+#' @rdname spread
+#' @aliases msd,CompositionMatrix-method
+setMethod(
+  f = "msd",
+  signature = c("CompositionMatrix"),
+  definition = function(x) {
+    sqrt((1 / (ncol(x) - 1)) * mvar(x))
+  }
+)
+
 # Variance =====================================================================
 #' @export
 #' @rdname variation
@@ -197,20 +243,3 @@ mahalanobis.ILR <- function(x, center, cov, ..., robust = TRUE,
 #' @rdname mahalanobis
 #' @aliases mahalanobis,ILR-method
 setMethod("mahalanobis", "ILR", mahalanobis.ILR)
-
-# Tools ========================================================================
-#' Geometric Mean
-#'
-#' @param x A [`numeric`] vector.
-#' @param trim A length-one [`numeric`] vector specifying the fraction (0 to 0.5)
-#'  of observations to be trimmed from each end of `x` before the mean is
-#'  computed.
-#' @param na.rm A [`logical`] scalar: should `NA` values be stripped before the
-#'  computation proceeds?
-#' @return A [`numeric`] vector.
-#' @keywords internal
-#' @noRd
-gmean <- function(x, trim = 0, na.rm = FALSE) {
-  index <- is.finite(x) & x > 0
-  exp(mean(log(unclass(x)[index]), trim = trim, na.rm = na.rm))
-}

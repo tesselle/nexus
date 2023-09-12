@@ -50,6 +50,7 @@ Other statistics:
 \code{\link{dist}()},
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},
+\code{\link{spread}},
 \code{\link{variation}()}
 }
 \author{

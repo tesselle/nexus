@@ -522,6 +522,40 @@ NULL
 #' @rdname mean
 NULL
 
+#' Metric Variance and Standard Deviation
+#'
+#' @description
+#'  * `mvar()` computes the metric variance, i.e. a global measure of spread.
+#'  * `msd()` computes the metric standard deviation.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param ... Currently not used.
+#' @return A [`numeric`] vector.
+#' @references
+#'  Pawlowsky-Glahn, V. and Egozcue, J. J. (2001). Geometric Approach to
+#'  Statistical Analysis on the Simplex. *Stochastic Environmental Research and
+#'  Risk Assessment*, 15(5): 384-398. \doi{10.1007/s004770100077}.
+#' @example inst/examples/ex-mean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name spread
+#' @rdname spread
+NULL
+
+#' @rdname spread
+#' @aliases mvar-method
+setGeneric(
+  name = "mvar",
+  def = function(x, ...) standardGeneric("mvar")
+)
+
+#' @rdname spread
+#' @aliases msd-method
+setGeneric(
+  name = "msd",
+  def = function(x, ...) standardGeneric("msd")
+)
+
 #' Covariance Matrix
 #'
 #' Computes the (centered) log-ratio covariance matrix (see below).

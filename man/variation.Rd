@@ -44,7 +44,8 @@ Other statistics:
 \code{\link{covariance}()},
 \code{\link{dist}()},
 \code{\link{mahalanobis}()},
-\code{\link{mean}()}
+\code{\link{mean}()},
+\code{\link{spread}}
 }
 \author{
 N. Frerebeau

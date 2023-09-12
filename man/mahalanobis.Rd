@@ -44,6 +44,7 @@ Other statistics:
 \code{\link{covariance}()},
 \code{\link{dist}()},
 \code{\link{mean}()},
+\code{\link{spread}},
 \code{\link{variation}()}
 }
 \author{
