@@ -786,6 +786,14 @@ setGeneric(
 #' @inheritParams dimensio::pca
 #' @return
 #'  A [`dimensio::PCA-class`] object.
+#' @references
+#'  Aitchison, J. and Greenacre, M. (2002). Biplots of compositional data.
+#'  *Journal of the Royal Statistical Society: Series C (Applied Statistics)*,
+#'  51: 375-392. \doi{10.1111/1467-9876.00275}.
+#'
+#'  Filzmoser, P., Hron, K. and Reimann, C. (2009). Principal component analysis
+#'  for compositional data with outliers. *Environmetrics*, 20: 621-632.
+#'  \doi{10.1002/env.966}.
 #' @example inst/examples/ex-pca.R
 #' @seealso [dimensio::pca()], [dimensio::biplot()]
 #' @author N. Frerebeau
