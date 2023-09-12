@@ -29,7 +29,12 @@ coda <- as_composition(hongite)
 
 ## Variation matrix
 ## (Aitchison 1986, definition 4.4)
-variation(coda)
+(varia <- variation(coda))
+
+## Cluster dendrogram
+d <- as.dist(varia)
+h <- hclust(d, method = "ward.D2")
+plot(h)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.

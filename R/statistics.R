@@ -204,7 +204,7 @@ dist.CompositionMatrix <- function(x, method = "euclidean",
 #' @aliases dist,CompositionMatrix-method
 setMethod("dist", "CompositionMatrix", dist.CompositionMatrix)
 
-
+# Mahalanobis ==================================================================
 #' @export
 #' @method mahalanobis CompositionMatrix
 mahalanobis.CompositionMatrix <- function(x, center, cov, ..., robust = TRUE,

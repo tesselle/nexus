@@ -36,6 +36,14 @@ A \code{\link{numeric}} vector.
 \description{
 Computes the squared Mahalanobis distance of all rows in \code{x}.
 }
+\examples{
+## Coerce to compositional data
+data("hongite")
+coda <- as_composition(hongite)
+
+## Mahalanobis distance
+mahalanobis(coda)
+}
 \seealso{
 \code{\link[stats:mahalanobis]{stats::mahalanobis()}}
 

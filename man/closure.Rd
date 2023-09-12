@@ -31,20 +31,19 @@ A \code{\link{numeric}} vector or matrix (same as \code{x}).
 Closes compositions to sum up to 1.
 }
 \examples{
-## Create a count matrix
-A1 <- matrix(data = as.numeric(sample(1:100, 100, TRUE)), nrow = 20)
+x <- as_composition(c(1, 2, 3))
+y <- as_composition(c(1, 2, 1))
 
-## Coerce to compositions
-B <- as_composition(A1)
+## Perturbation
+perturbation(x, y)
+x + y
 
-## Row sums are internally stored before coercing to relative frequencies
-## (use get_totals() to retrieve these values)
-## This allows to restore the source data
-A2 <- as_amounts(B)
+## Powering
+powering(y, 2)
+y * 2
 
-## Coerce to an S3 data.frame
-X <- data.frame(B)
-head(X)
+## Scalar product
+scalar(x, y)
 }
 \seealso{
 Other operations in the simplex: 

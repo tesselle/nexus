@@ -36,11 +36,13 @@ Distances are computed on \link[=transform_clr]{CLR-transformed} data.
 data("hongite")
 coda <- as_composition(hongite)
 
-## Distance
-dist(coda)
+## Aitchison distance
+## (euclidean distance between CLR-transformed compositions)
+d <- dist(coda)
 
-## Mahalanobis distance
-mahalanobis(coda)
+## Cluster dendrogram
+h <- hclust(d, method = "ward.D2")
+plot(h)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.

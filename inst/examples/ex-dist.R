@@ -2,11 +2,10 @@
 data("hongite")
 coda <- as_composition(hongite)
 
-## Variation matrix
-## (Aitchison 1986, definition 4.4)
-(varia <- variation(coda))
+## Aitchison distance
+## (euclidean distance between CLR-transformed compositions)
+d <- dist(coda)
 
 ## Cluster dendrogram
-d <- as.dist(varia)
 h <- hclust(d, method = "ward.D2")
 plot(h)

@@ -47,7 +47,7 @@
 #'  .hasSlot initialize is new setClass setGeneric setMethod slot slot<-
 #'  slotNames validObject .valueClassTest
 #' @importFrom MASS cov.rob
-#' @importFrom stats as.dist contr.helmert cov dist mahalanobis ppoints qchisq
-#'  var
+#' @importFrom stats as.dist contr.helmert cov dist hclust mahalanobis ppoints
+#'  qchisq var
 #' @importFrom utils combn tail
 NULL

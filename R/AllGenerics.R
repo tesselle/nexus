@@ -93,7 +93,7 @@ NULL
 #' @param na.rm A [`logical`] scalar: should missing values be removed?
 #' @param ... Currently not used.
 #' @return A [`numeric`] vector or matrix (same as `x`).
-#' @example inst/examples/ex-coerce.R
+#' @example inst/examples/ex-arith.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family operations in the simplex
@@ -257,6 +257,7 @@ setGeneric(
 #'  * `set_totals()` returns an object of the same sort as `x` with the new
 #'    row sums assigned.
 #'  * `get_totals()` returns the row sums of `x`.
+#' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
@@ -651,7 +652,7 @@ setGeneric(
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
-#' @example inst/examples/ex-distance.R
+#' @example inst/examples/ex-dist.R
 #' @seealso [stats::dist()]
 #' @author N. Frerebeau
 #' @docType methods
@@ -676,6 +677,7 @@ NULL
 #' @param ... Extra parameters to be passed to [MASS::cov.rob()].
 #'  Only used if `robust` is `TRUE`.
 #' @return A [`numeric`] vector.
+#' @example inst/examples/ex-mahalanobis.R
 #' @seealso [stats::mahalanobis()]
 #' @author N. Frerebeau
 #' @docType methods
