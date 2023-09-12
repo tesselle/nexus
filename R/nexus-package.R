@@ -49,5 +49,5 @@
 #' @importFrom MASS cov.rob
 #' @importFrom stats as.dist contr.helmert cov dist mahalanobis ppoints qchisq
 #'  var
-#' @importFrom utils combn
+#' @importFrom utils combn tail
 NULL

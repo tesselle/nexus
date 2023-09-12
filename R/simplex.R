@@ -142,3 +142,86 @@ setMethod(
     x * a
   }
 )
+
+# Scalar product ===============================================================
+#' @export
+#' @rdname scalar
+#' @aliases scalar,numeric,numeric-method
+setMethod(
+  f = "scalar",
+  signature = c(x = "numeric", y = "numeric"),
+  definition = function(x, y) {
+    n <- length(x)
+    arkhe::assert_length(y, n)
+
+    D <- seq_len(n)
+    z <- 0
+    for (i in D) {
+      j <- utils::tail(D, -i)
+      z <- z + sum(log(x[i] / x[j]) * log(y[i] / y[j]))
+    }
+    (1 / n) * z
+  }
+)
+
+#' @export
+#' @rdname scalar
+#' @aliases scalar,CompositionMatrix,CompositionMatrix-method
+setMethod(
+  f = "scalar",
+  signature = c(x = "CompositionMatrix", y = "CompositionMatrix"),
+  definition = function(x, y) {
+    arkhe::assert_dimensions(y, dim(x))
+    m <- nrow(x)
+
+    z <- numeric(m)
+    for (i in seq_len(m)) {
+      z[i] <- scalar(x[i, ], y[i, ])
+    }
+    z
+  }
+)
+
+#' Norm of a Composition
+#'
+#' @param x A [`CompositionMatrix-class`] object.
+#' @return A [`numeric`] vector.
+#' @keywords internal
+#' @noRd
+norm <- function(x) {
+  sqrt(scalar(x, x))
+}
+
+#' Aitchison Distance
+#'
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param diag A [`logical`] scalar: should the diagonal of the distance matrix
+#'  be printed?
+#' @param upper A [`logical`] scalar: should the upper triangle of the distance
+#'  matrix be printed?
+#' @return A [`dist`] object.
+#' @keywords internal
+#' @noRd
+aitchison <- function(x, diag = FALSE, upper = FALSE) {
+  m <- nrow(x)
+  spl <- rownames(x)
+
+  d <- utils::combn(
+    x = seq_len(m),
+    m = 2,
+    FUN = function(i, coda) {
+      x <- coda[i[1], ]
+      y <- coda[i[2], ]
+      norm(x / y)
+    },
+    coda = x
+  )
+
+  ## Matrix of results
+  mtx <- matrix(data = 0, nrow = m, ncol = m, dimnames = list(spl, spl))
+  mtx[lower.tri(mtx, diag = FALSE)] <- d
+  mtx <- t(mtx)
+  mtx[lower.tri(mtx, diag = FALSE)] <- d
+
+  stats::as.dist(mtx, diag = diag, upper = upper)
+}

@@ -106,7 +106,8 @@ setGeneric(
 #' Perturbation Operation
 #'
 #' Perturbation of two compositions.
-#' @param x,y A [`numeric`] vector of compositional data.
+#' @param x,y A [`numeric`] vector of compositional data or a
+#'  [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @details
 #'  In compositional geometry, perturbation plays the role of sum (translation).
@@ -125,7 +126,8 @@ setGeneric(
 #' Powering Operation
 #'
 #' Perturbation of two compositions.
-#' @param x A [`numeric`] vector of compositional data.
+#' @param x A [`numeric`] vector of compositional data or a
+#'  [`CompositionMatrix-class`] object.
 #' @param a A [`numeric`] constant.
 #' @param ... Currently not used.
 #' @details
@@ -141,6 +143,22 @@ setGeneric(
 setGeneric(
   name = "powering",
   def = function(x, a, ...) standardGeneric("powering")
+)
+
+#' Scalar Product
+#'
+#' Computes the Aitchison scalar product of two compositions.
+#' @param x,y A [`CompositionMatrix-class`] object.
+#' @param ... Currently not used.
+#' @return A [`numeric`] vector.
+#' @example inst/examples/ex-arith.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family operations in the simplex
+#' @aliases scalar-method
+setGeneric(
+  name = "scalar",
+  def = function(x, y, ...) standardGeneric("scalar")
 )
 
 # Extract ======================================================================

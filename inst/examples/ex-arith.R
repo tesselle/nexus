@@ -8,3 +8,6 @@ x + y
 ## Powering
 powering(y, 2)
 y * 2
+
+## Scalar product
+scalar(x, y)

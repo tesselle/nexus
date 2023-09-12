@@ -18,3 +18,12 @@ expect_equivalent(as_composition(x) - as_composition(y), as_composition(x / y))
 expect_identical(powering(y, 2), closure(y ^ 2))
 expect_equivalent(as_composition(y) * 2, as_composition(y^2))
 expect_equivalent(2 * as_composition(y), as_composition(y^2))
+
+# Scalar product ===============================================================
+expect_equal(round(scalar(x, y), 5), 0.06647)
+expect_equal(round(scalar(as_composition(x), as_composition(y)), 5), 0.06647)
+
+# Aitchison Distance ===========================================================
+data("hongite")
+coda <- as_composition(hongite)
+expect_equivalent(nexus:::aitchison(coda), dist(coda, method = "euclidean"))
