@@ -690,7 +690,7 @@ NULL
 #' Plot Compositional Data
 #'
 #' Displays a compositional bar chart.
-#' @param x A [`CompositionMatrix-class`] object.
+#' @param height A [`CompositionMatrix-class`] object.
 #' @param order An [`integer`] vector giving the index of the column to be used
 #'  for the ordering of the data.
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
@@ -709,14 +709,14 @@ NULL
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
 #' @param ... Further parameters to be passed to [graphics::barplot()].
 #' @return
-#'  `plot()` is called for its side-effects: is results in a graphic being
-#'  displayed (invisibly return `x`).
-#' @example inst/examples/ex-plot.R
+#'  `barplot()` is called for its side-effects: is results in a graphic being
+#'  displayed (invisibly return `height`).
+#' @example inst/examples/ex-barplot.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family plot methods
-#' @name plot_coda
-#' @rdname plot_coda
+#' @name barplot
+#' @rdname barplot
 NULL
 
 #' Plot Log-Ratios

@@ -91,7 +91,7 @@ plot(clr, flip = TRUE)
 \seealso{
 Other plot methods: 
 \code{\link{as_graph}()},
-\code{\link{plot_coda}}
+\code{\link{barplot}()}
 }
 \author{
 N. Frerebeau

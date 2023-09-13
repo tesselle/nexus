@@ -60,7 +60,7 @@ all.equal(hongite, as.data.frame(counts))
 
 ```{r barplot, fig.width=7, fig.height=5, out.width='100%'}
 ## Compositional bar plot
-plot(coda, order = "A")
+barplot(coda, order = "A")
 ```
 
 ## Working with (reference) groups
@@ -157,7 +157,7 @@ set_groups(coda) <- kommos$type
 
 ```{r ceramics-barplot, fig.width=7, fig.height=7, out.width='100%'}
 ## Compositional bar plot
-plot(coda, order = "Ca")
+barplot(coda, order = "Ca")
 ```
 
 ```{r ceramics-clr, fig.width=7, fig.height=8, out.width='100%'}

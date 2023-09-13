@@ -56,7 +56,7 @@ plot(plr_graph)
 }
 \seealso{
 Other plot methods: 
-\code{\link{plot_coda}},
+\code{\link{barplot}()},
 \code{\link{plot_logratio}}
 }
 \author{

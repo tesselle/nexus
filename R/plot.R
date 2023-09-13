@@ -4,15 +4,15 @@ NULL
 
 # CompositionMatrix ============================================================
 #' @export
-#' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, order = NULL, decreasing = FALSE,
-                                   groups = get_groups(x), horiz = TRUE,
-                                   xlab = NULL, ylab = NULL,
-                                   main = NULL, sub = NULL,
-                                   ann = graphics::par("ann"), axes = TRUE,
-                                   ...) {
+#' @method barplot CompositionMatrix
+barplot.CompositionMatrix <- function(height, order = NULL, decreasing = FALSE,
+                                      groups = get_groups(height), horiz = TRUE,
+                                      xlab = NULL, ylab = NULL,
+                                      main = NULL, sub = NULL,
+                                      ann = graphics::par("ann"), axes = TRUE,
+                                      ...) {
   ## Get data
-  z <- x@.Data
+  z <- height@.Data
 
   ## Ordering
   if (!is.null(order)) {
@@ -89,13 +89,13 @@ plot.CompositionMatrix <- function(x, order = NULL, decreasing = FALSE,
                       axes = axes, ann = ann, ...)
   }
 
-  invisible(x)
+  invisible(height)
 }
 
 #' @export
-#' @rdname plot_coda
-#' @aliases plot,CompositionMatrix,missing-method
-setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMatrix)
+#' @rdname barplot
+#' @aliases barplot,CompositionMatrix,missing-method
+setMethod("barplot", c(height = "CompositionMatrix"), barplot.CompositionMatrix)
 
 # LogRatio =====================================================================
 #' @export
