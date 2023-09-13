@@ -167,6 +167,8 @@ plot(clr, border = c("#EE7733", "#0077BB", "#33BBEE", "#EE3377"))
 ```
 
 ```{r ceramics-pca, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
+library(dimensio)
+
 ## PCA
 clr_pca <- pca(clr, scale = FALSE)
 

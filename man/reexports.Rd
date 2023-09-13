@@ -7,8 +7,6 @@
 \alias{replace_zero}
 \alias{remove_NA}
 \alias{remove_zero}
-\alias{viz_individuals}
-\alias{viz_variables}
 \alias{ternary_plot}
 \title{Objects exported from other packages}
 \keyword{internal}
@@ -18,8 +16,6 @@ below to see their documentation.
 
 \describe{
   \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
-
-  \item{dimensio}{\code{\link[dimensio]{viz_individuals}}, \code{\link[dimensio]{viz_variables}}}
 
   \item{isopleuros}{\code{\link[isopleuros]{ternary_plot}}}
 }}

@@ -787,7 +787,7 @@ setGeneric(
 #' @param object A [`LogRatio-class`] object.
 #' @inheritParams dimensio::pca
 #' @return
-#'  A [`dimensio::PCA-class`] object.
+#'  A [`dimensio::PCA-class`] object. See package \pkg{dimensio} for details.
 #' @references
 #'  Aitchison, J. and Greenacre, M. (2002). Biplots of compositional data.
 #'  *Journal of the Royal Statistical Society: Series C (Applied Statistics)*,
@@ -797,12 +797,13 @@ setGeneric(
 #'  for compositional data with outliers. *Environmetrics*, 20: 621-632.
 #'  \doi{10.1002/env.966}.
 #' @example inst/examples/ex-pca.R
-#' @seealso [dimensio::pca()], [dimensio::biplot()]
+#' @seealso [dimensio::pca()], [dimensio::biplot()], [dimensio::screeplot()],
+#'  [dimensio::viz_individuals()], [dimensio::viz_variables()]
 #' @author N. Frerebeau
 #' @docType methods
 #' @family multivariate analysis
-#' @name pca_coda
-#' @rdname pca_coda
+#' @name pca
+#' @rdname pca
 NULL
 
 # Outliers =====================================================================

@@ -16,16 +16,6 @@ arkhe::remove_NA
 #' @export
 arkhe::remove_zero
 
-# REEXPORT FROM DIMENSIO
-
-#' @importFrom dimensio viz_individuals
-#' @export
-dimensio::viz_individuals
-
-#' @importFrom dimensio viz_variables
-#' @export
-dimensio::viz_variables
-
 # REEXPORT FROM ISOPLEUROS
 
 #' @importFrom isopleuros ternary_plot

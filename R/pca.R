@@ -3,7 +3,7 @@
 NULL
 
 #' @export
-#' @rdname pca_coda
+#' @rdname pca
 #' @aliases pca,CompositionMatrix-method
 setMethod(
   f = "pca",
@@ -16,7 +16,7 @@ setMethod(
 )
 
 #' @export
-#' @rdname pca_coda
+#' @rdname pca
 #' @aliases pca,LogRatio-method
 setMethod(
   f = "pca",
