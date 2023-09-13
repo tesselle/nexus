@@ -8,6 +8,7 @@
 \alias{remove_NA}
 \alias{remove_zero}
 \alias{ternary_plot}
+\alias{ternary_pairs}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -17,6 +18,6 @@ below to see their documentation.
 \describe{
   \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
 
-  \item{isopleuros}{\code{\link[isopleuros]{ternary_plot}}}
+  \item{isopleuros}{\code{\link[isopleuros]{ternary_pairs}}, \code{\link[isopleuros]{ternary_plot}}}
 }}
 

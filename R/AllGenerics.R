@@ -687,7 +687,7 @@ NULL
 NULL
 
 # Plot =========================================================================
-#' Plot Compositional Data
+#' Barplot of Compositional Data
 #'
 #' Displays a compositional bar chart.
 #' @param height A [`CompositionMatrix-class`] object.

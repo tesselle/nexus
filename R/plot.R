@@ -94,7 +94,7 @@ barplot.CompositionMatrix <- function(height, order = NULL, decreasing = FALSE,
 
 #' @export
 #' @rdname barplot
-#' @aliases barplot,CompositionMatrix,missing-method
+#' @aliases barplot,CompositionMatrix-method
 setMethod("barplot", c(height = "CompositionMatrix"), barplot.CompositionMatrix)
 
 # LogRatio =====================================================================

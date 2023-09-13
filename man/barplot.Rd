@@ -4,8 +4,7 @@
 \name{barplot}
 \alias{barplot}
 \alias{barplot,CompositionMatrix-method}
-\alias{barplot,CompositionMatrix,missing-method}
-\title{Plot Compositional Data}
+\title{Barplot of Compositional Data}
 \usage{
 \S4method{barplot}{CompositionMatrix}(
   height,

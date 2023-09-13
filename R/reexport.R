@@ -21,3 +21,7 @@ arkhe::remove_zero
 #' @importFrom isopleuros ternary_plot
 #' @export
 isopleuros::ternary_plot
+
+#' @importFrom isopleuros ternary_pairs
+#' @export
+isopleuros::ternary_pairs
