@@ -15,13 +15,3 @@ arkhe::remove_NA
 #' @importFrom arkhe remove_zero
 #' @export
 arkhe::remove_zero
-
-# REEXPORT FROM ISOPLEUROS
-
-#' @importFrom isopleuros ternary_plot
-#' @export
-isopleuros::ternary_plot
-
-#' @importFrom isopleuros ternary_pairs
-#' @export
-isopleuros::ternary_pairs

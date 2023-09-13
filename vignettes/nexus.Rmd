@@ -28,6 +28,12 @@ Provenance studies rely on the identification of probable sources, such that the
 # Get started
 
 ```{r setup}
+## Install extra packages (if needed):
+## - dimensio: multivariate analysis
+## - folio: datasets
+## - isopleuros: ternary plot
+# install.packages(c("dimensio", "folio", "isopleuros"))
+
 library(nexus)
 ```
 
