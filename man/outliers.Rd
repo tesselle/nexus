@@ -11,8 +11,7 @@ outliers(object, ...)
 
 \S4method{outliers}{CompositionMatrix}(
   object,
-  center = NULL,
-  cov = NULL,
+  groups = get_groups(object),
   robust = TRUE,
   method = c("mve", "mcd"),
   quantile = 0.975,
@@ -25,11 +24,8 @@ outliers(object, ...)
 \item{...}{Extra parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.
 Only used if \code{robust} is \code{TRUE}.}
 
-\item{center}{A \code{\link{numeric}} vector giving the mean vector of the
-distribution. If missing, will be estimated from \code{x}.}
-
-\item{cov}{A \code{\link{numeric}} matrix giving the covariance of the
-distribution. If missing, will be estimated from \code{x}.}
+\item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
+defines the grouping. If set, XXX.}
 
 \item{robust}{A \code{\link{logical}} scalar: should robust location and scatter
 estimation be used?}
@@ -72,13 +68,16 @@ kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
 ## Detect outliers
-out <- outliers(coda)
+out <- outliers(coda, groups = NULL, robust = FALSE)
 
-## Quantile-Quantile plot
-plot(out, qq = TRUE)
+plot(out) # Plot
+plot(out, qq = TRUE) # Quantile-Quantile plot
 
-## Plot
-plot(out)
+## Detect outliers by group
+out <- outliers(coda[, 1:15, drop = FALSE])
+
+plot(out, ncol = 2) # Plot
+plot(out, qq = TRUE, ncol = 4) # Quantile-Quantile plot
 }
 \references{
 Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier

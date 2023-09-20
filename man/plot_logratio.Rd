@@ -48,8 +48,7 @@ ticks making up the \emph{rug}. Positive lengths give inwards ticks. Only used i
 \code{facet} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
 
 \item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
-flipped from side 2 (left) to 4 (right) from series to series when \code{facet}
-is "\code{multiple}"?}
+flipped from side 2 (left) to 4 (right) from variable to variable?}
 
 \item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
 

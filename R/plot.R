@@ -124,7 +124,7 @@ plot.LogRatio <- function(x, order = NULL, decreasing = FALSE,
   }
 
   ## Grouping
-  if (length(stats::na.omit(groups)) == 0) {
+  if (is.null(groups)) {
     groups <- rep(NA, m)
   } else {
     rug <- FALSE
@@ -162,7 +162,7 @@ plot.LogRatio <- function(x, order = NULL, decreasing = FALSE,
   ## Compute densities
   dens_x <- dens_y <- array(data = NA_real_, dim = c(n_dens, p, k),
                             dimnames = list(NULL, NULL, levels(groups)))
-  for (i in 1:k) {
+  for (i in seq_len(k)) {
     for (j in p_seq) {
       tmp <- z[grp[[i]], j, drop = TRUE]
       dens <- stats::density(x = tmp, n = n_dens)
@@ -202,7 +202,7 @@ plot.LogRatio <- function(x, order = NULL, decreasing = FALSE,
     # panel.last
 
     ## Construct Axis
-    do_x <- (j %% nrow == 0 || j == m)
+    do_x <- (j %% nrow == 0 || j == p)
     y_side <- if (j %% 2 || !flip) 2 else 4
     if (axes) {
       if (do_x) {

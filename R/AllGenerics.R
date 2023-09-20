@@ -735,8 +735,7 @@ NULL
 #'  ticks making up the *rug*. Positive lengths give inwards ticks. Only used if
 #'  `rug` is `TRUE`.
 #' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
-#'  flipped from side 2 (left) to 4 (right) from series to series when `facet`
-#'  is "`multiple`"?
+#'  flipped from side 2 (left) to 4 (right) from variable to variable?
 #' @param ncol An [`integer`] specifying the number of columns to use when
 #'  `facet` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
 #' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
@@ -815,6 +814,8 @@ NULL
 #'  `quantile` is used as a cut-off value for outlier detection: observations
 #'  with larger (squared) Mahalanobis distance are considered as potential
 #'  outliers.
+#' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
+#'  defines the grouping. If set, XXX.
 #' @details
 #'  An outlier can be defined as having a very large Mahalanobis distance from
 #'  all observations. In this way, a certain proportion of the observations can
@@ -870,10 +871,10 @@ setGeneric(
 #' @param probs A length-two [`numeric`] vector representing probabilities.
 #'  Corresponding quantile pairs define the line drawn (see [stats::qqline()]).
 #'  Only used if `qq` is `TRUE`.
-#' @param limit A [`logical`] scalar: should the cut-off value for outlier
-#'  detection be displayed? Only used if `qq` is `FALSE`.
-#' @param col A vector of colors.
-#' @param pch A vector of plotting `character` (symbol).
+#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
+#'  flipped from side 2 (left) to 4 (right) from group to group?
+#' @param ncol An [`integer`] specifying the number of columns to use when
+#'  `facet` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
 #' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.

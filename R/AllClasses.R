@@ -155,11 +155,11 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' Outliers
 #'
 #' An S4 class to store the result of outlier detection.
-#' @slot .Data A [`logical`] vector.
+#' @slot .Data A [`logical`] matrix.
 #' @slot samples A [`character`] vector to store the sample identifiers
 #'  (allows duplicates in case of repeated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
-#' @slot distances A [`numeric`] vector giving the squared Mahalanobis distance.
+#' @slot distances A [`numeric`] matrix giving the squared Mahalanobis distance.
 #' @slot limit A [`numeric`] value giving the cut-off value used for outlier
 #'  detection (quantile of the Chi-squared distribution).
 #' @slot robust An [`logical`] scalar: were robust estimators used?
@@ -181,10 +181,10 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   slots = c(
     samples = "character",
     groups = "character",
-    distances = "numeric",
+    distances = "matrix",
     limit = "numeric",
     robust = "logical",
     dof = "integer"
   ),
-  contains = "logical"
+  contains = "matrix"
 )

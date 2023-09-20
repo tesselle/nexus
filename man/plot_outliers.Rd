@@ -9,10 +9,9 @@
 \S4method{plot}{OutlierIndex,missing}(
   x,
   qq = FALSE,
-  limit = TRUE,
   probs = c(0.25, 0.75),
-  col = c("#004488", "#DDAA33"),
-  pch = c(15, 16),
+  ncol = NULL,
+  flip = FALSE,
   xlab = NULL,
   ylab = NULL,
   main = NULL,
@@ -30,16 +29,15 @@
 
 \item{qq}{A \code{\link{logical}} scalar: should a quantile-quantile plot be produced?}
 
-\item{limit}{A \code{\link{logical}} scalar: should the cut-off value for outlier
-detection be displayed? Only used if \code{qq} is \code{FALSE}.}
-
 \item{probs}{A length-two \code{\link{numeric}} vector representing probabilities.
 Corresponding quantile pairs define the line drawn (see \code{\link[stats:qqnorm]{stats::qqline()}}).
 Only used if \code{qq} is \code{TRUE}.}
 
-\item{col}{A vector of colors.}
+\item{ncol}{An \code{\link{integer}} specifying the number of columns to use when
+\code{facet} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
 
-\item{pch}{A vector of plotting \code{character} (symbol).}
+\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
+flipped from side 2 (left) to 4 (right) from group to group?}
 
 \item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
 
@@ -78,13 +76,16 @@ kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
 ## Detect outliers
-out <- outliers(coda)
+out <- outliers(coda, groups = NULL, robust = FALSE)
 
-## Quantile-Quantile plot
-plot(out, qq = TRUE)
+plot(out) # Plot
+plot(out, qq = TRUE) # Quantile-Quantile plot
 
-## Plot
-plot(out)
+## Detect outliers by group
+out <- outliers(coda[, 1:15, drop = FALSE])
+
+plot(out, ncol = 2) # Plot
+plot(out, qq = TRUE, ncol = 4) # Quantile-Quantile plot
 }
 \references{
 Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier
