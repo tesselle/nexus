@@ -9,8 +9,8 @@ NULL
 setMethod(
   f = "outliers",
   signature = c(object = "CompositionMatrix"),
-  definition = function(object, groups = get_groups(object), robust = TRUE,
-                        method = c("mve", "mcd"), quantile = 0.975, ...) {
+  definition = function(object, ..., groups = get_groups(object), robust = TRUE,
+                        method = c("mve", "mcd"), quantile = 0.975) {
     ## Transformation
     z <- transform_ilr(object)
 
@@ -62,13 +62,13 @@ setMethod(
 # Plot =========================================================================
 #' @export
 #' @method plot OutlierIndex
-plot.OutlierIndex <- function(x, qq = FALSE, probs = c(0.25, 0.75),
+plot.OutlierIndex <- function(x, ..., qq = FALSE, probs = c(0.25, 0.75),
                               ncol = NULL, flip = FALSE,
                               xlab = NULL, ylab = NULL,
                               main = NULL, sub = NULL,
                               ann = graphics::par("ann"),
                               axes = TRUE, frame.plot = axes,
-                              panel.first = NULL, panel.last = NULL, ...) {
+                              panel.first = NULL, panel.last = NULL) {
   ## Get data
   d <- x@distances
   g <- x@groups
@@ -157,7 +157,7 @@ plot.OutlierIndex <- function(x, qq = FALSE, probs = c(0.25, 0.75),
 #' @aliases plot,OutlierIndex,missing-method
 setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)
 
-.plot_outliers <- function(x, df, qq = FALSE, qqline = seq_along(x),
+.plot_outliers <- function(x, df, ..., qq = FALSE, qqline = seq_along(x),
                            probs = c(0.25, 0.75), limit = NULL,
                            col.group = "black", col.samples = "grey",
                            pch.group = 16, pch.samples = 1,
@@ -165,7 +165,7 @@ setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)
                            main = NULL, sub = NULL,
                            ann = graphics::par("ann"),
                            axes = TRUE, frame.plot = axes,
-                           panel.first = NULL, panel.last = NULL, ...) {
+                           panel.first = NULL, panel.last = NULL) {
   ## Prepare data
   n <- length(x)
   index <- seq_len(n)

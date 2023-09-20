@@ -8,6 +8,7 @@
 \usage{
 \S4method{barplot}{CompositionMatrix}(
   height,
+  ...,
   order = NULL,
   decreasing = FALSE,
   groups = get_groups(height),
@@ -17,12 +18,13 @@
   main = NULL,
   sub = NULL,
   ann = graphics::par("ann"),
-  axes = TRUE,
-  ...
+  axes = TRUE
 )
 }
 \arguments{
 \item{height}{A \code{\linkS4class{CompositionMatrix}} object.}
+
+\item{...}{Further parameters to be passed to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 
 \item{order}{An \code{\link{integer}} vector giving the index of the column to be used
 for the ordering of the data.}
@@ -48,8 +50,6 @@ horizontally with the first at the bottom.}
 and y axis labels) appear on the plot?}
 
 \item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
-
-\item{...}{Further parameters to be passed to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 }
 \value{
 \code{barplot()} is called for its side-effects: is results in a graphic being

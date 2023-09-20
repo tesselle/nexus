@@ -6,14 +6,14 @@
 \alias{mean,CompositionMatrix-method}
 \title{Compositional Mean}
 \usage{
-\S4method{mean}{CompositionMatrix}(x, na.rm = FALSE, ...)
+\S4method{mean}{CompositionMatrix}(x, ..., na.rm = FALSE)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{na.rm}{A \code{\link{logical}} scalar: should missing values be removed?}
-
 \item{...}{Currently not used.}
+
+\item{na.rm}{A \code{\link{logical}} scalar: should missing values be removed?}
 }
 \value{
 A \code{\link{numeric}} vector.

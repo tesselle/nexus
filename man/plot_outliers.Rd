@@ -8,6 +8,7 @@
 \usage{
 \S4method{plot}{OutlierIndex,missing}(
   x,
+  ...,
   qq = FALSE,
   probs = c(0.25, 0.75),
   ncol = NULL,
@@ -20,12 +21,13 @@
   axes = TRUE,
   frame.plot = axes,
   panel.first = NULL,
-  panel.last = NULL,
-  ...
+  panel.last = NULL
 )
 }
 \arguments{
 \item{x}{An \code{\linkS4class{OutlierIndex}} object.}
+
+\item{...}{Further \link[graphics:par]{graphical parameters}.}
 
 \item{qq}{A \code{\link{logical}} scalar: should a quantile-quantile plot be produced?}
 
@@ -59,8 +61,6 @@ background grids.}
 
 \item{panel.last}{An \code{expression} to be evaluated after plotting has taken
 place but before the axes, title and box are added.}
-
-\item{...}{Further \link[graphics:par]{graphical parameters}.}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being

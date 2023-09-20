@@ -8,6 +8,7 @@
 \usage{
 \S4method{plot}{LogRatio,missing}(
   x,
+  ...,
   order = NULL,
   decreasing = FALSE,
   groups = get_groups(x),
@@ -21,12 +22,14 @@
   ann = graphics::par("ann"),
   axes = TRUE,
   frame.plot = axes,
-  legend = list(x = "topright"),
-  ...
+  legend = list(x = "topright")
 )
 }
 \arguments{
 \item{x}{A \code{\linkS4class{LogRatio}} object.}
+
+\item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
+\code{border} and \code{col}.}
 
 \item{order}{A \code{\link{logical}} scalar: should the ratio be ordered?}
 
@@ -65,9 +68,6 @@ plot?}
 \item{legend}{A \code{\link{list}} of additional arguments to be passed to
 \code{\link[graphics:legend]{graphics::legend()}}; names of the list are used as argument names.
 If \code{NULL}, no legend is displayed.}
-
-\item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
-\code{border} and \code{col}.}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being

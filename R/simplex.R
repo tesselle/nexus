@@ -32,7 +32,7 @@ setMethod(
 setMethod(
   f = "+",
   signature = c(e1 = "CompositionMatrix", e2 = "CompositionMatrix"),
-  definition = function (e1, e2) {
+  definition = function(e1, e2) {
     arkhe::assert_dimensions(e2, dim(e1))
     z <- e1 * e2
     z <- as_composition(z)
@@ -48,7 +48,7 @@ setMethod(
 setMethod(
   f = "-",
   signature = c(e1 = "CompositionMatrix", e2 = "CompositionMatrix"),
-  definition = function (e1, e2) {
+  definition = function(e1, e2) {
     arkhe::assert_dimensions(e2, dim(e1))
     z <- e1 / e2
     z <- as_composition(z)
@@ -99,7 +99,7 @@ setMethod(
 setMethod(
   f = "*",
   signature = c(e1 = "CompositionMatrix", e2 = "numeric"),
-  definition = function (e1, e2) {
+  definition = function(e1, e2) {
     arkhe::assert_length(e2, 1L)
     z <- e1 ^ e2
     z <- as_composition(z)
@@ -115,7 +115,7 @@ setMethod(
 setMethod(
   f = "*",
   signature = c(e1 = "numeric", e2 = "CompositionMatrix"),
-  definition = function (e1, e2) {
+  definition = function(e1, e2) {
     methods::callGeneric(e1 = e2, e2 = e1)
   }
 )

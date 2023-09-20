@@ -5,12 +5,12 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method barplot CompositionMatrix
-barplot.CompositionMatrix <- function(height, order = NULL, decreasing = FALSE,
+barplot.CompositionMatrix <- function(height, ...,
+                                      order = NULL, decreasing = FALSE,
                                       groups = get_groups(height), horiz = TRUE,
                                       xlab = NULL, ylab = NULL,
                                       main = NULL, sub = NULL,
-                                      ann = graphics::par("ann"), axes = TRUE,
-                                      ...) {
+                                      ann = graphics::par("ann"), axes = TRUE) {
   ## Get data
   z <- height@.Data
 
@@ -100,13 +100,13 @@ setMethod("barplot", c(height = "CompositionMatrix"), barplot.CompositionMatrix)
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, order = NULL, decreasing = FALSE,
+plot.LogRatio <- function(x, ..., order = NULL, decreasing = FALSE,
                           groups = get_groups(x), rug = TRUE, ticksize = 0.05,
                           ncol = NULL, flip = FALSE,
                           xlab = NULL, ylab = NULL,
                           main = NULL, ann = graphics::par("ann"),
                           axes = TRUE, frame.plot = axes,
-                          legend = list(x = "topright"), ...) {
+                          legend = list(x = "topright")) {
   ## Get data
   n_dens <- 512
   z <- x

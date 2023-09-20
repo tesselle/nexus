@@ -11,11 +11,11 @@ outliers(object, ...)
 
 \S4method{outliers}{CompositionMatrix}(
   object,
+  ...,
   groups = get_groups(object),
   robust = TRUE,
   method = c("mve", "mcd"),
-  quantile = 0.975,
-  ...
+  quantile = 0.975
 )
 }
 \arguments{
