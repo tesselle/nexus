@@ -126,21 +126,13 @@ setMethod(
 #' @method as.data.frame CompositionMatrix
 #' @export
 as.data.frame.CompositionMatrix <- function(x, ...) {
-  z <- as.data.frame(methods::as(x, "matrix"))
-
-  z$samples <- get_samples(x)
-  z$groups <- get_groups(x)
-  z
+  as.data.frame(methods::as(x, "matrix"))
 }
 
 #' @method as.data.frame LogRatio
 #' @export
 as.data.frame.LogRatio <- function(x, ...) {
-  z <- as.data.frame(methods::as(x, "matrix"))
-
-  z$samples <- get_samples(x)
-  z$groups <- get_groups(x)
-  z
+  as.data.frame(methods::as(x, "matrix"))
 }
 
 #' @method as.data.frame OutlierIndex

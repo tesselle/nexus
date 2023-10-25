@@ -124,9 +124,7 @@ plot.LogRatio <- function(x, ..., order = NULL, decreasing = FALSE,
   }
 
   ## Grouping
-  if (is.null(groups)) {
-    groups <- rep(NA, m)
-  } else {
+  if (length(stats::na.omit(groups)) > 0) {
     rug <- FALSE
   }
   arkhe::assert_length(groups, m)
@@ -171,7 +169,7 @@ plot.LogRatio <- function(x, ..., order = NULL, decreasing = FALSE,
     }
   }
 
-  xlim <- range(dens_x)
+  xlim <- range(dens_x, na.rm = TRUE)
   ylabs <- ylab %||% colnames(z) %||% paste0("P", p_seq)
   for (j in p_seq) {
     tmp_x <- dens_x[, j, , drop = FALSE]
@@ -183,7 +181,7 @@ plot.LogRatio <- function(x, ..., order = NULL, decreasing = FALSE,
     graphics::plot.new()
 
     ## Set plotting coordinates
-    ylim <- c(0, max(tmp_y) * 1.05)
+    ylim <- c(0, max(tmp_y, na.rm = TRUE) * 1.05)
     graphics::plot.window(xlim = xlim, ylim = ylim, yaxs = "i")
 
     ## Evaluate pre-plot expressions

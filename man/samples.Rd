@@ -3,15 +3,20 @@
 \docType{methods}
 \name{samples}
 \alias{samples}
-\alias{has_replicates}
-\alias{has_replicates-method}
+\alias{any_replicated}
+\alias{any_replicated-method}
+\alias{is_replicated}
+\alias{is_replicated-method}
 \alias{get_samples}
 \alias{get_samples-method}
 \alias{set_samples<-}
 \alias{set_samples-method}
-\alias{has_replicates,CompositionMatrix-method}
-\alias{has_replicates,LogRatio-method}
-\alias{has_replicates,OutlierIndex-method}
+\alias{is_replicated,CompositionMatrix-method}
+\alias{is_replicated,LogRatio-method}
+\alias{is_replicated,OutlierIndex-method}
+\alias{any_replicated,CompositionMatrix-method}
+\alias{any_replicated,LogRatio-method}
+\alias{any_replicated,OutlierIndex-method}
 \alias{get_samples,CompositionMatrix-method}
 \alias{get_samples,LogRatio-method}
 \alias{get_samples,OutlierIndex-method}
@@ -19,17 +24,25 @@
 \alias{set_samples,CompositionMatrix-method}
 \title{Working With Samples}
 \usage{
-has_replicates(x)
+any_replicated(x)
+
+is_replicated(x)
 
 get_samples(x)
 
 set_samples(x) <- value
 
-\S4method{has_replicates}{CompositionMatrix}(x)
+\S4method{is_replicated}{CompositionMatrix}(x)
 
-\S4method{has_replicates}{LogRatio}(x)
+\S4method{is_replicated}{LogRatio}(x)
 
-\S4method{has_replicates}{OutlierIndex}(x)
+\S4method{is_replicated}{OutlierIndex}(x)
+
+\S4method{any_replicated}{CompositionMatrix}(x)
+
+\S4method{any_replicated}{LogRatio}(x)
+
+\S4method{any_replicated}{OutlierIndex}(x)
 
 \S4method{get_samples}{CompositionMatrix}(x)
 
@@ -48,8 +61,11 @@ set_samples(x) <- value
 \itemize{
 \item \code{set_samples()} returns an object of the same sort as \code{x} with the new
 sample names assigned.
-\item \code{get_samples()} returns the sample names of \code{x}.
-\item \code{has_replicates()} returns a \code{\link{logical}} scalar.
+\item \code{get_samples()} returns a \code{\link{character}} vector giving the sample names of \code{x}.
+\item \code{any_replicated()} returns a \code{\link{logical}} scalar specifying whether or not
+\code{x} replicated observations.
+\item \code{is_replicated()} returns a \code{\link{logical}} vector specifying whether or not
+an observation is a replicate.
 }
 }
 \description{

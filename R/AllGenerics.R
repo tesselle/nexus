@@ -173,8 +173,11 @@ setGeneric(
 #' @return
 #'  * `set_groups()` returns an object of the same sort as `x` with the new
 #'    group names assigned.
-#'  * `get_groups()` returns the group names of `x`.
-#'  * `has_groups()` returns a [`logical`] scalar.
+#'  * `get_groups()` returns a [`character`] vector giving the group names of `x`.
+#'  * `any_assigned()` returns a [`logical`] scalar specifying whether or not `x`
+#'    has groups.
+#'  * `is_assigned()` returns a [`logical`] vector specifying whether or not an
+#'    observation belongs to a group.
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
@@ -183,10 +186,17 @@ setGeneric(
 NULL
 
 #' @rdname groups
-#' @aliases has_groups-method
+#' @aliases any_assigned-method
 setGeneric(
-  name = "has_groups",
-  def = function(x) standardGeneric("has_groups")
+  name = "any_assigned",
+  def = function(x) standardGeneric("any_assigned")
+)
+
+#' @rdname groups
+#' @aliases is_assigned-method
+setGeneric(
+  name = "is_assigned",
+  def = function(x) standardGeneric("is_assigned")
 )
 
 #' @rdname groups
@@ -218,8 +228,11 @@ setGeneric(
 #' @return
 #'  * `set_samples()` returns an object of the same sort as `x` with the new
 #'    sample names assigned.
-#'  * `get_samples()` returns the sample names of `x`.
-#'  * `has_replicates()` returns a [`logical`] scalar.
+#'  * `get_samples()` returns a [`character`] vector giving the sample names of `x`.
+#'  * `any_replicated()` returns a [`logical`] scalar specifying whether or not
+#'    `x` replicated observations.
+#'  * `is_replicated()` returns a [`logical`] vector specifying whether or not
+#'    an observation is a replicate.
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
@@ -228,10 +241,17 @@ setGeneric(
 NULL
 
 #' @rdname samples
-#' @aliases has_replicates-method
+#' @aliases any_replicated-method
 setGeneric(
-  name = "has_replicates",
-  def = function(x) standardGeneric("has_replicates")
+  name = "any_replicated",
+  def = function(x) standardGeneric("any_replicated")
+)
+
+#' @rdname samples
+#' @aliases is_replicated-method
+setGeneric(
+  name = "is_replicated",
+  def = function(x) standardGeneric("is_replicated")
 )
 
 #' @rdname samples

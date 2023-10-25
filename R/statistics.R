@@ -10,13 +10,13 @@ aggregate.CompositionMatrix <- function(x, by, FUN, ...) {
   by <- match.arg(by, choices = c("samples", "groups"), several.ok = FALSE)
 
   if (by == "samples") {
-    if (!has_replicates(x)) {
+    if (!any_replicated(x)) {
       warning("No observations are repeated.", call. = FALSE)
     }
     index <- get_samples(x)
   }
   if (by == "groups") {
-    if (!has_groups(x)) {
+    if (!any_assigned(x)) {
       stop("No group is defined.", call. = FALSE)
     }
     index <- get_groups(x)

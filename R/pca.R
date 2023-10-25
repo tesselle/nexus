@@ -25,7 +25,7 @@ setMethod(
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
     z <- methods::callNextMethod()
-    if (has_groups(object)) z@rows@groups <- get_groups(object)
+    z@rows@groups <- get_groups(object)
     z
   }
 )

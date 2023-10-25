@@ -1,11 +1,13 @@
-# CompositionMatrix samples ====================================================
 data("hongite")
 coda <- as_composition(hongite)
 
+# CompositionMatrix samples ====================================================
 expect_equal(get_samples(coda), rownames(hongite))
 
 set_samples(coda) <- rep(c("A", "B", "C", "D", "E"), each = 5)
 expect_equal(get_samples(coda), rep(c("A", "B", "C", "D", "E"), each = 5))
+expect_true(any_replicated(coda))
+expect_true(all(is_replicated(coda)))
 
 set_samples(coda) <- NULL
 expect_equal(get_samples(coda), rownames(hongite))
@@ -15,18 +17,16 @@ expect_equal(get_samples(coda), rownames(hongite))
 expect_error(set_samples(coda) <- LETTERS, class = "arkhe_error_class")
 
 # CompositionMatrix groups =====================================================
-data("hongite")
-coda <- as_composition(hongite)
-
 expect_equal(get_groups(coda), rep(NA_character_, nrow(coda)))
-expect_false(has_groups(coda))
+expect_false(any_assigned(coda))
 
-set_groups(coda) <- rep(c("A", "B", "C", "D", "E"), each = 5)
-expect_true(has_groups(coda))
-expect_equal(get_groups(coda), rep(c("A", "B", "C", "D", "E"), each = 5))
+set_groups(coda) <- rep(c("A", "B", "C", "D", NA), each = 5)
+expect_equal(get_groups(coda), rep(c("A", "B", "C", "D", NA), each = 5))
+expect_true(any_assigned(coda))
+expect_equal(is_assigned(coda), rep(c(TRUE, FALSE), c(20, 5)))
 
 set_groups(coda) <- NULL
-expect_false(has_groups(coda))
+expect_false(any_assigned(coda))
 
 # Invalid values
 # Try wrong length

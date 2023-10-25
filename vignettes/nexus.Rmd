@@ -89,7 +89,7 @@ X <- data.frame(
 
 ## Coerce to a compositional matrix
 Y <- as_composition(X)
-has_groups(Y)
+any_assigned(Y)
 ```
 
 This behavior can be disabled by setting `options(nexus.autodetect = FALSE)` or overridden by explicitly specifying the column to be used with the `groups` argument of `as_composition()`.
@@ -123,7 +123,7 @@ X <- data.frame(
 
 ## Coerce to a compositional matrix
 Y <- as_composition(X)
-has_replicates(Y)
+any_replicated(Y)
 ```
 
 This behavior can be disabled by setting `options(nexus.autodetect = FALSE)` or overridden by explicitly specifying the column to be used with the `samples` argument of `as_composition()`.

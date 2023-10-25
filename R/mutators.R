@@ -17,18 +17,33 @@ get_transformation <- function(x) {
 # Groups =======================================================================
 #' @export
 #' @rdname groups
-#' @aliases has_groups,CompositionMatrix-method
-setMethod("has_groups", "CompositionMatrix", function(x) !all(is.na(x@groups)))
+#' @aliases is_assigned,CompositionMatrix-method
+setMethod("is_assigned", "CompositionMatrix", function(x) !is.na(get_groups(x)))
 
 #' @export
 #' @rdname groups
-#' @aliases has_groups,LogRatio-method
-setMethod("has_groups", "LogRatio", function(x) !all(is.na(x@groups)))
+#' @aliases is_assigned,LogRatio-method
+setMethod("is_assigned", "LogRatio", function(x) !is.na(get_groups(x)))
 
 #' @export
 #' @rdname groups
-#' @aliases has_groups,OutlierIndex-method
-setMethod("has_groups", "OutlierIndex", function(x) !all(is.na(x@groups)))
+#' @aliases is_assigned,OutlierIndex-method
+setMethod("is_assigned", "OutlierIndex", function(x) !is.na(get_groups(x)))
+
+#' @export
+#' @rdname groups
+#' @aliases any_assigned,CompositionMatrix-method
+setMethod("any_assigned", "CompositionMatrix", function(x) any(is_assigned(x)))
+
+#' @export
+#' @rdname groups
+#' @aliases any_assigned,LogRatio-method
+setMethod("any_assigned", "LogRatio", function(x) any(is_assigned(x)))
+
+#' @export
+#' @rdname groups
+#' @aliases any_assigned,OutlierIndex-method
+setMethod("any_assigned", "OutlierIndex", function(x) any(is_assigned(x)))
 
 #' @export
 #' @rdname groups
@@ -62,18 +77,54 @@ setMethod(
 # Samples ======================================================================
 #' @export
 #' @rdname samples
-#' @aliases has_replicates,CompositionMatrix-method
-setMethod("has_replicates", "CompositionMatrix", function(x) arkhe::has_duplicates(x@samples))
+#' @aliases is_replicated,CompositionMatrix-method
+setMethod(
+  f = "is_replicated",
+  signature = "CompositionMatrix",
+  definition = function(x) {
+    spl <- get_samples(x)
+    duplicated(spl, fromLast = FALSE) | duplicated(spl, fromLast = TRUE)
+  }
+)
 
 #' @export
 #' @rdname samples
-#' @aliases has_replicates,LogRatio-method
-setMethod("has_replicates", "LogRatio", function(x) arkhe::has_duplicates(x@samples))
+#' @aliases is_replicated,LogRatio-method
+setMethod(
+  f = "is_replicated",
+  signature = "LogRatio",
+  definition = function(x) {
+    spl <- get_samples(x)
+    duplicated(spl, fromLast = FALSE) | duplicated(spl, fromLast = TRUE)
+  }
+)
 
 #' @export
 #' @rdname samples
-#' @aliases has_replicates,OutlierIndex-method
-setMethod("has_replicates", "OutlierIndex", function(x) arkhe::has_duplicates(x@samples))
+#' @aliases is_replicated,OutlierIndex-method
+setMethod(
+  f = "is_replicated",
+  signature = "OutlierIndex",
+  definition = function(x) {
+    spl <- get_samples(x)
+    duplicated(spl, fromLast = FALSE) | duplicated(spl, fromLast = TRUE)
+  }
+)
+
+#' @export
+#' @rdname samples
+#' @aliases any_replicated,CompositionMatrix-method
+setMethod("any_replicated", "CompositionMatrix", function(x) any(is_replicated(x)))
+
+#' @export
+#' @rdname samples
+#' @aliases any_replicated,LogRatio-method
+setMethod("any_replicated", "LogRatio", function(x) any(is_replicated(x)))
+
+#' @export
+#' @rdname samples
+#' @aliases any_replicated,OutlierIndex-method
+setMethod("any_replicated", "OutlierIndex", function(x) any(is_replicated(x)))
 
 #' @export
 #' @rdname samples
