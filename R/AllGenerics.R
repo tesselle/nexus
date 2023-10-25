@@ -67,6 +67,23 @@ setGeneric(
   valueClass = "matrix"
 )
 
+#' Coerce to Features
+#'
+#' Converts an object to a collection of features.
+#' @param from A [`CompositionMatrix-class`] object.
+#' @param ... Currently not used.
+#' @return
+#'  A [`data.frame`] with all informations as extra columns.
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family compositional data tools
+#' @aliases as_features-method
+setGeneric(
+  name = "as_features",
+  def = function(from, ...) standardGeneric("as_features")
+)
+
 # Simplex ======================================================================
 #' Operations in the Simplex
 #'

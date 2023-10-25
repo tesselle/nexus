@@ -89,7 +89,8 @@ head(X)
 }
 \seealso{
 Other compositional data tools: 
-\code{\link{as_amounts}()}
+\code{\link{as_amounts}()},
+\code{\link{as_features}()}
 }
 \author{
 N. Frerebeau

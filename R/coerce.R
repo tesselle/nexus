@@ -117,6 +117,7 @@ setMethod(
 )
 
 make_codes <- function(x) {
+  if (!any(duplicated(x))) return(x)
   x <- tapply(
     X = x,
     INDEX = x,
@@ -141,6 +142,7 @@ make_dimnames <- function(x) {
   )
 }
 
+# To Amounts ===================================================================
 #' @export
 #' @rdname as_amounts
 #' @aliases as_amounts,CompositionMatrix-method
@@ -149,6 +151,24 @@ setMethod(
   signature = c(from = "CompositionMatrix"),
   definition = function(from) {
     from@.Data * from@totals
+  }
+)
+
+# To Features ==================================================================
+#' @export
+#' @rdname as_features
+#' @aliases as_features,CompositionMatrix-method
+setMethod(
+  f = "as_features",
+  signature = c(from = "CompositionMatrix"),
+  definition = function(from) {
+    data.frame(
+      codes = get_identifiers(from),
+      samples = get_samples(from),
+      groups = get_groups(from),
+      from,
+      row.names = NULL
+    )
   }
 )
 
