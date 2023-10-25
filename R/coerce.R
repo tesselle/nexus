@@ -26,9 +26,10 @@ setMethod(
     from <- from / totals
     dimnames(from) <- make_dimnames(from)
 
-    samples <- rownames(from)
+    codes <- samples <- rownames(from)
     groups <- rep(NA_character_, nrow(from))
-    .CompositionMatrix(from, totals = totals, samples = samples, groups = groups)
+    .CompositionMatrix(from, totals = totals, codes = codes,
+                       samples = samples, groups = groups)
   }
 )
 
@@ -38,21 +39,29 @@ setMethod(
 setMethod(
   f = "as_composition",
   signature = c(from = "data.frame"),
-  definition = function(from, samples = NULL, groups = NULL,
+  definition = function(from, codes = NULL, samples = NULL, groups = NULL,
+                        auto = getOption("nexus.autodetect"),
                         verbose = getOption("nexus.verbose")) {
 
-    cols <- make_names(colnames(from), n = ncol(from), prefix = "V")
+    dimnames(from) <- make_dimnames(from)
+    cols <- colnames(from)
     empty <- rep(NA_character_, nrow(from))
-    auto <- getOption("nexus.autodetect")
+
     index <- function(what, where) {
       grep(what, where, ignore.case = TRUE, value = FALSE)
     }
 
     ## Samples
-    spl <- rownames(from) %||% empty
+    spl <- rownames(from)
     if (is.null(samples) && auto) samples <- index("^sample[s]{0,1}$", cols)
     if (length(samples) == 1) spl <- as.character(from[[samples]])
-    n_spl <- length(unique(spl[!is.na(spl)]))
+    n_spl <- sum(duplicated(spl))
+
+    ## Codes
+    lab <- rownames(from)
+    if (is.null(codes) && auto) codes <- index("^code[s]{0,1}$", cols)
+    if (length(codes) == 1) lab <- as.character(from[[codes]])
+    n_lab <- length(lab)
 
     ## Groups
     grp <- empty
@@ -63,13 +72,21 @@ setMethod(
     ## Drop extra columns (if any)
     drop <- c(samples, groups)
     data <- if (length(drop) > 0) from[, -drop, drop = FALSE] else from
-    if (verbose && n_spl > 0) {
-      msg <- ngettext(n_spl, "sample was", "samples were")
-      message(sprintf("%d unique %s found.", n_spl, msg))
-    }
-    if (verbose && n_grp > 0) {
-      msg <- ngettext(n_grp, "group was", "groups were")
-      message(sprintf("%d %s found.", n_grp, msg))
+
+    ## Print messages
+    if (verbose) {
+      if (n_lab > 0) {
+        msg <- ngettext(n_lab, "sample was", "samples were")
+        message(sprintf("%d unique %s found.", n_lab, msg))
+      }
+      if (n_spl > 0) {
+        msg <- ngettext(n_spl, "measurement was", "measurements were")
+        message(sprintf("%d replicated %s found.", n_spl, msg))
+      }
+      if (n_grp > 0) {
+        msg <- ngettext(n_grp, "group was", "groups were")
+        message(sprintf("%d %s found.", n_grp, msg))
+      }
     }
     arkhe::assert_filled(data)
 
@@ -94,9 +111,22 @@ setMethod(
     data <- data / totals
     # dimnames(data) <- make_dimnames(from)
 
-    .CompositionMatrix(data, totals = totals, samples = spl, groups = grp)
+    .CompositionMatrix(data, totals = totals, codes = lab,
+                       samples = spl, groups = grp)
   }
 )
+
+make_codes <- function(x) {
+  x <- tapply(
+    X = x,
+    INDEX = x,
+    FUN = function(x) {
+      paste(x, seq_along(x), sep = "_")
+    },
+    simplify = FALSE
+  )
+  unlist(x, use.names = FALSE)
+}
 
 make_names <- function(x, n, prefix = "X") {
   x <- if (n > 0) x %||% paste0(prefix, seq_len(n)) else character(0)

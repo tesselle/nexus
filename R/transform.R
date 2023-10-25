@@ -37,6 +37,7 @@ setMethod(
       order = seq_len(J),
       weights = w,
       totals = object@totals,
+      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )
@@ -73,6 +74,7 @@ setMethod(
       base = base,
       weights = w,
       totals = object@totals,
+      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )
@@ -114,6 +116,7 @@ setMethod(
       base = base,
       weights = w,
       totals = object@totals,
+      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )
@@ -163,6 +166,7 @@ setMethod(
       base = H,
       weights = rep(1 / D, D),
       totals = object@totals,
+      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )
@@ -216,6 +220,7 @@ setMethod(
       base = H,
       weights = rep(1 / J, J),
       totals = object@totals,
+      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )
@@ -239,6 +244,7 @@ setMethod(
     .CompositionMatrix(
       y,
       totals = object@totals,
+      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )
@@ -263,6 +269,7 @@ setMethod(
     .CompositionMatrix(
       y,
       totals = object@totals,
+      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )
@@ -286,6 +293,7 @@ setMethod(
     .CompositionMatrix(
       y,
       totals = object@totals,
+      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )

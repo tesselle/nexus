@@ -76,6 +76,7 @@ See \code{vignette("nexus")}.
 }
 \seealso{
 Other mutators: 
+\code{\link{identifiers}},
 \code{\link{samples}},
 \code{\link{subset}()},
 \code{\link{totals}}

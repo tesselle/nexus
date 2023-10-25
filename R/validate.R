@@ -17,12 +17,16 @@ setValidity(
   method = function(object) {
     ## Get data
     n <- nrow(object)
+    codes <- object@codes
     samples <- object@samples
     groups <- object@groups
     totals <- object@totals
 
     cnd <- list(
       arkhe::validate(arkhe::assert_missing(samples)),
+      arkhe::validate(arkhe::assert_missing(codes)),
+      arkhe::validate(arkhe::assert_unique(codes)),
+      arkhe::validate(arkhe::assert_length(codes, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
@@ -43,6 +47,7 @@ setValidity(
     base <- object@base
     weights <- object@weights
 
+    codes <- object@codes
     samples <- object@samples
     groups <- object@groups
     totals <- object@totals
@@ -52,6 +57,9 @@ setValidity(
 
     cnd <- list(
       arkhe::validate(arkhe::assert_missing(samples)),
+      arkhe::validate(arkhe::assert_missing(codes)),
+      arkhe::validate(arkhe::assert_unique(codes)),
+      arkhe::validate(arkhe::assert_length(codes, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),

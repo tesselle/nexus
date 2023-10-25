@@ -43,6 +43,8 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' An S4 class to represent compositional data.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
+#' @slot codes A [`character`] vector to store the laboratory codes
+#'  (unique identifiers).
 #' @slot samples A [`character`] vector to store the sample identifiers
 #'  (allows duplicates in case of repeated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
@@ -64,6 +66,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "CompositionMatrix",
   slots = c(
     totals = "numeric",
+    codes = "character",
     samples = "character",
     groups = "character"
   ),
@@ -76,6 +79,8 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' S4 classes to represent log-ratio data transformations.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
+#' @slot codes A [`character`] vector to store the laboratory codes
+#'  (unique identifiers).
 #' @slot samples A [`character`] vector to store the sample identifiers
 #'  (allows duplicates in case of repeated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
@@ -104,6 +109,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "LogRatio",
   slots = c(
     totals = "numeric",
+    codes = "character",
     samples = "character",
     groups = "character",
 
@@ -156,6 +162,8 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #'
 #' An S4 class to store the result of outlier detection.
 #' @slot .Data A [`logical`] matrix.
+#' @slot codes A [`character`] vector to store the laboratory codes
+#'  (unique identifiers).
 #' @slot samples A [`character`] vector to store the sample identifiers
 #'  (allows duplicates in case of repeated measurements).
 #' @slot groups A [`character`] vector to store the group names (if any).
@@ -179,6 +187,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 .OutlierIndex <- setClass(
   Class = "OutlierIndex",
   slots = c(
+    codes = "character",
     samples = "character",
     groups = "character",
     distances = "matrix",

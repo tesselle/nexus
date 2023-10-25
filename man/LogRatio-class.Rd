@@ -24,6 +24,9 @@ S4 classes to represent log-ratio data transformations.
 \item{\code{totals}}{A \code{\link{numeric}} vector to store the absolute row sums (before
 the closure of the compositions).}
 
+\item{\code{codes}}{A \code{\link{character}} vector to store the laboratory codes
+(unique identifiers).}
+
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
 (allows duplicates in case of repeated measurements).}
 

@@ -49,6 +49,7 @@ setMethod(
 
     .OutlierIndex(
       out,
+      codes = get_identifiers(object),
       samples = get_samples(object),
       groups = as.character(groups),
       distances = d,

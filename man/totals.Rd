@@ -55,6 +55,7 @@ head(X)
 \seealso{
 Other mutators: 
 \code{\link{groups}},
+\code{\link{identifiers}},
 \code{\link{samples}},
 \code{\link{subset}()}
 }

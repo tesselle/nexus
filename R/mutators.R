@@ -154,6 +154,35 @@ setMethod(
   }
 )
 
+# Identifiers ==================================================================
+#' @export
+#' @rdname identifiers
+#' @aliases get_identifiers,CompositionMatrix-method
+setMethod("get_identifiers", "CompositionMatrix", function(x) x@codes)
+
+#' @export
+#' @rdname identifiers
+#' @aliases get_identifiers,LogRatio-method
+setMethod("get_identifiers", "LogRatio", function(x) x@codes)
+
+#' @export
+#' @rdname identifiers
+#' @aliases get_identifiers,OutlierIndex-method
+setMethod("get_identifiers", "OutlierIndex", function(x) x@codes)
+
+#' @export
+#' @rdname identifiers
+#' @aliases set_identifiers,CompositionMatrix-method
+setMethod(
+  f = "set_identifiers<-",
+  signature = "CompositionMatrix",
+  definition = function(x, value) {
+    x@codes <- if (is.null(value)) rownames(x) else make_codes(value)
+    methods::validObject(x)
+    x
+  }
+)
+
 # Totals =======================================================================
 #' @export
 #' @rdname totals

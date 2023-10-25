@@ -63,7 +63,7 @@ set_samples(x) <- value
 sample names assigned.
 \item \code{get_samples()} returns a \code{\link{character}} vector giving the sample names of \code{x}.
 \item \code{any_replicated()} returns a \code{\link{logical}} scalar specifying whether or not
-\code{x} replicated observations.
+\code{x} has replicated observations.
 \item \code{is_replicated()} returns a \code{\link{logical}} vector specifying whether or not
 an observation is a replicate.
 }
@@ -82,6 +82,7 @@ See \code{vignette("nexus")}.
 \seealso{
 Other mutators: 
 \code{\link{groups}},
+\code{\link{identifiers}},
 \code{\link{subset}()},
 \code{\link{totals}}
 }

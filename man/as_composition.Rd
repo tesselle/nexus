@@ -17,8 +17,10 @@ as_composition(from, ...)
 
 \S4method{as_composition}{data.frame}(
   from,
+  codes = NULL,
   samples = NULL,
   groups = NULL,
+  auto = getOption("nexus.autodetect"),
   verbose = getOption("nexus.verbose")
 )
 }
@@ -27,12 +29,18 @@ as_composition(from, ...)
 
 \item{...}{Currently not used.}
 
+\item{codes}{An \code{\link{integer}} giving the index of the column to be used as
+laboratory codes (unique identifiers).}
+
 \item{samples}{An \code{\link{integer}} giving the index of the column to be used for
-sample identification: allows to identify replicated measurements.
+sample identification: allows duplicates to identify replicated measurements.
 If \code{NULL} (the default), row names will be used as sample IDs.}
 
 \item{groups}{An \code{\link{integer}} giving the index of the column to be used to
 group the samples. If \code{NULL} (the default), no grouping is stored.}
+
+\item{auto}{A \code{\link{logical}} scalar: try to automatically detect \code{codes},
+\code{samples} and \code{groups} columns?}
 
 \item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
 on progress?}
@@ -46,6 +54,7 @@ Coerces an object to a \code{CompositionMatrix} object.
 \details{
 The \code{\linkS4class{CompositionMatrix}} class has special slots:
 \itemize{
+\item \code{codes} for \link[=identifiers]{laboratory codes},
 \item \code{samples} for \link[=samples]{repeated measurements/observation},
 \item \code{groups} to \link[=group]{group data by site/area}.
 }
