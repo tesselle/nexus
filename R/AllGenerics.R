@@ -66,16 +66,15 @@ setGeneric(
 #' Operations in the Simplex
 #'
 #' Operators performing operations in the simplex.
-#' @param e1 A [`CompositionMatrix-class`] object.
-#' @param e2 A [`CompositionMatrix-class`] object or a [`numeric`] vector.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param y A [`CompositionMatrix-class`] object or a [`numeric`] vector.
 #' @details
 #'  \describe{
-#'   \item{`+`}{[Perturbation operation][perturbation()].}
-#'   \item{`-`}{[Perturbation operation][perturbation()].}
-#'   \item{`*`}{[Powering operation][powering()].}
+#'   \item{`%perturbe%`}{[Perturbation operation][perturbation()].}
+#'   \item{`%power%`}{[Powering operation][powering()].}
 #' }
 #' @return
-#'  A [`CompositionMatrix-class`] object or a [`numeric`] vector (same as `e1`).
+#'  A [`CompositionMatrix-class`] object or a [`numeric`] vector (same as `x`).
 #' @example inst/examples/ex-arith.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -83,6 +82,20 @@ setGeneric(
 #' @name arithmetic
 #' @rdname arithmetic
 NULL
+
+#' @rdname arithmetic
+#' @aliases `%perturbe%`-method
+setGeneric(
+  name = "%perturbe%",
+  def = function(x, y) standardGeneric("%perturbe%")
+)
+
+#' @rdname arithmetic
+#' @aliases `%power%`-method
+setGeneric(
+  name = "%power%",
+  def = function(x, y) standardGeneric("%power%")
+)
 
 #' Closure Operation
 #'

@@ -28,32 +28,18 @@ setMethod(
 # Perturbation =================================================================
 #' @export
 #' @rdname arithmetic
-#' @aliases `+`,CompositionMatrix,CompositionMatrix-method
+#' @aliases `%perturbe%`,CompositionMatrix,CompositionMatrix-method
 setMethod(
-  f = "+",
-  signature = c(e1 = "CompositionMatrix", e2 = "CompositionMatrix"),
-  definition = function(e1, e2) {
-    arkhe::assert_dimensions(e2, dim(e1))
-    z <- e1 * e2
+  f = "%perturbe%",
+  signature = c(x = "CompositionMatrix", y = "CompositionMatrix"),
+  definition = function(x, y) {
+    arkhe::assert_dimensions(y, dim(x))
+    if (all(x <= 0)) x <- 1 / x
+    if (all(y <= 0)) y <- 1 / y
+    z <- x * y
     z <- as_composition(z)
-    set_samples(z) <- get_samples(e1)
-    set_groups(z) <- get_groups(e1)
-    z
-  }
-)
-
-#' @export
-#' @rdname arithmetic
-#' @aliases `-`,CompositionMatrix,CompositionMatrix-method
-setMethod(
-  f = "-",
-  signature = c(e1 = "CompositionMatrix", e2 = "CompositionMatrix"),
-  definition = function(e1, e2) {
-    arkhe::assert_dimensions(e2, dim(e1))
-    z <- e1 / e2
-    z <- as_composition(z)
-    set_samples(z) <- get_samples(e1)
-    set_groups(z) <- get_groups(e1)
+    set_samples(z) <- get_samples(x)
+    set_groups(z) <- get_groups(x)
     z
   }
 )
@@ -77,7 +63,7 @@ setMethod(
   f = "perturbation",
   signature = c(x = "CompositionMatrix", y = "numeric"),
   definition = function(x, y) {
-    x + as_composition(y)
+    x %perturbe% as_composition(y)
   }
 )
 
@@ -88,35 +74,35 @@ setMethod(
   f = "perturbation",
   signature = c(x = "CompositionMatrix", y = "matrix"),
   definition = function(x, y) {
-    x + as_composition(y)
+    x %perturbe% as_composition(y)
   }
 )
 
 # Powering =====================================================================
 #' @export
 #' @rdname arithmetic
-#' @aliases `*`,CompositionMatrix,numeric-method
+#' @aliases `%power%`,CompositionMatrix,numeric-method
 setMethod(
-  f = "*",
-  signature = c(e1 = "CompositionMatrix", e2 = "numeric"),
-  definition = function(e1, e2) {
-    arkhe::assert_length(e2, 1L)
-    z <- e1 ^ e2
+  f = "%power%",
+  signature = c(x = "CompositionMatrix", y = "numeric"),
+  definition = function(x, y) {
+    arkhe::assert_length(y, 1L)
+    z <- x ^ y
     z <- as_composition(z)
-    set_samples(z) <- get_samples(e1)
-    set_groups(z) <- get_groups(e1)
+    set_samples(z) <- get_samples(x)
+    set_groups(z) <- get_groups(x)
     z
   }
 )
 
 #' @export
 #' @rdname arithmetic
-#' @aliases `*`,numeric,CompositionMatrix-method
+#' @aliases `%power%`,numeric,CompositionMatrix-method
 setMethod(
-  f = "*",
-  signature = c(e1 = "numeric", e2 = "CompositionMatrix"),
-  definition = function(e1, e2) {
-    methods::callGeneric(e1 = e2, e2 = e1)
+  f = "%power%",
+  signature = c(x = "numeric", y = "CompositionMatrix"),
+  definition = function(x, y) {
+    methods::callGeneric(x = y, y = x)
   }
 )
 
@@ -139,7 +125,7 @@ setMethod(
   f = "powering",
   signature = c(x = "CompositionMatrix", a = "numeric"),
   definition = function(x, a) {
-    x * a
+    x %power% a
   }
 )
 

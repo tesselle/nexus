@@ -3,40 +3,43 @@
 \docType{methods}
 \name{arithmetic}
 \alias{arithmetic}
-\alias{+,CompositionMatrix,CompositionMatrix-method}
-\alias{`+`,CompositionMatrix,CompositionMatrix-method}
-\alias{-,CompositionMatrix,CompositionMatrix-method}
-\alias{`-`,CompositionMatrix,CompositionMatrix-method}
-\alias{*,CompositionMatrix,numeric-method}
-\alias{`*`,CompositionMatrix,numeric-method}
-\alias{*,numeric,CompositionMatrix-method}
-\alias{`*`,numeric,CompositionMatrix-method}
+\alias{\%perturbe\%}
+\alias{`\%perturbe\%`-method}
+\alias{\%power\%}
+\alias{`\%power\%`-method}
+\alias{\%perturbe\%,CompositionMatrix,CompositionMatrix-method}
+\alias{`\%perturbe\%`,CompositionMatrix,CompositionMatrix-method}
+\alias{\%power\%,CompositionMatrix,numeric-method}
+\alias{`\%power\%`,CompositionMatrix,numeric-method}
+\alias{\%power\%,numeric,CompositionMatrix-method}
+\alias{`\%power\%`,numeric,CompositionMatrix-method}
 \title{Operations in the Simplex}
 \usage{
-\S4method{+}{CompositionMatrix,CompositionMatrix}(e1, e2)
+x \%perturbe\% y
 
-\S4method{-}{CompositionMatrix,CompositionMatrix}(e1, e2)
+x \%power\% y
 
-\S4method{*}{CompositionMatrix,numeric}(e1, e2)
+\S4method{\%perturbe\%}{CompositionMatrix,CompositionMatrix}(x, y)
 
-\S4method{*}{numeric,CompositionMatrix}(e1, e2)
+\S4method{\%power\%}{CompositionMatrix,numeric}(x, y)
+
+\S4method{\%power\%}{numeric,CompositionMatrix}(x, y)
 }
 \arguments{
-\item{e1}{A \code{\linkS4class{CompositionMatrix}} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{e2}{A \code{\linkS4class{CompositionMatrix}} object or a \code{\link{numeric}} vector.}
+\item{y}{A \code{\linkS4class{CompositionMatrix}} object or a \code{\link{numeric}} vector.}
 }
 \value{
-A \code{\linkS4class{CompositionMatrix}} object or a \code{\link{numeric}} vector (same as \code{e1}).
+A \code{\linkS4class{CompositionMatrix}} object or a \code{\link{numeric}} vector (same as \code{x}).
 }
 \description{
 Operators performing operations in the simplex.
 }
 \details{
 \describe{
-\item{\code{+}}{\link[=perturbation]{Perturbation operation}.}
-\item{\code{-}}{\link[=perturbation]{Perturbation operation}.}
-\item{\code{*}}{\link[=powering]{Powering operation}.}
+\item{\verb{\%perturbe\%}}{\link[=perturbation]{Perturbation operation}.}
+\item{\verb{\%power\%}}{\link[=powering]{Powering operation}.}
 }
 }
 \examples{
