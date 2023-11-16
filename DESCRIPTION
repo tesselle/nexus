@@ -7,7 +7,9 @@ Authors@R: c(
     person("Anne", "Philippe", , "anne.philippe@univ-nantes.fr", role = "aut",
            comment = c(ORCID = "0000-0002-5331-5087")),
     person("Brice", "Lebrun", , "brice.lebrun@u-bordeaux-montaigne.fr", role = "ctb",
-           comment = c(ORCID = "0000-0001-7503-8685"))
+           comment = c(ORCID = "0000-0001-7503-8685")),
+    person("Université Bordeaux Montaigne", role = "fnd"),
+    person("CNRS", role = "fnd")
   )
 Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: Exploration and analysis of compositional data in the
