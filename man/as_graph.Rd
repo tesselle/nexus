@@ -57,7 +57,8 @@ plot(plr_graph)
 \seealso{
 Other plot methods: 
 \code{\link{barplot}()},
-\code{\link{plot_logratio}}
+\code{\link{plot_logratio}},
+\code{\link{plot}()}
 }
 \author{
 N. Frerebeau

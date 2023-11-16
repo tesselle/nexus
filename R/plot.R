@@ -4,6 +4,18 @@ NULL
 
 # CompositionMatrix ============================================================
 #' @export
+#' @method plot CompositionMatrix
+plot.CompositionMatrix <- function(x, ..., margin = NULL) {
+  isopleuros::ternary_pairs(x, margin = margin, ...)
+  invisible(x)
+}
+
+#' @export
+#' @rdname plot
+#' @aliases plot,CompositionMatrix-method
+setMethod("plot", c(x = "CompositionMatrix"), plot.CompositionMatrix)
+
+#' @export
 #' @method barplot CompositionMatrix
 barplot.CompositionMatrix <- function(height, ...,
                                       order = NULL, decreasing = FALSE,

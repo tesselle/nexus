@@ -90,7 +90,8 @@ plot(clr, flip = TRUE)
 \seealso{
 Other plot methods: 
 \code{\link{as_graph}()},
-\code{\link{barplot}()}
+\code{\link{barplot}()},
+\code{\link{plot}()}
 }
 \author{
 N. Frerebeau

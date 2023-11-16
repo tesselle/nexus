@@ -77,7 +77,8 @@ barplot(coda, order = 1, horiz = FALSE, main = "Kommos Ceramics")
 \seealso{
 Other plot methods: 
 \code{\link{as_graph}()},
-\code{\link{plot_logratio}}
+\code{\link{plot_logratio}},
+\code{\link{plot}()}
 }
 \author{
 N. Frerebeau

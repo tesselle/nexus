@@ -27,6 +27,7 @@ Imports:
     dimensio (>= 0.4.0),
     graphics,
     grDevices,
+    isopleuros (>= 1.0.0),
     methods,
     MASS,
     stats,
@@ -34,7 +35,6 @@ Imports:
 Suggests: 
     folio,
     igraph,
-    isopleuros,
     knitr,
     rmarkdown,
     rsvg,

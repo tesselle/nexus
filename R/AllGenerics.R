@@ -808,6 +808,23 @@ NULL
 #' @rdname barplot
 NULL
 
+#' Plot Compositional Data
+#'
+#' Displays a matrix of ternary plots.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @inheritParams isopleuros::ternary_pairs
+#' @return
+#'  `plot()` is called for its side-effects: is results in a graphic being
+#'  displayed (invisibly return `x`).
+#' @seealso [isopleuros::ternary_pairs()], [isopleuros::ternary_plot()]
+#' @example inst/examples/ex-plot.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family plot methods
+#' @name plot
+#' @rdname plot
+NULL
+
 #' Plot Log-Ratios
 #'
 #' Displays a density plot.
