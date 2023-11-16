@@ -64,6 +64,11 @@ counts <- as_amounts(coda)
 all.equal(hongite, as.data.frame(counts))
 ```
 
+```{r plot, fig.width=7, fig.height=5, out.width='100%'}
+## Ternary plots
+plot(coda)
+```
+
 ```{r barplot, fig.width=7, fig.height=5, out.width='100%'}
 ## Compositional bar plot
 barplot(coda, order = "A")
@@ -140,12 +145,22 @@ get_samples(Y)
 
 Note that the presence of repeated measurements may affect some calculations (read the documentation carefully).
 
-## Log-ratio transformations
+# Log-ratio transformations
 
-The amount of every part is limited to the whole. The absolute amount of the whole is noninformative since it is typically due to artifacts on the measurement procedure. Thus only relative changes are relevant. If the relative amount of one part increases, the amounts of other parts must decrease, introducing spurious anticorrelation.
+The package provides the following transformations: centered log ratio [*CLR*, @aitchison1986], additive log ratio [*ALR*, @aitchison1986], isometric log ratio [*ILR*, @egozcue2003] and pivot log-ratio [*PLR*, @hron2017].
 
-# Use cases
-## Ceramic compositions
+```{r transform, fig.width=7, fig.height=8, out.width='100%'}
+## CLR
+clr <- transform_clr(coda)
+head(clr)
+
+plot(clr)
+
+back <- transform_inverse(clr)
+head(back)
+```
+
+# Multivariate methods
 
 ```{r ceramics}
 ## Data from Day et al. 2011
@@ -166,14 +181,13 @@ set_groups(coda) <- kommos$type
 barplot(coda, order = "Ca")
 ```
 
-```{r ceramics-clr, fig.width=7, fig.height=8, out.width='100%'}
-## CLR
-clr <- transform_clr(coda)
-plot(clr, border = c("#EE7733", "#0077BB", "#33BBEE", "#EE3377"))
-```
+## Principle Component Analysis
 
 ```{r ceramics-pca, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
 library(dimensio)
+
+## CLR
+clr <- transform_clr(coda)
 
 ## PCA
 clr_pca <- pca(clr, scale = FALSE)
@@ -183,6 +197,18 @@ viz_individuals(clr_pca, highlight = get_groups(coda), pch = 16,
 viz_variables(clr_pca)
 ```
 
-## Slag inclusions
+## MANOVA
+
+```{r ceramics-manova}
+fit <- manova(transform_ilr(coda) ~ get_groups(coda))
+summary(fit)
+```
+
+The MANOVA results suggest that there are statistically significant differences between groups.
+
+```{r ceramics-lda, fig.width=7, fig.height=7, out.width='100%'}
+discr <- MASS::lda(transform_ilr(coda), grouping = get_groups(coda))
+plot(discr)
+```
 
 # References
