@@ -2,9 +2,6 @@ url: https://packages.tesselle.org/nexus
 
 template:
   package: tekton
-  opengraph:
-    twitter:
-      creator: "@nfrerebeau"
 
 reference:
 - title: Compositional Data
