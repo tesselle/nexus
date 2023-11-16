@@ -116,10 +116,7 @@ expect_equivalent(as_amounts(sub), mtx[, 1:3])
 mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 5)
 cts <- as_composition(mtx)
 
-expect_identical(get_totals(cts[1:5, , drop = FALSE]),
-                 get_totals(cts)[1:5])
-expect_identical(get_totals(cts[, 1:3, drop = FALSE]),
-                 get_totals(cts) * rowSums(cts[, 1:3]))
+expect_identical(get_totals(cts[1:5, , drop = FALSE]), get_totals(cts)[1:5])
 
 set_groups(cts) <- rep(c("A", "B"), each = 10)
 set_samples(cts) <- rep(c("X", "Y"), times = 10)

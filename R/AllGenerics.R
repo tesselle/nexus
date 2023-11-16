@@ -612,6 +612,25 @@ NULL
 #' @rdname mean
 NULL
 
+#' Marginal Compositions
+#'
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param parts An [`integer`] or a [`character`] vector specifying the columns
+#'  to be selected.
+#' @param name A [`character`] string giving the name of the amalgamation
+#'  column.
+#' @param ... Currently not used.
+#' @return A [`CompositionMatrix-class`] object.
+#' @example inst/examples/ex-margin.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @aliases margin-method
+setGeneric(
+  name = "margin",
+  def = function(x, ...) standardGeneric("margin")
+)
+
 #' Metric Variance and Standard Deviation
 #'
 #' @description

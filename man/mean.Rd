@@ -48,6 +48,7 @@ Other statistics:
 \code{\link{covariance}()},
 \code{\link{dist}()},
 \code{\link{mahalanobis}()},
+\code{\link{margin}()},
 \code{\link{spread}},
 \code{\link{variation}()}
 }

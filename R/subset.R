@@ -25,11 +25,11 @@ NULL
   if (drop) return(z)
 
   ## /!\ Subcomposition /!\
-  if (ncol(z) < ncol(x)) {
-    tot <- rowSums(z, na.rm = TRUE)
-    totals <- totals * tot
-    z <- z / tot
-  }
+  # if (ncol(z) < ncol(x)) {
+  #   tot <- rowSums(z, na.rm = TRUE)
+  #   totals <- totals * tot
+  #   z <- z / tot
+  # }
 
   methods::initialize(x, z, codes = codes, samples = samples, groups = groups,
                       totals = totals)

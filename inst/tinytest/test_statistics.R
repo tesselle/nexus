@@ -1,6 +1,9 @@
 data("hongite")
 coda <- as_composition(hongite)
 
+# Margin =======================================================================
+expect_equal_to_reference(margin(coda, parts = c("B", "D")), file = "_snaps/margin.rds")
+
 # Metric variance ==============================================================
 expect_equal(round(mvar(coda), 5), 1.69132)
 

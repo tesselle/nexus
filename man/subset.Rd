@@ -11,7 +11,9 @@
 \alias{[,CompositionMatrix,missing,index,logical-method}
 \alias{[,CompositionMatrix,index,index,missing-method}
 \alias{[,CompositionMatrix,index,index,logical-method}
+\alias{[<-,CompositionMatrix,ANY,ANY-method}
 \alias{[<-,CompositionMatrix-method}
+\alias{[[<-,CompositionMatrix,ANY,ANY-method}
 \alias{[[<-,CompositionMatrix-method}
 \title{Extract or Replace Parts of an Object}
 \usage{
@@ -31,9 +33,9 @@
 
 \S4method{[}{CompositionMatrix,index,index,logical}(x, i, j, ..., drop = TRUE)
 
-\S4method{[}{CompositionMatrix}(x, i, j, ...) <- value
+\S4method{[}{CompositionMatrix,ANY,ANY}(x, i, j, ...) <- value
 
-\S4method{[[}{CompositionMatrix}(x, i, j, ...) <- value
+\S4method{[[}{CompositionMatrix,ANY,ANY}(x, i, j, ...) <- value
 }
 \arguments{
 \item{x}{An object from which to extract element(s) or in which to replace
