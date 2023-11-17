@@ -60,6 +60,7 @@ Collate:
     'pca.R'
     'plot.R'
     'reexport.R'
+    'replace.R'
     'show.R'
     'simplex.R'
     'statistics.R'

@@ -19,6 +19,9 @@ reference:
 - title: Visualization
   contents:
   - has_concept("plot methods")
+- title: Missing Values
+  contents:
+  - has_concept("imputation methods")
 - title: Multivariate Analysis
   contents:
   - has_concept("multivariate analysis")
