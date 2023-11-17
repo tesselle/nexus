@@ -231,10 +231,10 @@ setMethod(
 ## CLR -------------------------------------------------------------------------
 #' @export
 #' @rdname transform_inverse
-#' @aliases transform_inverse,CLR-method
+#' @aliases transform_inverse,CLR,missing-method
 setMethod(
   f = "transform_inverse",
-  signature = c(object = "CLR"),
+  signature = c(object = "CLR", origin = "missing"),
   definition = function(object) {
     y <- methods::S3Part(object, strictS3 = TRUE) # Drop slots
     y <- exp(y)
@@ -253,10 +253,10 @@ setMethod(
 ## ALR -------------------------------------------------------------------------
 #' @export
 #' @rdname transform_inverse
-#' @aliases transform_inverse,ALR-method
+#' @aliases transform_inverse,ALR,missing-method
 setMethod(
   f = "transform_inverse",
-  signature = c(object = "ALR"),
+  signature = c(object = "ALR", origin = "missing"),
   definition = function(object) {
     y <- exp(object)
     y <- y / (1 + rowSums(y))
@@ -278,10 +278,10 @@ setMethod(
 ## ILR -------------------------------------------------------------------------
 #' @export
 #' @rdname transform_inverse
-#' @aliases transform_inverse,ILR-method
+#' @aliases transform_inverse,ILR,missing-method
 setMethod(
   f = "transform_inverse",
-  signature = c(object = "ILR"),
+  signature = c(object = "ILR", origin = "missing"),
   definition = function(object) {
     y <- tcrossprod(object, object@base)
     y <- exp(y)
@@ -297,5 +297,23 @@ setMethod(
       samples = object@samples,
       groups = object@groups
     )
+  }
+)
+
+#' @export
+#' @rdname transform_inverse
+#' @aliases transform_inverse,matrix,ILR-method
+setMethod(
+  f = "transform_inverse",
+  signature = c(object = "matrix", origin = "ILR"),
+  definition = function(object, origin) {
+    y <- tcrossprod(object, origin@base)
+    y <- exp(y)
+    y <- y / rowSums(y)
+
+    dimnames(y) <- list(rownames(object), origin@parts)
+    y <- y[, origin@order]
+
+    y
   }
 )

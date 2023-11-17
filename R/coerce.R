@@ -54,23 +54,32 @@ setMethod(
     ## Samples
     spl <- rownames(from)
     if (is.null(samples) && auto) samples <- index("^sample[s]{0,1}$", cols)
-    if (length(samples) == 1) spl <- as.character(from[[samples]])
+    if (length(samples) == 1) {
+      if (is.character(samples)) samples <- match(samples, cols)
+      spl <- as.character(from[[samples]])
+    }
     n_spl <- sum(duplicated(spl))
 
     ## Codes
     lab <- rownames(from)
     if (is.null(codes) && auto) codes <- index("^code[s]{0,1}$", cols)
-    if (length(codes) == 1) lab <- as.character(from[[codes]])
+    if (length(codes) == 1) {
+      if (is.character(codes)) codes <- match(codes, cols)
+      lab <- as.character(from[[codes]])
+    }
     n_lab <- length(lab)
 
     ## Groups
     grp <- empty
     if (is.null(groups) && auto) groups <- index("^group[s]{0,1}$", cols)
-    if (length(groups) == 1) grp <- as.character(from[[groups]])
+    if (length(groups) == 1) {
+      if (is.character(groups)) groups <- match(groups, cols)
+      grp <- as.character(from[[groups]])
+    }
     n_grp <- length(unique(grp[!is.na(grp)]))
 
     ## Drop extra columns (if any)
-    drop <- c(samples, groups)
+    drop <- c(codes, samples, groups)
     data <- if (length(drop) > 0) from[, -drop, drop = FALSE] else from
 
     ## Print messages

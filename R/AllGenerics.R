@@ -545,7 +545,9 @@ setGeneric(
 #' Inverse Log-Ratio Transformation
 #'
 #' Computes inverse log-ratio transformations.
-#' @param object A [`CompositionMatrix-class`] object.
+#' @param object A [`LogRatio-class`] object.
+#' @param origin A [`LogRatio-class`] object to be used for the inverse
+#'  transformation.
 #' @param ... Currently not used.
 #' @return
 #'  A [`CompositionMatrix-class`] object.
@@ -570,8 +572,8 @@ setGeneric(
 #' @aliases transform_inverse-method
 setGeneric(
   name = "transform_inverse",
-  def = function(object, ...) standardGeneric("transform_inverse"),
-  valueClass = "CompositionMatrix"
+  def = function(object, origin, ...) standardGeneric("transform_inverse"),
+  valueClass = "matrix"
 )
 
 # Statistics ===================================================================

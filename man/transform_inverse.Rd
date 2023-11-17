@@ -4,21 +4,27 @@
 \name{transform_inverse}
 \alias{transform_inverse}
 \alias{transform_inverse-method}
-\alias{transform_inverse,CLR-method}
-\alias{transform_inverse,ALR-method}
-\alias{transform_inverse,ILR-method}
+\alias{transform_inverse,CLR,missing-method}
+\alias{transform_inverse,ALR,missing-method}
+\alias{transform_inverse,ILR,missing-method}
+\alias{transform_inverse,matrix,ILR-method}
 \title{Inverse Log-Ratio Transformation}
 \usage{
-transform_inverse(object, ...)
+transform_inverse(object, origin, ...)
 
-\S4method{transform_inverse}{CLR}(object)
+\S4method{transform_inverse}{CLR,missing}(object)
 
-\S4method{transform_inverse}{ALR}(object)
+\S4method{transform_inverse}{ALR,missing}(object)
 
-\S4method{transform_inverse}{ILR}(object)
+\S4method{transform_inverse}{ILR,missing}(object)
+
+\S4method{transform_inverse}{matrix,ILR}(object, origin)
 }
 \arguments{
-\item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
+\item{object}{A \code{\linkS4class{LogRatio}} object.}
+
+\item{origin}{A \code{\linkS4class{LogRatio}} object to be used for the inverse
+transformation.}
 
 \item{...}{Currently not used.}
 }
