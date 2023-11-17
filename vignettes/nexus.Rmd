@@ -184,12 +184,12 @@ barplot(coda, order = "Ca")
 ## Principle Component Analysis
 
 ```{r ceramics-pca, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
-library(dimensio)
-
 ## CLR
 clr <- transform_clr(coda)
 
 ## PCA
+library(dimensio)
+
 clr_pca <- pca(clr, scale = FALSE)
 
 viz_individuals(clr_pca, highlight = get_groups(coda), pch = 16, 
@@ -200,15 +200,25 @@ viz_variables(clr_pca)
 ## MANOVA
 
 ```{r ceramics-manova}
-fit <- manova(transform_ilr(coda) ~ get_groups(coda))
+## ILR
+ilr <- transform_ilr(coda)
+
+## MANOVA
+fit <- manova(ilr ~ get_groups(ilr))
 summary(fit)
 ```
 
 The MANOVA results suggest that there are statistically significant differences between groups.
 
+## Discriminant Analysis
+
 ```{r ceramics-lda, fig.width=7, fig.height=7, out.width='100%'}
-discr <- MASS::lda(transform_ilr(coda), grouping = get_groups(coda))
+## LDA
+discr <- MASS::lda(ilr, grouping = get_groups(ilr))
 plot(discr)
+
+## Back transform results
+transform_inverse(discr$means, origin = ilr)
 ```
 
 # References

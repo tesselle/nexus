@@ -22,12 +22,12 @@ reference:
 - title: Missing Values
   contents:
   - has_concept("imputation methods")
-- title: Multivariate Analysis
-  contents:
-  - has_concept("multivariate analysis")
 - title: Outlier Detection
   contents:
   - has_concept("outlier detection methods")
+- title: Multivariate Analysis
+  contents:
+  - has_concept("multivariate analysis")
 - title: Getters and Setters
   contents:
   - has_concept("mutators")

@@ -15,3 +15,7 @@ arkhe::remove_NA
 #' @importFrom arkhe remove_zero
 #' @export
 arkhe::remove_zero
+
+#' @importFrom dimensio pca
+#' @export
+dimensio::pca

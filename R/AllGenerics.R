@@ -928,7 +928,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family multivariate analysis
-#' @name pca
+#' @name pca_coda
 #' @rdname pca
 NULL
 

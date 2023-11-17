@@ -8,7 +8,7 @@ NULL
 setMethod(
   f = "pca",
   signature = c("CompositionMatrix"),
-  definition = function(object, center = TRUE, scale = TRUE, rank = NULL,
+  definition = function(object, center = TRUE, scale = FALSE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
     stop("You should not do that! Transform your data first.", call. = FALSE)
@@ -21,7 +21,7 @@ setMethod(
 setMethod(
   f = "pca",
   signature = c("LogRatio"),
-  definition = function(object, center = TRUE, scale = TRUE, rank = NULL,
+  definition = function(object, center = TRUE, scale = FALSE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
     z <- methods::callNextMethod()

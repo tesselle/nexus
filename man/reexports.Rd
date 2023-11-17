@@ -7,6 +7,7 @@
 \alias{replace_zero}
 \alias{remove_NA}
 \alias{remove_zero}
+\alias{pca}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -15,5 +16,7 @@ below to see their documentation.
 
 \describe{
   \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
+
+  \item{dimensio}{\code{\link[dimensio]{pca}}}
 }}
 
