@@ -10,7 +10,8 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/nexus/badge/main)](https://www.codefactor.io/repository/github/tesselle/nexus/overview/main)
 [![Dependencies](https://tinyverse.netlify.com/badge/nexus)](https://cran.r-project.org/package=nexus)
 
-<a href="https://tesselle.r-universe.dev" class="pkgdown-devel"><img
+<a href="https://tesselle.r-universe.dev/nexus"
+class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/nexus"
 alt="r-universe" /></a>
 
@@ -19,22 +20,28 @@ has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!-- badges: end -->
 
+## Overview
+
 Exploration and analysis of compositional data in the framework of
-Aitchison (1986). This package provides tools for chemical
-fingerprinting and source tracking of ancient materials.
+Aitchison (1986). **nexus** provides tools for chemical fingerprinting
+and source tracking of ancient materials.
+
+[**isopleuros**](https://packages.tesselle.org/isopleuros/) is a
+companion package to **nexus** that allows to create ternary plots.
 
 **Initial development is in progress.**
 
     To cite nexus in publications use:
 
-      Frerebeau N (2023). _nexus: Sourcing Archaeological Materials by
-      Chemical Composition_. Université Bordeaux Montaigne, Pessac, France.
-      R package version 0.0.0.9000, <https://packages.tesselle.org/nexus/>.
+      Frerebeau N, Philippe A (2023). _nexus: Sourcing Archaeological
+      Materials by Chemical Composition_. Université Bordeaux Montaigne,
+      Pessac, France. R package version 0.0.0.9000,
+      <https://packages.tesselle.org/nexus/>.
 
-    Une entrée BibTeX pour les utilisateurs LaTeX est
+    A BibTeX entry for LaTeX users is
 
       @Manual{,
-        author = {Nicolas Frerebeau},
+        author = {Nicolas Frerebeau and Anne Philippe},
         title = {{nexus: Sourcing Archaeological Materials by Chemical Composition}},
         year = {2023},
         organization = {Université Bordeaux Montaigne},
@@ -154,7 +161,7 @@ to this project, you agree to abide by its terms.
 Aitchison, J. 1986. *The Statistical Analysis of Compositional Data*.
 Monographs on Statistics and Applied Probability. Londres, UK ; New
 York, USA: Chapman and Hall.
-<http://dx.doi.org/10.1007/978-94-009-4109-0>.
+<https://doi.org/10.1007/978-94-009-4109-0>.
 
 </div>
 

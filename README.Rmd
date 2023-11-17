@@ -12,6 +12,7 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = NULL
 )
+Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 ```
 
 # nexus <img width=120px src="man/figures/logo.png" align="right" />
@@ -22,12 +23,16 @@ knitr::opts_chunk$set(
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/nexus/badge/main)](https://www.codefactor.io/repository/github/tesselle/nexus/overview/main)
 [![Dependencies](https://tinyverse.netlify.com/badge/nexus)](https://cran.r-project.org/package=nexus)
 
-[![r-universe](https://tesselle.r-universe.dev/badges/nexus)](https://tesselle.r-universe.dev){.pkgdown-devel}
+[![r-universe](https://tesselle.r-universe.dev/badges/nexus)](https://tesselle.r-universe.dev/nexus){.pkgdown-devel}
 
 [![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 <!-- badges: end -->
 
-Exploration and analysis of compositional data in the framework of @aitchison1986. This package provides tools for chemical fingerprinting and source tracking of ancient materials.
+## Overview
+
+Exploration and analysis of compositional data in the framework of @aitchison1986. **nexus** provides tools for chemical fingerprinting and source tracking of ancient materials.
+
+[**isopleuros**](https://packages.tesselle.org/isopleuros/) is a companion package to **nexus** that allows to create ternary plots.
 
 **Initial development is in progress.**
 
