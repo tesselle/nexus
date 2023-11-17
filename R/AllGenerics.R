@@ -935,15 +935,15 @@ NULL
 # Missign Values ===============================================================
 #' Zero-Replacement
 #'
-#' Multiplicative replacement of zeros in compositional data.
-#' @param x An \eqn{m \times p}{m x p} [`CompositionMatrix-class`] object.
-#' @param value A length-\eqn{p} [`numeric`] vector giving the detection limits
-#'  of each part (in \eqn{(0,1)}).
+#' Multiplicative replacement of zeros.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param value A [`numeric`] vector giving the detection limits of each part
+#'  (in \eqn{(0,1)}).
 #' @param delta A [`numeric`] vector specifying the fraction of the detection
 #'  limit to be used in replacement.
 #' @return
-#'  An \eqn{m \times p}{m x p} [`CompositionMatrix-class`] object, where all
-#'  zero values have been replaced.
+#'  An [`CompositionMatrix-class`] object, where all zero values have been
+#'  replaced.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
@@ -957,7 +957,28 @@ NULL
 #' @docType methods
 #' @family imputation methods
 #' @name zero
-#' @rdname zero
+#' @rdname replace_zero
+NULL
+
+#' Missing Values Replacement
+#'
+#' Multiplicative replacement of missing values.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param value A [`numeric`] vector giving the replacement values.
+#' @return
+#'  An [`CompositionMatrix-class`] object, where all missing values have been
+#'  replaced.
+#' @references
+#'  Martín-Fernández, J. A., Barceló-Vidal, C. & Pawlowsky-Glahn, V. (2003).
+#'  Dealing with Zeros and Missing Values in Compositional Data Sets Using
+#'  Nonparametric Imputation. *Mathematical Geology*, 35(3): 253-278.
+#'  \doi{10.1023/A:1023866030544}.
+#' @example inst/examples/ex-missing.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family imputation methods
+#' @name missing
+#' @rdname replace_NA
 NULL
 
 # Outliers =====================================================================

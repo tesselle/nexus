@@ -11,5 +11,5 @@ X <- data.frame(
 Y <- as_composition(X)
 
 ## Replace zeros
-Z <- replace_zero(Y, value = 0.02, delta = 2/3)
+Z <- replace_NA(Y, value = 0.2)
 Z

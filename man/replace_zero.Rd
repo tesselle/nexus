@@ -6,37 +6,39 @@
 \alias{replace_zero,CompositionMatrix-method}
 \title{Zero-Replacement}
 \usage{
-\S4method{replace_zero}{CompositionMatrix}(x, value = NULL, delta = 2/3)
+\S4method{replace_zero}{CompositionMatrix}(x, value, delta = 2/3)
 }
 \arguments{
-\item{x}{An \eqn{m \times p}{m x p} \code{\linkS4class{CompositionMatrix}} object.}
+\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{value}{A length-\eqn{p} \code{\link{numeric}} vector giving the detection limits
-of each part (in \eqn{(0,1)}).}
+\item{value}{A \code{\link{numeric}} vector giving the detection limits of each part
+(in \eqn{(0,1)}).}
 
 \item{delta}{A \code{\link{numeric}} vector specifying the fraction of the detection
 limit to be used in replacement.}
 }
 \value{
-An \eqn{m \times p}{m x p} \code{\linkS4class{CompositionMatrix}} object, where all
-zero values have been replaced.
+An \code{\linkS4class{CompositionMatrix}} object, where all zero values have been
+replaced.
 }
 \description{
-Multiplicative replacement of zeros in compositional data.
+Multiplicative replacement of zeros.
 }
 \examples{
-## Create a data.frame
+## Data from Martín-Fernández et al. 2003
 X <- data.frame(
-  Ca = c(7.72, 0, 3.11, 7.19, 7.41, 5, 0, 1, 4.51),
-  Fe = c(6.12, 5.88, 5.12, 0, 6.02, 0, 0, 5.28, 5.72),
-  Na = c(0.97, 1.59, 0, 0.86, 0.76, 0.51, 0.75, 0.52, 0.56)
+  X1 = c(0.0000, 0.1304, 0.1963),
+  X2 = c(0.1250, 0.3151, NA),
+  X3 = c(0.1237, NA, NA),
+  X4 = c(0.7253, 0.2002, 0.0819),
+  X5 = c(0.0260, 0.3543, 0.0114)
 )
 
 ## Coerce to a compositional matrix
 Y <- as_composition(X)
 
 ## Replace zeros
-Z <- replace_zero(Y, value = c(0.02, 0.1, 0.01), delta = 2/3)
+Z <- replace_zero(Y, value = 0.02, delta = 2/3)
 Z
 }
 \references{
@@ -47,6 +49,10 @@ Martín-Fernández, J. A., Barceló-Vidal, C. & Pawlowsky-Glahn, V. (2003).
 Dealing with Zeros and Missing Values in Compositional Data Sets Using
 Nonparametric Imputation. \emph{Mathematical Geology}, 35(3): 253-278.
 \doi{10.1023/A:1023866030544}.
+}
+\seealso{
+Other imputation methods: 
+\code{\link{missing}}
 }
 \author{
 N. Frerebeau
