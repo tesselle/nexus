@@ -26,6 +26,10 @@ A \code{\linkS4class{CLR}} object.
 \description{
 Computes CLR transformation.
 }
+\details{
+The CLR transformation computes the log of each part relative to the
+geometric mean of all parts.
+}
 \examples{
 ## Coerce to compositional data
 data("hongite")
@@ -63,6 +67,10 @@ London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
 
 Greenacre, M. J. (2019). \emph{Compositional Data Analysis in Practice}.
 Boca Raton: CRC Press.
+
+Greenacre, M. J. (2021). Compositional Data Analysis. \emph{Annual Review of
+Statistics and Its Application}, 8(1): 271-299.
+\doi{10.1146/annurev-statistics-042720-124436}.
 }
 \seealso{
 Other log-ratio transformations: 

@@ -33,10 +33,10 @@ coda <- as_composition(hongite)
 mean(coda)
 
 ## Metric variance
-mvar(coda)
+metric_var(coda)
 
 ## Metric standard deviation
-msd(coda)
+metric_sd(coda)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
@@ -49,7 +49,7 @@ Other statistics:
 \code{\link{dist}()},
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
-\code{\link{spread}},
+\code{\link{metric_var}()},
 \code{\link{variation}()}
 }
 \author{

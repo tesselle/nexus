@@ -60,13 +60,17 @@ Fišerová, E. & Hron, K. (2011). On the Interpretation of Orthonormal
 Coordinates for Compositional Data. \emph{Mathematical Geosciences}, 43(4),
 455‑468. \doi{10.1007/s11004-011-9333-x}.
 
+Greenacre, M. J. (2019). \emph{Compositional Data Analysis in Practice}.
+Boca Raton: CRC Press.
+
+Greenacre, M. J. (2021). Compositional Data Analysis. \emph{Annual Review of
+Statistics and Its Application}, 8(1): 271-299.
+\doi{10.1146/annurev-statistics-042720-124436}.
+
 Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. & Gardlo, A. (2017).
 Weighted Pivot Coordinates for Compositional Data and Their Application to
 Geochemical Mapping. \emph{Mathematical Geosciences}, 49(6), 797-814.
 \doi{10.1007/s11004-017-9684-z}.
-
-Greenacre, M. J. (2019). \emph{Compositional Data Analysis in Practice}.
-Boca Raton: CRC Press.
 }
 \seealso{
 Other log-ratio transformations: 

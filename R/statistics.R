@@ -98,31 +98,25 @@ gmean <- function(x, trim = 0, na.rm = FALSE) {
 
 # Metric variance ==============================================================
 #' @export
-#' @rdname spread
-#' @aliases mvar,CompositionMatrix-method
+#' @rdname metric_var
+#' @aliases metric_var,CompositionMatrix-method
 setMethod(
-  f = "mvar",
+  f = "metric_var",
   signature = c("CompositionMatrix"),
   definition = function(x) {
-    d <- apply(
-      X = x,
-      MARGIN = 1,
-      FUN = function(x, xbar) norm(x / xbar),
-      xbar = mean(x)
-    )
-    (1 / (nrow(x) - 1)) * sum(d^2)
+    sum(diag(covariance(x, center = TRUE)))
   }
 )
 
 # Metric standard deviation ====================================================
 #' @export
-#' @rdname spread
-#' @aliases msd,CompositionMatrix-method
+#' @rdname metric_var
+#' @aliases metric_sd,CompositionMatrix-method
 setMethod(
-  f = "msd",
+  f = "metric_sd",
   signature = c("CompositionMatrix"),
   definition = function(x) {
-    sqrt((1 / (ncol(x) - 1)) * mvar(x))
+    sqrt((1 / (ncol(x) - 1)) * metric_var(x))
   }
 )
 
@@ -164,7 +158,7 @@ setMethod(
 setMethod(
   f = "covariance",
   signature = c(x = "CompositionMatrix"),
-  definition = function(x, center = FALSE, method = "pearson") {
+  definition = function(x, center = TRUE, method = "pearson") {
     x <- if (center) transform_clr(x) else transform_alr(x)
     methods::callGeneric(x = x, method = method)
   }

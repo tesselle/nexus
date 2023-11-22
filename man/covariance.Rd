@@ -11,7 +11,7 @@
 \usage{
 covariance(x, ...)
 
-\S4method{covariance}{CompositionMatrix}(x, center = FALSE, method = "pearson")
+\S4method{covariance}{CompositionMatrix}(x, center = TRUE, method = "pearson")
 
 \S4method{covariance}{ALR}(x, method = "pearson")
 
@@ -70,7 +70,7 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},
-\code{\link{spread}},
+\code{\link{metric_var}()},
 \code{\link{variation}()}
 }
 \author{

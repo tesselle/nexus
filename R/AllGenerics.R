@@ -414,6 +414,10 @@ NULL
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
+#'
+#'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
+#'  Statistics and Its Application*, 8(1): 271-299.
+#'  \doi{10.1146/annurev-statistics-042720-124436}.
 #' @example inst/examples/ex-transform.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -434,6 +438,9 @@ setGeneric(
 #'  `FALSE` (the default), equally-weighted parts are used. Alternatively, a
 #'  positive [`numeric`] vector of weights can be specified.
 #' @param ... Currently not used.
+#' @details
+#'  The CLR transformation computes the log of each part relative to the
+#'  geometric mean of all parts.
 #' @return
 #'  A [`CLR-class`] object.
 #' @references
@@ -442,6 +449,10 @@ setGeneric(
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
+#'
+#'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
+#'  Statistics and Its Application*, 8(1): 271-299.
+#'  \doi{10.1146/annurev-statistics-042720-124436}.
 #' @example inst/examples/ex-transform.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -460,6 +471,9 @@ setGeneric(
 #' @param object A [`CompositionMatrix-class`] object.
 #' @param j An [`integer`] giving the index of the rationing part (denominator).
 #' @param ... Currently not used.
+#' @details
+#'  The ALR transformation is the logratio of a pair of parts with respect to a
+#'  fixed part.
 #' @return
 #'  An [`ALR-class`] object.
 #' @references
@@ -468,6 +482,10 @@ setGeneric(
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
+#'
+#'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
+#'  Statistics and Its Application*, 8(1): 271-299.
+#'  \doi{10.1146/annurev-statistics-042720-124436}.
 #' @example inst/examples/ex-transform.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -498,6 +516,10 @@ setGeneric(
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
+#'
+#'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
+#'  Statistics and Its Application*, 8(1): 271-299.
+#'  \doi{10.1146/annurev-statistics-042720-124436}.
 #' @example inst/examples/ex-transform.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -523,13 +545,17 @@ setGeneric(
 #'  Coordinates for Compositional Data. *Mathematical Geosciences*, 43(4),
 #'  455‑468. \doi{10.1007/s11004-011-9333-x}.
 #'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#'
+#'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
+#'  Statistics and Its Application*, 8(1): 271-299.
+#'  \doi{10.1146/annurev-statistics-042720-124436}.
+#'
 #'  Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. & Gardlo, A. (2017).
 #'  Weighted Pivot Coordinates for Compositional Data and Their Application to
 #'  Geochemical Mapping. *Mathematical Geosciences*, 49(6), 797-814.
 #'  \doi{10.1007/s11004-017-9684-z}.
-#'
-#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
-#'  Boca Raton: CRC Press.
 #' @example inst/examples/ex-transform.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -636,35 +662,42 @@ setGeneric(
 #' Metric Variance and Standard Deviation
 #'
 #' @description
-#'  * `mvar()` computes the metric variance, i.e. a global measure of spread.
-#'  * `msd()` computes the metric standard deviation.
+#'  * `metric_var()` computes the metric variance (or total variance), i.e. a
+#'    global measure of spread.
+#'  * `metric_sd()` computes the metric standard deviation.
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @return A [`numeric`] vector.
+#' @details
+#'  The metric variance is the average of the [CLR][transform_clr()] variances.
+#'
 #' @references
-#'  Pawlowsky-Glahn, V. and Egozcue, J. J. (2001). Geometric Approach to
+#'  Boogaart, K. G. van den & Tolosana-Delgado, R. (2013). *Analyzing
+#'  Compositional Data with R*. Berlin Heidelberg: Springer-Verlag.
+#'  \doi{10.1007/978-3-642-36809-7}.
+#'
+#'  Hron, K. & Kubáček. L. (2011). Statistical Properties of the Total Variation
+#'  Estimator for Compositional Data. *Metrika*, 74 (2): 221-230.
+#'  \doi{10.1007/s00184-010-0299-3}.
+#'
+#'  Pawlowsky-Glahn, V. & Egozcue, J. J. (2001). Geometric Approach to
 #'  Statistical Analysis on the Simplex. *Stochastic Environmental Research and
 #'  Risk Assessment*, 15(5): 384-398. \doi{10.1007/s004770100077}.
 #' @example inst/examples/ex-mean.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family statistics
-#' @name spread
-#' @rdname spread
-NULL
-
-#' @rdname spread
-#' @aliases mvar-method
+#' @aliases metric_var-method
 setGeneric(
-  name = "mvar",
-  def = function(x, ...) standardGeneric("mvar")
+  name = "metric_var",
+  def = function(x, ...) standardGeneric("metric_var")
 )
 
-#' @rdname spread
-#' @aliases msd-method
+#' @rdname metric_var
+#' @aliases metric_sd-method
 setGeneric(
-  name = "msd",
-  def = function(x, ...) standardGeneric("msd")
+  name = "metric_sd",
+  def = function(x, ...) standardGeneric("metric_sd")
 )
 
 #' Covariance Matrix

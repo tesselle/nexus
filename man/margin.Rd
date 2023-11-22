@@ -44,7 +44,7 @@ Other statistics:
 \code{\link{dist}()},
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},
-\code{\link{spread}},
+\code{\link{metric_var}()},
 \code{\link{variation}()}
 }
 \author{
