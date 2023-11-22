@@ -1143,3 +1143,40 @@ setGeneric(
 #' @name plot_outliers
 #' @rdname plot_outliers
 NULL
+
+# Sourcing =====================================================================
+#' Mixed-Mode Analysis
+#'
+#' Mixes chemical and petrographic matrices.
+#' @param x A [`matrix`] of chemical compositional data or a
+#'  [dissimilarity matrix][stats::dist] for these chemical compositional data.
+#' @param y A [`matrix`] of coded mineralogical binary data or a
+#'  [dissimilarity matrix][stats::dist] for these mineralogical data.
+#' @param lambda A length-one [`numeric`] vector giving a weighting factor.
+#' @param mu A length-one [`numeric`] vector that lies between 0 and 1 giving
+#'  the mixing parameter.
+#' @param ... Extra parameters to be passed to [cluster::daisy()].
+#' @return
+#'  A [stats::dist] object.
+#' @references
+#'  Baxter, M. J., Beardah, C. C., Papageorgiou, I., Cau, M. A., Day, P. M. &
+#'  Kilikoglou, V. (2008). On Statistical Approaches to the Study of Ceramic
+#'  Artefacts Using Geochemical and Petrographic Data. *Archaeometry*, 50(1):
+#'  142-157. \doi{10.1111/j.1475-4754.2007.00359.x}.
+#'
+#'  Beardah, C. C., Baxter, M. J., Papageorgiou, I. & Cau, M. A. (2003).
+#'  "Mixed-Mode" Approaches to the Grouping of Ceramic Artefacts Using S-Plus.
+#'  In M. Doerr and A. Sarris, *The Digital Heritage of Archaeology*, p. 261-266.
+#'  Athens: Archive of Monuments and Publications, Hellenic Ministry of Culture.
+#' @note
+#'  **Experimental.**
+#' @example inst/examples/ex-mix.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family sourcing methods
+#' @aliases mix-method
+setGeneric(
+  name = "mix",
+  def = function(x, y, ...) standardGeneric("mix"),
+  valueClass = "dist"
+)

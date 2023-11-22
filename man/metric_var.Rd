@@ -67,7 +67,7 @@ Risk Assessment}, 15(5): 384-398. \doi{10.1007/s004770100077}.
 Other statistics: 
 \code{\link{aggregate}()},
 \code{\link{covariance}()},
-\code{\link{dist}()},
+\code{\link{dist}},
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},

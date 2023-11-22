@@ -33,6 +33,7 @@ Imports:
     stats,
     utils
 Suggests: 
+    cluster,
     folio,
     igraph,
     knitr,
@@ -53,6 +54,7 @@ Collate:
     'coerce.R'
     'data.R'
     'graph.R'
+    'mix.R'
     'mutators.R'
     'nexus-internal.R'
     'nexus-package.R'

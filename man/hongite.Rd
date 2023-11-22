@@ -24,5 +24,10 @@ Mineral compositions of 25 rock specimens of hongite type.
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
 London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
 }
+\seealso{
+Other datasets: 
+\code{\link{chemistry}},
+\code{\link{petrography}}
+}
 \concept{datasets}
 \keyword{datasets}

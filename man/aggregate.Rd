@@ -47,7 +47,7 @@ aggregate(Y, by = "groups", FUN = metric_var)
 \seealso{
 Other statistics: 
 \code{\link{covariance}()},
-\code{\link{dist}()},
+\code{\link{dist}},
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},

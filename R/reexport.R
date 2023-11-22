@@ -19,3 +19,7 @@ arkhe::remove_zero
 #' @importFrom dimensio pca
 #' @export
 dimensio::pca
+
+#' @importFrom dimensio cdt
+#' @export
+dimensio::cdt

@@ -41,7 +41,7 @@
 "_PACKAGE"
 
 #' @import arkhe
-#' @importMethodsFrom dimensio pca
+#' @importMethodsFrom dimensio pca cdt
 #' @importMethodsFrom isopleuros ternary_pairs
 #' @importFrom grDevices hcl.colors
 #' @importFrom methods as as<- callGeneric callNextMethod

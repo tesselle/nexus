@@ -1,6 +1,9 @@
 # CLASSES DEFINITION AND INITIALIZATION
 NULL
 
+# Register S3 classes ==========================================================
+setOldClass("dist")
+
 ## Index vectors
 ## (for 'i' in x[i], x[i, ], x[, i], etc.)
 setClassUnion("index", members = c("logical", "numeric", "character"))

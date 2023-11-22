@@ -45,7 +45,7 @@ Compositional Data with R}. Berlin Heidelberg: Springer-Verlag.
 Other statistics: 
 \code{\link{aggregate}()},
 \code{\link{covariance}()},
-\code{\link{dist}()},
+\code{\link{dist}},
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},

@@ -41,7 +41,7 @@ head(mar)
 Other statistics: 
 \code{\link{aggregate}()},
 \code{\link{covariance}()},
-\code{\link{dist}()},
+\code{\link{dist}},
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},
 \code{\link{metric_var}()},

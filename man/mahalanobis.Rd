@@ -50,7 +50,7 @@ mahalanobis(coda)
 Other statistics: 
 \code{\link{aggregate}()},
 \code{\link{covariance}()},
-\code{\link{dist}()},
+\code{\link{dist}},
 \code{\link{margin}()},
 \code{\link{mean}()},
 \code{\link{metric_var}()},
