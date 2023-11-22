@@ -3,11 +3,10 @@
 \docType{methods}
 \name{plot}
 \alias{plot}
-\alias{plot,CompositionMatrix,ANY-method}
-\alias{plot,CompositionMatrix-method}
+\alias{plot,CompositionMatrix,missing-method}
 \title{Plot Compositional Data}
 \usage{
-\S4method{plot}{CompositionMatrix,ANY}(x, ..., margin = NULL)
+\S4method{plot}{CompositionMatrix,missing}(x, ..., margin = NULL)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}

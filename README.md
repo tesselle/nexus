@@ -24,7 +24,17 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 
 Exploration and analysis of compositional data in the framework of
 Aitchison (1986). **nexus** provides tools for chemical fingerprinting
-and source tracking of ancient materials.
+and source tracking of ancient materials. This package provides methods
+for:
+
+- Logratio transformations: `transform_lr()`, `transform_clr()`,
+  `transform_alr()`, `transform_ilr()`, `transform_plr()`.
+- Compositional statistics.
+- Zero and missing value replacement.
+- Outlier detection: `outliers()`.
+- Multivariate analysis: `pca()`.
+- Mixed-mode analysis using geochemical and petrographic data (Baxter et
+  al. 2008): `mix()`.
 
 [**isopleuros**](https://packages.tesselle.org/isopleuros/) is a
 companion package to **nexus** that allows to create ternary plots.
@@ -86,7 +96,8 @@ some whole, carrying relative, rather than absolute, information
 in its own column and each observation (sample) must be saved in its own
 row.
 
-These new classes are of simple use as they inherit from base `matrix`:
+These new classes are of simple use as they inherit from base `matrix`
+(see `vignette("nexus")`):
 
 ``` r
 ## Mineral compositions of rock specimens
@@ -113,39 +124,6 @@ head(coda)
 #> H6 0.523 0.262 0.042 0.125 0.048
 ```
 
-The `CompositionMatrix` class has special slots (see
-`vignette("nexus")`):
-
-- `samples` for repeated measurements/observation,
-- `groups` to group data by site/area.
-
-When coercing a `data.frame` to a `CompositionMatrix` object, an attempt
-is made to automatically assign values to these slots by mapping column
-names. This behavior can be disabled by setting
-`options(nexus.autodetect = FALSE)`.
-
-``` r
-## Create a data.frame
-X <- data.frame(
-  samples = c("A", "A", "A", "B", "B", "B", "C", "C", "C"),
-  groups = c("X", "X", "X", "X", "X", "X", "Y", "Y", "Y"),
-  Ca = c(7.72, 7.32, 3.11, 7.19, 7.41, 5, 4.18, 1, 4.51),
-  Fe = c(6.12, 5.88, 5.12, 6.18, 6.02, 7.14, 5.25, 5.28, 5.72),
-  Na = c(0.97, 1.59, 1.25, 0.86, 0.76, 0.51, 0.75, 0.52, 0.56)
-)
-
-## Coerce to a compositional matrix
-Y <- as_composition(X)
-
-## Get samples
-get_samples(Y)
-#> [1] "A" "A" "A" "B" "B" "B" "C" "C" "C"
-
-## Get groups
-get_groups(Y)
-#> [1] "X" "X" "X" "X" "X" "X" "Y" "Y" "Y"
-```
-
 ## Contributing
 
 Please note that the **nexus** project is released with a [Contributor
@@ -162,6 +140,15 @@ Aitchison, J. 1986. *The Statistical Analysis of Compositional Data*.
 Monographs on Statistics and Applied Probability. Londres, UK ; New
 York, USA: Chapman and Hall.
 <https://doi.org/10.1007/978-94-009-4109-0>.
+
+</div>
+
+<div id="ref-baxter2008" class="csl-entry">
+
+Baxter, M. J., C. C. Beardah, I. Papageorgiou, M. A. Cau, P. M. Day, and
+V. Kilikoglou. 2008. “On Statistical Approaches to the Study of Ceramic
+Artefacts Using Geochemical and Petrographic Data.” *Archaeometry* 50
+(1): 142–57. <https://doi.org/10.1111/j.1475-4754.2007.00359.x>.
 
 </div>
 

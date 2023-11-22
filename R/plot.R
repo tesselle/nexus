@@ -12,8 +12,8 @@ plot.CompositionMatrix <- function(x, ..., margin = NULL) {
 
 #' @export
 #' @rdname plot
-#' @aliases plot,CompositionMatrix-method
-setMethod("plot", c(x = "CompositionMatrix"), plot.CompositionMatrix)
+#' @aliases plot,CompositionMatrix,missing-method
+setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMatrix)
 
 #' @export
 #' @method barplot CompositionMatrix
