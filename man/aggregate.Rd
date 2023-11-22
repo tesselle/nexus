@@ -41,8 +41,8 @@ Y <- as_composition(X)
 ## Compositional mean by sample
 aggregate(Y, by = "samples", FUN = mean)
 
-## Compositional mean by group
-aggregate(Y, by = "groups", FUN = mean)
+## Metric variance by group
+aggregate(Y, by = "groups", FUN = metric_var)
 }
 \seealso{
 Other statistics: 
@@ -52,6 +52,7 @@ Other statistics:
 \code{\link{margin}()},
 \code{\link{mean}()},
 \code{\link{metric_var}()},
+\code{\link{scale}()},
 \code{\link{variation}()}
 }
 \author{

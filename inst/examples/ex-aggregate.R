@@ -13,5 +13,5 @@ Y <- as_composition(X)
 ## Compositional mean by sample
 aggregate(Y, by = "samples", FUN = mean)
 
-## Compositional mean by group
-aggregate(Y, by = "groups", FUN = mean)
+## Metric variance by group
+aggregate(Y, by = "groups", FUN = metric_var)

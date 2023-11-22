@@ -50,6 +50,7 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{metric_var}()},
+\code{\link{scale}()},
 \code{\link{variation}()}
 }
 \author{

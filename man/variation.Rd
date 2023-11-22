@@ -51,7 +51,8 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},
-\code{\link{metric_var}()}
+\code{\link{metric_var}()},
+\code{\link{scale}()}
 }
 \author{
 N. Frerebeau

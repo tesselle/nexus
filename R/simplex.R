@@ -34,12 +34,16 @@ setMethod(
   signature = c(x = "CompositionMatrix", y = "CompositionMatrix"),
   definition = function(x, y) {
     arkhe::assert_dimensions(y, dim(x))
+
     if (all(x <= 0)) x <- 1 / x
     if (all(y <= 0)) y <- 1 / y
+
     z <- x * y
     z <- as_composition(z)
+
     set_samples(z) <- get_samples(x)
     set_groups(z) <- get_groups(x)
+
     z
   }
 )
@@ -63,6 +67,7 @@ setMethod(
   f = "perturbation",
   signature = c(x = "CompositionMatrix", y = "numeric"),
   definition = function(x, y) {
+    y <- matrix(data = y, nrow = nrow(x), ncol = length(y), byrow = TRUE)
     x %perturbe% as_composition(y)
   }
 )

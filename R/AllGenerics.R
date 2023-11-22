@@ -774,6 +774,29 @@ setGeneric(
 #   valueClass = "matrix"
 # )
 
+#' Scaling and Centering of Compositional Data
+#'
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param center A [`logical`] scalar or a [`numeric`] vector giving the center
+#'  to be substracted.
+#' @param scale A [`logical`] scalar or a length-one [`numeric`] vector giving a
+#'  scaling factor for multiplication.
+#' @return A [`CompositionMatrix-class`] object.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'
+#'  Boogaart, K. G. van den & Tolosana-Delgado, R. (2013). *Analyzing
+#'  Compositional Data with R*. Berlin Heidelberg: Springer-Verlag.
+#'  \doi{10.1007/978-3-642-36809-7}.
+#' @example inst/examples/ex-scale.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name scale
+#' @rdname scale
+NULL
+
 # Distances ====================================================================
 #' Distances
 #'

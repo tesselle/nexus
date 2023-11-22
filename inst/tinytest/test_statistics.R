@@ -1,6 +1,14 @@
 data("hongite")
 coda <- as_composition(hongite)
 
+# Mean =========================================================================
+expect_equal_to_reference(mean(coda), file = "_snaps/mean.rds")
+
+# Scale ========================================================================
+z <- scale(coda, center = TRUE, scale = TRUE)
+expect_equal(mean(z), c(A = 0.2, B = 0.2, C = 0.2, D = 0.2, E = 0.2))
+expect_equal_to_reference(z, file = "_snaps/scale.rds")
+
 # Margin =======================================================================
 expect_equal_to_reference(margin(coda, parts = c("B", "D")), file = "_snaps/margin.rds")
 
