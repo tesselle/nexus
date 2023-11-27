@@ -40,6 +40,6 @@ setMethod(
     y <- as.matrix(y)
 
     d <- mu * x + (1 - mu) * y
-    d
+    as.dist(d)
   }
 )

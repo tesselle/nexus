@@ -72,6 +72,9 @@ Beardah, C. C., Baxter, M. J., Papageorgiou, I. & Cau, M. A. (2003).
 "Mixed-Mode" Approaches to the Grouping of Ceramic Artefacts Using S-Plus.
 In M. Doerr and A. Sarris, \emph{The Digital Heritage of Archaeology}, p. 261-266.
 Athens: Archive of Monuments and Publications, Hellenic Ministry of Culture.
+
+Gower, J. C. (1971). A general coefficient of similarity and some of its
+properties. \emph{Biometrics}, 27(4):857-874. \doi{10.2307/2528823}.
 }
 \author{
 N. Frerebeau

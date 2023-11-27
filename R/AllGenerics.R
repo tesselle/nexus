@@ -1168,6 +1168,9 @@ NULL
 #'  "Mixed-Mode" Approaches to the Grouping of Ceramic Artefacts Using S-Plus.
 #'  In M. Doerr and A. Sarris, *The Digital Heritage of Archaeology*, p. 261-266.
 #'  Athens: Archive of Monuments and Publications, Hellenic Ministry of Culture.
+#'
+#'  Gower, J. C. (1971). A general coefficient of similarity and some of its
+#'  properties. *Biometrics*, 27(4):857-874. \doi{10.2307/2528823}.
 #' @note
 #'  **Experimental.**
 #' @example inst/examples/ex-mix.R
