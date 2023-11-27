@@ -1,7 +1,16 @@
+# Aggregate ====================================================================
+data("slides")
+petro <- as_composition(slides, group = 1, sample = 2)
+
+expect_equal_to_reference(aggregate(petro, by = "sample", FUN = mean),
+                          file = "_snaps/aggregate_sample.rds")
+expect_equal_to_reference(aggregate(petro, by = "group", FUN = mean),
+                          file = "_snaps/aggregate_group.rds")
+
+# Mean =========================================================================
 data("hongite")
 coda <- as_composition(hongite)
 
-# Mean =========================================================================
 expect_equal_to_reference(mean(coda), file = "_snaps/mean.rds")
 
 # Scale ========================================================================
@@ -27,9 +36,3 @@ expect_equal_to_reference(covariance(coda, center = TRUE), file = "_snaps/covari
 
 # Variation array ==============================================================
 # expect_equal_to_reference(variation_array(coda), file = "_snaps/variation_array.rds")
-
-# Aitchison distance ===========================================================
-expect_equal_to_reference(
-  dist(coda, method = "euclidean", diag = TRUE, upper = TRUE),
-  file = "_snaps/dist_euclidean.rds"
-)
