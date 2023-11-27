@@ -172,9 +172,9 @@ setMethod(
   signature = c(from = "CompositionMatrix"),
   definition = function(from) {
     data.frame(
-      codes = get_identifiers(from),
-      samples = get_samples(from),
-      groups = get_groups(from),
+      identifier = get_identifiers(from),
+      sample = get_samples(from),
+      group = get_groups(from),
       from,
       row.names = NULL
     )

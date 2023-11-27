@@ -24,17 +24,17 @@ setMethod(
   }
 )
 
-zero_additive <- function(x, sigma) {
-  D <- length(x)
-
-  is_zero <- x == 0
-  Z <- sum(is_zero)
-
-  x[is_zero] <- (sigma * (Z + 1) * (D - Z)) / D^2
-  x[!is_zero] <- x[!is_zero] - (sigma * (Z + 1) * Z) / D^2
-
-  x
-}
+# zero_additive <- function(x, sigma) {
+#   D <- length(x)
+#
+#   is_zero <- x == 0
+#   Z <- sum(is_zero)
+#
+#   x[is_zero] <- (sigma * (Z + 1) * (D - Z)) / D^2
+#   x[!is_zero] <- x[!is_zero] - (sigma * (Z + 1) * Z) / D^2
+#
+#   x
+# }
 zero_multiplicative <- function(x, sigma) {
   is_zero <- x == 0 & !is.na(x)
   x[is_zero] <- sigma[is_zero]
