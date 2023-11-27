@@ -25,21 +25,22 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 Exploration and analysis of compositional data in the framework of
 Aitchison (1986). **nexus** provides tools for chemical fingerprinting
 and source tracking of ancient materials. This package provides methods
-for:
+for compositional data analysis:
 
 - Logratio transformations: `transform_lr()`, `transform_clr()`,
   `transform_alr()`, `transform_ilr()`, `transform_plr()`.
 - Compositional statistics.
 - Zero and missing value replacement.
 - Outlier detection: `outliers()`.
+
+This package also includes methods for provenance studies:
+
 - Multivariate analysis: `pca()`.
 - Mixed-mode analysis using geochemical and petrographic data (Baxter et
   al. 2008): `mix()`.
 
 [**isopleuros**](https://packages.tesselle.org/isopleuros/) is a
 companion package to **nexus** that allows to create ternary plots.
-
-**Initial development is in progress.**
 
     To cite nexus in publications use:
 
@@ -101,6 +102,7 @@ These new classes are of simple use as they inherit from base `matrix`
 
 ``` r
 ## Mineral compositions of rock specimens
+## Data from Aitchison 1986
 data("hongite")
 head(hongite)
 #>       A    B    C    D    E
@@ -122,6 +124,50 @@ head(coda)
 #> H4 0.509 0.238 0.072 0.101 0.080
 #> H5 0.442 0.383 0.029 0.077 0.069
 #> H6 0.523 0.262 0.042 0.125 0.048
+```
+
+**nexus** allows to specify whether an observation belongs to a specific
+group (or not). Additionally, the presence of repeated measurements can
+be specified by giving several observations the same sample name:
+
+``` r
+## Mineral compositions of five slides as reported by five analysts
+## Data from Aitchison 1986
+data("slides")
+head(slides)
+#>   analyst slide quartz microcline plagioclass biotite muscovite opaques
+#> 1      A1     A   24.7       35.6        33.3     3.3       2.0     0.6
+#> 2      A1     B   26.8       35.7        32.6     3.5       0.4     0.6
+#> 3      A1     C   28.0       34.2        32.1     3.4       1.1     0.7
+#> 4      A1     D   27.8       35.0        31.5     3.3       1.0     0.9
+#> 5      A1     E   26.6       34.5        33.6     3.0       1.4     0.6
+#> 6      A2     A   27.3       35.5        32.1     2.5       1.5     0.8
+#>   nonopaques
+#> 1        0.6
+#> 2        0.4
+#> 3        0.4
+#> 4        0.5
+#> 5        0.3
+#> 6        0.3
+
+## Coerce to compositional data
+coda <- as_composition(slides, sample = 2, group = 1)
+head(coda)
+#> <CompositionMatrix: 6 x 7>
+#>      quartz microcline plagioclass    biotite  muscovite     opaques
+#> 1 0.2467532  0.3556444   0.3326673 0.03296703 0.01998002 0.005994006
+#> 2 0.2680000  0.3570000   0.3260000 0.03500000 0.00400000 0.006000000
+#> 3 0.2802803  0.3423423   0.3213213 0.03403403 0.01101101 0.007007007
+#> 4 0.2780000  0.3500000   0.3150000 0.03300000 0.01000000 0.009000000
+#> 5 0.2660000  0.3450000   0.3360000 0.03000000 0.01400000 0.006000000
+#> 6 0.2730000  0.3550000   0.3210000 0.02500000 0.01500000 0.008000000
+#>    nonopaques
+#> 1 0.005994006
+#> 2 0.004000000
+#> 3 0.004004004
+#> 4 0.005000000
+#> 5 0.003000000
+#> 6 0.003000000
 ```
 
 ## Contributing

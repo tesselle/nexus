@@ -30,18 +30,19 @@ Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 
 ## Overview
 
-Exploration and analysis of compositional data in the framework of @aitchison1986. **nexus** provides tools for chemical fingerprinting and source tracking of ancient materials. This package provides methods for:
+Exploration and analysis of compositional data in the framework of @aitchison1986. **nexus** provides tools for chemical fingerprinting and source tracking of ancient materials. This package provides methods for compositional data analysis:
 
 * Logratio transformations: `transform_lr()`, `transform_clr()`, `transform_alr()`, `transform_ilr()`, `transform_plr()`.
 * Compositional statistics.
 * Zero and missing value replacement.
 * Outlier detection: `outliers()`.
+
+This package also includes methods for provenance studies:
+
 * Multivariate analysis: `pca()`.
 * Mixed-mode analysis using geochemical and petrographic data [@baxter2008]: `mix()`.
 
 [**isopleuros**](https://packages.tesselle.org/isopleuros/) is a companion package to **nexus** that allows to create ternary plots.
-
-**Initial development is in progress.**
 
 ```{r citation, echo=FALSE, comment=''}
 utils::citation("nexus")
@@ -77,11 +78,25 @@ These new classes are of simple use as they inherit from base `matrix` (see `vig
   
 ```{r create}
 ## Mineral compositions of rock specimens
+## Data from Aitchison 1986
 data("hongite")
 head(hongite)
 
 ## Coerce to compositional data
 coda <- as_composition(hongite)
+head(coda)
+```
+
+**nexus** allows to specify whether an observation belongs to a specific group (or not). Additionally, the presence of repeated measurements can be specified by giving several observations the same sample name:
+
+```{r groups}
+## Mineral compositions of five slides as reported by five analysts
+## Data from Aitchison 1986
+data("slides")
+head(slides)
+
+## Coerce to compositional data
+coda <- as_composition(slides, sample = 2, group = 1)
 head(coda)
 ```
 
