@@ -22,7 +22,7 @@ depths in an Arctic lake.
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
-London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+London: Chapman and Hall.
 }
 \seealso{
 Other datasets: 

@@ -185,7 +185,6 @@ to this project, you agree to abide by its terms.
 Aitchison, J. 1986. *The Statistical Analysis of Compositional Data*.
 Monographs on Statistics and Applied Probability. Londres, UK ; New
 York, USA: Chapman and Hall.
-<https://doi.org/10.1007/978-94-009-4109-0>.
 
 </div>
 

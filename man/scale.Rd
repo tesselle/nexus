@@ -37,7 +37,7 @@ head(scaled)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
-London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+London: Chapman and Hall, p. 64-91.
 
 Boogaart, K. G. van den & Tolosana-Delgado, R. (2013). \emph{Analyzing
 Compositional Data with R}. Berlin Heidelberg: Springer-Verlag.

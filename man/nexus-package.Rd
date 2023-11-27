@@ -9,7 +9,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Exploration and analysis of compositional data in the framework of Aitchison (1986) <isbn: 9780412280603>. This package provides tools for chemical fingerprinting and source tracking of ancient materials.
+Exploration and analysis of compositional data in the framework of Aitchison (1986) <isbn:978-94-010-8324-9>. This package provides tools for chemical fingerprinting and source tracking of ancient materials.
 }
 \details{
 \tabular{ll}{
@@ -36,7 +36,7 @@ on progress? Defaults to \code{TRUE}.
 Useful links:
 \itemize{
   \item \url{https://packages.tesselle.org/nexus/}
-  \item \url{https://github.com/tesselle/nexus,}
+  \item \url{https://github.com/tesselle/nexus}
   \item Report bugs at \url{https://github.com/tesselle/nexus/issues}
 }
 

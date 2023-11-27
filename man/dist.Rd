@@ -48,7 +48,7 @@ plot(h)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
-London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+London: Chapman and Hall, p. 64-91.
 
 Greenacre, M. J. (2019). \emph{Compositional Data Analysis in Practice}.
 Boca Raton: CRC Press.

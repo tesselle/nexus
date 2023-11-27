@@ -410,7 +410,7 @@ NULL
 #'  A [`LR-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall.
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
@@ -445,7 +445,7 @@ setGeneric(
 #'  A [`CLR-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall.
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
@@ -478,7 +478,7 @@ setGeneric(
 #'  An [`ALR-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall.
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
@@ -579,7 +579,7 @@ setGeneric(
 #'  A [`CompositionMatrix-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall.
 #'
 #'  Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
 #'  (2003). Isometric Logratio Transformations for Compositional Data Analysis.
@@ -631,7 +631,7 @@ NULL
 #' @return A [`numeric`] vector.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall, p. 64-91.
 #' @example inst/examples/ex-mean.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -712,7 +712,7 @@ setGeneric(
 #' @return A [`matrix`].
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall, p. 64-91.
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
@@ -735,7 +735,7 @@ setGeneric(
 #' @return A [`matrix`].
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall, p. 64-91.
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
@@ -762,7 +762,7 @@ setGeneric(
 #  triangular part displays the pairwise log-ratio means.
 # @references
 #  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#  London: Chapman and Hall, p. 64-91.
 # @example inst/examples/ex-variation_array.R
 # @author N. Frerebeau
 # @docType methods
@@ -784,7 +784,7 @@ setGeneric(
 #' @return A [`CompositionMatrix-class`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall, p. 64-91.
 #'
 #'  Boogaart, K. G. van den & Tolosana-Delgado, R. (2013). *Analyzing
 #'  Compositional Data with R*. Berlin Heidelberg: Springer-Verlag.
@@ -814,7 +814,7 @@ NULL
 #' @return A [`stats::dist`] object.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall, p. 64-91. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall, p. 64-91.
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
@@ -1016,7 +1016,7 @@ NULL
 #'  or [robCompositions][robCompositions::impCoda] package.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall.
 #' @family imputation methods
 #' @name policy
 #' @rdname policy
@@ -1035,7 +1035,7 @@ NULL
 #'  replaced.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#'  London: Chapman and Hall.
 #'
 #'  Martín-Fernández, J. A., Barceló-Vidal, C. & Pawlowsky-Glahn, V. (2003).
 #'  Dealing with Zeros and Missing Values in Compositional Data Sets Using

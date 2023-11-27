@@ -69,7 +69,7 @@ all.equal(coda, inv_plr)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
-London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+London: Chapman and Hall.
 
 Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. & Barceló-Vidal, C.
 (2003). Isometric Logratio Transformations for Compositional Data Analysis.

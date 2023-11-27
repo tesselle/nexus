@@ -43,7 +43,7 @@ Z
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
-London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+London: Chapman and Hall.
 
 Martín-Fernández, J. A., Barceló-Vidal, C. & Pawlowsky-Glahn, V. (2003).
 Dealing with Zeros and Missing Values in Compositional Data Sets Using

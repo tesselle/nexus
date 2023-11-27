@@ -13,12 +13,12 @@ Authors@R: c(
   )
 Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: Exploration and analysis of compositional data in the
-    framework of Aitchison (1986) <isbn: 9780412280603>. This package
+    framework of Aitchison (1986) <isbn:978-94-010-8324-9>. This package
     provides tools for chemical fingerprinting and source tracking of
     ancient materials.
 License: GPL (>= 3)
 URL: https://packages.tesselle.org/nexus/,
-    https://github.com/tesselle/nexus,
+    https://github.com/tesselle/nexus
 BugReports: https://github.com/tesselle/nexus/issues
 Depends: 
     R (>= 3.5)
