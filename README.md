@@ -46,7 +46,7 @@ companion package to **nexus** that allows to create ternary plots.
 
       Frerebeau N, Philippe A (2023). _nexus: Sourcing Archaeological
       Materials by Chemical Composition_. Université Bordeaux Montaigne,
-      Pessac, France. R package version 0.0.0.9000,
+      Pessac, France. R package version 0.1.0,
       <https://packages.tesselle.org/nexus/>.
 
     A BibTeX entry for LaTeX users is
@@ -57,7 +57,7 @@ companion package to **nexus** that allows to create ternary plots.
         year = {2023},
         organization = {Université Bordeaux Montaigne},
         address = {Pessac, France},
-        note = {R package version 0.0.0.9000},
+        note = {R package version 0.1.0},
         url = {https://packages.tesselle.org/nexus/},
       }
 

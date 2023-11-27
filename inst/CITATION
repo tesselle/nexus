@@ -8,6 +8,6 @@ bibentry(
   year         = "2023",
   organization = "Université Bordeaux Montaigne",
   address      = "Pessac, France",
-  note         = "R package version 0.0.0.9000",
+  note         = sprintf("R package version %s", meta$Version),
   url          = "https://packages.tesselle.org/nexus/"
 )

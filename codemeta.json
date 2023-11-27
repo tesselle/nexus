@@ -1,23 +1,20 @@
 {
-  "@context": [
-    "https://doi.org/10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "nexus",
-  "description": "Exploration and analysis of compositional data in the\n    framework of Aitchison (1986) <isbn: 9780412280603>. This package\n    provides tools for chemical fingerprinting and source tracking of\n    ancient materials.",
+  "description": "Exploration and analysis of compositional data in the framework of Aitchison (1986) <isbn:978-94-010-8324-9>. This package provides tools for chemical fingerprinting and source tracking of ancient materials.",
   "name": "nexus: Sourcing Archaeological Materials by Chemical Composition",
-  "codeRepository": "https://github.com/tesselle/nexus",
   "relatedLink": "https://packages.tesselle.org/nexus/",
+  "codeRepository": "https://github.com/tesselle/nexus",
   "issueTracker": "https://github.com/tesselle/nexus/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.0.0.9000",
+  "version": "0.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.1.0 (2021-05-18)",
+  "runtimePlatform": "R version 4.3.2 (2023-10-31)",
   "author": [
     {
       "@type": "Person",
@@ -43,8 +40,16 @@
       "@id": "https://orcid.org/0000-0001-7503-8685"
     }
   ],
-  "copyrightHolder": {},
-  "funder": {},
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Université Bordeaux Montaigne"
+    },
+    {
+      "@type": "Organization",
+      "name": "CNRS"
+    }
+  ],
   "maintainer": [
     {
       "@type": "Person",
@@ -55,6 +60,18 @@
     }
   ],
   "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "cluster",
+      "name": "cluster",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=cluster"
+    },
     {
       "@type": "SoftwareApplication",
       "identifier": "folio",
@@ -69,15 +86,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "khroma",
-      "name": "khroma",
+      "identifier": "igraph",
+      "name": "igraph",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=khroma"
+      "sameAs": "https://CRAN.R-project.org/package=igraph"
     },
     {
       "@type": "SoftwareApplication",
@@ -102,20 +119,68 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rsvg",
+      "name": "rsvg",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rsvg"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "svglite",
+      "name": "svglite",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=svglite"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tinysnapshot",
+      "name": "tinysnapshot",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tinysnapshot"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tinytest",
+      "name": "tinytest",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tinytest"
     }
   ],
-  "softwareRequirements": [
-    {
+  "softwareRequirements": {
+    "1": {
       "@type": "SoftwareApplication",
       "identifier": "R",
       "name": "R",
       "version": ">= 3.5"
     },
-    {
+    "2": {
       "@type": "SoftwareApplication",
       "identifier": "arkhe",
       "name": "arkhe",
-      "version": ">= 0.3.0",
+      "version": ">= 1.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -124,58 +189,96 @@
       },
       "sameAs": "https://CRAN.R-project.org/package=arkhe"
     },
-    {
+    "3": {
       "@type": "SoftwareApplication",
-      "identifier": "ggplot2",
-      "name": "ggplot2",
+      "identifier": "dimensio",
+      "name": "dimensio",
+      "version": ">= 0.5.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
+      "sameAs": "https://CRAN.R-project.org/package=dimensio"
     },
-    {
+    "4": {
+      "@type": "SoftwareApplication",
+      "identifier": "graphics",
+      "name": "graphics"
+    },
+    "5": {
+      "@type": "SoftwareApplication",
+      "identifier": "grDevices",
+      "name": "grDevices"
+    },
+    "6": {
+      "@type": "SoftwareApplication",
+      "identifier": "isopleuros",
+      "name": "isopleuros",
+      "version": ">= 1.0.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=isopleuros"
+    },
+    "7": {
       "@type": "SoftwareApplication",
       "identifier": "methods",
       "name": "methods"
     },
-    {
+    "8": {
       "@type": "SoftwareApplication",
-      "identifier": "rlang",
-      "name": "rlang",
+      "identifier": "MASS",
+      "name": "MASS",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=rlang"
+      "sameAs": "https://CRAN.R-project.org/package=MASS"
     },
-    {
+    "9": {
       "@type": "SoftwareApplication",
-      "identifier": "robustbase",
-      "name": "robustbase",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=robustbase"
+      "identifier": "stats",
+      "name": "stats"
+    },
+    "10": {
+      "@type": "SoftwareApplication",
+      "identifier": "utils",
+      "name": "utils"
+    },
+    "SystemRequirements": null
+  },
+  "fileSize": "504.348KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2023",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Nicolas",
+          "familyName": "Frerebeau"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Anne",
+          "familyName": "Philippe"
+        }
+      ],
+      "name": "{nexus: Sourcing Archaeological Materials by Chemical Composition}",
+      "url": "https://packages.tesselle.org/nexus/",
+      "description": "R package version 0.1.0"
     }
   ],
-  "readme": "https://github.com/tesselle/nexus/blob/master/README.md",
-  "fileSize": "127.748KB",
-  "contIntegration": "https://codecov.io/gh/tesselle/nexus",
+  "releaseNotes": "https://github.com/tesselle/nexus/blob/master/NEWS.md",
+  "readme": "https://github.com/tesselle/nexus/blob/main/README.md",
+  "contIntegration": ["https://github.com/tesselle/nexus/actions", "https://app.codecov.io/gh/tesselle/nexus"],
   "developmentStatus": "https://www.repostatus.org/#wip",
-  "keywords": [
-    "archaeology",
-    "archaeological-science",
-    "archaeometry",
-    "provenance-studies",
-    "compositional-data",
-    "r-package"
-  ]
+  "keywords": ["archaeology", "archaeological-science", "archaeometry", "provenance-studies", "compositional-data", "r-package"]
 }
