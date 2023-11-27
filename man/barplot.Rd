@@ -59,8 +59,10 @@ displayed (invisibly return \code{height}).
 Displays a compositional bar chart.
 }
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Bar plot

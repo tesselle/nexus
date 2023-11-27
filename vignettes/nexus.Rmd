@@ -29,10 +29,7 @@ Provenance studies rely on the identification of probable sources, such that the
 
 ```{r setup}
 ## Install extra packages (if needed):
-## - dimensio: multivariate analysis
-## - folio: datasets
-## - isopleuros: ternary plot
-# install.packages(c("dimensio", "folio", "isopleuros"))
+# install.packages("folio")
 
 library(nexus)
 ```
@@ -45,6 +42,7 @@ This class is of simple use as it inherits from base `matrix`:
 
 ```{r}
 ## Mineral compositions of rock specimens
+## Data from Aitchison 1986
 data("hongite")
 head(hongite)
 

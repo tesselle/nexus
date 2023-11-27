@@ -31,8 +31,10 @@ The CLR transformation computes the log of each part relative to the
 geometric mean of all parts.
 }
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Pairwise log-ratio

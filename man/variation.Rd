@@ -23,8 +23,10 @@ A \code{\link{matrix}}.
 Computes the variation matrix (Aitchison 1986, definition 4.4).
 }
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Variation matrix

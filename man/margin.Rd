@@ -29,8 +29,10 @@ A \code{\linkS4class{CompositionMatrix}} object.
 Marginal Compositions
 }
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Marginal compositions

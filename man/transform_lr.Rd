@@ -23,8 +23,10 @@ A \code{\linkS4class{LR}} object.
 Computes all pairwise log-ratio transformation.
 }
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Pairwise log-ratio

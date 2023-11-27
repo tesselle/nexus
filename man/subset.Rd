@@ -68,8 +68,10 @@ If \code{drop} is \code{FALSE}, subsetting some of the possible components of a
 }
 
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 head(coda)
 

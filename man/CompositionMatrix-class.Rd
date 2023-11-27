@@ -35,8 +35,10 @@ In the code snippets below, \code{x} is a \code{CompositionMatrix} object.
 }
 
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## codaccess

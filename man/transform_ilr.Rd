@@ -28,8 +28,10 @@ respect to a given orthonormal basis. \code{transform_ilr()} uses the orthonorma
 basis (Helmert matrix) originally defined by Egozcue \emph{et al.} (2003).
 }
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Pairwise log-ratio

@@ -24,8 +24,10 @@ A \code{\linkS4class{CompositionMatrix}} object.
 Scaling and Centering of Compositional Data
 }
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Center and scale

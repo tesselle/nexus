@@ -44,8 +44,10 @@ Computes the (centered) log-ratio covariance matrix (see below).
 
 }}
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Log-ratio covariance matrix

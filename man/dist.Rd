@@ -32,8 +32,10 @@ Computes the log-ratio variance matrix.
 Distances are computed on \link[=transform_clr]{CLR-transformed} data.
 }
 \examples{
-## Coerce to compositional data
+## Data from Aitchison 1986
 data("hongite")
+
+## Coerce to compositional data
 coda <- as_composition(hongite)
 
 ## Aitchison distance
