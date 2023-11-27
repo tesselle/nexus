@@ -42,8 +42,10 @@ Petrology. \emph{Journal of Archaeological Science}, 31(9): 1325-1338.
 }
 \seealso{
 Other datasets: 
+\code{\link{arctic}},
 \code{\link{chemistry}},
-\code{\link{hongite}}
+\code{\link{hongite}},
+\code{\link{slides}}
 }
 \concept{datasets}
 \keyword{datasets}

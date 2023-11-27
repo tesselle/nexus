@@ -1,3 +1,21 @@
+#' Arctic Lake
+#'
+#' Sand, silt, clay compositions of 39 sediment samples at different water
+#' depths in an Arctic lake.
+#' @format A [`data.frame`] with 4 variables:
+#'  \describe{
+#'    \item{sand}{Sand content (percent).}
+#'    \item{silt}{Silt content (percent).}
+#'    \item{clay}{Clay content (percent).}
+#'    \item{depth}{Water depth (m).}
+#'  }
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#' @family datasets
+#' @keywords datasets
+"arctic"
+
 #' Hongite Mineralogy
 #'
 #' Mineral compositions of 25 rock specimens of hongite type.
@@ -15,6 +33,29 @@
 #' @family datasets
 #' @keywords datasets
 "hongite"
+
+#' Thin Sections
+#'
+#' Mineral compositions of five slides as reported by five analysts.
+#' @format A [`data.frame`] with 9 variables:
+#'  \describe{
+#'    \item{analyst}{Analyst number.}
+#'    \item{slide}{Slide number.}
+#'    \item{quartz}{Quartz (percent).}
+#'    \item{microcline}{Microcline (percent).}
+#'    \item{plagioclass}{Plagioclass (percent).}
+#'    \item{biotite}{Biotite (percent).}
+#'    \item{plagioclass}{Plagioclass (percent).}
+#'    \item{muscovite}{Muscovite (percent).}
+#'    \item{opaques}{Opaque minerals (percent).}
+#'    \item{nonopaques}{Non-opaque minerals (percent).}
+#'  }
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#' @family datasets
+#' @keywords datasets
+"slides"
 
 #' Can Sora Petrographic Data
 #'

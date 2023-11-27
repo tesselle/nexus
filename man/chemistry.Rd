@@ -21,8 +21,10 @@ Granada. Monografica Arte y Arqueología 47.
 }
 \seealso{
 Other datasets: 
+\code{\link{arctic}},
 \code{\link{hongite}},
-\code{\link{petrography}}
+\code{\link{petrography}},
+\code{\link{slides}}
 }
 \concept{datasets}
 \keyword{datasets}
