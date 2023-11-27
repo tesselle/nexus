@@ -41,6 +41,7 @@ setValidity(
   Class = "LogRatio",
   method = function(object) {
     ## Get data
+    data <- object@.Data
     parts <- object@parts
     ratio <- object@ratio
     order <- object@order
@@ -56,6 +57,8 @@ setValidity(
     m <- length(parts)
 
     cnd <- list(
+      arkhe::validate(arkhe::assert_missing(data)),
+      arkhe::validate(arkhe::assert_infinite(data)),
       arkhe::validate(arkhe::assert_missing(samples)),
       arkhe::validate(arkhe::assert_missing(codes)),
       arkhe::validate(arkhe::assert_unique(codes)),

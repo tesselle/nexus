@@ -34,7 +34,7 @@ Provenance studies rely on the identification of probable sources, such that the
 library(nexus)
 ```
 
-**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (nonnegative) descriptions of the parts of some whole, carrying relative, rather than absolute, information [@aitchison1986; @greenacre2021].
+**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (positive) descriptions of the parts of some whole, carrying relative, rather than absolute, information [@aitchison1986; @greenacre2021].
 
 *It assumes that you keep your data tidy*: each variable must be saved in its own column and each observation (sample) must be saved in its own row.
 

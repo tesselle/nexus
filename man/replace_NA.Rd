@@ -45,6 +45,7 @@ Nonparametric Imputation. \emph{Mathematical Geology}, 35(3): 253-278.
 }
 \seealso{
 Other imputation methods: 
+\code{\link{policy}},
 \code{\link{zero}}
 }
 \author{

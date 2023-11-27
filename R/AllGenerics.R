@@ -989,6 +989,39 @@ setGeneric(
 NULL
 
 # Missign Values ===============================================================
+#' Missing Values Policy
+#'
+#' @details
+#'  Compositional data are quantitative (positive) descriptions of the parts
+#'  of some whole, carrying relative, rather than absolute, information
+#'  (ie. only relative changes are relevant; Aitchison 1986).
+#'
+#'  Basically, two situations can be outlined:
+#'
+#'  * The presence of zeros: these are considered as observed quantities,
+#'    but which happen to be below the detection limit (thus interpreted as
+#'    small unknown values).
+#'  * The presence of missing values (`NA`): these indicate that the quantities
+#'    in question have not been observed.
+#'
+#'  When creating a [`CompositionMatrix-class`] object, the presence of zero
+#'  and [`NA`] values is allowed: this makes it possible to explore and
+#'  visualize the data while preserving the missing structure. However, the
+#'  user must deal with these missing values before proceeding further (e.g.
+#'  by removing incomplete cases or replacing the values concerned): log-ratio
+#'  transformations cannot be computed in the presence of missing values.
+#' @note
+#'  If you need more advanced features (e.g. imputation of missing values),
+#'  you should consider the [compositions][compositions::missingsInCompositions]
+#'  or [robCompositions][robCompositions::impCoda] package.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#' @family imputation methods
+#' @name policy
+#' @rdname policy
+NULL
+
 #' Zero-Replacement
 #'
 #' Multiplicative replacement of zeros.
