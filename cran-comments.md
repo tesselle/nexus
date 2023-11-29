@@ -8,4 +8,6 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+* This is a resubmission: 
+    * References in the description of the DESCRIPTION file have been properly formatted.
+    * Replace `\dontrun{}` with `\donttest{}` in examples.

@@ -13,7 +13,7 @@ Authors@R: c(
   )
 Maintainer: Nicolas Frerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>
 Description: Exploration and analysis of compositional data in the
-    framework of Aitchison (1986) <isbn:978-94-010-8324-9>. This package
+    framework of Aitchison (1986, ISBN: 978-94-010-8324-9). This package
     provides tools for chemical fingerprinting and source tracking of
     ancient materials.
 License: GPL (>= 3)

@@ -1,4 +1,4 @@
-\dontrun{
+\donttest{
 ## Prepare chemical data
 data("chemistry")
 major <- c("Fe2O3", "Al2O3", "MnO", "P2O5", "TiO2", "MgO", "CaO", "Na2O", "K2O", "SiO2")

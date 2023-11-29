@@ -9,7 +9,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Exploration and analysis of compositional data in the framework of Aitchison (1986) <isbn:978-94-010-8324-9>. This package provides tools for chemical fingerprinting and source tracking of ancient materials.
+Exploration and analysis of compositional data in the framework of Aitchison (1986, ISBN: 978-94-010-8324-9). This package provides tools for chemical fingerprinting and source tracking of ancient materials.
 }
 \details{
 \tabular{ll}{
