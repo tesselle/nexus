@@ -9,9 +9,10 @@ type: software
 license: GPL-3.0-or-later
 title: 'nexus: Sourcing Archaeological Materials by Chemical Composition'
 version: 0.1.0
-abstract: Exploration and analysis of compositional data in the framework of Aitchison
-  (1986) <isbn:978-94-010-8324-9>. This package provides tools for chemical fingerprinting
-  and source tracking of ancient materials.
+doi: 10.5281/zenodo.10225630
+abstract: 'Exploration and analysis of compositional data in the framework of Aitchison
+  (1986, ISBN: 978-94-010-8324-9). This package provides tools for chemical fingerprinting
+  and source tracking of ancient materials.'
 authors:
 - family-names: Frerebeau
   given-names: Nicolas
@@ -42,8 +43,10 @@ preferred-citation:
     name: Pessac, France
   notes: R package version 0.1.0
   url: https://packages.tesselle.org/nexus/
+  doi: 10.5281/zenodo.10225630
   institution:
     name: Université Bordeaux Montaigne
+repository: https://CRAN.R-project.org/package=nexus
 repository-code: https://github.com/tesselle/nexus
 url: https://packages.tesselle.org/nexus/
 contact:
@@ -134,8 +137,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  version: '>= 1.0.0'
   year: '2023'
+  version: '>= 1.0.0'
 - type: software
   title: methods
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -368,3 +371,10 @@ references:
     email: mark.vanderloo@gmail.com
     orcid: https://orcid.org/0000-0002-9807-4686
   year: '2023'
+identifiers:
+- description: The concept DOI.
+  type: doi
+  value: 10.5281/zenodo.10225630
+- description: The versioned DOI for version 0.1.0.
+  type: doi
+  value: 10.5281/zenodo.10225631

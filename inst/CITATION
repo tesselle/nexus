@@ -9,5 +9,6 @@ bibentry(
   organization = "Université Bordeaux Montaigne",
   address      = "Pessac, France",
   note         = sprintf("R package version %s", meta$Version),
-  url          = "https://packages.tesselle.org/nexus/"
+  url          = "https://packages.tesselle.org/nexus/",
+  doi          = "10.5281/zenodo.10225630"
 )

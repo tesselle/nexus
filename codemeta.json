@@ -2,9 +2,9 @@
   "@context": "https://doi.org/10.5063/schema/codemeta-2.0",
   "@type": "SoftwareSourceCode",
   "identifier": "nexus",
-  "description": "Exploration and analysis of compositional data in the framework of Aitchison (1986) <isbn:978-94-010-8324-9>. This package provides tools for chemical fingerprinting and source tracking of ancient materials.",
+  "description": "Exploration and analysis of compositional data in the framework of Aitchison (1986, ISBN: 978-94-010-8324-9). This package provides tools for chemical fingerprinting and source tracking of ancient materials.",
   "name": "nexus: Sourcing Archaeological Materials by Chemical Composition",
-  "relatedLink": "https://packages.tesselle.org/nexus/",
+  "relatedLink": ["https://packages.tesselle.org/nexus/", "https://CRAN.R-project.org/package=nexus"],
   "codeRepository": "https://github.com/tesselle/nexus",
   "issueTracker": "https://github.com/tesselle/nexus/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
@@ -15,6 +15,12 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 4.3.2 (2023-10-31)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Comprehensive R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -254,7 +260,7 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "504.348KB",
+  "fileSize": "505.098KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -272,8 +278,11 @@
         }
       ],
       "name": "{nexus: Sourcing Archaeological Materials by Chemical Composition}",
+      "identifier": "10.5281/zenodo.10225630",
       "url": "https://packages.tesselle.org/nexus/",
-      "description": "R package version 0.1.0"
+      "description": "R package version 0.1.0",
+      "@id": "https://doi.org/10.5281/zenodo.10225630",
+      "sameAs": "https://doi.org/10.5281/zenodo.10225630"
     }
   ],
   "releaseNotes": "https://github.com/tesselle/nexus/blob/master/NEWS.md",

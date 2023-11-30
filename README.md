@@ -14,10 +14,23 @@
 class="pkgdown-devel"><img
 src="https://tesselle.r-universe.dev/badges/nexus"
 alt="r-universe" /></a>
+<a href="https://cran.r-project.org/package=nexus"
+class="pkgdown-release"><img
+src="http://www.r-pkg.org/badges/version/nexus"
+alt="CRAN Version" /></a>
+<a href="https://cran.r-project.org/web/checks/check_results_nexus.html"
+class="pkgdown-release"><img
+src="https://badges.cranchecks.info/worst/nexus.svg"
+alt="CRAN checks" /></a>
+<a href="https://cran.r-project.org/package=nexus"
+class="pkgdown-release"><img
+src="http://cranlogs.r-pkg.org/badges/nexus" alt="CRAN Downloads" /></a>
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
 public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10225630.svg)](https://doi.org/10.5281/zenodo.10225630)
 <!-- badges: end -->
 
 ## Overview
@@ -46,7 +59,8 @@ companion package to **nexus** that allows to create ternary plots.
 
       Frerebeau N, Philippe A (2023). _nexus: Sourcing Archaeological
       Materials by Chemical Composition_. Université Bordeaux Montaigne,
-      Pessac, France. R package version 0.1.0,
+      Pessac, France. doi:10.5281/zenodo.10225630
+      <https://doi.org/10.5281/zenodo.10225630>, R package version 0.1.0,
       <https://packages.tesselle.org/nexus/>.
 
     A BibTeX entry for LaTeX users is
@@ -59,6 +73,7 @@ companion package to **nexus** that allows to create ternary plots.
         address = {Pessac, France},
         note = {R package version 0.1.0},
         url = {https://packages.tesselle.org/nexus/},
+        doi = {10.5281/zenodo.10225630},
       }
 
     This package is a part of the tesselle project
