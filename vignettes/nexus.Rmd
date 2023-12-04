@@ -3,14 +3,14 @@ title: "Introduction to nexus"
 author: "N. Frerebeau"
 date: "`r Sys.Date()`"
 output:
-  rmarkdown::html_vignette:
-    number_sections: yes
-    fig_caption: yes
-    toc: true
+  markdown::html_format:
+    options:
+      toc: true
+      number_sections: true
 bibliography: bibliography.bib
 vignette: >
   %\VignetteIndexEntry{Introduction to nexus}
-  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
 
