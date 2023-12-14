@@ -197,14 +197,17 @@ as.data.frame.LogRatio <- function(x, ...) {
 #' @method as.data.frame OutlierIndex
 #' @export
 as.data.frame.OutlierIndex <- function(x, ...) {
-  y <- methods::S3Part(x, strictS3 = TRUE)
+  out <- methods::as(x, "matrix")
+  colnames(out) <- paste0("out_", colnames(out))
+  d <- x@distances
+  colnames(d) <- paste0("dist_", colnames(d))
   data.frame(
-    index = seq_along(y),
+    index = seq_len(nrow(out)),
     sample = get_samples(x),
     group = get_groups(x),
-    distance = x@distances,
-    outlier = y,
-    row.names = NULL,
+    d,
+    out,
+    row.names = get_identifiers(x),
     stringsAsFactors = FALSE
   )
 }

@@ -17,19 +17,32 @@ setMethod(
     ## Grouping
     m <- nrow(z)
     p <- ncol(z)
-    if (is.null(groups)) groups <- rep(NA, m)
-    arkhe::assert_length(groups, m)
-    groups <- factor(groups, exclude = NULL)
-    k <- nlevels(groups)
-    grp <- split(seq_len(m), f = groups)
+    if (is.null(groups) || all(is.na(groups))) {
+      grp <- list(all = z)
+      groups <- rep("all", m)
+    } else {
+      grp <- split(z, f = groups)
+    }
 
-    d2 <- matrix(data = NA_real_, nrow = m, ncol = k)
-    dimnames(d2) <- list(rownames(object), levels(groups))
+    ## Clean
+    size <- vapply(X = grp, FUN = nrow, FUN.VALUE = integer(1), USE.NAMES = TRUE)
+    too_small <- size < p
+    if (any(too_small)) {
+      msg <- "%s is ignored: sample size is too small (%d).\n"
+      warning(sprintf(msg, names(grp)[too_small], size[too_small]), call. = FALSE)
+    }
+    if (all(too_small)) {
+      stop("Too few samples.", call. = FALSE)
+    }
+    grp <- grp[!too_small]
+
+    d2 <- matrix(data = NA_real_, nrow = m, ncol = length(grp))
+    dimnames(d2) <- list(rownames(object), names(grp))
 
     ## For each group...
-    for (i in seq_len(k)) {
+    for (i in seq_along(grp)) {
       ## ...subset
-      tmp <- z[grp[[i]], , drop = FALSE]
+      tmp <- grp[[i]]
 
       ## ...compute center and spread
       if (!robust) method <- "classical" # Standard estimators
@@ -73,7 +86,7 @@ plot.OutlierIndex <- function(x, ..., qq = FALSE, probs = c(0.25, 0.75),
   ## Get data
   d <- x@distances
   g <- x@groups
-  k <- length(unique(g))
+  k <- ncol(d)
 
   ## Annotation
   xlab <- xlab %||% ifelse(qq, "Theoretrical Quantiles", "Index")
@@ -144,7 +157,8 @@ plot.OutlierIndex <- function(x, ..., qq = FALSE, probs = c(0.25, 0.75),
     rob <- ifelse(x@robust, "Robust", "Standard")
     ylab <- ylab %||% sprintf("%s Mahalanobis distance", rob)
 
-    .plot_outliers(d[, 1], df = x@dof, qq = qq, limit = x@limit, probs = probs,
+    .plot_outliers(d[, 1], df = x@dof, qq = qq, qqline = g == colnames(d),
+                   limit = x@limit, probs = probs,
                    xlab = xlab, ylab = ylab, main = main, sub = sub,
                    ann = ann, axes = axes, frame.plot = frame.plot,
                    panel.first = panel.first, panel.last = panel.last, ...)
@@ -161,7 +175,7 @@ setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)
 .plot_outliers <- function(x, df, ..., qq = FALSE, qqline = seq_along(x),
                            probs = c(0.25, 0.75), limit = NULL,
                            col.group = "black", col.samples = "grey",
-                           pch.group = 16, pch.samples = 1,
+                           pch.in = 16, pch.out = 1,
                            xlab = NULL, ylab = NULL,
                            main = NULL, sub = NULL,
                            ann = graphics::par("ann"),
@@ -192,8 +206,8 @@ setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)
   ## Plot
   col <- rep(col.samples, n)
   col[qqline[i]] <- col.group
-  pch <- rep(pch.samples, n)
-  pch[qqline[i]] <- pch.group
+  pch <- rep(pch.in, n)
+  pch[data_y > limit] <- pch.out
 
   graphics::points(x = data_x, y = data_y, col = col, pch = pch, ...)
   if (qq) {

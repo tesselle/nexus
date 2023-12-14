@@ -83,6 +83,7 @@ See \code{vignette("nexus")}.
 Other mutators: 
 \code{\link{groups}},
 \code{\link{identifiers}},
+\code{\link{split}()},
 \code{\link{subset}()},
 \code{\link{totals}}
 }

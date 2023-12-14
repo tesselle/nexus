@@ -90,6 +90,7 @@ Other mutators:
 \code{\link{groups}},
 \code{\link{identifiers}},
 \code{\link{samples}},
+\code{\link{split}()},
 \code{\link{totals}}
 }
 \author{

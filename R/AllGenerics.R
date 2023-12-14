@@ -399,6 +399,25 @@ setGeneric(
 #' @rdname subset
 NULL
 
+#' Divide into Groups
+#'
+#' Divides the compositional matrix `x` into the groups defined by `f`.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param f A 'factor' in the sense that [`as.factor(f)`][as.factor()] defines
+#'  the grouping, or a list of such factors in which case their interaction is
+#'  used for the grouping (see [base::split()]).
+#' @param drop A [`logical`] scalar: should levels that do not occur be dropped?
+#' @param ... Currently not used.
+#' @return
+#'  A `list` of [`CompositionMatrix-class`] objects.
+#' @example inst/examples/ex-split.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name split
+#' @rdname split
+NULL
+
 # Log-Ratio ====================================================================
 ## LR --------------------------------------------------------------------------
 #' Pairwise Log-Ratios (LR)

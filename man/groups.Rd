@@ -78,6 +78,7 @@ See \code{vignette("nexus")}.
 Other mutators: 
 \code{\link{identifiers}},
 \code{\link{samples}},
+\code{\link{split}()},
 \code{\link{subset}()},
 \code{\link{totals}}
 }
