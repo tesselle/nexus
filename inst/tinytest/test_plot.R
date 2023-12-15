@@ -13,6 +13,10 @@ if (at_home()) {
   plot_pairs <- function() plot(coda, order = NULL)
   expect_snapshot_plot(plot_pairs, "plot_pairs")
 
+  # Histogram ==================================================================
+  plot_hist <- function() hist(coda, ncol = 3)
+  expect_snapshot_plot(plot_hist, "plot_hist")
+
   # Barplot ====================================================================
   plot_barplot <- function() barplot(coda, order = NULL)
   expect_snapshot_plot(plot_barplot, "plot_barplot")

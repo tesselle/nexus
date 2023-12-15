@@ -12,8 +12,6 @@
   freq = FALSE,
   ncol = NULL,
   flip = FALSE,
-  xlab = NULL,
-  ylab = NULL,
   main = NULL,
   sub = NULL,
   ann = graphics::par("ann"),
@@ -34,8 +32,6 @@ displayed (see \code{\link[graphics:hist]{graphics::hist()}})?}
 
 \item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
 flipped from side 2 (left) to 4 (right) from variable to variable?}
-
-\item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
 
 \item{main}{A \code{\link{character}} string giving a main title for the plot.}
 
