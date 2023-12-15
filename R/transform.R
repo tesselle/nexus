@@ -124,28 +124,52 @@ setMethod(
 )
 
 # ILR ==========================================================================
-#' @export
-#' @rdname transform_ilr
-#' @aliases transform_ilr,CompositionMatrix-method
-setMethod(
-  f = "transform_ilr",
-  signature = c(object = "CompositionMatrix"),
-  definition = function(object) {
-    D <- ncol(object)
-    seq_parts <- seq_len(D - 1)
-    parts <- colnames(object)
+ilr_base <- function(D, method = "basic") {
+  ## Validation
+  method <- match.arg(method, several.ok = FALSE)
 
+  seq_parts <- seq_len(D - 1)
+
+  ## Original ILR transformation defined by Egozcue et al. 2003
+  if (method == "basic") {
     ## Helmert matrix (rotation matrix)
     H <- stats::contr.helmert(D)                  # D x D-1
     H <- t(H) / sqrt((seq_parts + 1) * seq_parts) # D-1 x D
 
     ## Center
-    m <- diag(x = 1, nrow = D) - matrix(data = 1 / D, nrow = D, ncol = D)
-    H <- tcrossprod(m, H)
+    M <- diag(x = 1, nrow = D) - matrix(data = 1 / D, nrow = D, ncol = D)
+    V <- tcrossprod(M, H)
+  }
+
+  V
+}
+
+#' @export
+#' @rdname transform_ilr
+#' @aliases transform_ilr,CompositionMatrix,missing-method
+setMethod(
+  f = "transform_ilr",
+  signature = c(object = "CompositionMatrix", base = "missing"),
+  definition = function(object) {
+    H <- ilr_base(D = ncol(object), method = "basic")
+    methods::callGeneric(object, base = H)
+  }
+)
+
+#' @export
+#' @rdname transform_ilr
+#' @aliases transform_ilr,CompositionMatrix,matrix-method
+setMethod(
+  f = "transform_ilr",
+  signature = c(object = "CompositionMatrix", base = "matrix"),
+  definition = function(object, base) {
+    D <- ncol(object)
+    seq_parts <- seq_len(D - 1)
+    parts <- colnames(object)
 
     ## Rotated and centered values
     y <- log(object, base = exp(1))
-    ilr <- y %*% H
+    ilr <- y %*% base
 
     ratio <- vapply(
       X = seq_parts,
@@ -163,7 +187,7 @@ setMethod(
       parts = parts,
       ratio = ratio,
       order = seq_len(D),
-      base = H,
+      base = base,
       weights = rep(1 / D, D),
       totals = object@totals,
       codes = object@codes,
@@ -236,7 +260,7 @@ setMethod(
   f = "transform_inverse",
   signature = c(object = "CLR", origin = "missing"),
   definition = function(object) {
-    y <- methods::S3Part(object, strictS3 = TRUE) # Drop slots
+    y <- methods::as(object, "matrix") # Drop slots
     y <- exp(y)
     y <- y / rowSums(y)
 

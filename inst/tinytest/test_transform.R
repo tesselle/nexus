@@ -37,6 +37,9 @@ expect_equal(coda, x)
 # expect_identical(ilr, z)
 
 # ILR ==========================================================================
+base_classic <- nexus:::ilr_base(5, method = "basic")
+expect_equal_to_reference(base_classic, file = "_snaps/ilr_base_classic.rds")
+
 ilr <- transform_ilr(coda)
 expect_equal_to_reference(ilr, file = "_snaps/transform_ilr.rds")
 

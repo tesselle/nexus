@@ -521,6 +521,7 @@ setGeneric(
 #'
 #' Computes ILR transformations.
 #' @param object A [`CompositionMatrix-class`] object.
+#' @param base A [`matrix`] giving the base of the transformation.
 #' @param ... Currently not used.
 #' @details
 #'  The ILR transformation provides the coordinates of any composition with
@@ -546,7 +547,7 @@ setGeneric(
 #' @aliases transform_ilr-method
 setGeneric(
   name = "transform_ilr",
-  def = function(object, ...) standardGeneric("transform_ilr"),
+  def = function(object, base, ...) standardGeneric("transform_ilr"),
   valueClass = "ILR"
 )
 
