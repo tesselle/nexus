@@ -3,6 +3,7 @@
 NULL
 
 # CompositionMatrix ============================================================
+## Plot ------------------------------------------------------------------------
 #' @export
 #' @method plot CompositionMatrix
 plot.CompositionMatrix <- function(x, ..., margin = NULL) {
@@ -15,6 +16,99 @@ plot.CompositionMatrix <- function(x, ..., margin = NULL) {
 #' @aliases plot,CompositionMatrix,missing-method
 setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMatrix)
 
+## Histogram -------------------------------------------------------------------
+#' @export
+#' @method hist CompositionMatrix
+hist.CompositionMatrix <- function(x, ..., freq = FALSE,
+                                   ncol = NULL, flip = FALSE,
+                                   xlab = NULL, ylab = NULL,
+                                   main = NULL, sub = NULL,
+                                   ann = graphics::par("ann"),
+                                   axes = TRUE, frame.plot = axes) {
+  m <- nrow(x)
+  p <- ncol(x)
+
+  # TODO
+  ilr <- TRUE
+
+  ## Plot
+  if (is.null(ncol)) ncol <- if (p > 4) 2 else 1
+  nrow <- ceiling(p / ncol)
+
+  ## Graphical parameters
+  ## Save and restore
+  old_par <- graphics::par(
+    mar = c(5, 5.1, 0, if (flip) 5.1 else 2.1),
+    oma = c(0, 0, 5, 0),
+    mfcol = c(nrow, ncol)
+  )
+  on.exit(graphics::par(old_par))
+
+  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
+  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
+  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
+  cex.lab <- list(...)$cex.lab %||% graphics::par("cex.lab")
+  col.lab <- list(...)$col.lab %||% graphics::par("col.lab")
+  font.lab <- list(...)$font.lab %||% graphics::par("font.lab")
+  cex.main <- list(...)$cex.main %||% graphics::par("cex.main")
+  font.main <- list(...)$font.main %||% graphics::par("font.main")
+  col.main <- list(...)$col.main %||% graphics::par("col.main")
+
+  index <- seq_len(p)
+  ## Compute univariate ilr transformation
+  tmp <- matrix(NA_real_, nrow = m, ncol = p)
+  for (j in index) {
+    z <- x[, c(j, index[-j]), drop = FALSE]
+    tmp[, j] <- transform_ilr(z)[, 1]
+  }
+
+  for (j in index) {
+    ## Histogram
+    hj <- graphics::hist(x = tmp[, j], ..., freq = freq, xlab = NULL, ylab = NULL,
+                         main = NULL, axes = FALSE)
+
+    ## Construct axis
+    y_side <- if (j %% 2 || !flip) 2 else 4
+    if (axes) {
+      graphics::axis(side = 1, cex.axis = cex.axis, col.axis = col.axis,
+                     font.axis = font.axis, xpd = NA, las = 1)
+      graphics::axis(side = y_side, cex.axis = cex.axis, col.axis = col.axis,
+                     font.axis = font.axis, xpd = NA, las = 1)
+    }
+
+    ## Plot frame
+    if (frame.plot) {
+      graphics::box()
+    }
+
+    ## Add annotation
+    if (ann) {
+      txt <- if (ilr) "ilr(%s)" else "%s"
+      xlab <- sprintf(txt, colnames(x)[j])
+      ylab <- ylab %||% "Frequency"
+      graphics::mtext(xlab, side = 1, line = 3, cex = cex.lab, col = col.lab,
+                      font = font.lab)
+      graphics::mtext(ylab, side = y_side, line = 3, cex = cex.lab,
+                      col = col.lab, font = font.lab)
+    }
+  }
+
+  ## Add annotation
+  if (ann) {
+    graphics::par(mfcol = c(1, 1))
+    graphics::mtext(main, side = 3, line = 3, cex = cex.main, font = font.main,
+                    col = col.main)
+  }
+
+  invisible(x)
+}
+
+#' @export
+#' @rdname hist
+#' @aliases hist,CompositionMatrix-method
+setMethod("hist", c(x = "CompositionMatrix"), hist.CompositionMatrix)
+
+## Barplot ---------------------------------------------------------------------
 #' @export
 #' @method barplot CompositionMatrix
 barplot.CompositionMatrix <- function(height, ...,
@@ -22,7 +116,8 @@ barplot.CompositionMatrix <- function(height, ...,
                                       groups = get_groups(height), horiz = TRUE,
                                       xlab = NULL, ylab = NULL,
                                       main = NULL, sub = NULL,
-                                      ann = graphics::par("ann"), axes = TRUE) {
+                                      ann = graphics::par("ann"), axes = TRUE,
+                                      col = grDevices::hcl.colors(ncol(height), "viridis")) {
   ## Get data
   z <- height@.Data
 
@@ -33,7 +128,6 @@ barplot.CompositionMatrix <- function(height, ...,
   }
 
   ## Graphical parameters
-  col <- list(...)$col %||% grDevices::hcl.colors(ncol(z), "viridis")
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
   col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
   font.axis <- list(...)$font.axis %||% graphics::par("font.axis")

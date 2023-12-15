@@ -18,7 +18,8 @@
   main = NULL,
   sub = NULL,
   ann = graphics::par("ann"),
-  axes = TRUE
+  axes = TRUE,
+  col = grDevices::hcl.colors(ncol(height), "viridis")
 )
 }
 \arguments{
@@ -50,6 +51,8 @@ horizontally with the first at the bottom.}
 and y axis labels) appear on the plot?}
 
 \item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
+
+\item{col}{A vector of colors for the bar components.}
 }
 \value{
 \code{barplot()} is called for its side-effects: is results in a graphic being
@@ -79,6 +82,7 @@ barplot(coda, order = 1, horiz = FALSE, main = "Kommos Ceramics")
 \seealso{
 Other plot methods: 
 \code{\link{as_graph}()},
+\code{\link{hist}()},
 \code{\link{plot_logratio}},
 \code{\link{plot}()}
 }

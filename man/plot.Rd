@@ -41,6 +41,7 @@ plot(coda)
 Other plot methods: 
 \code{\link{as_graph}()},
 \code{\link{barplot}()},
+\code{\link{hist}()},
 \code{\link{plot_logratio}}
 }
 \author{

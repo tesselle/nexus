@@ -892,6 +892,7 @@ NULL
 #' @param ann A [`logical`] scalar: should the default annotation (title and x
 #'  and y axis labels) appear on the plot?
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param col A vector of colors for the bar components.
 #' @param ... Further parameters to be passed to [graphics::barplot()].
 #' @return
 #'  `barplot()` is called for its side-effects: is results in a graphic being
@@ -902,6 +903,40 @@ NULL
 #' @family plot methods
 #' @name barplot
 #' @rdname barplot
+NULL
+
+#' Histogram of Compositional Data
+#'
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param freq A [`logical`] scalar: should absolute frequencies (counts) be
+#'  displayed (see [graphics::hist()])?
+#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
+#'  flipped from side 2 (left) to 4 (right) from variable to variable?
+#' @param ncol An [`integer`] specifying the number of columns to use when
+#'  `facet` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
+#' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
+#' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
+#' @param ann A [`logical`] scalar: should the default annotation (title and x
+#'  and y axis labels) appear on the plot?
+#' @param axes A [`logical`] scalar: should axes be drawn on the plot?
+#' @param frame.plot A [`logical`] scalar: should a box be drawn around the
+#'  plot?
+#' @param ... Further parameters to be passed to [graphics::hist()].
+#' @return
+#'  `hist()` is called for its side-effects: is results in a graphic being
+#'  displayed (invisibly return `x`).
+#' @references
+#'  Filzmoser, P., Hron, K. & Reimann, C. (2009). Univariate Statistical
+#'  Analysis of Environmental (Compositional) Data: Problems and Possibilities.
+#'  *Science of The Total Environment*, 407(23): 6100-6108.
+#'  \doi{10.1016/j.scitotenv.2009.08.008}.
+#' @example inst/examples/ex-hist.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family plot methods
+#' @name hist
+#' @rdname hist
 NULL
 
 #' Plot Compositional Data

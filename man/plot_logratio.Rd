@@ -91,6 +91,7 @@ plot(clr, flip = TRUE)
 Other plot methods: 
 \code{\link{as_graph}()},
 \code{\link{barplot}()},
+\code{\link{hist}()},
 \code{\link{plot}()}
 }
 \author{
