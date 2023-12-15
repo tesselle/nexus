@@ -6,17 +6,23 @@
 \alias{aggregate,CompositionMatrix-method}
 \title{Compute Summary Statistics of Data Subsets}
 \usage{
-\S4method{aggregate}{CompositionMatrix}(x, by, FUN, ...)
+\S4method{aggregate}{CompositionMatrix}(x, by, FUN, ..., simplify = TRUE, drop = TRUE)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{by}{A \code{\link{character}} string specifying the grouping element. It must be
-one of "\code{samples}" or "\code{groups}". Any unambiguous substring can be given.}
+\item{by}{A vector or a list of grouping elements, each as long as the
+variables in \code{x}. The elements are coerced to factors before use.}
 
 \item{FUN}{A \code{\link{function}} to compute the summary statistics.}
 
 \item{...}{Further arguments to be passed to \code{FUN}.}
+
+\item{simplify}{A \code{\link{logical}} scalar: should the results be simplified to a
+matrix if possible?}
+
+\item{drop}{A \code{\link{logical}} scalar indicating whether to drop unused
+combinations of grouping values.}
 }
 \value{
 A \code{\link{matrix}}.
@@ -29,7 +35,7 @@ returns the result.
 ## Create a data.frame
 X <- data.frame(
   samples = c("A", "A", "A", "B", "B", "B", "C", "C", "C"),
-  groups = c("X", "X", "X", "X", "X", "X", "Y", "Y", "Y"),
+  groups = c("X", "X", "X", NA, NA, NA, "Y", "Y", "Y"),
   Ca = c(7.72, 7.32, 3.11, 7.19, 7.41, 5, 4.18, 1, 4.51),
   Fe = c(6.12, 5.88, 5.12, 6.18, 6.02, 7.14, 5.25, 5.28, 5.72),
   Na = c(0.97, 1.59, 1.25, 0.86, 0.76, 0.51, 0.75, 0.52, 0.56)
@@ -39,10 +45,10 @@ X <- data.frame(
 Y <- as_composition(X)
 
 ## Compositional mean by sample
-aggregate(Y, by = "samples", FUN = mean)
+aggregate(Y, by = get_samples(Y), FUN = mean)
 
 ## Metric variance by group
-aggregate(Y, by = "groups", FUN = metric_var)
+aggregate(Y, by = get_groups(Y), FUN = metric_var)
 }
 \seealso{
 Other statistics: 

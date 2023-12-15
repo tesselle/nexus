@@ -1,7 +1,7 @@
 ## Create a data.frame
 X <- data.frame(
   samples = c("A", "A", "A", "B", "B", "B", "C", "C", "C"),
-  groups = c("X", "X", "X", "X", "X", "X", "Y", "Y", "Y"),
+  groups = c("X", "X", "X", NA, NA, NA, "Y", "Y", "Y"),
   Ca = c(7.72, 7.32, 3.11, 7.19, 7.41, 5, 4.18, 1, 4.51),
   Fe = c(6.12, 5.88, 5.12, 6.18, 6.02, 7.14, 5.25, 5.28, 5.72),
   Na = c(0.97, 1.59, 1.25, 0.86, 0.76, 0.51, 0.75, 0.52, 0.56)
@@ -11,7 +11,7 @@ X <- data.frame(
 Y <- as_composition(X)
 
 ## Compositional mean by sample
-aggregate(Y, by = "samples", FUN = mean)
+aggregate(Y, by = get_samples(Y), FUN = mean)
 
 ## Metric variance by group
-aggregate(Y, by = "groups", FUN = metric_var)
+aggregate(Y, by = get_groups(Y), FUN = metric_var)

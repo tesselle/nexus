@@ -2,9 +2,9 @@
 data("slides")
 petro <- as_composition(slides, group = 1, sample = 2)
 
-expect_equal_to_reference(aggregate(petro, by = "sample", FUN = mean),
+expect_equal_to_reference(aggregate(petro, by = get_samples(petro), FUN = mean),
                           file = "_snaps/aggregate_sample.rds")
-expect_equal_to_reference(aggregate(petro, by = "group", FUN = mean),
+expect_equal_to_reference(aggregate(petro, by = get_groups(petro), FUN = mean),
                           file = "_snaps/aggregate_group.rds")
 
 # Mean =========================================================================

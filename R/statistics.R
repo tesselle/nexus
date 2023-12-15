@@ -7,7 +7,7 @@ NULL
 #' @method split CompositionMatrix
 split.CompositionMatrix <- function(x, f, drop = FALSE, ...) {
   lapply(
-    X = split(x = seq_len(nrow(x)), f = f, drop = drop, ...),
+    X = split(x = seq_len(nrow(x)), f = f, drop = drop, sep = "_", ...),
     FUN = function(ind) x[ind, , drop = FALSE]
   )
 }
@@ -21,7 +21,7 @@ setMethod("split", "CompositionMatrix", split.CompositionMatrix)
 #' @method split LogRatio
 split.LogRatio <- function(x, f, drop = FALSE, ...) {
   lapply(
-    X = split(x = seq_len(nrow(x)), f = f, drop = drop, ...),
+    X = split(x = seq_len(nrow(x)), f = f, drop = drop, sep = "_", ...),
     FUN = function(ind) x[ind, , drop = FALSE]
   )
 }
@@ -34,25 +34,22 @@ setMethod("split", "LogRatio", split.LogRatio)
 # Aggregate ====================================================================
 #' @export
 #' @method aggregate CompositionMatrix
-aggregate.CompositionMatrix <- function(x, by, FUN, ...) {
-  ## Validation
-  by <- match.arg(by, choices = c("samples", "groups"), several.ok = FALSE)
+aggregate.CompositionMatrix <- function(x, by, FUN, ...,
+                                        simplify = TRUE, drop = TRUE) {
+  m <- nrow(x)
 
-  if (by == "samples") {
-    if (!any_replicated(x)) {
-      warning("No observations are repeated.", call. = FALSE)
-    }
-    index <- get_samples(x)
-  }
-  if (by == "groups") {
-    if (!any_assigned(x)) {
-      stop("No group is defined.", call. = FALSE)
-    }
-    index <- get_groups(x)
+  ## Validation
+  if (!is.list(by)) by <- list(by)
+  arkhe::assert_lengths(by, m)
+
+  index <- interaction(by, drop = drop, sep = "_")
+  if (length(unique(by)) == m) {
+    warning("Nothing to group by.", call. = FALSE)
+    return(x)
   }
 
   m <- tapply(
-    X = seq_len(nrow(x)),
+    X = seq_len(m),
     INDEX = index,
     FUN = function(i, data, fun, ...) fun(data[i, , drop = FALSE], ...),
     data = x,
@@ -60,6 +57,14 @@ aggregate.CompositionMatrix <- function(x, by, FUN, ...) {
     ...,
     simplify = FALSE
   )
+
+  has_dim <- vapply(
+    X = m,
+    FUN = function(x) !is.null(nrow(x)) && nrow(x) > 1,
+    FUN.VALUE = logical(1)
+  )
+
+  if (any(has_dim) || !simplify) return(m)
   do.call(rbind, m)
 }
 

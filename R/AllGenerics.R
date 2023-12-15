@@ -628,9 +628,13 @@ setGeneric(
 #' Splits the data into subsets, computes summary statistics for each, and
 #' returns the result.
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param by A [`character`] string specifying the grouping element. It must be
-#'  one of "`samples`" or "`groups`". Any unambiguous substring can be given.
+#' @param by A vector or a list of grouping elements, each as long as the
+#'  variables in `x`. The elements are coerced to factors before use.
 #' @param FUN A [`function`] to compute the summary statistics.
+#' @param simplify A [`logical`] scalar: should the results be simplified to a
+#'  matrix if possible?
+#' @param drop A [`logical`] scalar indicating whether to drop unused
+#'  combinations of grouping values.
 #' @param ... Further arguments to be passed to `FUN`.
 #' @return A [`matrix`].
 #' @example inst/examples/ex-aggregate.R
