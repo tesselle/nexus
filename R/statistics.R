@@ -127,8 +127,9 @@ setMethod("mean", "CompositionMatrix", mean.CompositionMatrix)
 #' @keywords internal
 #' @noRd
 gmean <- function(x, trim = 0, na.rm = FALSE) {
-  index <- is.finite(x) & x > 0
-  exp(mean(log(unclass(x)[index]), trim = trim, na.rm = na.rm))
+  if (na.rm) x <- x[is.finite(x)]
+  x <- x[x > 0]
+  exp(mean(log(x), trim = trim))
 }
 
 # Quantile =====================================================================

@@ -66,7 +66,7 @@ hist.CompositionMatrix <- function(x, ..., freq = FALSE,
 
     ## Histogram
     h <- graphics::hist(x = zi, ..., plot = FALSE)
-    xlim <- range(at_i, h$breaks)
+    xlim <- range(at_i, h$breaks, finite = TRUE)
     plot(h, freq = freq, xlim = xlim,
          main = NULL, sub = NULL, xlab = NULL, ylab = NULL, axes = FALSE)
 
