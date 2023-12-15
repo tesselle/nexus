@@ -56,6 +56,7 @@ Other statistics:
 \code{\link{margin}()},
 \code{\link{mean}()},
 \code{\link{metric_var}()},
+\code{\link{quantile}()},
 \code{\link{scale}()},
 \code{\link{variation}()}
 }

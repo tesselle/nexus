@@ -7,6 +7,9 @@ coda <- as_composition(hongite)
 ## Mean
 mean(coda)
 
+## Quantile
+quantile(coda)
+
 ## Metric variance
 metric_var(coda)
 

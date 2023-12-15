@@ -660,6 +660,27 @@ NULL
 #' @rdname mean
 NULL
 
+#' Sample Quantiles
+#'
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param probs A [`numeric`] vector of probabilities with values in \eqn{[0,1]}.
+#' @param na.rm A [`logical`] scalar: should missing values be removed?
+#' @param names A [`logical`] scalar: should results be named?
+#' @param ... Currently not used.
+#' @return A [`numeric`] matrix.
+#' @references
+#'  Filzmoser, P., Hron, K. & Reimann, C. (2009). Univariate Statistical
+#'  Analysis of Environmental (Compositional) Data: Problems and Possibilities.
+#'  *Science of The Total Environment*, 407(23): 6100-6108.
+#'  \doi{10.1016/j.scitotenv.2009.08.008}.
+#' @example inst/examples/ex-mean.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @name quantile
+#' @rdname quantile
+NULL
+
 #' Marginal Compositions
 #'
 #' @param x A [`CompositionMatrix-class`] object.

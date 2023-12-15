@@ -46,6 +46,9 @@ coda <- as_composition(hongite)
 ## Mean
 mean(coda)
 
+## Quantile
+quantile(coda)
+
 ## Metric variance
 metric_var(coda)
 
@@ -73,6 +76,7 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},
+\code{\link{quantile}()},
 \code{\link{scale}()},
 \code{\link{variation}()}
 }

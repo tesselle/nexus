@@ -13,13 +13,18 @@ coda <- as_composition(hongite)
 
 expect_equal_to_reference(mean(coda), file = "_snaps/mean.rds")
 
+# Quantile =====================================================================
+qt <- quantile(coda)
+expect_equal_to_reference(qt, file = "_snaps/quantile.rds")
+
 # Scale ========================================================================
 z <- scale(coda, center = TRUE, scale = TRUE)
 expect_equal(mean(z), c(A = 0.2, B = 0.2, C = 0.2, D = 0.2, E = 0.2))
 expect_equal_to_reference(z, file = "_snaps/scale.rds")
 
 # Margin =======================================================================
-expect_equal_to_reference(margin(coda, parts = c("B", "D")), file = "_snaps/margin.rds")
+mar <- margin(coda, parts = c("B", "D"))
+expect_equal_to_reference(mar, file = "_snaps/margin.rds")
 
 # Metric variance ==============================================================
 expect_equal(round(metric_var(coda), 5), 1.69132)

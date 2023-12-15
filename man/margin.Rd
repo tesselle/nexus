@@ -47,6 +47,7 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},
 \code{\link{metric_var}()},
+\code{\link{quantile}()},
 \code{\link{scale}()},
 \code{\link{variation}()}
 }
