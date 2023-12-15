@@ -1091,8 +1091,7 @@ NULL
 #'  transformations cannot be computed in the presence of missing values.
 #' @note
 #'  If you need more advanced features (e.g. imputation of missing values),
-#'  you should consider the [compositions][compositions::missingsInCompositions]
-#'  or [robCompositions][robCompositions::impCoda] package.
+#'  you should consider the \pkg{compositions} or \pkg{robCompositions} package.
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall.

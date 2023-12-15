@@ -29,8 +29,7 @@ transformations cannot be computed in the presence of missing values.
 }
 \note{
 If you need more advanced features (e.g. imputation of missing values),
-you should consider the \link[compositions:compmiss]{compositions}
-or \link[robCompositions:impCoda]{robCompositions} package.
+you should consider the \pkg{compositions} or \pkg{robCompositions} package.
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
