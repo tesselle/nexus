@@ -21,9 +21,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-Provenance studies rely on the identification of probable sources, such that the variability between two sources is greater than the internal variability of a single source [the so-called *provenance postulate*, @weigand1977]. This assumes that a unique signature can be identified for each source on the basis of several criteria.
+Provenance studies rely on the identification of probable sources, such that the variability between two sources is greater than the internal variability of a single source (the so-called *provenance postulate*; Weigand, Harbottle, and Sayre 1977). This assumes that a unique signature can be identified for each source on the basis of several criteria.
 
-**nexus** is designed for chemical fingerprinting and source tracking of ancient materials. It provides provides tools for exploration and analysis of compositional data in the framework of @aitchison1986.
+**nexus** is designed for chemical fingerprinting and source tracking of ancient materials. It provides provides tools for exploration and analysis of compositional data in the framework of Aitchison (1986).
 
 # Get started
 
@@ -34,7 +34,7 @@ Provenance studies rely on the identification of probable sources, such that the
 library(nexus)
 ```
 
-**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (positive) descriptions of the parts of some whole, carrying relative, rather than absolute, information [@aitchison1986; @greenacre2021].
+**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (positive) descriptions of the parts of some whole, carrying relative, rather than absolute, information (Aitchison 1986; Greenacre 2021).
 
 *It assumes that you keep your data tidy*: each variable must be saved in its own column and each observation (sample) must be saved in its own row.
 
@@ -145,7 +145,7 @@ Note that the presence of repeated measurements may affect some calculations (re
 
 # Log-ratio transformations
 
-The package provides the following transformations: centered log ratio [*CLR*, @aitchison1986], additive log ratio [*ALR*, @aitchison1986], isometric log ratio [*ILR*, @egozcue2003] and pivot log-ratio [*PLR*, @hron2017].
+The package provides the following transformations: centered log ratio (*CLR*, Aitchison 1986), additive log ratio (*ALR*, Aitchison 1986), isometric log ratio (*ILR*, Egozcue et al. 2003) and pivot log-ratio (*PLR*, Hron et al. 2017).
 
 ```{r transform, fig.width=7, fig.height=8, out.width='100%'}
 ## CLR
@@ -220,3 +220,13 @@ transform_inverse(discr$means, origin = ilr)
 ```
 
 # References
+
+Aitchison, J. (1986). *The Statistical Analysis of Compositional Data. Monographs on Statistics and Applied Probability*. Londres, UK ; New York, USA: Chapman and Hall.
+
+Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. and Barceló-Vidal, C. (2003). Isometric Logratio Transformations for Compositional Data Analysis. *Mathematical Geology*, 35(3): 279-300. DOI: [10.1023/A:1023818214614](https://doi.org/10.1023/A:1023818214614).
+
+Greenacre, M. (2021). Compositional Data Analysis. *Annual Review of Statistics and Its Application*, 8(1): 271-299. DOI: [10.1146/annurev-statistics-042720-124436](https://doi.org/10.1146/annurev-statistics-042720-124436).
+
+Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. and Gardlo, A. (2017). Weighted Pivot Coordinates for Compositional Data and Their Application to Geochemical Mapping. *Mathematical Geosciences*, 49(6): 797-814. [10.1007/s11004-017-9684-z](https://doi.org/10.1007/s11004-017-9684-z).
+
+Weigand, P. C., Harbottle, G. and Sayre, E. (1977). Turquoise Sources and Source Analysisis: Mesoamerica and the Southwestern U.S.A. In *Exchange Systems in Prehistory*, edited by J. Ericson and T. K. Earle, 15-34. New York, NY: Academic Press.
