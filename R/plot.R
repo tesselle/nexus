@@ -36,18 +36,20 @@ hist.CompositionMatrix <- function(x, ..., freq = FALSE,
 
   ## Graphical parameters
   ## Save and restore
-  old_par <- graphics::par(
-    mar = c(4.1, 5.1, 4.1, if (flip) 5.1 else 2.1),
-    oma = c(0, 0, 5, 0),
-    mfcol = c(nrow, ncol)
-  )
-  on.exit(graphics::par(old_par))
+  if (p > 1) {
+    old_par <- graphics::par(
+      mar = c(4.1, 5.1, 4.1, if (flip) 5.1 else 2.1),
+      oma = c(0, 0, 5, 0),
+      mfcol = c(nrow, ncol)
+    )
+    on.exit(graphics::par(old_par))
+  }
 
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
   col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
   font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
   cex.lab <- list(...)$cex.lab %||% graphics::par("cex.lab")
-  cex.lab <- cex.lab * ifelse(max(m, p) < 3, 0.83,  0.66) # See ?par
+  if (p > 1) cex.lab <- cex.lab * ifelse(max(m, p) < 3, 0.83,  0.66) # See ?par
   col.lab <- list(...)$col.lab %||% graphics::par("col.lab")
   font.lab <- list(...)$font.lab %||% graphics::par("font.lab")
   cex.main <- list(...)$cex.main %||% graphics::par("cex.main")

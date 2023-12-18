@@ -61,6 +61,9 @@ coda <- as_composition(hongite)
 
 ## Boxplot plot
 hist(coda)
+
+hist(coda)
+hist(coda[, 1, drop = FALSE])
 }
 \references{
 Filzmoser, P., Hron, K. & Reimann, C. (2009). Univariate Statistical
