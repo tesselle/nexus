@@ -68,7 +68,13 @@ setMethod(
   signature = "CompositionMatrix",
   definition = function(x, value) {
     empty <- rep(NA_character_, nrow(x))
-    x@groups <- if (is.null(value)) empty else as.character(value)
+    if (is.null(value)) {
+      x@groups <- empty
+    } else {
+      value <- as.character(value)
+      value[value == ""] <- NA_character_
+      x@groups <- value
+    }
     methods::validObject(x)
     x
   }

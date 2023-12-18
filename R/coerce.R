@@ -75,6 +75,7 @@ setMethod(
     if (length(groups) == 1) {
       if (is.character(groups)) groups <- match(groups, cols)
       grp <- as.character(from[[groups]])
+      grp[grp == ""] <- NA_character_
     }
     n_grp <- length(unique(grp[!is.na(grp)]))
 
