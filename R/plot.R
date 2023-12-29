@@ -132,10 +132,9 @@ barplot.CompositionMatrix <- function(height, ...,
   z <- height@.Data
 
   ## Ordering
-  if (!is.null(order)) {
-    ordering <- order(z[, order], decreasing = decreasing)
-    z <- z[ordering, ]
-  }
+  ordering <- seq_len(nrow(height))
+  if (!is.null(order)) ordering <- order(z[, order], decreasing = decreasing)
+  z <- z[ordering, ]
 
   ## Graphical parameters
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
@@ -153,6 +152,7 @@ barplot.CompositionMatrix <- function(height, ...,
   if (length(stats::na.omit(groups)) > 0) {
     arkhe::assert_length(groups, nrow(z))
 
+    groups <- groups[ordering]
     groups <- factor(groups, exclude = NULL)
     grp <- split(as.data.frame(z), f = groups)
     n <- nlevels(groups)
