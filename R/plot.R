@@ -126,7 +126,8 @@ barplot.CompositionMatrix <- function(height, ...,
                                       xlab = NULL, ylab = NULL,
                                       main = NULL, sub = NULL,
                                       ann = graphics::par("ann"), axes = TRUE,
-                                      col = grDevices::hcl.colors(ncol(height), "viridis")) {
+                                      col = grDevices::hcl.colors(ncol(height), "viridis"),
+                                      legend = list()) {
   ## Get data
   z <- height@.Data
 
@@ -148,6 +149,7 @@ barplot.CompositionMatrix <- function(height, ...,
   col.main <- list(...)$col.main %||% graphics::par("col.main")
 
   ## Grouping
+  n <- 0
   if (length(stats::na.omit(groups)) > 0) {
     arkhe::assert_length(groups, nrow(z))
 
@@ -195,13 +197,30 @@ barplot.CompositionMatrix <- function(height, ...,
     ## Add annotation
     if (ann) {
       graphics::par(mfcol = c(1, 1))
-      graphics::mtext(main, side = 3, line = 3, cex = cex.main, font = font.main,
-                      col = col.main)
+      graphics::mtext(main, side = 3, line = 3, cex = cex.main,
+                      font = font.main, col = col.main)
     }
   } else {
     graphics::barplot(height = t(z), horiz = horiz, col = col, las = 1,
                       main = main, sub = sub, xlab = xlab, ylab = ylab,
                       axes = axes, ann = ann, ...)
+  }
+
+  ## Add legend
+  # https://stackoverflow.com/a/42076830
+  if (is.list(legend)) {
+    leg_par <- graphics::par(mar = c(0, 0, 0, 0), oma = c(0, 0, 0, 0),
+                             mfcol = c(1, 1), new = TRUE)
+    on.exit(graphics::par(leg_par), add = TRUE)
+    graphics::plot(0, 0, type = "n", ann = FALSE, axes = FALSE)
+
+    ## Compute legend position
+    args <- list(x = "top", legend = colnames(height), fill = col,
+                 ncol = ceiling(ncol(height) / 2), bty = "n", xpd = NA)
+    args <- utils::modifyList(args, legend)
+
+    ## Plot legend
+    do.call(graphics::legend, args = args)
   }
 
   invisible(height)

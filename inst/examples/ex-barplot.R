@@ -12,5 +12,5 @@ data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
-barplot(coda, order = 1, main = "Kommos Ceramics")
-barplot(coda, order = 1, horiz = FALSE, main = "Kommos Ceramics")
+barplot(coda, order = 1)
+barplot(coda, order = 1, horiz = FALSE)

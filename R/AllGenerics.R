@@ -919,6 +919,9 @@ NULL
 #'  and y axis labels) appear on the plot?
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
 #' @param col A vector of colors for the bar components.
+#' @param legend A [`list`] of additional arguments to be passed to
+#'  [graphics::legend()]; names of the list are used as argument names.
+#'  If `NULL`, no legend is displayed.
 #' @param ... Further parameters to be passed to [graphics::barplot()].
 #' @return
 #'  `barplot()` is called for its side-effects: is results in a graphic being
