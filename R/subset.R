@@ -3,7 +3,7 @@
 NULL
 
 # Extract ======================================================================
-## [ ---------------------------------------------------------------------------
+## CompositionMatrix -----------------------------------------------------------
 .subscript1 <- function(x, i) {
   x@.Data[i]
 }
@@ -180,6 +180,23 @@ setMethod(
       return(x)
     }
     wrong_dimensions("i", "j") # x[i=, j=, , drop=], etc.
+  }
+)
+
+## OutlierIndex ----------------------------------------------------------------
+#' @export
+#' @rdname subset
+#' @aliases [[,OutlierIndex-method
+setMethod(
+  f = "[[",
+  signature = c(x = "OutlierIndex", i = "index"),
+  function(x, i) {
+    arkhe::assert_length(i, 1)
+
+    mtx <- x[, i, drop = FALSE]
+    d <- x@distances[, i, drop = FALSE]
+
+    initialize(x, mtx, distances = d)
   }
 )
 

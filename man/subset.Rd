@@ -11,6 +11,8 @@
 \alias{[,CompositionMatrix,missing,index,logical-method}
 \alias{[,CompositionMatrix,index,index,missing-method}
 \alias{[,CompositionMatrix,index,index,logical-method}
+\alias{[[,OutlierIndex,index,ANY-method}
+\alias{[[,OutlierIndex-method}
 \alias{[<-,CompositionMatrix-method}
 \alias{[[<-,CompositionMatrix-method}
 \title{Extract or Replace Parts of an Object}
@@ -30,6 +32,8 @@
 \S4method{[}{CompositionMatrix,index,index,missing}(x, i, j, ..., drop = TRUE)
 
 \S4method{[}{CompositionMatrix,index,index,logical}(x, i, j, ..., drop = TRUE)
+
+\S4method{[[}{OutlierIndex,index,ANY}(x, i)
 
 \S4method{[}{CompositionMatrix}(x, i, j, ...) <- value
 
@@ -60,13 +64,6 @@ A subsetted object of the same sort as \code{x}.
 \description{
 Operators acting on objects to extract or replace parts.
 }
-\section{Subcomposition}{
-
-If \code{drop} is \code{FALSE}, subsetting some of the possible components of a
-\code{\linkS4class{CompositionMatrix}} object will produce a closed \emph{subcomposition}
-(see examples).
-}
-
 \examples{
 ## Data from Aitchison 1986
 data("hongite")

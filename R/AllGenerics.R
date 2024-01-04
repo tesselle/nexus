@@ -385,10 +385,10 @@ setGeneric(
 #'  the lowest possible dimension? This only works for extracting elements,
 #'  not for the replacement.
 #' @param ... Currently not used.
-#' @section Subcomposition:
-#'  If `drop` is `FALSE`, subsetting some of the possible components of a
-#'  [`CompositionMatrix-class`] object will produce a closed *subcomposition*
-#'  (see examples).
+# @section Subcomposition:
+#  If `drop` is `FALSE`, subsetting some of the possible components of a
+#  [`CompositionMatrix-class`] object will produce a closed *subcomposition*
+#  (see examples).
 #' @return
 #'  A subsetted object of the same sort as `x`.
 #' @example inst/examples/ex-subset.R

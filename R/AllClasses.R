@@ -56,6 +56,11 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
+#' @section Subset:
+#'  In the code snippets below, `x` is a `CompositionMatrix` object.
+#'  \describe{
+#'   \item{`x[i, j]`}{Extract parts of a matrix (see [`[`][subset]).}
+#'  }
 #' @note
 #'  This class inherits from [`matrix`].
 #' @seealso [as_composition()]
@@ -160,7 +165,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   contains = "ILR"
 )
 
-# OutliersIndex ================================================================
+# OutlierIndex =================================================================
 #' Outliers
 #'
 #' An S4 class to store the result of outlier detection.
@@ -176,9 +181,14 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' @slot robust An [`logical`] scalar: were robust estimators used?
 #' @slot dof A (non-negative) [`numeric`] value giving the degrees of freedom.
 #' @section Coerce:
-#'  In the code snippets below, `x` is a `OutlierIndex` object.
+#'  In the code snippets below, `x` is an `OutlierIndex` object.
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
+#' @section Subset:
+#'  In the code snippets below, `x` is an `OutlierIndex` object.
+#'  \describe{
+#'   \item{`x[[i]]`}{Extract a part of an object (see [`[[`][subset]).}
 #'  }
 #' @note
 #'  These classes inherit from [`logical`].

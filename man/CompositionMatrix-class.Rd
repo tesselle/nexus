@@ -34,6 +34,14 @@ In the code snippets below, \code{x} is a \code{CompositionMatrix} object.
 }
 }
 
+\section{Subset}{
+
+In the code snippets below, \code{x} is a \code{CompositionMatrix} object.
+\describe{
+\item{\code{x[i, j]}}{Extract parts of a matrix (see \code{\link[=subset]{[}}).}
+}
+}
+
 \examples{
 ## Data from Aitchison 1986
 data("hongite")

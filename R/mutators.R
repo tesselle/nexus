@@ -183,8 +183,10 @@ setMethod(
   f = "set_identifiers<-",
   signature = "CompositionMatrix",
   definition = function(x, value) {
-    x@codes <- if (is.null(value)) rownames(x) else make_codes(value)
+    value <- if (is.null(value)) rownames(x) else make_codes(value)
+    x@codes <- value
     methods::validObject(x)
+    rownames(x) <- value
     x
   }
 )

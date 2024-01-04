@@ -36,9 +36,17 @@ These classes inherit from \code{\link{logical}}.
 }
 \section{Coerce}{
 
-In the code snippets below, \code{x} is a \code{OutlierIndex} object.
+In the code snippets below, \code{x} is an \code{OutlierIndex} object.
 \describe{
 \item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
+}
+}
+
+\section{Subset}{
+
+In the code snippets below, \code{x} is an \code{OutlierIndex} object.
+\describe{
+\item{\code{x[[i]]}}{Extract a part of an object (see \code{\link[=subset]{[[}}).}
 }
 }
 
