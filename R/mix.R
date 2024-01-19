@@ -11,7 +11,7 @@ setMethod(
   signature = c(x = "matrix", y = "matrix"),
   definition = function(x, y, lambda = 1, ...) {
     ## Validation
-    arkhe::needs("cluster")
+    arkhe::assert_package("cluster")
     stopifnot(nrow(y) == nrow(x))
 
     X <- vector(mode = "list", length = lambda + 1)

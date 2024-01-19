@@ -16,7 +16,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe:missing]{remove_NA}}, \code{\link[arkhe:zero]{remove_zero}}, \code{\link[arkhe:missing]{replace_NA}}, \code{\link[arkhe:zero]{replace_zero}}}
+  \item{arkhe}{\code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_zero}}, \code{\link[arkhe]{replace_NA}}, \code{\link[arkhe]{replace_zero}}}
 
   \item{dimensio}{\code{\link[dimensio]{cdt}}, \code{\link[dimensio]{pca}}}
 }}

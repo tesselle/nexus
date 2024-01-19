@@ -3,7 +3,6 @@
 \docType{package}
 \name{nexus-package}
 \alias{nexus-package}
-\alias{_PACKAGE}
 \alias{nexus}
 \title{nexus: Sourcing Archaeological Materials by Chemical Composition}
 \description{

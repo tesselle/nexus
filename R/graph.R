@@ -10,7 +10,7 @@ setMethod(
   signature = c(object = "LR"),
   definition = function(object) {
     ## Validation
-    arkhe::needs("igraph")
+    arkhe::assert_package("igraph")
 
     ratio <- object@ratio
     edges <- do.call(rbind, strsplit(ratio, "_"))
@@ -27,7 +27,7 @@ setMethod(
   signature = c(object = "ALR"),
   definition = function(object) {
     ## Validation
-    arkhe::needs("igraph")
+    arkhe::assert_package("igraph")
 
     ratio <- object@ratio
     edges <- do.call(rbind, strsplit(ratio, "_"))
@@ -44,7 +44,7 @@ setMethod(
   signature = c(object = "ILR"),
   definition = function(object) {
     ## Validation
-    arkhe::needs("igraph")
+    arkhe::assert_package("igraph")
 
     ratio <- object@ratio
     edges <- lapply(
