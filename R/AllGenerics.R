@@ -6,6 +6,12 @@ NULL
 setGeneric("dist", package = "stats")
 setGeneric("mahalanobis", package = "stats")
 
+# Import S4 generics ===========================================================
+#' @importMethodsFrom arkhe replace_NA
+#' @importMethodsFrom arkhe replace_zero
+#' @importMethodsFrom dimensio pca
+NULL
+
 # CoDa =========================================================================
 #' Coerce to a Closed Compositional Matrix
 #'
@@ -1099,8 +1105,8 @@ NULL
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
 #'  London: Chapman and Hall.
 #' @family imputation methods
-#' @name policy
-#' @rdname policy
+#' @name missing
+#' @rdname missing
 NULL
 
 #' Zero-Replacement
@@ -1126,7 +1132,7 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family imputation methods
-#' @name zero
+#' @name replace_zero
 #' @rdname replace_zero
 NULL
 
@@ -1147,7 +1153,7 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family imputation methods
-#' @name missing
+#' @name replace_NA
 #' @rdname replace_NA
 NULL
 

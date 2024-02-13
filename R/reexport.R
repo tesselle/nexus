@@ -1,13 +1,5 @@
 # REEXPORT FROM ARKHE
 
-#' @importFrom arkhe replace_NA
-#' @export
-arkhe::replace_NA
-
-#' @importFrom arkhe replace_zero
-#' @export
-arkhe::replace_zero
-
 #' @importFrom arkhe remove_NA
 #' @export
 arkhe::remove_NA
@@ -16,10 +8,6 @@ arkhe::remove_NA
 #' @export
 arkhe::remove_zero
 
-#' @importFrom dimensio pca
+#' @importFrom arkhe remove_constant
 #' @export
-dimensio::pca
-
-#' @importFrom dimensio cdt
-#' @export
-dimensio::cdt
+arkhe::remove_constant

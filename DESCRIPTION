@@ -7,7 +7,9 @@ Authors@R: c(
     person("Anne", "Philippe", , "anne.philippe@univ-nantes.fr", role = "aut",
            comment = c(ORCID = "0000-0002-5331-5087", affiliation = "Université de Nantes")),
     person("Brice", "Lebrun", , "brice.lebrun@u-bordeaux-montaigne.fr", role = "ctb",
-           comment = c(ORCID = "0000-0001-7503-8685", affiliation = "Université Bordeaux Montaigne")),
+           comment = c(ORCID = "0000-0001-7503-8685", "Logo designer")),
+    person("Arthur", "Leck", , "arthur.leck@u-bordeaux-montaigne.fr", role = "ctb",
+           comment = c(ORCID = "0009-0004-8819-9970", affiliation = "Université Bordeaux Montaigne")),
     person("Université Bordeaux Montaigne", role = "fnd"),
     person("CNRS", role = "fnd")
   )
@@ -21,10 +23,10 @@ URL: https://packages.tesselle.org/nexus/,
     https://github.com/tesselle/nexus
 BugReports: https://github.com/tesselle/nexus/issues
 Depends: 
-    R (>= 3.5)
+    R (>= 3.5),
+    dimensio (>= 0.6.0)
 Imports: 
-    arkhe (>= 1.5.0),
-    dimensio (>= 0.5.0),
+    arkhe (>= 1.6.0),
     graphics,
     grDevices,
     isopleuros (>= 1.2.0),

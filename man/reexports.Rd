@@ -3,12 +3,9 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{replace_NA}
-\alias{replace_zero}
 \alias{remove_NA}
 \alias{remove_zero}
-\alias{pca}
-\alias{cdt}
+\alias{remove_constant}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -16,8 +13,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_zero}}, \code{\link[arkhe]{replace_NA}}, \code{\link[arkhe]{replace_zero}}}
-
-  \item{dimensio}{\code{\link[dimensio]{cdt}}, \code{\link[dimensio]{pca}}}
+  \item{arkhe}{\code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_constant}}, \code{\link[arkhe]{remove_zero}}}
 }}
 

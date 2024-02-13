@@ -8,6 +8,9 @@
 * `transform_ilr()` gained a new argument allowing the specify the base of the transformation.
 * `barplot()` gained a new argument to display a legend.
 
+## Internals
+* List **dimensio** in `Depends`.
+
 # nexus 0.1.0
 
 * First release.
