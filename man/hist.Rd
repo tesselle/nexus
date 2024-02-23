@@ -50,7 +50,7 @@ plot?}
 displayed (invisibly return \code{x}).
 }
 \description{
-Histogram of Compositional Data
+Produces an histogram of univariate ILR data (see Filzmoser \emph{et al.}, 2009).
 }
 \examples{
 ## Data from Aitchison 1986

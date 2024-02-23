@@ -29,6 +29,8 @@ An \pkg{igraph} graph object.
 Produces a graph of log-ratios.
 }
 \examples{
+if (requireNamespace("igraph", quietly = TRUE)) {
+
 library(igraph)
 
 ## Data from Aitchison 1986
@@ -55,6 +57,8 @@ plot(ilr_graph)
 plr <- transform_plr(coda)
 plr_graph <- as_graph(plr)
 plot(plr_graph)
+
+}
 }
 \seealso{
 Other plot methods: 

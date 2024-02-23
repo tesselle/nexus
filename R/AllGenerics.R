@@ -942,6 +942,7 @@ NULL
 
 #' Histogram of Compositional Data
 #'
+#' Produces an histogram of univariate ILR data (see Filzmoser *et al.*, 2009).
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param freq A [`logical`] scalar: should absolute frequencies (counts) be
 #'  displayed (see [graphics::hist()])?
