@@ -36,7 +36,7 @@ Imports:
     utils
 Suggests: 
     cluster,
-    folio,
+    folio (>= 1.4.0),
     igraph,
     knitr,
     markdown,
