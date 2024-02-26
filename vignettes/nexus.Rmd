@@ -227,6 +227,6 @@ Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. and Barceló-Vidal, C. (
 
 Greenacre, M. (2021). Compositional Data Analysis. *Annual Review of Statistics and Its Application*, 8(1): 271-299. DOI: [10.1146/annurev-statistics-042720-124436](https://doi.org/10.1146/annurev-statistics-042720-124436).
 
-Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. and Gardlo, A. (2017). Weighted Pivot Coordinates for Compositional Data and Their Application to Geochemical Mapping. *Mathematical Geosciences*, 49(6): 797-814. [10.1007/s11004-017-9684-z](https://doi.org/10.1007/s11004-017-9684-z).
+Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. and Gardlo, A. (2017). Weighted Pivot Coordinates for Compositional Data and Their Application to Geochemical Mapping. *Mathematical Geosciences*, 49(6): 797-814. DOI : [10.1007/s11004-017-9684-z](https://doi.org/10.1007/s11004-017-9684-z).
 
-Weigand, P. C., Harbottle, G. and Sayre, E. (1977). Turquoise Sources and Source Analysisis: Mesoamerica and the Southwestern U.S.A. In *Exchange Systems in Prehistory*, edited by J. Ericson and T. K. Earle, 15-34. New York, NY: Academic Press.
+Weigand, P. C., Harbottle, G. and Sayre, E. (1977). Turquoise Sources and Source Analysisis: Mesoamerica and the Southwestern U.S.A. In J. Ericson & T. K. Earle (Eds.), *Exchange Systems in Prehistory*, 15-34. New York, NY: Academic Press.
