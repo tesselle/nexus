@@ -2,9 +2,9 @@
 #'  \tabular{ll}{
 #'   **Package:** \tab nexus \cr
 #'   **Type:** \tab Package \cr
-#'   **Version:** \tab 0.1.0 \cr
+#'   **Version:** \tab 0.2.0 \cr
 #'   **License:** \tab GPL-3 \cr
-#'   **Zenodo:** \tab  \cr
+#'   **Zenodo:** \tab \doi{10.5281/zenodo.10225630} \cr
 #'  }
 #'
 #' @section Package options:

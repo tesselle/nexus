@@ -57,10 +57,10 @@ companion package to **nexus** that allows to create ternary plots.
 
     To cite nexus in publications use:
 
-      Frerebeau N, Philippe A (2023). _nexus: Sourcing Archaeological
+      Frerebeau N, Philippe A (2024). _nexus: Sourcing Archaeological
       Materials by Chemical Composition_. Université Bordeaux Montaigne,
       Pessac, France. doi:10.5281/zenodo.10225630
-      <https://doi.org/10.5281/zenodo.10225630>, R package version 0.1.0,
+      <https://doi.org/10.5281/zenodo.10225630>, R package version 0.2.0,
       <https://packages.tesselle.org/nexus/>.
 
     A BibTeX entry for LaTeX users is
@@ -68,10 +68,10 @@ companion package to **nexus** that allows to create ternary plots.
       @Manual{,
         author = {Nicolas Frerebeau and Anne Philippe},
         title = {{nexus: Sourcing Archaeological Materials by Chemical Composition}},
-        year = {2023},
+        year = {2024},
         organization = {Université Bordeaux Montaigne},
         address = {Pessac, France},
-        note = {R package version 0.1.0},
+        note = {R package version 0.2.0},
         url = {https://packages.tesselle.org/nexus/},
         doi = {10.5281/zenodo.10225630},
       }
@@ -100,6 +100,7 @@ remotes::install_github("tesselle/nexus")
 ``` r
 ## Load the package
 library(nexus)
+#> Loading required package: dimensio
 ```
 
 **nexus** provides a set of S4 classes that represent different special
@@ -183,7 +184,12 @@ head(coda)
 #> 4 0.005000000
 #> 5 0.003000000
 #> 6 0.003000000
+
+## Grouped compositional barplots
+barplot(coda, order = 1)
 ```
+
+<img src="man/figures/README-groups-1.png" style="display: block; margin: auto;" />
 
 ## Contributing
 

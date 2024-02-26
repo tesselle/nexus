@@ -14,9 +14,9 @@ Exploration and analysis of compositional data in the framework of Aitchison (19
 \tabular{ll}{
 \strong{Package:} \tab nexus \cr
 \strong{Type:} \tab Package \cr
-\strong{Version:} \tab 0.1.0 \cr
+\strong{Version:} \tab 0.2.0 \cr
 \strong{License:} \tab GPL-3 \cr
-\strong{Zenodo:} \tab  \cr
+\strong{Zenodo:} \tab \doi{10.5281/zenodo.10225630} \cr
 }
 }
 \section{Package options}{

@@ -8,7 +8,7 @@ message: 'To cite package "nexus" in publications use:'
 type: software
 license: GPL-3.0-or-later
 title: 'nexus: Sourcing Archaeological Materials by Chemical Composition'
-version: 0.1.0
+version: 0.2.0
 doi: 10.5281/zenodo.10225630
 abstract: 'Exploration and analysis of compositional data in the framework of Aitchison
   (1986, ISBN: 978-94-010-8324-9). This package provides tools for chemical fingerprinting
@@ -38,10 +38,10 @@ preferred-citation:
     email: anne.philippe@univ-nantes.fr
     orcid: https://orcid.org/0000-0002-5331-5087
     affiliation: Université de Nantes
-  year: '2023'
+  year: '2024'
   location:
     name: Pessac, France
-  notes: R package version 0.1.0
+  notes: R package version 0.2.0
   url: https://packages.tesselle.org/nexus/
   doi: 10.5281/zenodo.10225630
   institution:
@@ -71,10 +71,24 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
   version: '>= 3.5'
+- type: software
+  title: dimensio
+  abstract: 'dimensio: Multivariate Data Analysis'
+  notes: Depends
+  url: https://packages.tesselle.org/dimensio/
+  repository: https://CRAN.R-project.org/package=dimensio
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
+  year: '2024'
+  version: '>= 0.6.0'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -87,22 +101,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  year: '2023'
-  version: '>= 1.4.0'
-- type: software
-  title: dimensio
-  abstract: 'dimensio: Multivariate Data Analysis'
-  notes: Imports
-  url: https://packages.tesselle.org/dimensio/
-  repository: https://CRAN.R-project.org/package=dimensio
-  authors:
-  - family-names: Frerebeau
-    given-names: Nicolas
-    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
-    orcid: https://orcid.org/0000-0001-5759-4944
-    affiliation: Université Bordeaux Montaigne
-  year: '2023'
-  version: '>= 0.5.0'
+  year: '2024'
+  version: '>= 1.6.0'
 - type: software
   title: graphics
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -111,7 +111,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -122,7 +122,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -137,8 +137,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  year: '2023'
-  version: '>= 1.0.0'
+  year: '2024'
+  version: '>= 1.2.0'
 - type: software
   title: methods
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -147,7 +147,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -160,7 +160,7 @@ references:
   - family-names: Ripley
     given-names: Brian
     email: ripley@stats.ox.ac.uk
-  year: '2023'
+  year: '2024'
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -169,7 +169,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -180,7 +180,7 @@ references:
   - name: R Core Team
   location:
     name: Vienna, Austria
-  year: '2023'
+  year: '2024'
   institution:
     name: R Foundation for Statistical Computing
 - type: software
@@ -205,7 +205,7 @@ references:
     given-names: Mia
     email: Mia.Hubert@uia.ua.ac.be
     orcid: https://orcid.org/0000-0001-6398-4850
-  year: '2023'
+  year: '2024'
 - type: software
   title: folio
   abstract: 'folio: Datasets for Teaching Archaeology and Paleontology'
@@ -218,7 +218,8 @@ references:
     email: nicolas.frerebeau@u-bordeaux-montaigne.fr
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
-  year: '2023'
+  year: '2024'
+  version: '>= 1.4.0'
 - type: software
   title: igraph
   abstract: 'igraph: Network Analysis and Visualization'
@@ -251,7 +252,7 @@ references:
     given-names: Kirill
     email: kirill@cynkra.com
     orcid: https://orcid.org/0000-0002-1416-3412
-  year: '2023'
+  year: '2024'
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -263,50 +264,23 @@ references:
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  year: '2023'
+  year: '2024'
 - type: software
-  title: rmarkdown
-  abstract: 'rmarkdown: Dynamic Documents for R'
+  title: markdown
+  abstract: 'markdown: Render Markdown with ''commonmark'''
   notes: Suggests
-  url: https://pkgs.rstudio.com/rmarkdown/
-  repository: https://CRAN.R-project.org/package=rmarkdown
+  url: https://github.com/rstudio/markdown
+  repository: https://CRAN.R-project.org/package=markdown
   authors:
-  - family-names: Allaire
-    given-names: JJ
-    email: jj@posit.co
   - family-names: Xie
     given-names: Yihui
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
-  - family-names: Dervieux
-    given-names: Christophe
-    email: cderv@posit.co
-    orcid: https://orcid.org/0000-0003-4474-2498
-  - family-names: McPherson
-    given-names: Jonathan
-    email: jonathan@posit.co
-  - family-names: Luraschi
-    given-names: Javier
-  - family-names: Ushey
-    given-names: Kevin
-    email: kevin@posit.co
-  - family-names: Atkins
-    given-names: Aron
-    email: aron@posit.co
-  - family-names: Wickham
-    given-names: Hadley
-    email: hadley@posit.co
-  - family-names: Cheng
-    given-names: Joe
-    email: joe@posit.co
-  - family-names: Chang
-    given-names: Winston
-    email: winston@posit.co
-  - family-names: Iannone
-    given-names: Richard
-    email: rich@posit.co
-    orcid: https://orcid.org/0000-0003-3925-190X
-  year: '2023'
+  - family-names: Allaire
+    given-names: JJ
+  - family-names: Horner
+    given-names: Jeffrey
+  year: '2024'
 - type: software
   title: rsvg
   abstract: 'rsvg: Render SVG Images into PDF, PNG, (Encapsulated) PostScript, or
@@ -319,7 +293,7 @@ references:
     given-names: Jeroen
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
-  year: '2023'
+  year: '2024'
 - type: software
   title: svglite
   abstract: 'svglite: An ''SVG'' Graphics Device'
@@ -346,7 +320,7 @@ references:
   - family-names: Lise
     given-names: Vaudor
     email: lise.vaudor@ens-lyon.fr
-  year: '2023'
+  year: '2024'
 - type: software
   title: tinysnapshot
   abstract: 'tinysnapshot: Snapshots for Unit Tests using the ''tinytest'' Framework'
@@ -358,7 +332,7 @@ references:
     given-names: Vincent
     email: vincent.arel-bundock@umontreal.ca
     orcid: https://orcid.org/0000-0003-2042-7063
-  year: '2023'
+  year: '2024'
 - type: software
   title: tinytest
   abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'
@@ -370,7 +344,7 @@ references:
     given-names: Mark
     email: mark.vanderloo@gmail.com
     orcid: https://orcid.org/0000-0002-9807-4686
-  year: '2023'
+  year: '2024'
 identifiers:
 - description: The concept DOI.
   type: doi

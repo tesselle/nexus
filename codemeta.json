@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/tesselle/nexus",
   "issueTracker": "https://github.com/tesselle/nexus/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -44,6 +44,13 @@
       "familyName": "Lebrun",
       "email": "brice.lebrun@u-bordeaux-montaigne.fr",
       "@id": "https://orcid.org/0000-0001-7503-8685"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Arthur",
+      "familyName": "Leck",
+      "email": "arthur.leck@u-bordeaux-montaigne.fr",
+      "@id": "https://orcid.org/0009-0004-8819-9970"
     }
   ],
   "funder": [
@@ -82,6 +89,7 @@
       "@type": "SoftwareApplication",
       "identifier": "folio",
       "name": "folio",
+      "version": ">= 1.4.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -116,15 +124,15 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rmarkdown",
-      "name": "rmarkdown",
+      "identifier": "markdown",
+      "name": "markdown",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
         "name": "Comprehensive R Archive Network (CRAN)",
         "url": "https://cran.r-project.org"
       },
-      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+      "sameAs": "https://CRAN.R-project.org/package=markdown"
     },
     {
       "@type": "SoftwareApplication",
@@ -184,22 +192,9 @@
     },
     "2": {
       "@type": "SoftwareApplication",
-      "identifier": "arkhe",
-      "name": "arkhe",
-      "version": ">= 1.4.0",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=arkhe"
-    },
-    "3": {
-      "@type": "SoftwareApplication",
       "identifier": "dimensio",
       "name": "dimensio",
-      "version": ">= 0.5.0",
+      "version": ">= 0.6.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -207,6 +202,19 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=dimensio"
+    },
+    "3": {
+      "@type": "SoftwareApplication",
+      "identifier": "arkhe",
+      "name": "arkhe",
+      "version": ">= 1.6.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=arkhe"
     },
     "4": {
       "@type": "SoftwareApplication",
@@ -222,7 +230,7 @@
       "@type": "SoftwareApplication",
       "identifier": "isopleuros",
       "name": "isopleuros",
-      "version": ">= 1.0.0",
+      "version": ">= 1.2.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -260,11 +268,11 @@
     },
     "SystemRequirements": null
   },
-  "fileSize": "505.098KB",
+  "fileSize": "588.788KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
-      "datePublished": "2023",
+      "datePublished": "2024",
       "author": [
         {
           "@type": "Person",
@@ -280,7 +288,7 @@
       "name": "{nexus: Sourcing Archaeological Materials by Chemical Composition}",
       "identifier": "10.5281/zenodo.10225630",
       "url": "https://packages.tesselle.org/nexus/",
-      "description": "R package version 0.1.0",
+      "description": "R package version 0.2.0",
       "@id": "https://doi.org/10.5281/zenodo.10225630",
       "sameAs": "https://doi.org/10.5281/zenodo.10225630"
     }

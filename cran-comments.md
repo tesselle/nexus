@@ -8,6 +8,11 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a resubmission: 
-    * References in the description of the DESCRIPTION file have been properly formatted.
-    * Replace `\dontrun{}` with `\donttest{}` in examples.
+* Some links in the documentation point to articles behind paywalls that may return an error.
+
+## revdepcheck results
+
+We checked 1 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+
+ * We saw 0 new problems
+ * We failed to check 0 packages
