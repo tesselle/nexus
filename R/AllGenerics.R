@@ -7,6 +7,7 @@ setGeneric("dist", package = "stats")
 setGeneric("mahalanobis", package = "stats")
 
 # Import S4 generics ===========================================================
+#' @importMethodsFrom arkhe describe
 #' @importMethodsFrom arkhe replace_NA
 #' @importMethodsFrom arkhe replace_zero
 #' @importMethodsFrom dimensio pca
@@ -89,6 +90,20 @@ setGeneric(
   name = "as_features",
   def = function(from, ...) standardGeneric("as_features")
 )
+
+#' Data Description
+#'
+#' Describes an object.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @return
+#'  `describe()` is called for its side-effects. Invisibly returns `x`.
+#' @example inst/examples/ex-describe.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family data summaries
+#' @name describe
+#' @rdname describe
+NULL
 
 # Simplex ======================================================================
 #' Operations in the Simplex

@@ -55,6 +55,7 @@ Collate:
     'AllGenerics.R'
     'coerce.R'
     'data.R'
+    'describe.R'
     'graph.R'
     'mix.R'
     'mutators.R'
