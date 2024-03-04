@@ -75,8 +75,8 @@ Analysis of Environmental (Compositional) Data: Problems and Possibilities.
 Other plot methods: 
 \code{\link{as_graph}()},
 \code{\link{barplot}()},
-\code{\link{plot_logratio}},
-\code{\link{plot}()}
+\code{\link{plot}()},
+\code{\link{plot_logratio}}
 }
 \author{
 N. Frerebeau

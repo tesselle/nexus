@@ -64,8 +64,8 @@ plot(plr_graph)
 Other plot methods: 
 \code{\link{barplot}()},
 \code{\link{hist}()},
-\code{\link{plot_logratio}},
-\code{\link{plot}()}
+\code{\link{plot}()},
+\code{\link{plot_logratio}}
 }
 \author{
 N. Frerebeau

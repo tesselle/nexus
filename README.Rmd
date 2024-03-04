@@ -102,7 +102,7 @@ head(slides)
 
 ## Coerce to compositional data
 coda <- as_composition(slides, sample = 2, group = 1)
-head(coda)
+describe(coda)
 
 ## Grouped compositional barplots
 barplot(coda, order = 1)

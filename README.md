@@ -60,8 +60,8 @@ companion package to **nexus** that allows to create ternary plots.
       Frerebeau N, Philippe A (2024). _nexus: Sourcing Archaeological
       Materials by Chemical Composition_. Université Bordeaux Montaigne,
       Pessac, France. doi:10.5281/zenodo.10225630
-      <https://doi.org/10.5281/zenodo.10225630>, R package version 0.2.0,
-      <https://packages.tesselle.org/nexus/>.
+      <https://doi.org/10.5281/zenodo.10225630>, R package version
+      0.2.0.9000, <https://packages.tesselle.org/nexus/>.
 
     A BibTeX entry for LaTeX users is
 
@@ -71,7 +71,7 @@ companion package to **nexus** that allows to create ternary plots.
         year = {2024},
         organization = {Université Bordeaux Montaigne},
         address = {Pessac, France},
-        note = {R package version 0.2.0},
+        note = {R package version 0.2.0.9000},
         url = {https://packages.tesselle.org/nexus/},
         doi = {10.5281/zenodo.10225630},
       }
@@ -168,22 +168,20 @@ head(slides)
 
 ## Coerce to compositional data
 coda <- as_composition(slides, sample = 2, group = 1)
-head(coda)
-#> <CompositionMatrix: 6 x 7>
-#>      quartz microcline plagioclass    biotite  muscovite     opaques
-#> 1 0.2467532  0.3556444   0.3326673 0.03296703 0.01998002 0.005994006
-#> 2 0.2680000  0.3570000   0.3260000 0.03500000 0.00400000 0.006000000
-#> 3 0.2802803  0.3423423   0.3213213 0.03403403 0.01101101 0.007007007
-#> 4 0.2780000  0.3500000   0.3150000 0.03300000 0.01000000 0.009000000
-#> 5 0.2660000  0.3450000   0.3360000 0.03000000 0.01400000 0.006000000
-#> 6 0.2730000  0.3550000   0.3210000 0.02500000 0.01500000 0.008000000
-#>    nonopaques
-#> 1 0.005994006
-#> 2 0.004000000
-#> 3 0.004004004
-#> 4 0.005000000
-#> 5 0.003000000
-#> 6 0.003000000
+describe(coda)
+#> 25 compositions with 7 parts:
+#> * 5 unique samples.
+#> * 25 replicated observations.
+#> * 5 groups: "A1", "A2", "A3", "A4", "A5".
+#> * 0 unassigned samples.
+#> 
+#> Data checking:
+#> * 0% of values are zero.
+#> * 0 parts with no variance.
+#> 
+#> Missing values:
+#> * 0 compositions (0%) containing missing values.
+#> * 0 parts (0%) containing missing values.
 
 ## Grouped compositional barplots
 barplot(coda, order = 1)

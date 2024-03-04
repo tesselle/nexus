@@ -88,8 +88,8 @@ barplot(coda, order = 1, horiz = FALSE)
 Other plot methods: 
 \code{\link{as_graph}()},
 \code{\link{hist}()},
-\code{\link{plot_logratio}},
-\code{\link{plot}()}
+\code{\link{plot}()},
+\code{\link{plot_logratio}}
 }
 \author{
 N. Frerebeau
