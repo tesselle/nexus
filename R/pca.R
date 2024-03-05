@@ -25,7 +25,7 @@ setMethod(
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
     z <- methods::callNextMethod()
-    z@rows@groups <- get_groups(object)
+    z@extra <- get_features(object)
     z
   }
 )

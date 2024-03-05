@@ -14,6 +14,14 @@ get_transformation <- function(x) {
   )
 }
 
+get_features <- function(x) {
+  cbind(
+    identifier = get_identifiers(x),
+    sample = get_samples(x),
+    group = get_groups(x)
+  )
+}
+
 # Groups =======================================================================
 #' @export
 #' @rdname groups
