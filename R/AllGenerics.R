@@ -461,7 +461,7 @@ NULL
 #'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
 #'  Statistics and Its Application*, 8(1): 271-299.
 #'  \doi{10.1146/annurev-statistics-042720-124436}.
-#' @example inst/examples/ex-transform.R
+#' @example inst/examples/ex-transform-lr.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
@@ -496,7 +496,7 @@ setGeneric(
 #'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
 #'  Statistics and Its Application*, 8(1): 271-299.
 #'  \doi{10.1146/annurev-statistics-042720-124436}.
-#' @example inst/examples/ex-transform.R
+#' @example inst/examples/ex-transform-clr.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
@@ -529,7 +529,7 @@ setGeneric(
 #'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
 #'  Statistics and Its Application*, 8(1): 271-299.
 #'  \doi{10.1146/annurev-statistics-042720-124436}.
-#' @example inst/examples/ex-transform.R
+#' @example inst/examples/ex-transform-alr.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
@@ -564,7 +564,7 @@ setGeneric(
 #'  Greenacre, M. J. (2021). Compositional Data Analysis. *Annual Review of
 #'  Statistics and Its Application*, 8(1): 271-299.
 #'  \doi{10.1146/annurev-statistics-042720-124436}.
-#' @example inst/examples/ex-transform.R
+#' @example inst/examples/ex-transform-ilr.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
@@ -600,7 +600,7 @@ setGeneric(
 #'  Weighted Pivot Coordinates for Compositional Data and Their Application to
 #'  Geochemical Mapping. *Mathematical Geosciences*, 49(6), 797-814.
 #'  \doi{10.1007/s11004-017-9684-z}.
-#' @example inst/examples/ex-transform.R
+#' @example inst/examples/ex-transform-ilr.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
@@ -635,7 +635,7 @@ setGeneric(
 #'
 #'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
 #'  Boca Raton: CRC Press.
-#' @example inst/examples/ex-transform.R
+#' @example inst/examples/ex-transform-clr.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family log-ratio transformations
