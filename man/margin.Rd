@@ -42,9 +42,9 @@ head(mar)
 \seealso{
 Other statistics: 
 \code{\link{aggregate}()},
+\code{\link{condense}()},
 \code{\link{covariance}()},
 \code{\link{dist}},
-\code{\link{flatten}()},
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},
 \code{\link{metric_var}()},

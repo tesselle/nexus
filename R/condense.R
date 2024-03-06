@@ -3,10 +3,10 @@
 NULL
 
 #' @export
-#' @rdname flatten
-#' @aliases flatten,CompositionMatrix-method
+#' @rdname condense
+#' @aliases condense,CompositionMatrix-method
 setMethod(
-  f = "flatten",
+  f = "condense",
   signature = c("CompositionMatrix"),
   definition = function(x, by = get_samples(x), na.rm = FALSE) {
     m <- nrow(x)

@@ -49,9 +49,9 @@ aggregate(coda, by = get_groups(coda), FUN = metric_var)
 }
 \seealso{
 Other statistics: 
+\code{\link{condense}()},
 \code{\link{covariance}()},
 \code{\link{dist}},
-\code{\link{flatten}()},
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},

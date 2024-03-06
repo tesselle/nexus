@@ -53,9 +53,9 @@ Analysis of Environmental (Compositional) Data: Problems and Possibilities.
 \seealso{
 Other statistics: 
 \code{\link{aggregate}()},
+\code{\link{condense}()},
 \code{\link{covariance}()},
 \code{\link{dist}},
-\code{\link{flatten}()},
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},

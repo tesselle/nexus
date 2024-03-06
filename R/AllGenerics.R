@@ -718,14 +718,14 @@ NULL
 #' @param ... Currently not used.
 #' @return A [`CompositionMatrix-class`] object.
 #' @seealso [mean()], [aggregate()]
-#' @example inst/examples/ex-flatten.R
+#' @example inst/examples/ex-condense.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family statistics
-#' @aliases flatten-method
+#' @aliases condense-method
 setGeneric(
-  name = "flatten",
-  def = function(x, ...) standardGeneric("flatten"),
+  name = "condense",
+  def = function(x, ...) standardGeneric("condense"),
   valueClass = "CompositionMatrix"
 )
 

@@ -58,8 +58,8 @@ Boca Raton: CRC Press.
 
 Other statistics: 
 \code{\link{aggregate}()},
+\code{\link{condense}()},
 \code{\link{covariance}()},
-\code{\link{flatten}()},
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},

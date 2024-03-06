@@ -5,7 +5,7 @@ data("slides")
 coda <- as_composition(slides, sample = 2, group = 1)
 
 ## Compositional mean by sample
-flatten(coda, by = get_samples(coda))
+condense(coda, by = get_samples(coda))
 
 ## Compositional mean by group
-flatten(coda, by = get_groups(coda))
+condense(coda, by = get_groups(coda))
