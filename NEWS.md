@@ -1,4 +1,6 @@
 # nexus 0.2.0.9000
+## New classes and methods
+* Add `show()` methods for `LogRatio-class` objects.
 
 # nexus 0.2.0
 ## New classes and methods
