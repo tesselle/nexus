@@ -3,6 +3,9 @@
 * Add `condense()` to computes compositional mean of data subsets.
 * Add `show()` methods for `LogRatio-class` objects.
 
+## Internals
+* `gmean()` no longer ignores zeros by default.
+
 # nexus 0.2.0
 ## New classes and methods
 * Add `hist()` methods to plot ILR histograms.
