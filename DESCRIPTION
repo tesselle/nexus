@@ -59,6 +59,7 @@ Collate:
     'data.R'
     'describe.R'
     'dist.R'
+    'flatten.R'
     'graph.R'
     'margin.R'
     'mean.R'

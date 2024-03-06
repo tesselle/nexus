@@ -5,10 +5,7 @@ data("slides")
 coda <- as_composition(slides, sample = 2, group = 1)
 
 ## Compositional mean by sample
-aggregate(coda, by = get_samples(coda), FUN = mean)
+flatten(coda, by = get_samples(coda))
 
 ## Compositional mean by group
-aggregate(coda, by = get_groups(coda), FUN = mean)
-
-## Metric variance by group
-aggregate(coda, by = get_groups(coda), FUN = metric_var)
+flatten(coda, by = get_groups(coda))

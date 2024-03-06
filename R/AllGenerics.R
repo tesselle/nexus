@@ -652,7 +652,7 @@ setGeneric(
 #' Splits the data into subsets, computes summary statistics for each, and
 #' returns the result.
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param by A vector or a list of grouping elements, each as long as the
+#' @param by A `vector` or a list of grouping elements, each as long as the
 #'  variables in `x`. The elements are coerced to factors before use.
 #' @param FUN A [`function`] to compute the summary statistics.
 #' @param simplify A [`logical`] scalar: should the results be simplified to a
@@ -709,6 +709,26 @@ NULL
 #' @rdname quantile
 NULL
 
+#' Compositional Mean of Data Subsets
+#'
+#' Splits the data into subsets and computes compositional mean for each.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param by A `vector` of grouping elements, as long as the variables in `x`.
+#' @param na.rm A [`logical`] scalar: should missing values be removed?
+#' @param ... Currently not used.
+#' @return A [`CompositionMatrix-class`] object.
+#' @seealso [mean()], [aggregate()]
+#' @example inst/examples/ex-flatten.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @aliases flatten-method
+setGeneric(
+  name = "flatten",
+  def = function(x, ...) standardGeneric("flatten"),
+  valueClass = "CompositionMatrix"
+)
+
 #' Marginal Compositions
 #'
 #' @param x A [`CompositionMatrix-class`] object.
@@ -725,7 +745,8 @@ NULL
 #' @aliases margin-method
 setGeneric(
   name = "margin",
-  def = function(x, ...) standardGeneric("margin")
+  def = function(x, ...) standardGeneric("margin"),
+  valueClass = "CompositionMatrix"
 )
 
 #' Metric Variance and Standard Deviation
@@ -739,7 +760,6 @@ setGeneric(
 #' @return A [`numeric`] vector.
 #' @details
 #'  The metric variance is the average of the [CLR][transform_clr()] variances.
-#'
 #' @references
 #'  Boogaart, K. G. van den & Tolosana-Delgado, R. (2013). *Analyzing
 #'  Compositional Data with R*. Berlin Heidelberg: Springer-Verlag.
