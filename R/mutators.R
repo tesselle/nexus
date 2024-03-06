@@ -22,6 +22,11 @@ get_features <- function(x) {
   )
 }
 
+has_rownames <- function(x) {
+  .row_names_info(x, type = 1L) > 0L &&
+    !is.na(.row_names_info(x, type = 0L)[[1L]])
+}
+
 # Groups =======================================================================
 #' @export
 #' @rdname groups
@@ -162,7 +167,13 @@ setMethod(
   f = "set_samples<-",
   signature = "CompositionMatrix",
   definition = function(x, value) {
-    x@samples <- if (is.null(value)) rownames(x) else as.character(value)
+    if (is.null(value)) {
+      value <- make_names(x = NULL, n = nrow(x), prefix = "S")
+    } else {
+      value <- as.character(value)
+    }
+
+    x@samples <- value
     methods::validObject(x)
     x
   }
@@ -191,7 +202,12 @@ setMethod(
   f = "set_identifiers<-",
   signature = "CompositionMatrix",
   definition = function(x, value) {
-    value <- if (is.null(value)) rownames(x) else make_codes(value)
+    if (is.null(value)) {
+      value <- make_codes(get_samples(x))
+    } else {
+      value <- make_codes(value)
+    }
+
     x@codes <- value
     methods::validObject(x)
     rownames(x) <- value

@@ -24,12 +24,16 @@ setMethod(
   definition = function(from) {
     totals <- rowSums(from, na.rm = TRUE)
     from <- from / totals
-    dimnames(from) <- make_dimnames(from)
 
-    codes <- samples <- rownames(from)
-    groups <- rep(NA_character_, nrow(from))
-    .CompositionMatrix(from, totals = totals, codes = codes,
-                       samples = samples, groups = groups)
+    spl <- make_names(x = NULL, n = nrow(from), prefix = "S")
+    lab <- if (has_rownames(from)) rownames(from) else make_codes(spl)
+    grp <- rep(NA_character_, nrow(from))
+
+    rownames(from) <- lab
+    colnames(from) <- make_names(x = colnames(from), n = ncol(from), prefix = "V")
+
+    .CompositionMatrix(from, totals = totals, codes = lab,
+                       samples = spl, groups = grp)
   }
 )
 
@@ -43,7 +47,6 @@ setMethod(
                         auto = getOption("nexus.autodetect"),
                         verbose = getOption("nexus.verbose")) {
 
-    dimnames(from) <- make_dimnames(from)
     cols <- colnames(from)
     empty <- rep(NA_character_, nrow(from))
 
@@ -51,25 +54,23 @@ setMethod(
       grep(what, where, ignore.case = TRUE, value = FALSE)
     }
 
-    ## Samples
-    spl <- rownames(from)
+    ## Sample names
+    spl <- make_names(x = NULL, n = nrow(from), prefix = "S")
     if (is.null(samples) && auto) samples <- index("^sample[s]{0,1}$", cols)
     if (length(samples) == 1) {
       if (is.character(samples)) samples <- match(samples, cols)
       spl <- as.character(from[[samples]])
     }
-    n_spl <- sum(duplicated(spl))
 
-    ## Codes
-    lab <- rownames(from)
-    if (is.null(codes) && auto) codes <- index("^code[s]{0,1}$", cols)
+    ## Identifiers (must be unique)
+    lab <- if (has_rownames(from)) rownames(from) else make_codes(spl)
+    if (is.null(codes) && auto) codes <- index("^(code[s]{0,1}|identifier[s]{0,1})$", cols)
     if (length(codes) == 1) {
       if (is.character(codes)) codes <- match(codes, cols)
-      lab <- as.character(from[[codes]])
+      else lab <- as.character(from[[codes]])
     }
-    n_lab <- length(lab)
 
-    ## Groups
+    ## Group names
     grp <- empty
     if (is.null(groups) && auto) groups <- index("^group[s]{0,1}$", cols)
     if (length(groups) == 1) {
@@ -77,7 +78,6 @@ setMethod(
       grp <- as.character(from[[groups]])
       grp[grp == ""] <- NA_character_
     }
-    n_grp <- length(unique(grp[!is.na(grp)]))
 
     ## Drop extra columns (if any)
     drop <- c(codes, samples, groups)
@@ -85,14 +85,13 @@ setMethod(
 
     ## Print messages
     if (verbose) {
-      if (n_lab > 0) {
-        msg <- ngettext(n_lab, "sample was", "samples were")
-        message(sprintf("%d unique %s found.", n_lab, msg))
-      }
+      dupli <- duplicated(spl, fromLast = FALSE) | duplicated(spl, fromLast = TRUE)
+      n_spl <- sum(dupli)
       if (n_spl > 0) {
         msg <- ngettext(n_spl, "measurement was", "measurements were")
         message(sprintf("%d replicated %s found.", n_spl, msg))
       }
+      n_grp <- length(unique(grp[!is.na(grp)]))
       if (n_grp > 0) {
         msg <- ngettext(n_grp, "group was", "groups were")
         message(sprintf("%d %s found.", n_grp, msg))
@@ -101,25 +100,14 @@ setMethod(
     arkhe::assert_filled(data)
 
     ## Remove non-numeric columns
-    quali <- arkhe::detect(data, is.numeric, 2, negate = TRUE)
-    if (any(quali)) {
-      old <- colnames(data)
-      data <- data[, !quali, drop = FALSE]
-      arkhe::assert_filled(data)
-
-      ## Generate message
-      tot <- sum(quali)
-      msg <- "%d qualitative %s removed: %s."
-      txt <- ngettext(tot, "variable was", "variables were")
-      col <- paste(old[quali], collapse = ", ")
-      message(sprintf(msg, tot, txt, col))
-    }
+    data <- arkhe::keep_cols(x = data, f = is.numeric, all = FALSE,
+                             verbose = verbose)
 
     ## Build matrix
     data <- data.matrix(data, rownames.force = NA)
     totals <- rowSums(data, na.rm = TRUE)
     data <- data / totals
-    # dimnames(data) <- make_dimnames(from)
+    rownames(data) <- lab
 
     .CompositionMatrix(data, totals = totals, codes = lab,
                        samples = spl, groups = grp)
@@ -128,28 +116,24 @@ setMethod(
 
 make_codes <- function(x) {
   if (!any(duplicated(x))) return(x)
-  x <- tapply(
-    X = x,
-    INDEX = x,
-    FUN = function(x) {
-      paste(x, seq_along(x), sep = "_")
-    },
+  x <- split(x = seq_along(x), f = x)
+  nm <- rep(names(x), lengths(x))
+  nm <- tapply(
+    X = nm,
+    INDEX = nm,
+    FUN = function(x) paste(x, seq_along(x), sep = "_"),
     simplify = FALSE
   )
-  unlist(x, use.names = FALSE)
+
+  x <- unlist(x, use.names = FALSE)
+  nm <- unlist(nm, use.names = FALSE)
+  nm[x]
 }
 
-make_names <- function(x, n, prefix = "X") {
+make_names <- function(x, n = length(x), prefix = "X") {
   x <- if (n > 0) x %||% paste0(prefix, seq_len(n)) else character(0)
   x <- make.unique(x, sep = "_")
   x
-}
-
-make_dimnames <- function(x) {
-  list(
-    make_names(dimnames(x)[[1L]], nrow(x), "S"),
-    make_names(dimnames(x)[[2L]], ncol(x), "V")
-  )
 }
 
 # To Amounts ===================================================================
@@ -160,7 +144,7 @@ setMethod(
   f = "as_amounts",
   signature = c(from = "CompositionMatrix"),
   definition = function(from) {
-    from@.Data * from@totals
+    methods::as(from, "matrix") * get_totals(from)
   }
 )
 
@@ -186,13 +170,13 @@ setMethod(
 #' @method as.data.frame CompositionMatrix
 #' @export
 as.data.frame.CompositionMatrix <- function(x, ...) {
-  as.data.frame(methods::as(x, "matrix"))
+  as.data.frame(methods::as(x, "matrix"), row.names = get_identifiers(x))
 }
 
 #' @method as.data.frame LogRatio
 #' @export
 as.data.frame.LogRatio <- function(x, ...) {
-  as.data.frame(methods::as(x, "matrix"))
+  as.data.frame(methods::as(x, "matrix"), row.names = get_identifiers(x))
 }
 
 #' @method as.data.frame OutlierIndex
@@ -208,7 +192,7 @@ as.data.frame.OutlierIndex <- function(x, ...) {
     group = get_groups(x),
     d,
     out,
-    row.names = get_identifiers(x),
+    row.names = NULL,
     stringsAsFactors = FALSE
   )
 }

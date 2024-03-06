@@ -33,7 +33,7 @@ NULL
 #' @details
 #'  The [`CompositionMatrix-class`] class has special slots:
 #'
-#'  * `codes` for [laboratory codes][identifiers],
+#'  * `identifiers` for [laboratory codes][identifiers],
 #'  * `samples` for [repeated measurements/observation][samples],
 #'  * `groups` to [group data by site/area][group].
 #'
@@ -232,6 +232,7 @@ setGeneric(
 #'    identifiers assigned.
 #'  * `get_identifiers()` returns a [`character`] vector giving the unique
 #'    identifiers of `x`.
+#' @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
@@ -268,6 +269,7 @@ setGeneric(
 #'    has groups.
 #'  * `is_assigned()` returns a [`logical`] vector specifying whether or not an
 #'    observation belongs to a group.
+#' @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
@@ -323,6 +325,7 @@ setGeneric(
 #'    `x` has replicated observations.
 #'  * `is_replicated()` returns a [`logical`] vector specifying whether or not
 #'    an observation is a replicate.
+#' @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators

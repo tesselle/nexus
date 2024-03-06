@@ -54,7 +54,7 @@ Coerces an object to a \code{CompositionMatrix} object.
 \details{
 The \code{\linkS4class{CompositionMatrix}} class has special slots:
 \itemize{
-\item \code{codes} for \link[=identifiers]{laboratory codes},
+\item \code{identifiers} for \link[=identifiers]{laboratory codes},
 \item \code{samples} for \link[=samples]{repeated measurements/observation},
 \item \code{groups} to \link[=group]{group data by site/area}.
 }
@@ -72,7 +72,7 @@ All non-numeric variable will be removed.
 }
 \examples{
 ## Create a count matrix
-A1 <- matrix(data = as.numeric(sample(1:100, 100, TRUE)), nrow = 20)
+A1 <- matrix(data = sample(1:100, 100, TRUE), nrow = 20)
 
 ## Coerce to compositions
 B <- as_composition(A1)

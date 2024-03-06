@@ -1,5 +1,5 @@
 ## Create a count matrix
-A1 <- matrix(data = as.numeric(sample(1:100, 100, TRUE)), nrow = 20)
+A1 <- matrix(data = sample(1:100, 100, TRUE), nrow = 20)
 
 ## Coerce to compositions
 B <- as_composition(A1)
