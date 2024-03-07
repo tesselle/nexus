@@ -166,6 +166,23 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname as_features
+#' @aliases as_features,LogRatio-method
+setMethod(
+  f = "as_features",
+  signature = c(from = "LogRatio"),
+  definition = function(from) {
+    data.frame(
+      identifier = get_identifiers(from),
+      sample = get_samples(from),
+      group = get_groups(from),
+      from,
+      row.names = NULL
+    )
+  }
+)
+
 # To data.frame ================================================================
 #' @method as.data.frame CompositionMatrix
 #' @export
