@@ -48,6 +48,6 @@
 #'  slotNames validObject .valueClassTest
 #' @importFrom MASS cov.rob
 #' @importFrom stats as.dist contr.helmert cov dist hclust mahalanobis ppoints
-#'  qchisq var
+#'  qchisq qqline qqplot var
 #' @importFrom utils combn tail
 NULL

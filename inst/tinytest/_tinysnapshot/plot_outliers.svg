@@ -37,7 +37,7 @@
 <circle cx='170.40' cy='156.26' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='186.40' cy='101.04' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='202.40' cy='361.98' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='218.40' cy='72.80' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
+<circle cx='218.40' cy='72.80' r='2.70' style='stroke-width: 0.75;' />
 <circle cx='234.40' cy='337.93' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='250.40' cy='212.65' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='266.40' cy='180.94' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />

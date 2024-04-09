@@ -84,9 +84,14 @@ plot.OutlierIndex <- function(x, ..., qq = FALSE, probs = c(0.25, 0.75),
                               axes = TRUE, frame.plot = axes,
                               panel.first = NULL, panel.last = NULL) {
   ## Get data
+  dof <- x@dof
+  limit <- x@limit
   d <- x@distances
-  g <- x@groups
+  grp <- get_groups(x)
   k <- ncol(d)
+
+  ## Plot type
+  fun_plot <- if (qq) .qqplot_outliers else .plot_outliers
 
   ## Annotation
   xlab <- xlab %||% ifelse(qq, "Theoretrical Quantiles", "Index")
@@ -118,11 +123,11 @@ plot.OutlierIndex <- function(x, ..., qq = FALSE, probs = c(0.25, 0.75),
     ## Plot
     for (j in seq_len(k)) {
       dj <- d[, j, drop = TRUE]
-      gj <- g == colnames(d)[j]
-      .plot_outliers(dj, df = x@dof, qq = qq, qqline = gj,
-                     probs = probs, limit = x@limit,
-                     xlab = NULL, ylab = NULL, main = NULL, sub = NULL,
-                     ann = FALSE, axes = FALSE, frame.plot = frame.plot, ...)
+      gj <- grp == colnames(d)[j]
+      fun_plot(y = dj, df = dof, limit = limit, assigned = gj, probs = probs,
+               xlab = NULL, ylab = NULL, main = NULL, sub = NULL,
+               ann = FALSE, axes = FALSE, frame.plot = frame.plot, ...)
+
 
       ## Construct Axis
       do_x <- (j %% nrow == 0 || j == k)
@@ -156,12 +161,14 @@ plot.OutlierIndex <- function(x, ..., qq = FALSE, probs = c(0.25, 0.75),
   } else {
     rob <- ifelse(x@robust, "Robust", "Standard")
     ylab <- ylab %||% sprintf("%s Mahalanobis distance", rob)
+    assigned <- grp == colnames(d)
 
-    .plot_outliers(d[, 1], df = x@dof, qq = qq, qqline = g == colnames(d),
-                   limit = x@limit, probs = probs,
-                   xlab = xlab, ylab = ylab, main = main, sub = sub,
-                   ann = ann, axes = axes, frame.plot = frame.plot,
-                   panel.first = panel.first, panel.last = panel.last, ...)
+    fun_plot(y = d[, 1], df = dof, limit = limit, assigned = assigned,
+             probs = probs,
+             xlab = xlab, ylab = ylab, main = main, sub = sub,
+             ann = ann, axes = axes, frame.plot = frame.plot,
+             panel.first = panel.first, panel.last = panel.last, ...)
+
   }
 
   invisible(x)
@@ -172,8 +179,9 @@ plot.OutlierIndex <- function(x, ..., qq = FALSE, probs = c(0.25, 0.75),
 #' @aliases plot,OutlierIndex,missing-method
 setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)
 
-.plot_outliers <- function(x, df, ..., qq = FALSE, qqline = seq_along(x),
-                           probs = c(0.25, 0.75), limit = NULL,
+.plot_outliers <- function(y, limit, ...,
+                           df = NULL, probs = NULL, # Unused
+                           assigned = seq_along(x),
                            col.group = "black", col.samples = "grey",
                            pch.in = 16, pch.out = 1,
                            xlab = NULL, ylab = NULL,
@@ -182,13 +190,8 @@ setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)
                            axes = TRUE, frame.plot = axes,
                            panel.first = NULL, panel.last = NULL) {
   ## Prepare data
-  n <- length(x)
-  index <- seq_len(n)
-
-  khi <- stats::qchisq(stats::ppoints(n), df = df)
-  i <- if (qq) order(x) else index
-  data_x <- if (qq) khi else index
-  data_y <- x[i]
+  n <- length(y)
+  x <- seq_len(n)
 
   ## Open new window
   grDevices::dev.hold()
@@ -196,28 +199,21 @@ setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)
   graphics::plot.new()
 
   ## Set plotting coordinates
-  xlim <- range(data_x, na.rm = TRUE, finite = TRUE)
-  ylim <- range(data_y, na.rm = TRUE, finite = TRUE)
-  graphics::plot.window(xlim = xlim, ylim = ylim, asp = if (qq) 1 else NA)
+  xlim <- range(x, na.rm = TRUE, finite = TRUE)
+  ylim <- range(y, na.rm = TRUE, finite = TRUE)
+  graphics::plot.window(xlim = xlim, ylim = ylim)
 
   ## Evaluate pre-plot expressions
   panel.first
 
   ## Plot
   col <- rep(col.samples, n)
-  col[qqline[i]] <- col.group
+  col[assigned] <- col.group
   pch <- rep(pch.in, n)
-  pch[data_y > limit] <- pch.out
+  pch[y > limit] <- pch.out
 
-  graphics::points(x = data_x, y = data_y, col = col, pch = pch, ...)
-  if (qq) {
-    stats::qqline(
-      y = data_y[qqline[i]],
-      distribution = function(p) stats::qchisq(p, df = df),
-      probs = probs, col = "#BB5566", ...
-    )
-  }
-  if (!qq && is.numeric(limit)) graphics::abline(h = limit, lty = 2)
+  graphics::points(x = x, y = y, col = col, pch = pch, ...)
+  graphics::abline(h = limit, lty = 2)
 
   ## Evaluate post-plot and pre-axis expressions
   panel.last
@@ -238,5 +234,76 @@ setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)
     graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab)
   }
 
-  invisible(x)
+  invisible(y)
+}
+
+.qqplot_outliers <- function(y, df, limit, ..., assigned = seq_along(x),
+                             probs = c(0.25, 0.75), conf.level = NULL,
+                             conf.args = list(exact = NULL, simulate.p.value = FALSE,
+                                              B = 2000, col = NA, border = NULL),
+                             col.group = "black", col.samples = "grey",
+                             col.line = "#BB5566",
+                             pch.in = 16, pch.out = 1,
+                             xlab = NULL, ylab = NULL,
+                             main = NULL, sub = NULL,
+                             ann = graphics::par("ann"),
+                             axes = TRUE, frame.plot = axes,
+                             panel.first = NULL, panel.last = NULL) {
+  ## Prepare data
+  n <- length(y)
+  i <- order(y)
+  x <- stats::qchisq(stats::ppoints(n), df = df)
+
+  ## Compute
+  qq <- stats::qqplot(x = x, y = y[i], plot.it = FALSE,
+                      conf.level = conf.level, conf.args = conf.args)
+  x <- qq$x
+  y <- qq$y
+
+  ## Open new window
+  grDevices::dev.hold()
+  on.exit(grDevices::dev.flush(), add = TRUE)
+  graphics::plot.new()
+
+  ## Set plotting coordinates
+  xlim <- range(x, na.rm = TRUE, finite = TRUE)
+  ylim <- range(y, na.rm = TRUE, finite = TRUE)
+  graphics::plot.window(xlim = xlim, ylim = ylim, asp = 1)
+
+  ## Evaluate pre-plot expressions
+  panel.first
+
+  ## Plot
+  col <- rep(col.samples, n)
+  col[assigned[i]] <- col.group
+  pch <- rep(pch.in, n)
+  pch[y > limit] <- pch.out
+
+  graphics::points(x = x, y = y, col = col, pch = pch, ...)
+  stats::qqline(
+    y = y[assigned[i]],
+    distribution = function(p) stats::qchisq(p, df = df),
+    probs = probs, col = col.line, ...
+  )
+
+  ## Evaluate post-plot and pre-axis expressions
+  panel.last
+
+  ## Construct Axis
+  if (axes) {
+    graphics::axis(side = 1, las = 1)
+    graphics::axis(side = 2, las = 1)
+  }
+
+  ## Plot frame
+  if (frame.plot) {
+    graphics::box()
+  }
+
+  ## Add annotation
+  if (ann) {
+    graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab)
+  }
+
+  invisible(y)
 }

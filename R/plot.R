@@ -27,9 +27,6 @@ hist.CompositionMatrix <- function(x, ..., freq = FALSE,
   m <- nrow(x)
   p <- ncol(x)
 
-  # TODO
-  ilr <- TRUE
-
   ## Plot
   if (is.null(ncol)) ncol <- if (p > 4) 2 else 1
   nrow <- ceiling(p / ncol)
