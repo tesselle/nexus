@@ -51,8 +51,9 @@ setMethod(
     grp <- unique(groups[!is.na(groups)])
     n_grp <- length(grp)
     n_ung <- sum(is.na(groups))
-    msg_grp <- sprintf("%d %s: %s.", n_grp, ngettext(n_grp, "group", "groups"),
-                       paste0(dQuote(grp), collapse = ", "))
+    ls_grp <- if (n_grp == 0) "" else paste0(": ", paste0(dQuote(grp), collapse = ", "))
+    msg_grp <- sprintf("%d %s%s.", n_grp, ngettext(n_grp, "group", "groups"),
+                       ls_grp)
     msg_ung <- sprintf("%d unassigned %s.", n_ung, ngettext(n_ung, "sample", "samples"))
 
     cat(msg_tbl, msg_spl, msg_dpl, msg_grp, msg_ung, sep = "\n* ")
