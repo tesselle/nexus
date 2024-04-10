@@ -17,7 +17,6 @@ as_composition(from, ...)
 
 \S4method{as_composition}{data.frame}(
   from,
-  codes = NULL,
   samples = NULL,
   groups = NULL,
   auto = getOption("nexus.autodetect"),
@@ -28,9 +27,6 @@ as_composition(from, ...)
 \item{from}{A \code{\link{matrix}} or \code{\link{data.frame}} to be coerced.}
 
 \item{...}{Currently not used.}
-
-\item{codes}{An \code{\link{integer}} giving the index of the column to be used as
-laboratory codes (unique identifiers).}
 
 \item{samples}{An \code{\link{integer}} giving the index of the column to be used for
 sample identification: allows duplicates to identify replicated measurements.
@@ -54,7 +50,6 @@ Coerces an object to a \code{CompositionMatrix} object.
 \details{
 The \code{\linkS4class{CompositionMatrix}} class has special slots:
 \itemize{
-\item \code{identifiers} for \link[=identifiers]{laboratory codes},
 \item \code{samples} for \link[=samples]{repeated measurements/observation},
 \item \code{groups} to \link[=group]{group data by site/area}.
 }

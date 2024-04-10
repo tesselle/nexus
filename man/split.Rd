@@ -50,7 +50,6 @@ split(Y, f = get_samples(Y))
 \seealso{
 Other mutators: 
 \code{\link{groups}},
-\code{\link{identifiers}},
 \code{\link{samples}},
 \code{\link{subset}()},
 \code{\link{totals}}

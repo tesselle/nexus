@@ -12,7 +12,6 @@ NULL
   ## Rows
   if (missing(i)) i <- seq_len(nrow(x))
   if (is.character(i)) i <- match(i, dimnames(x)[1L])
-  codes <- x@codes[i]
   samples <- x@samples[i]
   groups <- x@groups[i]
   totals <- x@totals[i]
@@ -31,8 +30,7 @@ NULL
   #   z <- z / tot
   # }
 
-  methods::initialize(x, z, codes = codes, samples = samples, groups = groups,
-                      totals = totals)
+  methods::initialize(x, z, samples = samples, groups = groups, totals = totals)
 }
 
 wrong_dimensions <- function(i, j) {

@@ -23,7 +23,7 @@ setMethod(
     base[D, ] <- -1
 
     alr <- log(z, base = exp(1)) %*% base
-    rownames(alr) <- rownames(z)
+    rownames(alr) <- rownames(object)
     colnames(alr) <- paste(parts[-D], parts[D], sep = "_")
 
     w <- rep(1 / D, D)
@@ -37,7 +37,6 @@ setMethod(
       base = base,
       weights = w,
       totals = object@totals,
-      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )

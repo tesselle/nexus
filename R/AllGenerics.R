@@ -18,8 +18,6 @@ NULL
 #'
 #' Coerces an object to a `CompositionMatrix` object.
 #' @param from A [`matrix`] or [`data.frame`] to be coerced.
-#' @param codes An [`integer`] giving the index of the column to be used as
-#'  laboratory codes (unique identifiers).
 #' @param samples An [`integer`] giving the index of the column to be used for
 #'  sample identification: allows duplicates to identify replicated measurements.
 #'  If `NULL` (the default), row names will be used as sample IDs.
@@ -33,7 +31,6 @@ NULL
 #' @details
 #'  The [`CompositionMatrix-class`] class has special slots:
 #'
-#'  * `identifiers` for [laboratory codes][identifiers],
 #'  * `samples` for [repeated measurements/observation][samples],
 #'  * `groups` to [group data by site/area][group].
 #'
@@ -219,41 +216,6 @@ setGeneric(
 
 # Extract ======================================================================
 ## Mutators --------------------------------------------------------------------
-#' Unique Identifiers
-#'
-#' Retrieves or defines the unique identifier (eg. laboratory codes) of each
-#' observation.
-#' @param x An object from which to get or set `codes`.
-#' @param value A possible value for the `codes` of `x`.
-#' @details
-#'  See `vignette("nexus")`.
-#' @return
-#'  * `set_identifiers()` returns an object of the same sort as `x` with the new
-#'    identifiers assigned.
-#'  * `get_identifiers()` returns a [`character`] vector giving the unique
-#'    identifiers of `x`.
-#' @example inst/examples/ex-mutators.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family mutators
-#' @name identifiers
-#' @rdname identifiers
-NULL
-
-#' @rdname identifiers
-#' @aliases get_identifiers-method
-setGeneric(
-  name = "get_identifiers",
-  def = function(x) standardGeneric("get_identifiers")
-)
-
-#' @rdname identifiers
-#' @aliases set_identifiers-method
-setGeneric(
-  name = "set_identifiers<-",
-  def = function(x, value) standardGeneric("set_identifiers<-")
-)
-
 #' Working With Groups
 #'
 #' Retrieves or defines the groups to which the observations belong.

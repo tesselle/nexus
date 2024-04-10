@@ -16,7 +16,6 @@ get_transformation <- function(x) {
 
 get_features <- function(x) {
   cbind(
-    identifier = get_identifiers(x),
     sample = get_samples(x),
     group = get_groups(x)
   )
@@ -175,42 +174,6 @@ setMethod(
 
     x@samples <- value
     methods::validObject(x)
-    x
-  }
-)
-
-# Identifiers ==================================================================
-#' @export
-#' @rdname identifiers
-#' @aliases get_identifiers,CompositionMatrix-method
-setMethod("get_identifiers", "CompositionMatrix", function(x) x@codes)
-
-#' @export
-#' @rdname identifiers
-#' @aliases get_identifiers,LogRatio-method
-setMethod("get_identifiers", "LogRatio", function(x) x@codes)
-
-#' @export
-#' @rdname identifiers
-#' @aliases get_identifiers,OutlierIndex-method
-setMethod("get_identifiers", "OutlierIndex", function(x) x@codes)
-
-#' @export
-#' @rdname identifiers
-#' @aliases set_identifiers,CompositionMatrix-method
-setMethod(
-  f = "set_identifiers<-",
-  signature = "CompositionMatrix",
-  definition = function(x, value) {
-    if (is.null(value)) {
-      value <- make_codes(get_samples(x))
-    } else {
-      value <- make_codes(value)
-    }
-
-    x@codes <- value
-    methods::validObject(x)
-    rownames(x) <- value
     x
   }
 )

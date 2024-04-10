@@ -32,8 +32,7 @@ setMethod(
     rownames(from) <- lab
     colnames(from) <- make_names(x = colnames(from), n = ncol(from), prefix = "V")
 
-    .CompositionMatrix(from, totals = totals, codes = lab,
-                       samples = spl, groups = grp)
+    .CompositionMatrix(from, totals = totals, samples = spl, groups = grp)
   }
 )
 
@@ -43,7 +42,7 @@ setMethod(
 setMethod(
   f = "as_composition",
   signature = c(from = "data.frame"),
-  definition = function(from, codes = NULL, samples = NULL, groups = NULL,
+  definition = function(from, samples = NULL, groups = NULL,
                         auto = getOption("nexus.autodetect"),
                         verbose = getOption("nexus.verbose")) {
 
@@ -64,11 +63,6 @@ setMethod(
 
     ## Identifiers (must be unique)
     lab <- if (has_rownames(from)) rownames(from) else make_codes(spl)
-    if (is.null(codes) && auto) codes <- index("^(code[s]{0,1}|identifier[s]{0,1})$", cols)
-    if (length(codes) == 1) {
-      if (is.character(codes)) codes <- match(codes, cols)
-      else lab <- as.character(from[[codes]])
-    }
 
     ## Group names
     grp <- empty
@@ -80,28 +74,13 @@ setMethod(
     }
 
     ## Drop extra columns (if any)
-    drop <- c(codes, samples, groups)
+    drop <- c(samples, groups)
     data <- if (length(drop) > 0) from[, -drop, drop = FALSE] else from
-
-    ## Print messages
-    if (verbose) {
-      dupli <- duplicated(spl, fromLast = FALSE) | duplicated(spl, fromLast = TRUE)
-      n_spl <- sum(dupli)
-      if (n_spl > 0) {
-        msg <- ngettext(n_spl, "measurement was", "measurements were")
-        message(sprintf("%d replicated %s found.", n_spl, msg))
-      }
-      n_grp <- length(unique(grp[!is.na(grp)]))
-      if (n_grp > 0) {
-        msg <- ngettext(n_grp, "group was", "groups were")
-        message(sprintf("%d %s found.", n_grp, msg))
-      }
-    }
-    arkhe::assert_filled(data)
 
     ## Remove non-numeric columns
     data <- arkhe::keep_cols(x = data, f = is.numeric, all = FALSE,
                              verbose = verbose)
+    arkhe::assert_filled(data)
 
     ## Build matrix
     data <- data.matrix(data, rownames.force = NA)
@@ -109,8 +88,7 @@ setMethod(
     data <- data / totals
     rownames(data) <- lab
 
-    .CompositionMatrix(data, totals = totals, codes = lab,
-                       samples = spl, groups = grp)
+    .CompositionMatrix(data, totals = totals, samples = spl, groups = grp)
   }
 )
 
@@ -157,11 +135,9 @@ setMethod(
   signature = c(from = "CompositionMatrix"),
   definition = function(from) {
     data.frame(
-      identifier = get_identifiers(from),
       sample = get_samples(from),
       group = get_groups(from),
-      from,
-      row.names = NULL
+      from
     )
   }
 )
@@ -174,11 +150,9 @@ setMethod(
   signature = c(from = "LogRatio"),
   definition = function(from) {
     data.frame(
-      identifier = get_identifiers(from),
       sample = get_samples(from),
       group = get_groups(from),
-      from,
-      row.names = NULL
+      from
     )
   }
 )
@@ -187,13 +161,13 @@ setMethod(
 #' @method as.data.frame CompositionMatrix
 #' @export
 as.data.frame.CompositionMatrix <- function(x, ...) {
-  as.data.frame(methods::as(x, "matrix"), row.names = get_identifiers(x))
+  as.data.frame(methods::as(x, "matrix"), row.names = rownames(x))
 }
 
 #' @method as.data.frame LogRatio
 #' @export
 as.data.frame.LogRatio <- function(x, ...) {
-  as.data.frame(methods::as(x, "matrix"), row.names = get_identifiers(x))
+  as.data.frame(methods::as(x, "matrix"), row.names = rownames(x))
 }
 
 #' @method as.data.frame OutlierIndex

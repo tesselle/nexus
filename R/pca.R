@@ -27,12 +27,8 @@ setMethod(
     z <- methods::callNextMethod()
     z@extra <- get_features(object)
 
-    ## Set row names
-    z@rows@names <- get_identifiers(object)
-
     ## Set groups (if any)
-    if (any_assigned(object))
-      z@rows@groups <- get_groups(object)
+    if (any_assigned(object)) z@rows@groups <- get_groups(object)
 
     z
   }

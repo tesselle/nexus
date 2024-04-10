@@ -8,6 +8,8 @@ expect_equal_to_reference(lr, file = "_snaps/transform_lr.rds")
 # CLR ==========================================================================
 clr <- transform_clr(coda, weights = FALSE)
 expect_equal_to_reference(clr, file = "_snaps/transform_clr.rds")
+x <- transform_inverse(clr)
+expect_equal(coda, x)
 
 wclr <- transform_clr(coda, weights = TRUE)
 x <- transform_inverse(wclr)

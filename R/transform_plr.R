@@ -39,7 +39,7 @@ setMethod(
       parts = parts
     )
     colnames(plr) <- paste0("Z", seq_len(J - 1))
-    rownames(plr) <- rownames(obj)
+    rownames(plr) <- rownames(object)
 
     .PLR(
       plr,
@@ -49,7 +49,6 @@ setMethod(
       base = H,
       weights = rep(1 / J, J),
       totals = object@totals,
-      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )

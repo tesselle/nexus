@@ -27,12 +27,12 @@ setMethod(
     z <- do.call(rbind, z)
 
     tot <- tapply(X = get_totals(x), INDEX = by, FUN = mean, simplify = TRUE)
-    lab <- flatten_chr(x = get_identifiers(x), by = by)
+    lab <- flatten_chr(x = rownames(x), by = by)
     spl <- flatten_chr(x = get_samples(x), by = by)
     grp <- flatten_chr(x = get_groups(x), by = by)
 
-    .CompositionMatrix(z, totals = as.numeric(tot),
-                       codes = lab, samples = spl, groups = grp)
+    rownames(z) <- lab
+    .CompositionMatrix(z, totals = as.numeric(tot), samples = spl, groups = grp)
   }
 )
 

@@ -14,13 +14,10 @@ An S4 class to represent compositional data.
 \item{\code{totals}}{A \code{\link{numeric}} vector to store the absolute row sums (before
 the closure of the compositions).}
 
-\item{\code{codes}}{A \code{\link{character}} vector to store the laboratory codes
-(unique identifiers).}
-
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
 (allows duplicates in case of repeated measurements).}
 
-\item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
+\item{\code{groups}}{A \code{\link{character}} vector to store the group names.}
 }}
 
 \note{

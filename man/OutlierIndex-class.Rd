@@ -13,13 +13,10 @@ An S4 class to store the result of outlier detection.
 \describe{
 \item{\code{.Data}}{A \code{\link{logical}} matrix.}
 
-\item{\code{codes}}{A \code{\link{character}} vector to store the laboratory codes
-(unique identifiers).}
-
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
 (allows duplicates in case of repeated measurements).}
 
-\item{\code{groups}}{A \code{\link{character}} vector to store the group names (if any).}
+\item{\code{groups}}{A \code{\link{character}} vector to store the group names.}
 
 \item{\code{distances}}{A \code{\link{numeric}} matrix giving the squared Mahalanobis distance.}
 

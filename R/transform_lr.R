@@ -37,7 +37,6 @@ setMethod(
       order = seq_len(J),
       weights = w,
       totals = object@totals,
-      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )

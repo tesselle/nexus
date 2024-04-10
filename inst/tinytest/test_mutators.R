@@ -1,19 +1,6 @@
 data("hongite")
 coda <- as_composition(hongite)
 
-# CompositionMatrix identifiers ================================================
-expect_equal(get_identifiers(coda), rownames(hongite))
-
-set_identifiers(coda) <- rep("A", 25)
-expect_equal(get_identifiers(coda), paste("A", seq_len(25), sep = "_"))
-
-set_identifiers(coda) <- NULL
-expect_equal(get_identifiers(coda), get_samples(coda))
-
-# Invalid values
-# Try wrong length
-expect_error(set_identifiers(coda) <- LETTERS, class = "arkhe_error_class")
-
 # CompositionMatrix samples ====================================================
 set_samples(coda) <- rep(c("A", "B", "C", "D", "E"), each = 5)
 expect_equal(get_samples(coda), rep(c("A", "B", "C", "D", "E"), each = 5))

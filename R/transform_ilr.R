@@ -69,7 +69,6 @@ setMethod(
       base = base,
       weights = rep(1 / D, D),
       totals = object@totals,
-      codes = object@codes,
       samples = object@samples,
       groups = object@groups
     )
