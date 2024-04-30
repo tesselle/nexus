@@ -1,9 +1,5 @@
 # REEXPORT FROM ARKHE
 
-#' @importFrom arkhe describe
-#' @export
-arkhe::describe
-
 #' @importFrom arkhe remove_NA
 #' @export
 arkhe::remove_NA

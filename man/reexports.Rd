@@ -3,7 +3,6 @@
 \docType{import}
 \name{reexports}
 \alias{reexports}
-\alias{describe}
 \alias{remove_NA}
 \alias{remove_zero}
 \alias{remove_constant}
@@ -15,6 +14,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe]{describe}}, \code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_constant}}, \code{\link[arkhe]{remove_zero}}, \code{\link[arkhe]{sparsity}}}
+  \item{arkhe}{\code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_constant}}, \code{\link[arkhe]{remove_zero}}, \code{\link[arkhe]{sparsity}}}
 }}
 
