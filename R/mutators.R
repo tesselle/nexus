@@ -15,7 +15,7 @@ get_transformation <- function(x) {
 }
 
 get_features <- function(x) {
-  cbind(
+  list(
     sample = get_samples(x),
     group = get_groups(x)
   )
