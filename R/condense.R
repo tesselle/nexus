@@ -27,7 +27,7 @@ setMethod(
     z <- do.call(rbind, z)
 
     tot <- tapply(X = get_totals(x), INDEX = by, FUN = mean, simplify = TRUE)
-    lab <- flatten_chr(x = rownames(x), by = by)
+    lab <- flatten_chr(x = by, by = by)
     spl <- flatten_chr(x = get_samples(x), by = by)
     grp <- flatten_chr(x = get_groups(x), by = by)
 
