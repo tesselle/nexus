@@ -144,6 +144,9 @@ barplot.CompositionMatrix <- function(height, ...,
   font.main <- list(...)$font.main %||% graphics::par("font.main")
   col.main <- list(...)$col.main %||% graphics::par("col.main")
 
+  x_side <- if (horiz) 1 else 2
+  y_side <- if (horiz) 2 else 1
+
   ## Grouping
   n <- 0
   if (length(stats::na.omit(groups)) > 0) {
@@ -162,9 +165,6 @@ barplot.CompositionMatrix <- function(height, ...,
     )
     on.exit(graphics::par(old_par))
 
-    x_side <- if (horiz) 1 else 2
-    y_side <- if (horiz) 2 else 1
-
     for (i in seq_len(n)) {
       graphics::barplot(height = t(grp[[i]]), horiz = horiz, axes = FALSE,
                         main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
@@ -174,7 +174,9 @@ barplot.CompositionMatrix <- function(height, ...,
       do_x <- (horiz & i == n) | (!horiz & i == 1)
       if (axes) {
         if (do_x) {
-          graphics::axis(side = x_side, cex.axis = cex.axis, col.axis = col.axis,
+          at <- graphics::axTicks(side = x_side)
+          graphics::axis(side = x_side, at = at, labels = label_percent(at),
+                         cex.axis = cex.axis, col.axis = col.axis,
                          font.axis = font.axis, xpd = NA, las = 1)
         }
       }
@@ -200,7 +202,11 @@ barplot.CompositionMatrix <- function(height, ...,
   } else {
     graphics::barplot(height = t(z), horiz = horiz, col = col, las = 1,
                       main = main, sub = sub, xlab = xlab, ylab = ylab,
-                      axes = axes, ann = ann, ...)
+                      axes = FALSE, ann = ann, ...)
+    at <- graphics::axTicks(side = x_side)
+    graphics::axis(side = x_side, at = at, labels = label_percent(at),
+                   cex.axis = cex.axis, col.axis = col.axis,
+                   font.axis = font.axis, xpd = NA, las = 1)
   }
 
   ## Add legend

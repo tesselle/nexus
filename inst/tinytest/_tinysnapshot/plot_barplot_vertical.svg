@@ -67,12 +67,12 @@
 <line x1='57.02' y1='209.11' x2='52.27' y2='209.11' style='stroke-width: 0.75;' />
 <line x1='57.02' y1='128.31' x2='52.27' y2='128.31' style='stroke-width: 0.75;' />
 <line x1='57.02' y1='47.52' x2='52.27' y2='47.52' style='stroke-width: 0.75;' />
-<text x='47.52' y='454.37' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='12.58px' lengthAdjust='spacingAndGlyphs'>0.0</text>
-<text x='47.52' y='373.58' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='12.58px' lengthAdjust='spacingAndGlyphs'>0.2</text>
-<text x='47.52' y='292.78' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='12.58px' lengthAdjust='spacingAndGlyphs'>0.4</text>
-<text x='47.52' y='211.99' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='12.58px' lengthAdjust='spacingAndGlyphs'>0.6</text>
-<text x='47.52' y='131.19' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='12.58px' lengthAdjust='spacingAndGlyphs'>0.8</text>
-<text x='47.52' y='50.40' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='12.58px' lengthAdjust='spacingAndGlyphs'>1.0</text>
+<text x='47.52' y='454.37' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='17.57px' lengthAdjust='spacingAndGlyphs'>  0%</text>
+<text x='47.52' y='373.58' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='20.09px' lengthAdjust='spacingAndGlyphs'> 20%</text>
+<text x='47.52' y='292.78' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='20.09px' lengthAdjust='spacingAndGlyphs'> 40%</text>
+<text x='47.52' y='211.99' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='20.09px' lengthAdjust='spacingAndGlyphs'> 60%</text>
+<text x='47.52' y='131.19' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='20.09px' lengthAdjust='spacingAndGlyphs'> 80%</text>
+<text x='47.52' y='50.40' text-anchor='end' style='font-size: 7.92px; font-family: "Arial";' textLength='22.61px' lengthAdjust='spacingAndGlyphs'>100%</text>
 <text x='96.97' y='491.64' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>1</text>
 </g>
 <defs>
