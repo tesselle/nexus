@@ -33,6 +33,18 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname pip
+#' @aliases pip,CompositionMatrix-method
+setMethod(
+  f = "pip",
+  signature = c(x = "CompositionMatrix"),
+  definition = function(x) {
+    v <- variation(x)
+    1 / (1 + sqrt(v))
+  }
+)
+
 # Variation array ==============================================================
 # @export
 # @rdname variation_array

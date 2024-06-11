@@ -34,6 +34,7 @@ expect_equal(round(metric_sd(coda), 5), 0.65025)
 
 # Variation =====================================================================
 expect_equal_to_reference(variation(coda), file = "_snaps/variation.rds")
+expect_equal_to_reference(pip(coda), file = "_snaps/pip.rds")
 
 # Covariance ===================================================================
 expect_equal_to_reference(covariance(coda, center = FALSE), file = "_snaps/covariance_sigma.rds")

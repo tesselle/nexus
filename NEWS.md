@@ -1,6 +1,7 @@
 # nexus 0.2.0.9000
 ## New classes and methods
-* Add `condense()` to computes compositional mean of data subsets.
+* Add `condense()` to compute compositional mean of data subsets.
+* Add `pip()` to compute proportionality index of parts.
 * Add `show()` methods for `LogRatio-class` objects.
 
 ## Internals

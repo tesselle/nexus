@@ -801,6 +801,31 @@ setGeneric(
   valueClass = "matrix"
 )
 
+#' Proportionality Index of Parts (PIP)
+#'
+#' Computes an index of association between parts.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param ... Currently not used.
+#' @return A [`matrix`].
+#' @details
+#'  The proportionality index of parts (PIP) is based on the
+#'  [variation matrix][variation()], but maintains the range of values whithin
+#'  \eqn{(0,1)}.
+#' @references
+#'  Egozcue, J. J.. & Pawlowsky-Glahn, V. (2023). Subcompositional Coherence
+#'  and and a Novel Proportionality Index of Parts. *SORT*, 47(2): 229-244.
+#'  \doi{10.57645/20.8080.02.7}.
+#' @example inst/examples/ex-variation.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @aliases pip-method
+setGeneric(
+  name = "pip",
+  def = function(x, ...) standardGeneric("pip"),
+  valueClass = "matrix"
+)
+
 # Variation Array
 #
 # Computes the compositional variation array.

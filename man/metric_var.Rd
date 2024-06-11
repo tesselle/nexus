@@ -77,6 +77,7 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},
+\code{\link{pip}()},
 \code{\link{quantile}()},
 \code{\link{scale}()},
 \code{\link{variation}()}

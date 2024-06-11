@@ -56,6 +56,7 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{metric_var}()},
+\code{\link{pip}()},
 \code{\link{quantile}()},
 \code{\link{scale}()},
 \code{\link{variation}()}
