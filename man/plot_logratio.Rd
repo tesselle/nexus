@@ -9,8 +9,6 @@
 \S4method{plot}{LogRatio,missing}(
   x,
   ...,
-  order = NULL,
-  decreasing = FALSE,
   groups = get_groups(x),
   rug = TRUE,
   ticksize = 0.05,
@@ -31,11 +29,6 @@
 \item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
 \code{border} and \code{col}.}
 
-\item{order}{A \code{\link{logical}} scalar: should the ratio be ordered?}
-
-\item{decreasing}{A \code{\link{logical}} scalar: should the sort order be increasing
-or decreasing?}
-
 \item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
 defines the grouping. If set, a matrix of panels defined by \code{groups} will be
 drawn.}
@@ -47,8 +40,8 @@ the data be added to the plot?}
 ticks making up the \emph{rug}. Positive lengths give inwards ticks. Only used if
 \code{rug} is \code{TRUE}.}
 
-\item{ncol}{An \code{\link{integer}} specifying the number of columns to use when
-\code{facet} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
+\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
+Defaults to 1 for up to 4 groups, otherwise to 2.}
 
 \item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
 flipped from side 2 (left) to 4 (right) from variable to variable?}

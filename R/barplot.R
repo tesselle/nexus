@@ -12,9 +12,9 @@ barplot.CompositionMatrix <- function(height, ...,
                                       main = NULL, sub = NULL,
                                       ann = graphics::par("ann"), axes = TRUE,
                                       col = grDevices::hcl.colors(ncol(height), "viridis"),
-                                      legend = list()) {
+                                      legend = list(x = "top")) {
   ## Get data
-  z <- height@.Data
+  z <- height
 
   ## Ordering
   ordering <- seq_len(nrow(height))
@@ -25,9 +25,6 @@ barplot.CompositionMatrix <- function(height, ...,
   z <- z[ordering, , drop = FALSE]
 
   ## Graphical parameters
-  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
-  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
-  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
   cex.lab <- list(...)$cex.lab %||% graphics::par("cex.lab")
   col.lab <- list(...)$col.lab %||% graphics::par("col.lab")
   font.lab <- list(...)$font.lab %||% graphics::par("font.lab")
@@ -40,13 +37,14 @@ barplot.CompositionMatrix <- function(height, ...,
 
   ## Grouping
   n <- 0
-  if (length(stats::na.omit(groups)) > 0) {
+  if (!all(is.na(groups))) {
     arkhe::assert_length(groups, nrow(z))
-
     groups <- groups[ordering]
-    groups <- factor(groups, exclude = NULL)
-    grp <- split(as.data.frame(z), f = groups)
-    n <- nlevels(groups)
+
+    z <- split(z, f = groups)
+    n <- length(z)
+
+    ylabs <- ylab %||% names(z) %||% paste0("G", seq_len(n))
 
     ## Save and restore
     old_par <- graphics::par(
@@ -57,7 +55,7 @@ barplot.CompositionMatrix <- function(height, ...,
     on.exit(graphics::par(old_par))
 
     for (i in seq_len(n)) {
-      graphics::barplot(height = t(grp[[i]]), horiz = horiz, axes = FALSE,
+      graphics::barplot(height = t(z[[i]]), horiz = horiz, axes = FALSE,
                         main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
                         col = col, las = x_side, ...)
 
@@ -67,19 +65,17 @@ barplot.CompositionMatrix <- function(height, ...,
         if (do_x) {
           at <- graphics::axTicks(side = x_side)
           graphics::axis(side = x_side, at = at, labels = label_percent(at),
-                         cex.axis = cex.axis, col.axis = col.axis,
-                         font.axis = font.axis, xpd = NA, las = 1)
+                         xpd = NA, las = 1)
         }
       }
 
       ## Add annotation
       if (ann) {
-        ylab <- ylab %||% names(grp)
         if (do_x) {
           graphics::mtext(xlab, side = x_side, line = 3, cex = cex.lab,
                           col = col.lab, font = font.lab)
         }
-        graphics::mtext(ylab[i], side = y_side, line = 3, cex = cex.lab,
+        graphics::mtext(ylabs[i], side = y_side, line = 3, cex = cex.lab,
                         col = col.lab, font = font.lab)
       }
     }
@@ -96,8 +92,7 @@ barplot.CompositionMatrix <- function(height, ...,
                       axes = FALSE, ann = ann, ...)
     at <- graphics::axTicks(side = x_side)
     graphics::axis(side = x_side, at = at, labels = label_percent(at),
-                   cex.axis = cex.axis, col.axis = col.axis,
-                   font.axis = font.axis, xpd = NA, las = 1)
+                   xpd = NA, las = 1)
   }
 
   ## Add legend

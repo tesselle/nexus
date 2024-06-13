@@ -404,6 +404,22 @@ NULL
 #' @rdname split
 NULL
 
+#' Matrix Transpose
+#'
+#' @param x A [`CompositionMatrix-class`] object.
+#' @return
+#'  A `matrix`, with dim and dimnames constructed appropriately from those of `x`.
+#' @note
+#'  Implemented only to ensure that `t()` always returns a base `matrix`.
+#' @example inst/examples/ex-subset.R
+#' @author N. Frerebeau
+#' @docType methods
+# @family mutators
+#' @keywords internal
+#' @name t
+#' @rdname t
+NULL
+
 # Log-Ratio ====================================================================
 ## LR --------------------------------------------------------------------------
 #' Pairwise Log-Ratios (LR)
@@ -1003,11 +1019,12 @@ NULL
 #' Produces an histogram of univariate ILR data (see Filzmoser *et al.*, 2009).
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param freq A [`logical`] scalar: should absolute frequencies (counts) be
-#'  displayed (see [graphics::hist()])?
+#'  displayed? If `FALSE` (the default), relative frequencies (probabilities)
+#'  are displayed (see [graphics::hist()]).
 #' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
 #'  flipped from side 2 (left) to 4 (right) from variable to variable?
-#' @param ncol An [`integer`] specifying the number of columns to use when
-#'  `facet` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
+#' @param ncol An [`integer`] specifying the number of columns to use.
+#'  Defaults to 1 for up to 4 parts, otherwise to 2.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.
 #' @param ann A [`logical`] scalar: should the default annotation (title and x
@@ -1057,9 +1074,6 @@ NULL
 #'
 #' Displays a density plot.
 #' @param x A [`LogRatio-class`] object.
-#' @param order A [`logical`] scalar: should the ratio be ordered?
-#' @param decreasing A [`logical`] scalar: should the sort order be increasing
-#'  or decreasing?
 #' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
 #'  defines the grouping. If set, a matrix of panels defined by `groups` will be
 #'  drawn.
@@ -1070,8 +1084,8 @@ NULL
 #'  `rug` is `TRUE`.
 #' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
 #'  flipped from side 2 (left) to 4 (right) from variable to variable?
-#' @param ncol An [`integer`] specifying the number of columns to use when
-#'  `facet` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
+#' @param ncol An [`integer`] specifying the number of columns to use.
+#'  Defaults to 1 for up to 4 groups, otherwise to 2.
 #' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param ann A [`logical`] scalar: should the default annotation (title and x
@@ -1087,7 +1101,7 @@ NULL
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
 #'  displayed (invisibly return `x`).
-#' @example inst/examples/ex-plot-logratio.R
+#' @example inst/examples/ex-density.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family plot methods
@@ -1290,8 +1304,8 @@ setGeneric(
 #'  (resp.).
 #' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
 #'  flipped from side 2 (left) to 4 (right) from group to group?
-#' @param ncol An [`integer`] specifying the number of columns to use when
-#'  `facet` is "`multiple`". Defaults to 1 for up to 4 series, otherwise to 2.
+#' @param ncol An [`integer`] specifying the number of columns to use.
+#'  Defaults to 1 for up to 4 groups, otherwise to 2.
 #' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.

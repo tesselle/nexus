@@ -212,3 +212,26 @@ setMethod(
     z
   }
 )
+
+# Transpose ====================================================================
+#' @export
+#' @rdname t
+#' @aliases t,CompositionMatrix-method
+setMethod(
+  f = "t",
+  signature = c(x = "CompositionMatrix"),
+  function(x) {
+    t(x@.Data)
+  }
+)
+
+#' @export
+#' @rdname t
+#' @aliases t,LogRatio-method
+setMethod(
+  f = "t",
+  signature = c(x = "LogRatio"),
+  function(x) {
+    t(x@.Data)
+  }
+)

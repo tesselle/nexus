@@ -121,3 +121,11 @@ set_samples(cts) <- rep(c("X", "Y"), times = 10)
 tmp <- cts[1:10, , drop = FALSE]
 expect_identical(get_groups(tmp), rep("A", 10))
 expect_identical(get_samples(tmp), rep(c("X", "Y"), times = 5))
+
+# Transpose ====================================================================
+mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 5)
+cts <- as_composition(mtx)
+clr <- transform_clr(cts)
+
+expect_false(is(t(cts), "CompositionMatrix"))
+expect_false(is(t(clr), "LogRatio"))

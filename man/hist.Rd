@@ -25,10 +25,11 @@
 \item{...}{Further parameters to be passed to \code{\link[graphics:hist]{graphics::hist()}}.}
 
 \item{freq}{A \code{\link{logical}} scalar: should absolute frequencies (counts) be
-displayed (see \code{\link[graphics:hist]{graphics::hist()}})?}
+displayed? If \code{FALSE} (the default), relative frequencies (probabilities)
+are displayed (see \code{\link[graphics:hist]{graphics::hist()}}).}
 
-\item{ncol}{An \code{\link{integer}} specifying the number of columns to use when
-\code{facet} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
+\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
+Defaults to 1 for up to 4 parts, otherwise to 2.}
 
 \item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
 flipped from side 2 (left) to 4 (right) from variable to variable?}

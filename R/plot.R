@@ -6,13 +6,14 @@ NULL
 #' @export
 #' @method plot CompositionMatrix
 plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = get_groups(x)) {
-  if (!is.null(groups) || !all(is.na(groups))) {
+  if (!is.null(groups) && !all(is.na(groups))) {
     col <- dimensio::palette_color_discrete(list(...)$col)(groups)
     pch <- dimensio::palette_shape(list(...)$pch)(groups)
   } else {
     col <- list(...)$col %||% graphics::par("col")
     pch <- list(...)$pch %||% graphics::par("pch")
   }
+
   isopleuros::ternary_pairs(x, margin = margin, col = col, pch = pch, ...)
   invisible(x)
 }
@@ -25,7 +26,7 @@ setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMat
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, ..., order = NULL, decreasing = FALSE,
+plot.LogRatio <- function(x, ...,
                           groups = get_groups(x), rug = TRUE, ticksize = 0.05,
                           ncol = NULL, flip = FALSE,
                           xlab = NULL, ylab = NULL,
@@ -41,19 +42,14 @@ plot.LogRatio <- function(x, ..., order = NULL, decreasing = FALSE,
   if (is.null(ncol)) ncol <- if (p > 4) 2 else 1
   nrow <- ceiling(p / ncol)
 
-  ## Ordering
-  if (!is.null(order)) {
-    ordering <- order(z[, order, drop = TRUE], decreasing = decreasing)
-    z <- z[ordering, , drop = FALSE]
-  }
-
   ## Grouping
-  if (length(stats::na.omit(groups)) > 0) rug <- FALSE
   if (is.null(groups) || all(is.na(groups))) {
     grp <- list(all = z)
     groups <- rep("all", m)
   } else {
+    arkhe::assert_length(groups, m)
     grp <- split(z, f = groups)
+    rug <- FALSE
   }
   k <- length(grp)
 

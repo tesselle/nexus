@@ -20,7 +20,7 @@
   ann = graphics::par("ann"),
   axes = TRUE,
   col = grDevices::hcl.colors(ncol(height), "viridis"),
-  legend = list()
+  legend = list(x = "top")
 )
 }
 \arguments{

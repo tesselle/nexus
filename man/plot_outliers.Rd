@@ -38,8 +38,8 @@ substring can be given.}
 \item{pch.in, pch.out}{A symbol specification for non-outliers and outliers
 (resp.).}
 
-\item{ncol}{An \code{\link{integer}} specifying the number of columns to use when
-\code{facet} is "\code{multiple}". Defaults to 1 for up to 4 series, otherwise to 2.}
+\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
+Defaults to 1 for up to 4 groups, otherwise to 2.}
 
 \item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
 flipped from side 2 (left) to 4 (right) from group to group?}
