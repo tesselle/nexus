@@ -682,7 +682,7 @@ NULL
 #'
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param na.rm A [`logical`] scalar: should missing values be removed?
-#' @param ... Currently not used.
+#' @param ... Further arguments to be passed to internal methods.
 #' @details
 #'  Closed vector of the columns geometric means.
 #' @return A [`numeric`] vector.
@@ -723,8 +723,7 @@ NULL
 #' Splits the data into subsets and computes compositional mean for each.
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param by A `vector` of grouping elements, as long as the variables in `x`.
-#' @param na.rm A [`logical`] scalar: should missing values be removed?
-#' @param ... Currently not used.
+#' @param ... Further arguments to be passed to [mean()].
 #' @return A [`CompositionMatrix-class`] object.
 #' @seealso [mean()], [aggregate()]
 #' @example inst/examples/ex-condense.R

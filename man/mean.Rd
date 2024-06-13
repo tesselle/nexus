@@ -11,7 +11,7 @@
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{...}{Currently not used.}
+\item{...}{Further arguments to be passed to internal methods.}
 
 \item{na.rm}{A \code{\link{logical}} scalar: should missing values be removed?}
 }

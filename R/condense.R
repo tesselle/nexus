@@ -8,7 +8,7 @@ NULL
 setMethod(
   f = "condense",
   signature = c("CompositionMatrix"),
-  definition = function(x, by = get_samples(x), na.rm = FALSE) {
+  definition = function(x, by = get_samples(x), ...) {
     m <- nrow(x)
 
     arkhe::assert_length(by, m)
@@ -17,11 +17,11 @@ setMethod(
     z <- tapply(
       X = seq_len(m),
       INDEX = by,
-      FUN = function(i, data, na.rm) {
-        mean(data[i, , drop = FALSE], na.rm = na.rm)
+      FUN = function(i, data, ...) {
+        mean(data[i, , drop = FALSE], ...)
       },
       data = x,
-      na.rm = na.rm,
+      ...,
       simplify = FALSE
     )
     z <- do.call(rbind, z)

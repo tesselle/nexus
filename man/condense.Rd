@@ -9,16 +9,14 @@
 \usage{
 condense(x, ...)
 
-\S4method{condense}{CompositionMatrix}(x, by = get_samples(x), na.rm = FALSE)
+\S4method{condense}{CompositionMatrix}(x, by = get_samples(x), ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{...}{Currently not used.}
+\item{...}{Further arguments to be passed to \code{\link[=mean]{mean()}}.}
 
 \item{by}{A \code{vector} of grouping elements, as long as the variables in \code{x}.}
-
-\item{na.rm}{A \code{\link{logical}} scalar: should missing values be removed?}
 }
 \value{
 A \code{\linkS4class{CompositionMatrix}} object.
