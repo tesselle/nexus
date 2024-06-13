@@ -21,7 +21,7 @@ Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
 [![R-CMD-check](https://github.com/tesselle/nexus/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/nexus/actions)
 [![codecov](https://codecov.io/gh/tesselle/nexus/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tesselle/nexus)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/nexus/badge/main)](https://www.codefactor.io/repository/github/tesselle/nexus/overview/main)
-[![Dependencies](https://tinyverse.netlify.com/badge/nexus)](https://cran.r-project.org/package=nexus)
+[![Dependencies](https://tinyverse.netlify.app/badge/nexus)](https://cran.r-project.org/package=nexus)
 
 [![r-universe](https://tesselle.r-universe.dev/badges/nexus)](https://tesselle.r-universe.dev/nexus){.pkgdown-devel}
 [![CRAN Version](http://www.r-pkg.org/badges/version/nexus)](https://cran.r-project.org/package=nexus){.pkgdown-release}
@@ -49,8 +49,11 @@ This package also includes methods for provenance studies:
 
 [**isopleuros**](https://packages.tesselle.org/isopleuros/) is a companion package to **nexus** that allows to create ternary plots.
 
-```{r citation, echo=FALSE, comment=''}
-utils::citation("nexus")
+---
+
+```{r citation, echo=FALSE, comment='', results='asis'}
+cite <- utils::citation("nexus")
+print(cite, bibtex = FALSE)
 ```
 
 ## Installation
@@ -101,7 +104,7 @@ data("slides")
 head(slides)
 
 ## Coerce to compositional data
-coda <- as_composition(slides, sample = 2, group = 1)
+coda <- as_composition(slides, samples = 2, groups = 1)
 describe(coda)
 
 ## Grouped compositional barplots

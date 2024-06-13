@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/tesselle/nexus/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/nexus/actions)
 [![codecov](https://codecov.io/gh/tesselle/nexus/branch/main/graph/badge.svg)](https://app.codecov.io/gh/tesselle/nexus)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/nexus/badge/main)](https://www.codefactor.io/repository/github/tesselle/nexus/overview/main)
-[![Dependencies](https://tinyverse.netlify.com/badge/nexus)](https://cran.r-project.org/package=nexus)
+[![Dependencies](https://tinyverse.netlify.app/badge/nexus)](https://cran.r-project.org/package=nexus)
 
 <a href="https://tesselle.r-universe.dev/nexus"
 class="pkgdown-devel"><img
@@ -55,29 +55,18 @@ This package also includes methods for provenance studies:
 [**isopleuros**](https://packages.tesselle.org/isopleuros/) is a
 companion package to **nexus** that allows to create ternary plots.
 
-    To cite nexus in publications use:
+------------------------------------------------------------------------
 
-      Frerebeau N, Philippe A (2024). _nexus: Sourcing Archaeological
-      Materials by Chemical Composition_. Université Bordeaux Montaigne,
-      Pessac, France. doi:10.5281/zenodo.10225630
-      <https://doi.org/10.5281/zenodo.10225630>, R package version
-      0.2.0.9000, <https://packages.tesselle.org/nexus/>.
+To cite nexus in publications use:
 
-    A BibTeX entry for LaTeX users is
+Frerebeau N, Philippe A (2024). *nexus: Sourcing Archaeological
+Materials by Chemical Composition*. Université Bordeaux Montaigne,
+Pessac, France. <doi:10.5281/zenodo.10225630>
+<https://doi.org/10.5281/zenodo.10225630>, R package version 0.3.0,
+<https://packages.tesselle.org/nexus/>.
 
-      @Manual{,
-        author = {Nicolas Frerebeau and Anne Philippe},
-        title = {{nexus: Sourcing Archaeological Materials by Chemical Composition}},
-        year = {2024},
-        organization = {Université Bordeaux Montaigne},
-        address = {Pessac, France},
-        note = {R package version 0.2.0.9000},
-        url = {https://packages.tesselle.org/nexus/},
-        doi = {10.5281/zenodo.10225630},
-      }
-
-    This package is a part of the tesselle project
-    <https://www.tesselle.org>.
+This package is a part of the tesselle project
+<https://www.tesselle.org>.
 
 ## Installation
 
@@ -128,6 +117,9 @@ head(hongite)
 #> H4 50.9 23.8  7.2 10.1  8.0
 #> H5 44.2 38.3  2.9  7.7  6.9
 #> H6 52.3 26.2  4.2 12.5  4.8
+```
+
+``` r
 
 ## Coerce to compositional data
 coda <- as_composition(hongite)
@@ -165,9 +157,12 @@ head(slides)
 #> 4        0.5
 #> 5        0.3
 #> 6        0.3
+```
+
+``` r
 
 ## Coerce to compositional data
-coda <- as_composition(slides, sample = 2, group = 1)
+coda <- as_composition(slides, samples = 2, groups = 1)
 describe(coda)
 #> 25 compositions with 7 parts:
 #> * 5 unique samples.
@@ -182,6 +177,9 @@ describe(coda)
 #> Missing values:
 #> * 0 compositions (0%) containing missing values.
 #> * 0 parts (0%) containing missing values.
+```
+
+``` r
 
 ## Grouped compositional barplots
 barplot(coda, order = 1)
@@ -197,7 +195,8 @@ to this project, you agree to abide by its terms.
 
 ## References
 
-<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="refs" class="references csl-bib-body hanging-indent"
+entry-spacing="0">
 
 <div id="ref-aitchison1986" class="csl-entry">
 

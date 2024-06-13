@@ -1,4 +1,4 @@
-# nexus 0.2.0.9000
+# nexus 0.3.0
 ## New classes and methods
 * Add `condense()` to compute compositional mean of data subsets.
 * Add `pip()` to compute proportionality index of parts.
@@ -6,6 +6,9 @@
 
 ## Internals
 * `gmean()` no longer ignores zeros by default.
+
+## Breaking changes
+* `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.
 
 # nexus 0.2.0
 ## New classes and methods
