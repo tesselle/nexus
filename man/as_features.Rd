@@ -6,6 +6,7 @@
 \alias{as_features-method}
 \alias{as_features,CompositionMatrix-method}
 \alias{as_features,LogRatio-method}
+\alias{as_features,OutlierIndex-method}
 \title{Coerce to Features}
 \usage{
 as_features(from, ...)
@@ -13,6 +14,8 @@ as_features(from, ...)
 \S4method{as_features}{CompositionMatrix}(from)
 
 \S4method{as_features}{LogRatio}(from)
+
+\S4method{as_features}{OutlierIndex}(from)
 }
 \arguments{
 \item{from}{A \code{\linkS4class{CompositionMatrix}} object.}

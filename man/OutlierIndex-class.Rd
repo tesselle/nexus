@@ -11,16 +11,14 @@ An S4 class to store the result of outlier detection.
 \section{Slots}{
 
 \describe{
-\item{\code{.Data}}{A \code{\link{logical}} matrix.}
+\item{\code{.Data}}{A \code{\link{logical}} matrix giving the squared Mahalanobis distance.}
 
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
 (allows duplicates in case of repeated measurements).}
 
 \item{\code{groups}}{A \code{\link{character}} vector to store the group names.}
 
-\item{\code{distances}}{A \code{\link{numeric}} matrix giving the squared Mahalanobis distance.}
-
-\item{\code{limit}}{A \code{\link{numeric}} value giving the cut-off value used for outlier
+\item{\code{limit}}{A \code{\link{numeric}} value giving the cut-off value used for outliers
 detection (quantile of the Chi-squared distribution).}
 
 \item{\code{robust}}{An \code{\link{logical}} scalar: were robust estimators used?}

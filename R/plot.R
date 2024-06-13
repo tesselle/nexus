@@ -193,21 +193,27 @@ plot.OutlierIndex <- function(x, ...,
   grp <- get_groups(x)
 
   pch <- rep(pch.in, n)
-  col <- dimensio::palette_color_discrete(list(...)$col)(grp)
+  if (!any_assigned(x)) {
+    col <- rep("black", n)
+  } else {
+    col <- dimensio::palette_color_discrete(list(...)$col)(grp)
+  }
 
   ## Plot type
   type <- match.arg(type, several.ok = FALSE)
+  cx <- seq_len(n)
+  cy <- x
   if (type == "qqplot") cx <- stats::qchisq(stats::ppoints(n), df = dof)
-  else cx <- seq_len(n)
-  cy <- x@distances
 
   panel <- switch(
     type,
     dotchart = function(x, y, name, ...) {
       shape <- pch
       shape[y > limit] <- pch.out
+
       assigned <- grp == name
-      if (all(!assigned)) assigned <- !assigned
+      if (all(is.na(assigned)) || !any(assigned)) assigned <- rep(TRUE, length(x))
+
       color <- col
       color[!assigned] <- "#DDDDDD"
 
@@ -220,8 +226,10 @@ plot.OutlierIndex <- function(x, ...,
 
       shape <- pch
       shape[y > limit] <- pch.out
+
       assigned <- grp[i] == name
-      if (all(!assigned)) assigned <- !assigned
+      if (all(is.na(assigned)) || !any(assigned)) assigned <- rep(TRUE, length(x))
+
       color <- col[i]
       color[!assigned] <- "#DDDDDD"
 
@@ -265,7 +273,8 @@ plot.OutlierIndex <- function(x, ...,
       do.call(graphics::legend, args = args)
     }
   } else {
-    .plot_single(x = cx, y = cy[, 1], name = "", panel = panel, ..., asp = asp,
+    .plot_single(x = cx, y = cy[, 1, drop = TRUE],
+                 name = "", panel = panel, ..., asp = asp,
                  xlab = xlab, ylab = ylab,
                  main = main, sub = sub,
                  ann = ann, axes = axes,

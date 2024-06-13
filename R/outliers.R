@@ -18,8 +18,8 @@ setMethod(
     m <- nrow(z)
     p <- ncol(z)
     if (is.null(groups) || all(is.na(groups))) {
-      grp <- list(all = z)
-      groups <- rep("all", m)
+      grp <- list(z)
+      groups <- rep(NA_character_, m)
     } else {
       grp <- split(z, f = groups)
     }
@@ -58,13 +58,11 @@ setMethod(
     limit <- sqrt(stats::qchisq(p = quantile, df = dof))
 
     d <- sqrt(d2)
-    out <- d > limit
 
     .OutlierIndex(
-      out,
+      d,
       samples = get_samples(object),
       groups = as.character(groups),
-      distances = d,
       limit = limit,
       robust = robust,
       dof = dof

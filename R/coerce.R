@@ -157,6 +157,21 @@ setMethod(
   }
 )
 
+#' @export
+#' @rdname as_features
+#' @aliases as_features,OutlierIndex-method
+setMethod(
+  f = "as_features",
+  signature = c(from = "OutlierIndex"),
+  definition = function(from) {
+    data.frame(
+      sample = get_samples(from),
+      group = get_groups(from),
+      from
+    )
+  }
+)
+
 # To data.frame ================================================================
 #' @method as.data.frame CompositionMatrix
 #' @export
@@ -173,17 +188,5 @@ as.data.frame.LogRatio <- function(x, ...) {
 #' @method as.data.frame OutlierIndex
 #' @export
 as.data.frame.OutlierIndex <- function(x, ...) {
-  out <- methods::as(x, "matrix")
-  colnames(out) <- paste0("out_", colnames(out))
-  d <- x@distances
-  colnames(d) <- paste0("dist_", colnames(d))
-  data.frame(
-    index = seq_len(nrow(out)),
-    sample = get_samples(x),
-    group = get_groups(x),
-    d,
-    out,
-    row.names = NULL,
-    stringsAsFactors = FALSE
-  )
+  as.data.frame(methods::as(x, "matrix"), row.names = rownames(x))
 }
