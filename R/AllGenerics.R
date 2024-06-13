@@ -369,7 +369,7 @@ setGeneric(
 #' @param value A possible value for the element(s) of `x`.
 #' @param drop A [`logical`] scalar: should the result be coerced to
 #'  the lowest possible dimension? This only works for extracting elements,
-#'  not for the replacement.
+#'  not for the replacement. Defaults to `FALSE`.
 #' @param ... Currently not used.
 # @section Subcomposition:
 #  If `drop` is `FALSE`, subsetting some of the possible components of a

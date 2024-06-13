@@ -74,7 +74,7 @@ plot(out, type = "dotchart")
 plot(out, type = "qqplot")
 
 ## Detect outliers by group
-out <- outliers(coda[, 1:15, drop = FALSE])
+out <- outliers(coda[, 1:15])
 
 plot(out, type = "dotchart", ncol = 2)
 plot(out, type = "qqplot", ncol = 2)

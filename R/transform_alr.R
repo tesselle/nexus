@@ -17,7 +17,7 @@ setMethod(
     j <- if (is.character(j)) which(parts == j) else as.integer(j)
     ordering <- c(which(j != seq_len(D)), j)
     parts <- parts[ordering]
-    z <- object[, ordering]
+    z <- object[, ordering, drop = FALSE]
 
     base <- diag(1, nrow = D, ncol = D - 1)
     base[D, ] <- -1

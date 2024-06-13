@@ -17,7 +17,7 @@ setMethod(
     pivot <- if (is.character(pivot)) which(parts == pivot) else as.integer(pivot)
     ordering <- c(pivot, which(pivot != seq_len(J)))
     parts <- parts[ordering]
-    obj <- object[, ordering]
+    obj <- object[, ordering, drop = FALSE]
 
     x <- seq_len(J - 1)
     balances <- diag(sqrt((J - x) / (J - x + 1)))

@@ -167,7 +167,7 @@ setMethod(
 
     z <- numeric(m)
     for (i in seq_len(m)) {
-      z[i] <- scalar(x[i, ], y[i, ])
+      z[i] <- scalar(x[i, , drop = TRUE], y[i, , drop = TRUE])
     }
     z
   }
@@ -201,8 +201,8 @@ aitchison <- function(x, diag = FALSE, upper = FALSE) {
     x = seq_len(m),
     m = 2,
     FUN = function(i, coda) {
-      x <- coda[i[1], ]
-      y <- coda[i[2], ]
+      x <- coda[i[1], , drop = TRUE]
+      y <- coda[i[2], , drop = TRUE]
       norm(x / y)
     },
     coda = x

@@ -15,7 +15,7 @@ expect_error(cts[, , ])
 ## x[i=]
 expect_equal(cts[i = 1:2], mtx[i = 1:2])
 ## x[i=, ]
-expect_equivalent(cts[1:2, ], mtx[1:2, ])
+expect_inherits(cts[1:2, ], "CompositionMatrix")
 ## x[i=, , ]
 expect_error(cts[1:2, , ])
 
@@ -25,7 +25,6 @@ expect_equal(cts[1:2, drop = FALSE], mtx[1:2, drop = FALSE])
 expect_equivalent(cts[1, , drop = TRUE], mtx[1, ])
 expect_null(dim(cts[1, , drop = TRUE]))
 expect_equivalent(cts[1:2, , drop = TRUE], mtx[1:2, ])
-expect_inherits(cts[1:2, , drop = FALSE], "CompositionMatrix")
 expect_equal(dim(cts[1, , drop = FALSE]), c(1, 10))
 expect_equal(dim(cts[1:2, , drop = FALSE]), c(2, 10))
 ## x[i=, , , drop=]
@@ -34,7 +33,7 @@ expect_error(cts[1:2, , , drop = FALSE])
 # x[j=]
 expect_equal(cts[j = 3:4], mtx[j = 3:4])
 ## x[, j=]
-expect_equivalent(cts[, 3:4], mtx[, 3:4])
+expect_inherits(cts[, 3:4], "CompositionMatrix")
 ## x[, j=, ]
 expect_error(cts[, 3:4, ])
 
@@ -42,14 +41,13 @@ expect_error(cts[, 3:4, ])
 expect_equal(cts[j = 3:4, drop = FALSE], mtx[j = 3:4, drop = FALSE])
 #x[, j=, drop=]
 expect_equivalent(cts[, 3:4, drop = TRUE], mtx[, 3:4])
-expect_inherits(cts[, 3:4, drop = FALSE], "CompositionMatrix")
 expect_equal(dim(cts[, 3, drop = FALSE]), c(10, 1))
 expect_equal(dim(cts[, 3:4, drop = FALSE]), c(10, 2))
 ## x[, j=, , drop=]
 expect_error(cts[, 3:4, , drop = FALSE])
 
 ## x[i=, j=]
-expect_equivalent(cts[1:2, 3:4], mtx[1:2, 3:4])
+expect_inherits(cts[1:2, 3:4], "CompositionMatrix")
 ## x[i=, j=, ]
 expect_error(cts[1:2, 3:4, ])
 
@@ -57,7 +55,6 @@ expect_error(cts[1:2, 3:4, ])
 expect_equivalent(cts[1, 3:4, drop = TRUE], mtx[1, 3:4])
 expect_null(dim(cts[1, 3:4, drop = TRUE]))
 expect_equivalent(cts[1:2, 3:4, drop = TRUE], mtx[1:2, 3:4])
-expect_inherits(cts[1:2, 3:4, drop = FALSE], "CompositionMatrix")
 expect_equal(dim(cts[1:2, 3:4, drop = FALSE]), c(2, 2))
 ## x[i=, j=, , drop=]
 expect_error(cts[1:2, 3:4, , drop = FALSE])
@@ -83,15 +80,15 @@ expect_equivalent(cts[1], 1)
 expect_inherits(cts, "CompositionMatrix")
 
 cts[1, 5] <- 0L
-expect_equivalent(cts[1, 5], 0)
+expect_equivalent(cts[1, 5, drop = TRUE], 0)
 expect_inherits(cts, "CompositionMatrix")
 
 cts[1, ] <- 0L
-expect_equivalent(cts[1, ], rep(0, 10))
+expect_equivalent(cts[1, , drop = TRUE], rep(0, 10))
 expect_inherits(cts, "CompositionMatrix")
 
 cts[, 1] <- 1L
-expect_equivalent(cts[, 1], rep(1, 10))
+expect_equivalent(cts[, 1, drop = TRUE], rep(1, 10))
 expect_inherits(cts, "CompositionMatrix")
 
 cts[[1]] <- 0L

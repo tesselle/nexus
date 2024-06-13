@@ -40,8 +40,8 @@ hist.CompositionMatrix <- function(x, ..., freq = FALSE,
 
   index <- seq_len(p)
   for (j in index) {
-    xi <- x[, j]
-    zi <- z[, j]
+    xi <- x[, j, drop = TRUE]
+    zi <- z[, j, drop = TRUE]
 
     lab_i <- pretty(xi, n = 6)
     lab_i <- lab_i[lab_i > 0]

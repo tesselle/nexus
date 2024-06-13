@@ -18,8 +18,11 @@ barplot.CompositionMatrix <- function(height, ...,
 
   ## Ordering
   ordering <- seq_len(nrow(height))
-  if (!is.null(order)) ordering <- order(z[, order], decreasing = decreasing)
-  z <- z[ordering, ]
+  if (!is.null(order)) {
+    i <- z[, order, drop = TRUE]
+    ordering <- order(i, decreasing = decreasing)
+  }
+  z <- z[ordering, , drop = FALSE]
 
   ## Graphical parameters
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")

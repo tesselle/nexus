@@ -24,7 +24,7 @@ setMethod(
     for (i in seq_along(jj)) {
       a <- jj[[i]][[1]]
       b <- jj[[i]][[2]]
-      lr[, i] <- log(object[, a] / object[, b], base = exp(1))
+      lr[, i] <- log(object[, a, drop = TRUE] / object[, b, drop = TRUE], base = exp(1))
     }
 
     rownames(lr) <- rownames(object)

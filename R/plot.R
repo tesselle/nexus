@@ -43,8 +43,8 @@ plot.LogRatio <- function(x, ..., order = NULL, decreasing = FALSE,
 
   ## Ordering
   if (!is.null(order)) {
-    ordering <- order(z[, order], decreasing = decreasing)
-    z <- z[ordering, ]
+    ordering <- order(z[, order, drop = TRUE], decreasing = decreasing)
+    z <- z[ordering, , drop = FALSE]
   }
 
   ## Grouping

@@ -17,7 +17,8 @@ setMethod(
       x = seq_len(J),
       m = 2,
       FUN = function(i, coda) {
-        z <- log(coda[, i[1]] / coda[, i[2]], base = exp(1))
+        r <- coda[, i[[1]], drop = TRUE] / coda[, i[[2]], drop = TRUE]
+        z <- log(r, base = exp(1))
         stats::var(z)
       },
       coda = x

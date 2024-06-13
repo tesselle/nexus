@@ -82,7 +82,8 @@ setMethod(
       return(x) # x[i=]
     }
     if (na == 3L) {
-      x <- .subscript2(x, i, , drop = TRUE)
+      #/!\ DROP /!\
+      x <- .subscript2(x, i, , drop = FALSE)
       return(x) # x[i=, ], x[, i=]
     }
     wrong_dimensions("i", ".") # x[i=, , ], etc.
@@ -122,7 +123,8 @@ setMethod(
       return(x)
     }
     if (na == 3L) {
-      x <- .subscript2(x, , j, drop = TRUE) # x[j=, ], x[, j=]
+      # /!\ DROP /!\
+      x <- .subscript2(x, , j, drop = FALSE) # x[j=, ], x[, j=]
       return(x)
     }
     wrong_dimensions(".", "j") # x[, j=, ], etc.
@@ -158,7 +160,8 @@ setMethod(
   definition = function(x, i, j, ..., drop) {
     na <- nargs()
     if (na == 3L) {
-      x <- .subscript2(x, i, j, drop = TRUE) # x[i=, j=], x[j=, i=]
+      # /!\ DROP /!\
+      x <- .subscript2(x, i, j, drop = FALSE) # x[i=, j=], x[j=, i=]
       return(x)
     }
     wrong_dimensions("i", "j") # x[i=, j=, ], etc.
