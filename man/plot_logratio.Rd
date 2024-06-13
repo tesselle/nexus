@@ -29,9 +29,8 @@
 \item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
 \code{border} and \code{col}.}
 
-\item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
-defines the grouping. If set, a matrix of panels defined by \code{groups} will be
-drawn.}
+\item{groups}{A \code{vector} of grouping elements, as long as the variables in \code{x}.
+If set, a matrix of panels defined by \code{groups} will be drawn.}
 
 \item{rug}{A \code{\link{logical}} scalar: should a \emph{rug} representation (1-d plot) of
 the data be added to the plot?}

@@ -18,8 +18,7 @@ the column to be used as the third part of the ternary plots. If \code{NULL}
 (the default), marginal compositions will be used (i.e. the geometric mean
 of the non-selected parts).}
 
-\item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
-defines the grouping.}
+\item{groups}{A \code{vector} of grouping elements, as long as the variables in \code{x}.}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being

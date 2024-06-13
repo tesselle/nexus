@@ -34,9 +34,8 @@ for the ordering of the data.}
 \item{decreasing}{A \code{\link{logical}} scalar: should the sort order be increasing
 or decreasing?}
 
-\item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
-defines the grouping. If set, a matrix of panels defined by \code{groups} will be
-drawn.}
+\item{groups}{A \code{vector} of grouping elements, as long as the variables in
+\code{height}. If set, a matrix of panels defined by \code{groups} will be drawn.}
 
 \item{horiz}{A \code{\link{logical}} scalar. If \code{FALSE}, the bars are drawn vertically
 with the first bar to the left. If \code{TRUE} (the default), the bars are drawn

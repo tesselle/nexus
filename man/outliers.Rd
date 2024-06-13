@@ -24,8 +24,7 @@ outliers(object, ...)
 \item{...}{Extra parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.
 Only used if \code{robust} is \code{TRUE}.}
 
-\item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
-defines the grouping. If set, XXX.}
+\item{groups}{A \code{vector} of grouping elements, as long as the variables in \code{object}.}
 
 \item{robust}{A \code{\link{logical}} scalar: should robust location and scatter
 estimation be used?}

@@ -984,9 +984,8 @@ NULL
 #'  for the ordering of the data.
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
 #'  or decreasing?
-#' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
-#'  defines the grouping. If set, a matrix of panels defined by `groups` will be
-#'  drawn.
+#' @param groups A `vector` of grouping elements, as long as the variables in
+#'  `height`. If set, a matrix of panels defined by `groups` will be drawn.
 #' @param horiz A [`logical`] scalar. If `FALSE`, the bars are drawn vertically
 #'  with the first bar to the left. If `TRUE` (the default), the bars are drawn
 #'  horizontally with the first at the bottom.
@@ -1053,8 +1052,7 @@ NULL
 #'
 #' Displays a matrix of ternary plots.
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
-#'  defines the grouping.
+#' @param groups A `vector` of grouping elements, as long as the variables in `x`.
 #' @inheritParams isopleuros::ternary_pairs
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
@@ -1073,9 +1071,8 @@ NULL
 #'
 #' Displays a density plot.
 #' @param x A [`LogRatio-class`] object.
-#' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
-#'  defines the grouping. If set, a matrix of panels defined by `groups` will be
-#'  drawn.
+#' @param groups A `vector` of grouping elements, as long as the variables in `x`.
+#'  If set, a matrix of panels defined by `groups` will be drawn.
 #' @param rug A [`logical`] scalar: should a *rug* representation (1-d plot) of
 #'  the data be added to the plot?
 #' @param ticksize A length-one [`numeric`] vector giving the length of the
@@ -1243,8 +1240,7 @@ NULL
 #'  `quantile` is used as a cut-off value for outlier detection: observations
 #'  with larger (squared) Mahalanobis distance are considered as potential
 #'  outliers.
-#' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
-#'  defines the grouping. If set, XXX.
+#' @param groups A `vector` of grouping elements, as long as the variables in `object`.
 #' @details
 #'  An outlier can be defined as having a very large Mahalanobis distance from
 #'  all observations. In this way, a certain proportion of the observations can
