@@ -14,9 +14,9 @@ if (at_home()) {
   options(tinysnapshot_tol = 200) # pixels
   options(tinysnapshot_os = "Linux")
 
-  plot_outliers <- function() plot(out, qq = FALSE)
-  expect_snapshot_plot(plot_outliers, "plot_outliers")
+  plot_outliers <- function() plot(out, type = "dotchart")
+  expect_snapshot_plot(plot_outliers, "plot_outliers_dotchart")
 
-  plot_outliers_qqplot <- function() plot(out, qq = TRUE)
+  plot_outliers_qqplot <- function() plot(out, type = "qqplot")
   expect_snapshot_plot(plot_outliers_qqplot, "plot_outliers_qqplot")
 }

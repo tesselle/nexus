@@ -6,7 +6,7 @@
 \alias{plot,CompositionMatrix,missing-method}
 \title{Plot Compositional Data}
 \usage{
-\S4method{plot}{CompositionMatrix,missing}(x, ..., margin = NULL)
+\S4method{plot}{CompositionMatrix,missing}(x, ..., margin = NULL, groups = get_groups(x))
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
@@ -17,6 +17,9 @@
 the column to be used as the third part of the ternary plots. If \code{NULL}
 (the default), marginal compositions will be used (i.e. the geometric mean
 of the non-selected parts).}
+
+\item{groups}{A \code{\link{factor}} in the sense that \code{\link[=as.factor]{as.factor(groups)}}
+defines the grouping.}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being
@@ -26,14 +29,13 @@ displayed (invisibly return \code{x}).
 Displays a matrix of ternary plots.
 }
 \examples{
-## Data from Aitchison 1986
-data("hongite")
+## Data from Day et al. 2011
+data("kommos", package = "folio") # Coerce to compositional data
+kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
+coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
-## Coerce to compositional data
-coda <- as_composition(hongite)
-
-## Ternary plots
-plot(coda)
+plot(coda[, 1:6, drop = FALSE])
+plot(coda[, 1:6, drop = FALSE], groups = NULL)
 }
 \seealso{
 \code{\link[isopleuros:ternary_pairs]{isopleuros::ternary_pairs()}}, \code{\link[isopleuros:ternary_plot]{isopleuros::ternary_plot()}}

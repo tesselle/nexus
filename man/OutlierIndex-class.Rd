@@ -29,21 +29,13 @@ detection (quantile of the Chi-squared distribution).}
 }}
 
 \note{
-These classes inherit from \code{\link{logical}}.
+This class inherits from \code{\link{logical}}.
 }
 \section{Coerce}{
 
 In the code snippets below, \code{x} is an \code{OutlierIndex} object.
 \describe{
 \item{\code{as.data.frame(x)}}{Coerces to a \code{\link{data.frame}}.}
-}
-}
-
-\section{Subset}{
-
-In the code snippets below, \code{x} is an \code{OutlierIndex} object.
-\describe{
-\item{\code{x[[i]]}}{Extract a part of an object (see \code{\link[=subset]{[[}}).}
 }
 }
 

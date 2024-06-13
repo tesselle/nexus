@@ -181,23 +181,6 @@ setMethod(
   }
 )
 
-## OutlierIndex ----------------------------------------------------------------
-#' @export
-#' @rdname subset
-#' @aliases [[,OutlierIndex-method
-setMethod(
-  f = "[[",
-  signature = c(x = "OutlierIndex", i = "index"),
-  function(x, i) {
-    arkhe::assert_length(i, 1)
-
-    mtx <- x[, i, drop = FALSE]
-    d <- x@distances[, i, drop = FALSE]
-
-    initialize(x, mtx, distances = d)
-  }
-)
-
 # Replace ======================================================================
 ## [<- -------------------------------------------------------------------------
 #' @export

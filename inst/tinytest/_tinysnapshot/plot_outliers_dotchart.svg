@@ -28,31 +28,32 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpNTkuMDR8NDczLjc2fDU5LjA0fDQzMC41Ng==)'>
-<circle cx='74.40' cy='209.89' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='90.40' cy='416.80' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='106.40' cy='328.69' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='122.40' cy='401.01' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='138.40' cy='210.80' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='154.40' cy='176.45' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='170.40' cy='156.26' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='186.40' cy='101.04' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='202.40' cy='361.98' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='218.40' cy='72.80' r='2.70' style='stroke-width: 0.75;' />
-<circle cx='234.40' cy='337.93' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='250.40' cy='212.65' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='266.40' cy='180.94' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='282.40' cy='202.54' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='298.40' cy='310.46' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='314.40' cy='199.74' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='330.40' cy='205.36' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='346.40' cy='345.12' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='362.40' cy='255.43' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='378.40' cy='291.07' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='394.40' cy='362.42' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='410.40' cy='373.88' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='426.40' cy='176.52' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='442.40' cy='307.49' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<circle cx='458.40' cy='305.93' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
+<circle cx='74.40' cy='209.89' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='90.40' cy='416.80' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='106.40' cy='328.69' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='122.40' cy='401.01' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='138.40' cy='210.80' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='154.40' cy='176.45' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='170.40' cy='156.26' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='186.40' cy='101.04' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='202.40' cy='361.98' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<line x1='214.58' y1='72.80' x2='222.22' y2='72.80' style='stroke-width: 0.75; stroke: #4B0055;' />
+<line x1='218.40' y1='76.62' x2='218.40' y2='68.98' style='stroke-width: 0.75; stroke: #4B0055;' />
+<circle cx='234.40' cy='337.93' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='250.40' cy='212.65' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='266.40' cy='180.94' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='282.40' cy='202.54' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='298.40' cy='310.46' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='314.40' cy='199.74' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='330.40' cy='205.36' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='346.40' cy='345.12' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='362.40' cy='255.43' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='378.40' cy='291.07' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='394.40' cy='362.42' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='410.40' cy='373.88' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='426.40' cy='176.52' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='442.40' cy='307.49' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
+<circle cx='458.40' cy='305.93' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #4B0055;' />
 <line x1='59.04' y1='97.18' x2='473.76' y2='97.18' style='stroke-width: 0.75; stroke-dasharray: 4.00,4.00;' />
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>

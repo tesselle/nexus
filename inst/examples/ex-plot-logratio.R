@@ -5,5 +5,5 @@ coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
 ## Log ratio
 clr <- transform_clr(coda)
-plot(clr, group = NULL, flip = TRUE, border = "black", col = NA)
+plot(clr, groups = NULL, flip = TRUE, border = "black", col = NA)
 plot(clr, flip = TRUE)

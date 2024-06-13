@@ -177,13 +177,8 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
-#' @section Subset:
-#'  In the code snippets below, `x` is an `OutlierIndex` object.
-#'  \describe{
-#'   \item{`x[[i]]`}{Extract a part of an object (see [`[[`][subset]).}
-#'  }
 #' @note
-#'  These classes inherit from [`logical`].
+#'  This class inherits from [`logical`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class

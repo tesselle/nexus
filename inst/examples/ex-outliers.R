@@ -6,11 +6,11 @@ coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 ## Detect outliers
 out <- outliers(coda, groups = NULL, robust = FALSE)
 
-plot(out) # Plot
-plot(out, qq = TRUE) # Quantile-Quantile plot
+plot(out, type = "dotchart")
+plot(out, type = "qqplot")
 
 ## Detect outliers by group
 out <- outliers(coda[, 1:15, drop = FALSE])
 
-plot(out, ncol = 2) # Plot
-plot(out, qq = TRUE, ncol = 4) # Quantile-Quantile plot
+plot(out, type = "dotchart", ncol = 2)
+plot(out, type = "qqplot", ncol = 2)

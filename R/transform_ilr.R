@@ -74,3 +74,26 @@ setMethod(
     )
   }
 )
+
+# Univariate ILR ===============================================================
+#' @export
+#' @rdname univariate_ilr
+#' @aliases univariate_ilr,numeric-method
+setMethod(
+  f = "univariate_ilr",
+  signature = c(object = "numeric"),
+  definition = function(object) {
+    sqrt(1 / 2) * log(object / (1 - object))
+  }
+)
+
+#' @export
+#' @rdname univariate_ilr
+#' @aliases univariate_ilr,matrix-method
+setMethod(
+  f = "univariate_ilr",
+  signature = c(object = "matrix"),
+  definition = function(object) {
+    apply(X = object, MARGIN = 2, FUN = univariate_ilr)
+  }
+)

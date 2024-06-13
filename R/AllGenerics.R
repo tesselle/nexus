@@ -537,6 +537,37 @@ setGeneric(
   valueClass = "ILR"
 )
 
+#' Univariate Isometric Log-Ratios (ILR)
+#'
+#' Computes univariate ILR coordinates.
+#' @param object A [`CompositionMatrix-class`] object.
+#' @param ... Currently not used.
+#' @details
+#'  The ILR transformation provides the coordinates of any composition with
+#'  respect to a given orthonormal basis. `transform_ilr()` uses the orthonormal
+#'  basis (Helmert matrix) originally defined by Egozcue *et al.* (2003).
+#' @return
+#'  Same as `object`.
+#' @references
+#'  Filzmoser, P., Hron, K. & Reimann, C. (2009). Univariate Statistical
+#'  Analysis of Environmental (Compositional) Data: Problems and Possibilities.
+#'  *Science of The Total Environment*, 407(23), 6100-6108.
+#'  \doi{10.1016/j.scitotenv.2009.08.008}.
+#'
+#'  Filzmoser, P., Hron, K. & Reimann, C. (2010). The Bivariate Statistical
+#'  Analysis of Environmental (Compositional) Data. *Science of The Total
+#'  Environment*, 408(19), 4230-4238. \doi{10.1016/j.scitotenv.2010.05.011}.
+#' @example inst/examples/ex-transform-ilr.R
+#' @author N. Frerebeau
+#' @docType methods
+# @family log-ratio transformations
+#' @aliases univariate_ilr-method
+#' @keywords internal
+setGeneric(
+  name = "univariate_ilr",
+  def = function(object, ...) standardGeneric("univariate_ilr")
+)
+
 ## PLR -------------------------------------------------------------------------
 #' Pivot Log-Ratios (PLR)
 #'
@@ -929,6 +960,7 @@ NULL
 NULL
 
 # Plot =========================================================================
+## Barplot ---------------------------------------------------------------------
 #' Barplot of Compositional Data
 #'
 #' Displays a compositional bar chart.
@@ -965,6 +997,7 @@ NULL
 #' @rdname barplot
 NULL
 
+## Histogram -------------------------------------------------------------------
 #' Histogram of Compositional Data
 #'
 #' Produces an histogram of univariate ILR data (see Filzmoser *et al.*, 2009).
@@ -999,10 +1032,13 @@ NULL
 #' @rdname hist
 NULL
 
+## Ternary ---------------------------------------------------------------------
 #' Plot Compositional Data
 #'
 #' Displays a matrix of ternary plots.
 #' @param x A [`CompositionMatrix-class`] object.
+#' @param groups A [`factor`] in the sense that [`as.factor(groups)`][as.factor()]
+#'  defines the grouping.
 #' @inheritParams isopleuros::ternary_pairs
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
@@ -1016,6 +1052,7 @@ NULL
 #' @rdname plot
 NULL
 
+## Density ---------------------------------------------------------------------
 #' Plot Log-Ratios
 #'
 #' Displays a density plot.
@@ -1058,6 +1095,7 @@ NULL
 #' @rdname plot_logratio
 NULL
 
+## Graph -----------------------------------------------------------------------
 #' Graph of Log-ratios
 #'
 #' Produces a graph of log-ratios.
@@ -1245,10 +1283,11 @@ setGeneric(
 #' Plot Outliers
 #'
 #' @param x An [`OutlierIndex-class`] object.
-#' @param qq A [`logical`] scalar: should a quantile-quantile plot be produced?
-#' @param probs A length-two [`numeric`] vector representing probabilities.
-#'  Corresponding quantile pairs define the line drawn (see [stats::qqline()]).
-#'  Only used if `qq` is `TRUE`.
+#' @param type A [`character`] string specifying the type of plot that should be
+#'  made. It must be one of "`dotchart`" or "`qqplot`". Any unambiguous
+#'  substring can be given.
+#' @param pch.in,pch.out A symbol specification for non-outliers and outliers
+#'  (resp.).
 #' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
 #'  flipped from side 2 (left) to 4 (right) from group to group?
 #' @param ncol An [`integer`] specifying the number of columns to use when
@@ -1266,6 +1305,9 @@ setGeneric(
 #'  plot?
 #' @param panel.last An `expression` to be evaluated after plotting has taken
 #'  place but before the axes, title and box are added.
+#' @param legend A [`list`] of additional arguments to be passed to
+#'  [graphics::legend()]; names of the list are used as argument names.
+#'  If `NULL`, no legend is displayed.
 #' @param ... Further [graphical parameters][graphics::par()].
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
