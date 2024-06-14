@@ -6,6 +6,7 @@
 
 ## Breaking changes
 * `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.
+* Rewrite `plot()` method for `OutlierIndex` object.
 
 # nexus 0.2.0
 ## New classes and methods

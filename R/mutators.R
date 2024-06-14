@@ -39,11 +39,6 @@ setMethod("is_assigned", "LogRatio", function(x) !is.na(get_groups(x)))
 
 #' @export
 #' @rdname groups
-#' @aliases is_assigned,OutlierIndex-method
-setMethod("is_assigned", "OutlierIndex", function(x) !is.na(get_groups(x)))
-
-#' @export
-#' @rdname groups
 #' @aliases any_assigned,CompositionMatrix-method
 setMethod("any_assigned", "CompositionMatrix", function(x) any(is_assigned(x)))
 
@@ -51,11 +46,6 @@ setMethod("any_assigned", "CompositionMatrix", function(x) any(is_assigned(x)))
 #' @rdname groups
 #' @aliases any_assigned,LogRatio-method
 setMethod("any_assigned", "LogRatio", function(x) any(is_assigned(x)))
-
-#' @export
-#' @rdname groups
-#' @aliases any_assigned,OutlierIndex-method
-setMethod("any_assigned", "OutlierIndex", function(x) any(is_assigned(x)))
 
 #' @export
 #' @rdname groups

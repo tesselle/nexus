@@ -37,8 +37,7 @@
 <circle cx='170.40' cy='156.26' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='186.40' cy='101.04' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='202.40' cy='361.98' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<line x1='214.58' y1='72.80' x2='222.22' y2='72.80' style='stroke-width: 0.75;' />
-<line x1='218.40' y1='76.62' x2='218.40' y2='68.98' style='stroke-width: 0.75;' />
+<circle cx='218.40' cy='72.80' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='234.40' cy='337.93' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='250.40' cy='212.65' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='266.40' cy='180.94' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
@@ -54,7 +53,7 @@
 <circle cx='426.40' cy='176.52' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='442.40' cy='307.49' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='458.40' cy='305.93' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
-<line x1='59.04' y1='97.18' x2='473.76' y2='97.18' style='stroke-width: 0.75; stroke-dasharray: 4.00,4.00;' />
+<line x1='59.04' y1='59.84' x2='473.76' y2='59.84' style='stroke-width: 0.75;' />
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
 <line x1='138.40' y1='430.56' x2='458.40' y2='430.56' style='stroke-width: 0.75;' />
@@ -82,5 +81,10 @@
 <polygon points='59.04,430.56 473.76,430.56 473.76,59.04 59.04,59.04 ' style='stroke-width: 0.75;' />
 <text x='266.40' y='485.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='33.06px' lengthAdjust='spacingAndGlyphs'>Index</text>
 <text transform='translate(12.96,244.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='188.65px' lengthAdjust='spacingAndGlyphs'>Standard Mahalanobis distance</text>
+<circle cx='69.84' cy='73.44' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
+<line x1='66.02' y1='87.84' x2='73.66' y2='87.84' style='stroke-width: 0.75;' />
+<line x1='69.84' y1='91.66' x2='69.84' y2='84.02' style='stroke-width: 0.75;' />
+<text x='80.64' y='77.81' style='font-size: 12.00px; font-family: "Arial";' textLength='58.79px' lengthAdjust='spacingAndGlyphs'>No outlier</text>
+<text x='80.64' y='92.21' style='font-size: 12.00px; font-family: "Arial";' textLength='40.75px' lengthAdjust='spacingAndGlyphs'>Outlier</text>
 </g>
 </svg>

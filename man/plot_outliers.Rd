@@ -9,11 +9,12 @@
 \S4method{plot}{OutlierIndex,missing}(
   x,
   ...,
-  type = c("dotchart", "qqplot"),
-  pch.in = 16,
-  pch.out = 3,
-  ncol = NULL,
-  flip = FALSE,
+  select = 1,
+  type = c("dotchart", "distance", "qqplot"),
+  robust = TRUE,
+  pch = c(16, 1, 3),
+  xlim = NULL,
+  ylim = NULL,
   xlab = NULL,
   ylab = NULL,
   main = NULL,
@@ -23,7 +24,7 @@
   frame.plot = axes,
   panel.first = NULL,
   panel.last = NULL,
-  legend = list(x = "top")
+  legend = list(x = "topleft")
 )
 }
 \arguments{
@@ -31,18 +32,25 @@
 
 \item{...}{Further \link[graphics:par]{graphical parameters}.}
 
+\item{select}{A length-one vector giving the group to be plotted.}
+
 \item{type}{A \code{\link{character}} string specifying the type of plot that should be
-made. It must be one of "\code{dotchart}" or "\code{qqplot}". Any unambiguous
-substring can be given.}
+made. It must be one of "\code{dotchart}", "\code{distance}" or "\code{qqplot}".
+Any unambiguous substring can be given.}
 
-\item{pch.in, pch.out}{A symbol specification for non-outliers and outliers
-(resp.).}
+\item{robust}{A \code{\link{logical}} scalar: should robust Mahalanobis distances be
+displayed? Only used if \code{type} is "\code{dotchart}" or "\code{qqplot}".}
 
-\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
-Defaults to 1 for up to 4 groups, otherwise to 2.}
+\item{pch}{A lenth-three vector of symbol specification for non-outliers and
+outliers (resp.).}
 
-\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
-flipped from side 2 (left) to 4 (right) from group to group?}
+\item{xlim}{A length-two \code{\link{numeric}} vector giving the x limits of the plot.
+The default value, \code{NULL}, indicates that the range of the
+\link[=is.finite]{finite} values to be plotted should be used.}
+
+\item{ylim}{A length-two \code{\link{numeric}} vector giving the y limits of the plot.
+The default value, \code{NULL}, indicates that the range of the
+\link[=is.finite]{finite} values to be plotted should be used.}
 
 \item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
 
@@ -83,16 +91,19 @@ kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
 ## Detect outliers
-out <- outliers(coda, groups = NULL, robust = FALSE)
+out <- outliers(coda, groups = NULL, method = "mcd")
 
 plot(out, type = "dotchart")
+plot(out, type = "distance")
 plot(out, type = "qqplot")
 
 ## Detect outliers by group
-out <- outliers(coda[, 1:15])
+out <- outliers(coda[, 1:15], method = "mcd")
 
-plot(out, type = "dotchart", ncol = 2)
-plot(out, type = "qqplot", ncol = 2)
+plot(out, type = "dotchart", select = 1, robust = FALSE)
+plot(out, type = "dotchart", select = 2, robust = FALSE)
+plot(out, type = "dotchart", select = 3, robust = FALSE)
+plot(out, type = "dotchart", select = 4, robust = FALSE)
 }
 \references{
 Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier

@@ -4,13 +4,16 @@ kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
 ## Detect outliers
-out <- outliers(coda, groups = NULL, robust = FALSE)
+out <- outliers(coda, groups = NULL, method = "mcd")
 
 plot(out, type = "dotchart")
+plot(out, type = "distance")
 plot(out, type = "qqplot")
 
 ## Detect outliers by group
-out <- outliers(coda[, 1:15])
+out <- outliers(coda[, 1:15], method = "mcd")
 
-plot(out, type = "dotchart", ncol = 2)
-plot(out, type = "qqplot", ncol = 2)
+plot(out, type = "dotchart", select = 1, robust = FALSE)
+plot(out, type = "dotchart", select = 2, robust = FALSE)
+plot(out, type = "dotchart", select = 3, robust = FALSE)
+plot(out, type = "dotchart", select = 4, robust = FALSE)

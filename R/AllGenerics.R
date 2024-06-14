@@ -1297,15 +1297,20 @@ setGeneric(
 #' Plot Outliers
 #'
 #' @param x An [`OutlierIndex-class`] object.
+#' @param select A length-one vector giving the group to be plotted.
 #' @param type A [`character`] string specifying the type of plot that should be
-#'  made. It must be one of "`dotchart`" or "`qqplot`". Any unambiguous
-#'  substring can be given.
-#' @param pch.in,pch.out A symbol specification for non-outliers and outliers
-#'  (resp.).
-#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
-#'  flipped from side 2 (left) to 4 (right) from group to group?
-#' @param ncol An [`integer`] specifying the number of columns to use.
-#'  Defaults to 1 for up to 4 groups, otherwise to 2.
+#'  made. It must be one of "`dotchart`", "`distance`" or "`qqplot`".
+#'  Any unambiguous substring can be given.
+#' @param robust A [`logical`] scalar: should robust Mahalanobis distances be
+#'  displayed? Only used if `type` is "`dotchart`" or "`qqplot`".
+#' @param pch A lenth-three vector of symbol specification for non-outliers and
+#'  outliers (resp.).
+#' @param xlim A length-two [`numeric`] vector giving the x limits of the plot.
+#'  The default value, `NULL`, indicates that the range of the
+#'  [finite][is.finite()] values to be plotted should be used.
+#' @param ylim A length-two [`numeric`] vector giving the y limits of the plot.
+#'  The default value, `NULL`, indicates that the range of the
+#'  [finite][is.finite()] values to be plotted should be used.
 #' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.

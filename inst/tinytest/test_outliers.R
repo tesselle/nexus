@@ -2,8 +2,9 @@ data("hongite")
 coda <- as_composition(hongite)
 
 # Detect outliers ==============================================================
-out <- outliers(coda, robust = FALSE)
-expect_equal_to_reference(as_features(out), file = "_snaps/features_outliers.rds")
+out <- outliers(coda)
+expect_equal_to_reference(out, file = "_snaps/outliers.rds")
+# expect_equal_to_reference(as_features(out), file = "_snaps/features_outliers.rds")
 
 # Plot =========================================================================
 if (at_home()) {
@@ -14,9 +15,9 @@ if (at_home()) {
   options(tinysnapshot_tol = 200) # pixels
   options(tinysnapshot_os = "Linux")
 
-  plot_outliers <- function() plot(out, type = "dotchart")
+  plot_outliers <- function() plot(out, type = "dotchart", robust = FALSE)
   expect_snapshot_plot(plot_outliers, "plot_outliers_dotchart")
 
-  plot_outliers_qqplot <- function() plot(out, type = "qqplot")
+  plot_outliers_qqplot <- function() plot(out, type = "qqplot", robust = FALSE)
   expect_snapshot_plot(plot_outliers_qqplot, "plot_outliers_qqplot")
 }

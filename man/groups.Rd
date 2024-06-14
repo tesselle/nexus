@@ -13,10 +13,8 @@
 \alias{set_groups-method}
 \alias{is_assigned,CompositionMatrix-method}
 \alias{is_assigned,LogRatio-method}
-\alias{is_assigned,OutlierIndex-method}
 \alias{any_assigned,CompositionMatrix-method}
 \alias{any_assigned,LogRatio-method}
-\alias{any_assigned,OutlierIndex-method}
 \alias{get_groups,CompositionMatrix-method}
 \alias{get_groups,LogRatio-method}
 \alias{get_groups,OutlierIndex-method}
@@ -36,13 +34,9 @@ set_groups(x) <- value
 
 \S4method{is_assigned}{LogRatio}(x)
 
-\S4method{is_assigned}{OutlierIndex}(x)
-
 \S4method{any_assigned}{CompositionMatrix}(x)
 
 \S4method{any_assigned}{LogRatio}(x)
-
-\S4method{any_assigned}{OutlierIndex}(x)
 
 \S4method{get_groups}{CompositionMatrix}(x)
 

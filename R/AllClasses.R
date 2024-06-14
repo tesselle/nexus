@@ -163,21 +163,21 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' Outliers
 #'
 #' An S4 class to store the result of outlier detection.
-#' @slot .Data A [`logical`] matrix giving the squared Mahalanobis distance.
 #' @slot samples A [`character`] vector to store the sample identifiers
 #'  (allows duplicates in case of repeated measurements).
-#' @slot groups A [`character`] vector to store the group names.
+#' @slot groups A [`list`] giving the samples index of each group.
+#' @slot standard A [`numeric`] matrix giving the standard squared Mahalanobis
+#'  distances.
+#' @slot robust A [`numeric`] matrix giving the robust squared Mahalanobis
+#'  distances.
 #' @slot limit A [`numeric`] value giving the cut-off value used for outliers
 #'  detection (quantile of the Chi-squared distribution).
-#' @slot robust An [`logical`] scalar: were robust estimators used?
 #' @slot dof A (non-negative) [`numeric`] value giving the degrees of freedom.
 #' @section Coerce:
 #'  In the code snippets below, `x` is an `OutlierIndex` object.
 #'  \describe{
 #'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
 #'  }
-#' @note
-#'  This class inherits from [`logical`].
 #' @author N. Frerebeau
 #' @family classes
 #' @docType class
@@ -187,11 +187,11 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "OutlierIndex",
   slots = c(
     samples = "character",
-    groups = "character",
+    groups = "list",
 
+    standard = "matrix",
+    robust = "matrix",
     limit = "numeric",
-    robust = "logical",
     dof = "integer"
-  ),
-  contains = "matrix"
+  )
 )

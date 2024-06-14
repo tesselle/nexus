@@ -170,112 +170,127 @@ setMethod("plot", c(x = "LogRatio", y = "missing"), plot.LogRatio)
 # OutlierIndex =================================================================
 #' @export
 #' @method plot OutlierIndex
-plot.OutlierIndex <- function(x, ...,
-                              type = c("dotchart", "qqplot"),
-                              pch.in = 16, pch.out = 3,
-                              ncol = NULL, flip = FALSE,
+plot.OutlierIndex <- function(x, ..., select = 1,
+                              type = c("dotchart", "distance", "qqplot"),
+                              robust = TRUE,
+                              pch = c(16, 1, 3),
+                              xlim = NULL, ylim = NULL,
                               xlab = NULL, ylab = NULL,
                               main = NULL, sub = NULL,
                               ann = graphics::par("ann"),
                               axes = TRUE, frame.plot = axes,
                               panel.first = NULL, panel.last = NULL,
-                              legend = list(x = "top")) {
+                              legend = list(x = "topleft")) {
   ## Get data
-  n <- nrow(x)
-  m <- ncol(x)
+  i <- select[[1L]]
+  dc <- x@standard[, i]
+  dr <- x@robust[, i]
+  grp <- x@groups[[i]]
+  selected <- names(x@groups)[i]
+
+  ## Validation
+  type <- match.arg(type, several.ok = FALSE)
+  if (all(is.na(dr)) || all(is.na(dc))) {
+    stop("No distances were calculated.", call. = FALSE)
+  }
 
   dof <- x@dof
   limit <- x@limit
-  grp <- get_groups(x)
+  n <- length(dc)
 
-  pch <- rep(pch.in, n)
-  if (!any_assigned(x)) {
-    col <- rep("black", n)
-  } else {
-    col <- dimensio::palette_color_discrete(list(...)$col)(grp)
+  ## Graphical parameters
+  shape <- rep(pch[[1L]], n)
+  if (robust || type == "distance") shape[dr > limit] <- pch[[2L]]
+  shape[dc > limit] <- pch[[3L]]
+  color <- rep("#DDDDDD", n)
+  color[grp] <- "#000000"
+
+  asp <- NA
+  cy <- if (robust) dr else dc
+  ylab <- ylab %||% sprintf("%s Mahalanobis distance", ifelse(robust, "Robust", "Standard"))
+
+  if (type == "dotchart") {
+    cx <- seq_along(dc)
+    xlab <- xlab %||% "Index"
+    panel <- function() {
+      graphics::points(x = cx, y = cy, pch = shape, col = color)
+      graphics::abline(h = limit, lty = 1)
+    }
   }
-
-  ## Plot type
-  type <- match.arg(type, several.ok = FALSE)
-  cx <- seq_len(n)
-  cy <- x
-  if (type == "qqplot") cx <- stats::qchisq(stats::ppoints(n), df = dof)
-
-  panel <- switch(
-    type,
-    dotchart = function(x, y, name, ...) {
-      shape <- pch
-      shape[y > limit] <- pch.out
-
-      assigned <- grp == name
-      if (all(is.na(assigned)) || !any(assigned)) assigned <- rep(TRUE, length(x))
-
-      color <- col
-      color[!assigned] <- "#DDDDDD"
-
-      graphics::points(x = x, y = y, pch = shape, col = color, ...)
-      graphics::abline(h = limit, lty = 2)
-    },
-    qqplot = function(x, y, name, probs = c(0.25, 0.75), ...) {
-      i <- order(y)
-      y <- y[i]
-
-      shape <- pch
-      shape[y > limit] <- pch.out
-
-      assigned <- grp[i] == name
-      if (all(is.na(assigned)) || !any(assigned)) assigned <- rep(TRUE, length(x))
-
-      color <- col[i]
-      color[!assigned] <- "#DDDDDD"
+  if (type == "distance") {
+    cx <- dc
+    cy <- dr
+    xlab <- xlab %||% "Standard Mahalanobis distance"
+    ylab <- ylab %||% "Robust Mahalanobis distance"
+    panel <- function() {
+      graphics::points(x = cx, y = cy, pch = shape, col = color)
+      graphics::abline(h = limit, lty = 1)
+      graphics::abline(v = limit, lty = 1)
+      graphics::abline(a = 0, b = 1, lty = 2, col = "darkgrey")
+    }
+  }
+  if (type == "qqplot") {
+    cx <- stats::qchisq(stats::ppoints(n), df = dof)
+    xlab <- xlab %||% "Theoretrical Quantiles"
+    asp <- 1
+    panel <- function() {
+      i <- order(cy)
 
       stats::qqline(
-        y = y[assigned],
+        y = cy[grp],
         distribution = function(p) stats::qchisq(p, df = dof),
-        probs = probs, col = "black", ...
+        probs = c(0.25, 0.75), col = "black"
       )
-      graphics::points(x = x, y = y, pch = shape, col = color, ...)
+      graphics::points(x = cx, y = cy[i], pch = shape[i], col = color[i])
     }
-  )
+  }
 
-  asp <- if (type == "qqplot") 1 else NA
-  rob <- if (x@robust) "Robust" else "Standard"
-  xlab <- xlab %||% if (type == "qqplot") "Theoretrical Quantiles" else "Index"
-  ylab <- ylab %||% sprintf("%s Mahalanobis distance", rob)
+  ## Open new window
+  grDevices::dev.hold()
+  on.exit(grDevices::dev.flush(), add = TRUE)
+  graphics::plot.new()
 
-  if (m > 1) {
-    .plot_multiple(x = cx, y = cy, panel = panel,
-                   asp = asp, y_flip = flip, n_col = ncol, ...,
-                   xlab = xlab, ylab = ylab,
-                   main = main, sub = sub,
-                   ann = ann, axes = axes,
-                   frame.plot = frame.plot, panel.first = panel.first,
-                   panel.last = panel.last)
+  ## Set plotting coordinates
+  xlim <- xlim %||% range(cx, finite = TRUE)
+  ylim <- ylim %||% range(cy, finite = TRUE)
+  graphics::plot.window(xlim = xlim, ylim = ylim, asp = asp)
 
-    ## Add legend
-    # https://stackoverflow.com/a/42076830
-    if (is.list(legend)) {
-      leg_par <- graphics::par(mar = c(0, 0, 0, 0), oma = c(0, 0, 0, 0),
-                               mfcol = c(1, 1), new = TRUE)
-      on.exit(graphics::par(leg_par), add = TRUE)
-      graphics::plot(0, 0, type = "n", ann = FALSE, axes = FALSE)
+  ## Evaluate pre-plot expressions
+  panel.first
 
-      ## Compute legend position
-      args <- list(x = "top", legend = unique(grp), fill = unique(col),
-                   ncol = ceiling(m / 2), bty = "n", xpd = NA)
-      args <- utils::modifyList(args, legend)
+  ## Plot
+  panel()
 
-      ## Plot legend
-      do.call(graphics::legend, args = args)
+  ## Evaluate post-plot and pre-axis expressions
+  panel.last
+
+  ## Construct Axis
+  if (axes) {
+    graphics::axis(side = 1, las = 1)
+    graphics::axis(side = 2, las = 1)
+  }
+
+  ## Plot frame
+  if (frame.plot) {
+    graphics::box()
+  }
+
+  ## Add annotation
+  if (ann) {
+    graphics::title(main = main %||% selected, sub = sub, xlab = xlab, ylab = ylab)
+  }
+
+  ## Add legend
+  if (is.list(legend)) {
+    if (robust || type == "distance") {
+      lab <- c("No outlier", "Robust only", "Both")
+    } else {
+      lab <- c("No outlier", "Outlier")
+      pch <- pch[-2]
     }
-  } else {
-    .plot_single(x = cx, y = cy[, 1, drop = TRUE],
-                 name = "", panel = panel, ..., asp = asp,
-                 xlab = xlab, ylab = ylab,
-                 main = main, sub = sub,
-                 ann = ann, axes = axes,
-                 frame.plot = frame.plot, panel.first = panel.first,
-                 panel.last = panel.last)
+    args <- list(x = "topleft", legend = lab, pch = pch, bty = "n", xpd = NA)
+    args <- utils::modifyList(args, legend)
+    do.call(graphics::legend, args = args)
   }
 
   invisible(x)

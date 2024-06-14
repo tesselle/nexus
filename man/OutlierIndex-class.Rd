@@ -11,24 +11,23 @@ An S4 class to store the result of outlier detection.
 \section{Slots}{
 
 \describe{
-\item{\code{.Data}}{A \code{\link{logical}} matrix giving the squared Mahalanobis distance.}
-
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
 (allows duplicates in case of repeated measurements).}
 
-\item{\code{groups}}{A \code{\link{character}} vector to store the group names.}
+\item{\code{groups}}{A \code{\link{list}} giving the samples index of each group.}
+
+\item{\code{standard}}{A \code{\link{numeric}} matrix giving the standard squared Mahalanobis
+distances.}
+
+\item{\code{robust}}{A \code{\link{numeric}} matrix giving the robust squared Mahalanobis
+distances.}
 
 \item{\code{limit}}{A \code{\link{numeric}} value giving the cut-off value used for outliers
 detection (quantile of the Chi-squared distribution).}
 
-\item{\code{robust}}{An \code{\link{logical}} scalar: were robust estimators used?}
-
 \item{\code{dof}}{A (non-negative) \code{\link{numeric}} value giving the degrees of freedom.}
 }}
 
-\note{
-This class inherits from \code{\link{logical}}.
-}
 \section{Coerce}{
 
 In the code snippets below, \code{x} is an \code{OutlierIndex} object.
