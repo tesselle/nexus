@@ -58,7 +58,7 @@ setMethod(
   f = "transform_inverse",
   signature = c(object = "ILR", origin = "missing"),
   definition = function(object) {
-    y <- tcrossprod(object, object@base)
+    y <- tcrossprod(object@.Data, object@base)
     y <- exp(y)
     y <- y / rowSums(y)
 
