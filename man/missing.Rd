@@ -7,25 +7,32 @@
 Missing Values Policy
 }
 \details{
-Compositional data are quantitative (positive) descriptions of the parts
+Compositional data are quantitative positive descriptions of the parts
 of some whole, carrying relative, rather than absolute, information
 (ie. only relative changes are relevant; Aitchison 1986).
 
-Basically, two situations can be outlined:
+Basically, three situations can be outlined regarding missing values in
+compositions:
 \itemize{
-\item The presence of zeros: these are considered as observed quantities,
-but which happen to be below the detection limit (thus interpreted as
-small unknown values).
-\item The presence of missing values (\code{NA}): these indicate that the quantities
-in question have not been observed.
+\item Unobserved quantities.
+\item Amounts observed, but which happen to be below the detection limit
+(thus interpreted as small unknown values).
+\item Absolutely zero quantities.
+}
+
+These situations can be represented in several ways:
+\itemize{
+\item The presence of zeros.
+\item The presence of missing values (\code{NA}).
 }
 
 When creating a \code{\linkS4class{CompositionMatrix}} object, the presence of zero
 and \code{\link{NA}} values is allowed: this makes it possible to explore and
-visualize the data while preserving the missing structure. However, the
-user must deal with these missing values before proceeding further (e.g.
+visualize the data while preserving the missing structure. However, \strong{the
+user must deal with these missing values before proceeding further} (e.g.
 by removing incomplete cases or replacing the values concerned): log-ratio
-transformations cannot be computed in the presence of missing values.
+transformations cannot be computed in the presence of zeros or missing
+values.
 }
 \note{
 If you need more advanced features (e.g. imputation of missing values),

@@ -4,9 +4,6 @@
 * Add `pip()` to compute proportionality index of parts.
 * Add `show()` methods for `LogRatio-class` objects.
 
-## Internals
-* `gmean()` no longer ignores zeros by default.
-
 ## Breaking changes
 * `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.
 

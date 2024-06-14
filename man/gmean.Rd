@@ -4,7 +4,7 @@
 \alias{gmean}
 \title{Geometric Mean}
 \usage{
-gmean(x, trim = 0, na.rm = FALSE, zero.rm = FALSE)
+gmean(x, trim = 0, na.rm = FALSE, zero.rm = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} vector.}

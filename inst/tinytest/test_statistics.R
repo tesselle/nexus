@@ -8,6 +8,14 @@ expect_equal_to_reference(aggregate(petro, by = get_groups(petro), FUN = mean),
                           file = "_snaps/aggregate_group.rds")
 
 # Mean =========================================================================
+expect_equal(nexus:::gmean(c(7.72, 0, 3.11, 7.19), zero.rm = FALSE), 0)
+expect_equal(nexus:::gmean(c(7.72, NA, 3.11, 7.19), na.rm = FALSE), NA_real_)
+expect_equal(nexus:::gmean(c(7.72, 0, NA, 7.19), zero.rm = FALSE, na.rm = FALSE), NA_real_)
+expect_equal(
+  nexus:::gmean(c(7.72, 0, 3.11, 7.19), zero.rm = TRUE),
+  nexus:::gmean(c(7.72, NA, 3.11, 7.19), na.rm = TRUE)
+)
+
 data("hongite")
 coda <- as_composition(hongite)
 

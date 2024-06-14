@@ -5,9 +5,9 @@ NULL
 # Mean =========================================================================
 #' @export
 #' @method mean CompositionMatrix
-mean.CompositionMatrix <- function(x, ..., na.rm = FALSE) {
-  m <- apply(X = x, MARGIN = 2, FUN = gmean, na.rm = na.rm, ..., simplify = TRUE)
-  closure(m, na.rm = na.rm)
+mean.CompositionMatrix <- function(x, ...) {
+  m <- apply(X = x, MARGIN = 2, FUN = gmean, ..., simplify = TRUE)
+  closure(m)
 }
 
 #' @export
@@ -27,8 +27,9 @@ setMethod("mean", "CompositionMatrix", mean.CompositionMatrix)
 #'  computation proceeds?
 #' @return A [`numeric`] vector.
 #' @keywords internal
-gmean <- function(x, trim = 0, na.rm = FALSE, zero.rm = FALSE) {
+gmean <- function(x, trim = 0, na.rm = FALSE, zero.rm = TRUE) {
+  # if (any(na.omit(x == 0))) return(0)
   if (na.rm) x <- x[is.finite(x)]
   if (zero.rm) x <- x[x > 0]
-  exp(mean(log(x), trim = trim))
+  exp(mean(log(unclass(x)), trim = trim))
 }
