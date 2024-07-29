@@ -1,4 +1,4 @@
-# nexus 0.3.0
+# nexus 0.2.0.9000
 ## New classes and methods
 * Add `condense()` to compute compositional mean of data subsets.
 * Add `pip()` to compute proportionality index of parts.
