@@ -10,9 +10,9 @@
 \usage{
 closure(x, ...)
 
-\S4method{closure}{numeric}(x, total = 1, na.rm = FALSE)
+\S4method{closure}{numeric}(x, total = 1, na.rm = TRUE)
 
-\S4method{closure}{matrix}(x, total = 1, na.rm = FALSE)
+\S4method{closure}{matrix}(x, total = 1, na.rm = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} vector or matrix.}

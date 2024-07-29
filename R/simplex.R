@@ -9,7 +9,7 @@ NULL
 setMethod(
   f = "closure",
   signature = c(x = "numeric"),
-  definition = function(x, total = 1, na.rm = FALSE) {
+  definition = function(x, total = 1, na.rm = TRUE) {
     x * total / sum(x, na.rm = na.rm)
   }
 )
@@ -20,7 +20,7 @@ setMethod(
 setMethod(
   f = "closure",
   signature = c(x = "matrix"),
-  definition = function(x, total = 1, na.rm = FALSE) {
+  definition = function(x, total = 1, na.rm = TRUE) {
     x * total / rowSums(x, na.rm = na.rm)
   }
 )
