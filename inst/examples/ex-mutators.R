@@ -3,8 +3,5 @@ data("slides")
 head(slides)
 
 ## Coerce to compositional data
-coda <- as_composition(slides, samples = 2, groups = 1)
+coda <- as_composition(slides)
 head(as_features(coda))
-
-get_samples(coda)
-get_groups(coda)

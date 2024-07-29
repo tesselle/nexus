@@ -40,9 +40,7 @@ setMethod(
 
     z <- x * y
     z <- as_composition(z)
-
-    set_samples(z) <- get_samples(x)
-    set_groups(z) <- get_groups(x)
+    z@extra <- get_extra(x)
 
     z
   }
@@ -94,8 +92,7 @@ setMethod(
     arkhe::assert_length(y, 1L)
     z <- x ^ y
     z <- as_composition(z)
-    set_samples(z) <- get_samples(x)
-    set_groups(z) <- get_groups(x)
+    z@extra <- get_extra(x)
     z
   }
 )

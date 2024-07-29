@@ -9,7 +9,7 @@
 \S4method{plot}{LogRatio,missing}(
   x,
   ...,
-  groups = get_groups(x),
+  groups = NULL,
   rug = TRUE,
   ticksize = 0.05,
   ncol = NULL,
@@ -29,7 +29,9 @@
 \item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
 \code{border} and \code{col}.}
 
-\item{groups}{A \code{vector} of grouping elements, as long as the variables in \code{x}.
+\item{groups}{A \code{vector} of grouping elements, as long as the variables in
+\code{x}. If a single \code{character} string is passed, it must be the name of a
+categorical variable from the original dataset.
 If set, a matrix of panels defined by \code{groups} will be drawn.}
 
 \item{rug}{A \code{\link{logical}} scalar: should a \emph{rug} representation (1-d plot) of
@@ -72,12 +74,12 @@ Displays a density plot.
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
+coda <- as_composition(kommos) # Use ceramic types for grouping
 
 ## Log ratio
 clr <- transform_clr(coda)
 plot(clr, groups = NULL, flip = TRUE, border = "black", col = NA)
-plot(clr, flip = TRUE)
+plot(clr, groups = "type", flip = TRUE)
 }
 \seealso{
 Other plot methods: 

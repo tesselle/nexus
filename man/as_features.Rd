@@ -20,7 +20,7 @@ as_features(from, ...)
 \item{...}{Currently not used.}
 }
 \value{
-A \code{\link{data.frame}} with all informations as extra columns.
+A \code{\link{data.frame}}.
 }
 \description{
 Converts an object to a collection of features.

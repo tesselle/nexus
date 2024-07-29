@@ -9,9 +9,6 @@
 #'
 #' @section Package options:
 #'  `nexus` uses the following [options()] to configure behavior:
-#'  * `nexus.autodetect`: a [`logical`] scalar. Try to automatically assign
-#'    values to the corresponding slot of a `CompositionMatrix` object when
-#'    coercing a `data.frame`? Defaults to `TRUE`.
 #'  * `nexus.verbose`: a [`logical`] scalar. Should \R report extra information
 #'    on progress? Defaults to `TRUE`.
 #'

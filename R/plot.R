@@ -5,8 +5,11 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = get_groups(x)) {
+plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = NULL) {
+  ## Grouping
+  groups <- get_variable(x, which = groups)
   if (!is.null(groups) && !all(is.na(groups))) {
+    arkhe::assert_length(groups, nrow(x))
     col <- dimensio::palette_color_discrete(list(...)$col)(groups)
     pch <- dimensio::palette_shape(list(...)$pch)(groups)
   } else {
@@ -26,8 +29,8 @@ setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMat
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, ...,
-                          groups = get_groups(x), rug = TRUE, ticksize = 0.05,
+plot.LogRatio <- function(x, ..., groups = NULL,
+                          rug = TRUE, ticksize = 0.05,
                           ncol = NULL, flip = FALSE,
                           xlab = NULL, ylab = NULL,
                           main = NULL, ann = graphics::par("ann"),
@@ -43,6 +46,7 @@ plot.LogRatio <- function(x, ...,
   nrow <- ceiling(p / ncol)
 
   ## Grouping
+  groups <- get_variable(x, which = groups)
   if (is.null(groups) || all(is.na(groups))) {
     grp <- list(all = z)
     groups <- rep("all", m)

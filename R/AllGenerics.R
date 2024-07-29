@@ -18,31 +18,14 @@ NULL
 #'
 #' Coerces an object to a `CompositionMatrix` object.
 #' @param from A [`matrix`] or [`data.frame`] to be coerced.
-#' @param samples An [`integer`] giving the index of the column to be used for
-#'  sample identification: allows duplicates to identify replicated measurements.
-#'  If `NULL` (the default), row names will be used as sample IDs.
-#' @param groups An [`integer`] giving the index of the column to be used to
-#'  group the samples. If `NULL` (the default), no grouping is stored.
-#' @param auto A [`logical`] scalar: try to automatically detect `codes`,
-#'  `samples` and `groups` columns?
+#' @param parts A `vector` giving the index of the column to be used a
+#'  compositional parts. If `NULL` (the default), all [`double`] columns will be
+#'  used.
 #' @param verbose A [`logical`] scalar: should \R report extra information
 #'  on progress?
 #' @param ... Currently not used.
 #' @details
-#'  The [`CompositionMatrix-class`] class has special slots:
-#'
-#'  * `samples` for [repeated measurements/observation][samples],
-#'  * `groups` to [group data by site/area][group].
-#'
-#'  When coercing a `data.frame` to a [`CompositionMatrix-class`] object, an
-#'  attempt is made to automatically assign values to these slots by mapping
-#'  column names (case insensitive, plural insensitive). This behavior can be
-#'  disabled by setting `options(nexus.autodetect = FALSE)` or overridden by
-#'  explicitly specifying the columns to be used.
-#'
 #'  See `vignette("nexus")`.
-#' @note
-#'  All non-numeric variable will be removed.
 #' @return A [`CompositionMatrix-class`] object.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
@@ -77,7 +60,7 @@ setGeneric(
 #' @param from A [`CompositionMatrix-class`] object.
 #' @param ... Currently not used.
 #' @return
-#'  A [`data.frame`] with all informations as extra columns.
+#'  A [`data.frame`].
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -112,7 +95,7 @@ NULL
 #'  \describe{
 #'   \item{`%perturbe%`}{[Perturbation operation][perturbation()].}
 #'   \item{`%power%`}{[Powering operation][powering()].}
-#' }
+#'  }
 #' @return
 #'  A [`CompositionMatrix-class`] object or a [`numeric`] vector (same as `x`).
 #' @example inst/examples/ex-arith.R
@@ -220,17 +203,9 @@ setGeneric(
 #'
 #' Retrieves or defines the groups to which the observations belong.
 #' @param x An object from which to get or set `groups`.
-#' @param value A possible value for the `groups` of `x`.
-#' @details
-#'  See `vignette("nexus")`.
+# @param value A possible value for the `groups` of `x`.
 #' @return
-#'  * `set_groups()` returns an object of the same sort as `x` with the new
-#'    group names assigned.
 #'  * `get_groups()` returns a [`character`] vector giving the group names of `x`.
-#'  * `any_assigned()` returns a [`logical`] scalar specifying whether or not `x`
-#'    has groups.
-#'  * `is_assigned()` returns a [`logical`] vector specifying whether or not an
-#'    observation belongs to a group.
 #' @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -240,87 +215,10 @@ setGeneric(
 NULL
 
 #' @rdname groups
-#' @aliases any_assigned-method
-setGeneric(
-  name = "any_assigned",
-  def = function(x) standardGeneric("any_assigned")
-)
-
-#' @rdname groups
-#' @aliases is_assigned-method
-setGeneric(
-  name = "is_assigned",
-  def = function(x) standardGeneric("is_assigned")
-)
-
-#' @rdname groups
 #' @aliases get_groups-method
 setGeneric(
   name = "get_groups",
   def = function(x) standardGeneric("get_groups")
-)
-
-#' @rdname groups
-#' @aliases set_groups-method
-setGeneric(
-  name = "set_groups<-",
-  def = function(x, value) standardGeneric("set_groups<-")
-)
-
-#' Working With Samples
-#'
-#' Retrieves or defines the sample names.
-#' @param x An object from which to get or set `samples`.
-#' @param value A possible value for the `samples` of `x`.
-#' @details
-#'  In some situations, measurements may have been repeated (e.g. multiple
-#'  chemical analyses on the same sample). The presence of repeated
-#'  measurements can be specified by giving several observations the same
-#'  sample name.
-#'
-#'  See `vignette("nexus")`.
-#' @return
-#'  * `set_samples()` returns an object of the same sort as `x` with the new
-#'    sample names assigned.
-#'  * `get_samples()` returns a [`character`] vector giving the sample names of `x`.
-#'  * `any_replicated()` returns a [`logical`] scalar specifying whether or not
-#'    `x` has replicated observations.
-#'  * `is_replicated()` returns a [`logical`] vector specifying whether or not
-#'    an observation is a replicate.
-#' @example inst/examples/ex-mutators.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family mutators
-#' @name samples
-#' @rdname samples
-NULL
-
-#' @rdname samples
-#' @aliases any_replicated-method
-setGeneric(
-  name = "any_replicated",
-  def = function(x) standardGeneric("any_replicated")
-)
-
-#' @rdname samples
-#' @aliases is_replicated-method
-setGeneric(
-  name = "is_replicated",
-  def = function(x) standardGeneric("is_replicated")
-)
-
-#' @rdname samples
-#' @aliases get_samples-method
-setGeneric(
-  name = "get_samples",
-  def = function(x) standardGeneric("get_samples")
-)
-
-#' @rdname samples
-#' @aliases set_samples-method
-setGeneric(
-  name = "set_samples<-",
-  def = function(x, value) standardGeneric("set_samples<-")
 )
 
 #' Row Sums
@@ -662,7 +560,8 @@ setGeneric(
 #' returns the result.
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param by A `vector` or a list of grouping elements, each as long as the
-#'  variables in `x`. The elements are coerced to factors before use.
+#'  variables in `x`. The elements are coerced to factors before use
+#'  (in the sense that [`as.factor(by)`][as.factor()] defines the grouping).
 #' @param FUN A [`function`] to compute the summary statistics.
 #' @param simplify A [`logical`] scalar: should the results be simplified to a
 #'  matrix if possible?
@@ -721,7 +620,10 @@ NULL
 #'
 #' Splits the data into subsets and computes compositional mean for each.
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param by A `vector` of grouping elements, as long as the variables in `x`.
+#' @param by A `vector` of grouping elements, as long as the variables in `x`
+#'  (in the sense that [`as.factor(by)`][as.factor()] defines the grouping).
+#'  If a single `character` string is passed, it must be the name of a
+#'  categorical variable from the original dataset.
 #' @param ... Further arguments to be passed to [mean()].
 #' @return A [`CompositionMatrix-class`] object.
 #' @seealso [mean()], [aggregate()]
@@ -979,12 +881,14 @@ NULL
 #'
 #' Displays a compositional bar chart.
 #' @param height A [`CompositionMatrix-class`] object.
+#' @param groups A `vector` of grouping elements, as long as the variables in
+#'  `height`. If a single `character` string is passed, it must be the name of a
+#'  categorical variable from the original dataset.
+#'  If set, a matrix of panels defined by `groups` will be drawn.
 #' @param order An [`integer`] vector giving the index of the column to be used
 #'  for the ordering of the data.
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
 #'  or decreasing?
-#' @param groups A `vector` of grouping elements, as long as the variables in
-#'  `height`. If set, a matrix of panels defined by `groups` will be drawn.
 #' @param horiz A [`logical`] scalar. If `FALSE`, the bars are drawn vertically
 #'  with the first bar to the left. If `TRUE` (the default), the bars are drawn
 #'  horizontally with the first at the bottom.
@@ -1051,7 +955,9 @@ NULL
 #'
 #' Displays a matrix of ternary plots.
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param groups A `vector` of grouping elements, as long as the variables in `x`.
+#' @param groups A `vector` of grouping elements, as long as the variables in
+#'  `x`. If a single `character` string is passed, it must be the name of a
+#'  categorical variable from the original dataset.
 #' @inheritParams isopleuros::ternary_pairs
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
@@ -1070,7 +976,9 @@ NULL
 #'
 #' Displays a density plot.
 #' @param x A [`LogRatio-class`] object.
-#' @param groups A `vector` of grouping elements, as long as the variables in `x`.
+#' @param groups A `vector` of grouping elements, as long as the variables in
+#'  `x`. If a single `character` string is passed, it must be the name of a
+#'  categorical variable from the original dataset.
 #'  If set, a matrix of panels defined by `groups` will be drawn.
 #' @param rug A [`logical`] scalar: should a *rug* representation (1-d plot) of
 #'  the data be added to the plot?
@@ -1245,7 +1153,9 @@ NULL
 #'  `quantile` is used as a cut-off value for outlier detection: observations
 #'  with larger (squared) Mahalanobis distance are considered as potential
 #'  outliers.
-#' @param groups A `vector` of grouping elements, as long as the variables in `object`.
+#' @param groups A `vector` of grouping elements, as long as the variables in
+#'  `object`. If a single `character` string is passed, it must be the name of a
+#'  categorical variable from the original dataset.
 #' @details
 #'  An outlier can be defined as having a very large Mahalanobis distance from
 #'  all observations. In this way, a certain proportion of the observations can

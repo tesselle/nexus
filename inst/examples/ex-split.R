@@ -11,7 +11,4 @@ X <- data.frame(
 Y <- as_composition(X)
 
 ## Split by group
-split(Y, f = get_groups(Y))
-
-## Split by sample
-split(Y, f = get_samples(Y))
+split(Y, f = X$groups)

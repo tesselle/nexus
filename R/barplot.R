@@ -5,9 +5,9 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method barplot CompositionMatrix
-barplot.CompositionMatrix <- function(height, ...,
+barplot.CompositionMatrix <- function(height, ..., groups = NULL,
                                       order = NULL, decreasing = FALSE,
-                                      groups = get_groups(height), horiz = TRUE,
+                                      horiz = TRUE,
                                       xlab = NULL, ylab = NULL,
                                       main = NULL, sub = NULL,
                                       ann = graphics::par("ann"), axes = TRUE,
@@ -36,8 +36,8 @@ barplot.CompositionMatrix <- function(height, ...,
   y_side <- if (horiz) 2 else 1
 
   ## Grouping
-  n <- 0
-  if (!all(is.na(groups))) {
+  groups <- get_variable(height, which = groups)
+  if (!is.null(groups) && !all(is.na(groups))) {
     arkhe::assert_length(groups, nrow(z))
     groups <- groups[ordering]
 

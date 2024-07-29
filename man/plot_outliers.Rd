@@ -88,7 +88,7 @@ Plot Outliers
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
+coda <- as_composition(kommos) # Use ceramic types for grouping
 
 ## Detect outliers
 out <- outliers(coda, groups = NULL, method = "mcd")
@@ -98,7 +98,7 @@ plot(out, type = "distance")
 plot(out, type = "qqplot")
 
 ## Detect outliers by group
-out <- outliers(coda[, 1:15], method = "mcd")
+out <- outliers(coda[, 1:15], groups = "type", method = "mcd")
 
 plot(out, type = "dotchart", select = 1, robust = FALSE)
 plot(out, type = "dotchart", select = 2, robust = FALSE)

@@ -68,9 +68,8 @@ setMethod(
       order = seq_len(D),
       base = base,
       weights = rep(1 / D, D),
-      totals = object@totals,
-      samples = object@samples,
-      groups = object@groups
+      totals = get_totals(object),
+      extra = get_extra(object)
     )
   }
 )

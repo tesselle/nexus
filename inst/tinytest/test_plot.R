@@ -24,11 +24,11 @@ if (at_home()) {
   plot_barplot_order <- function() barplot(coda, order = 2)
   expect_snapshot_plot(plot_barplot_order, "plot_barplot_order")
 
-  set_groups(coda) <- rep(1:5, 5)
-  plot_barplot_group <- function() barplot(coda, order = 2)
+  plot_barplot_group <- function() barplot(coda, groups = rep(1:5, 5), order = 2)
   expect_snapshot_plot(plot_barplot_group, "plot_barplot_group")
 
-  plot_barplot_vertical <- function() barplot(coda, order = NULL, horiz = FALSE)
+  plot_barplot_vertical <- function() barplot(coda, groups = rep(1:5, 5),
+                                              order = NULL, horiz = FALSE)
   expect_snapshot_plot(plot_barplot_vertical, "plot_barplot_vertical")
 
   # Density ====================================================================
@@ -36,7 +36,7 @@ if (at_home()) {
   if (getRversion() >= "4.4.0") {
     clr <- transform_clr(coda)
 
-    plot_ratio <- function() plot(clr)
+    plot_ratio <- function() plot(clr, groups = rep(1:5, 5))
     expect_snapshot_plot(plot_ratio, "plot_ratio")
   }
 }

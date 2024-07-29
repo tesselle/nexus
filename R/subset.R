@@ -3,7 +3,6 @@
 NULL
 
 # Extract ======================================================================
-## CompositionMatrix -----------------------------------------------------------
 .subscript1 <- function(x, i) {
   x@.Data[i]
 }
@@ -12,9 +11,12 @@ NULL
   ## Rows
   if (missing(i)) i <- seq_len(nrow(x))
   if (is.character(i)) i <- match(i, dimnames(x)[1L])
-  samples <- x@samples[i]
-  groups <- x@groups[i]
-  totals <- x@totals[i]
+  totals <- get_totals(x)[i]
+  if (has_extra(x)) {
+    extra <- lapply(X = get_extra(x), FUN = function(val, i) { val[i] }, i = i)
+  } else {
+    extra <- list()
+  }
 
   ## Columns
   if (missing(j)) j <- seq_len(ncol(x))
@@ -30,7 +32,7 @@ NULL
   #   z <- z / tot
   # }
 
-  methods::initialize(x, z, samples = samples, groups = groups, totals = totals)
+  methods::initialize(x, z, totals = totals, extra = extra)
 }
 
 wrong_dimensions <- function(i, j) {
@@ -38,6 +40,7 @@ wrong_dimensions <- function(i, j) {
   stop(msg, call. = FALSE)
 }
 
+## CompositionMatrix -----------------------------------------------------------
 #' @export
 #' @rdname subset
 #' @aliases [,CompositionMatrix,missing,missing,missing-method

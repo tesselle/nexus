@@ -26,7 +26,7 @@ Depends:
     R (>= 3.5),
     dimensio (>= 0.8.0)
 Imports: 
-    arkhe (>= 1.6.0),
+    arkhe (>= 1.7.0),
     graphics,
     grDevices,
     isopleuros (>= 1.2.0),

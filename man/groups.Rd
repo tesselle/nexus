@@ -3,70 +3,25 @@
 \docType{methods}
 \name{groups}
 \alias{groups}
-\alias{any_assigned}
-\alias{any_assigned-method}
-\alias{is_assigned}
-\alias{is_assigned-method}
 \alias{get_groups}
 \alias{get_groups-method}
-\alias{set_groups<-}
-\alias{set_groups-method}
-\alias{is_assigned,CompositionMatrix-method}
-\alias{is_assigned,LogRatio-method}
-\alias{any_assigned,CompositionMatrix-method}
-\alias{any_assigned,LogRatio-method}
-\alias{get_groups,CompositionMatrix-method}
-\alias{get_groups,LogRatio-method}
 \alias{get_groups,OutlierIndex-method}
-\alias{set_groups<-,CompositionMatrix-method}
-\alias{set_groups,CompositionMatrix-method}
 \title{Working With Groups}
 \usage{
-any_assigned(x)
-
-is_assigned(x)
-
 get_groups(x)
 
-set_groups(x) <- value
-
-\S4method{is_assigned}{CompositionMatrix}(x)
-
-\S4method{is_assigned}{LogRatio}(x)
-
-\S4method{any_assigned}{CompositionMatrix}(x)
-
-\S4method{any_assigned}{LogRatio}(x)
-
-\S4method{get_groups}{CompositionMatrix}(x)
-
-\S4method{get_groups}{LogRatio}(x)
-
 \S4method{get_groups}{OutlierIndex}(x)
-
-\S4method{set_groups}{CompositionMatrix}(x) <- value
 }
 \arguments{
 \item{x}{An object from which to get or set \code{groups}.}
-
-\item{value}{A possible value for the \code{groups} of \code{x}.}
 }
 \value{
 \itemize{
-\item \code{set_groups()} returns an object of the same sort as \code{x} with the new
-group names assigned.
 \item \code{get_groups()} returns a \code{\link{character}} vector giving the group names of \code{x}.
-\item \code{any_assigned()} returns a \code{\link{logical}} scalar specifying whether or not \code{x}
-has groups.
-\item \code{is_assigned()} returns a \code{\link{logical}} vector specifying whether or not an
-observation belongs to a group.
 }
 }
 \description{
 Retrieves or defines the groups to which the observations belong.
-}
-\details{
-See \code{vignette("nexus")}.
 }
 \examples{
 ## Data from Aitchison 1986
@@ -74,15 +29,11 @@ data("slides")
 head(slides)
 
 ## Coerce to compositional data
-coda <- as_composition(slides, samples = 2, groups = 1)
+coda <- as_composition(slides)
 head(as_features(coda))
-
-get_samples(coda)
-get_groups(coda)
 }
 \seealso{
 Other mutators: 
-\code{\link{samples}},
 \code{\link{split}()},
 \code{\link{subset}()},
 \code{\link{totals}}

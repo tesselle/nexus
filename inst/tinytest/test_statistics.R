@@ -1,10 +1,8 @@
 # Aggregate ====================================================================
 data("slides")
-petro <- as_composition(slides, group = 1, sample = 2)
+petro <- as_composition(slides)
 
-expect_equal_to_reference(aggregate(petro, by = get_samples(petro), FUN = mean),
-                          file = "_snaps/aggregate_sample.rds")
-expect_equal_to_reference(aggregate(petro, by = get_groups(petro), FUN = mean),
+expect_equal_to_reference(aggregate(petro, by = slides$analyst, FUN = mean),
                           file = "_snaps/aggregate_group.rds")
 
 # Mean =========================================================================

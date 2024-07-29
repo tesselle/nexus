@@ -22,17 +22,16 @@ setMethod(
   f = "as_composition",
   signature = c(from = "matrix"),
   definition = function(from) {
+    ## Make row/column names
+    lab <- make_names(x = NULL, n = nrow(from), prefix = "S")
+    rownames(from) <- if (has_rownames(from)) rownames(from) else lab
+    colnames(from) <- make_names(x = colnames(from), n = ncol(from), prefix = "V")
+
+    ## Close
     totals <- rowSums(from, na.rm = TRUE)
     from <- from / totals
 
-    spl <- make_names(x = NULL, n = nrow(from), prefix = "S")
-    lab <- if (has_rownames(from)) rownames(from) else make_codes(spl)
-    grp <- rep(NA_character_, nrow(from))
-
-    rownames(from) <- lab
-    colnames(from) <- make_names(x = colnames(from), n = ncol(from), prefix = "V")
-
-    .CompositionMatrix(from, totals = totals, samples = spl, groups = grp)
+    .CompositionMatrix(from, totals = unname(totals))
   }
 )
 
@@ -42,77 +41,39 @@ setMethod(
 setMethod(
   f = "as_composition",
   signature = c(from = "data.frame"),
-  definition = function(from, samples = NULL, groups = NULL,
-                        auto = getOption("nexus.autodetect"),
+  definition = function(from, parts = NULL,
                         verbose = getOption("nexus.verbose")) {
-
-    cols <- colnames(from)
-    empty <- rep(NA_character_, nrow(from))
-
-    index <- function(what, where) {
-      grep(what, where, ignore.case = TRUE, value = FALSE)
-    }
-
-    ## Sample names
-    spl <- make_names(x = NULL, n = nrow(from), prefix = "S")
-    if (is.null(samples) && auto) samples <- index("^sample[s]{0,1}$", cols)
-    if (length(samples) == 1) {
-      if (is.character(samples)) samples <- match(samples, cols)
-      spl <- as.character(from[[samples]])
-    }
-
-    ## Identifiers (must be unique)
-    lab <- if (has_rownames(from)) rownames(from) else make_codes(spl)
-
-    ## Group names
-    grp <- empty
-    if (is.null(groups) && auto) groups <- index("^group[s]{0,1}$", cols)
-    if (length(groups) == 1) {
-      if (is.character(groups)) groups <- match(groups, cols)
-      grp <- as.character(from[[groups]])
-      grp[grp == ""] <- NA_character_
-    }
-
-    ## Drop extra columns (if any)
-    drop <- c(samples, groups)
-    data <- if (length(drop) > 0) from[, -drop, drop = FALSE] else from
+    ## Clean row/column names
+    lab <- make_names(x = NULL, n = nrow(from), prefix = "S")
+    rownames(from) <- if (has_rownames(from)) rownames(from) else lab
+    colnames(from) <- make_names(x = colnames(from), n = ncol(from), prefix = "V")
 
     ## Remove non-numeric columns
-    data <- arkhe::keep_cols(x = data, f = is.numeric, all = FALSE,
-                             verbose = verbose)
-    arkhe::assert_filled(data)
+    if (is.null(parts)) {
+      parts <- arkhe::detect(from, f = is.double, margin = 2) # Logical
+      if (verbose) {
+        n <- sum(parts)
+        what <- ngettext(n, "part", "parts")
+        cols <- paste0(colnames(from)[parts], collapse = ", ")
+        msg <- "Found %g %s (%s)."
+        message(sprintf(msg, n, what, cols))
+      }
+    } else {
+      if (is.numeric(parts)) parts <- seq_len(ncol(from)) %in% parts
+      if (is.character(parts)) parts <- colnames(from) %in% parts
+    }
+    coda <- from[, parts, drop = FALSE]
+    extra <- from[, !parts, drop = FALSE]
+    arkhe::assert_filled(coda)
 
     ## Build matrix
-    data <- data.matrix(data, rownames.force = NA)
-    totals <- rowSums(data, na.rm = TRUE)
-    data <- data / totals
-    rownames(data) <- lab
+    coda <- data.matrix(coda, rownames.force = NA)
+    totals <- rowSums(coda, na.rm = TRUE)
+    coda <- coda / totals
 
-    .CompositionMatrix(data, totals = totals, samples = spl, groups = grp)
+    .CompositionMatrix(coda, totals = unname(totals), extra = as.list(extra))
   }
 )
-
-make_codes <- function(x) {
-  if (!any(duplicated(x))) return(x)
-  x <- split(x = seq_along(x), f = x)
-  nm <- rep(names(x), lengths(x))
-  nm <- tapply(
-    X = nm,
-    INDEX = nm,
-    FUN = function(x) paste(x, seq_along(x), sep = "_"),
-    simplify = FALSE
-  )
-
-  x <- unlist(x, use.names = FALSE)
-  nm <- unlist(nm, use.names = FALSE)
-  nm[x]
-}
-
-make_names <- function(x, n = length(x), prefix = "X") {
-  x <- if (n > 0) x %||% paste0(prefix, seq_len(n)) else character(0)
-  x <- make.unique(x, sep = "_")
-  x
-}
 
 # To Amounts ===================================================================
 #' @export
@@ -134,11 +95,11 @@ setMethod(
   f = "as_features",
   signature = c(from = "CompositionMatrix"),
   definition = function(from) {
-    data.frame(
-      sample = get_samples(from),
-      group = get_groups(from),
-      from
-    )
+    if (has_extra(from)) {
+      data.frame(get_extra(from), from)
+    } else {
+      as.data.frame(from)
+    }
   }
 )
 
@@ -149,11 +110,11 @@ setMethod(
   f = "as_features",
   signature = c(from = "LogRatio"),
   definition = function(from) {
-    data.frame(
-      sample = get_samples(from),
-      group = get_groups(from),
-      from
-    )
+    if (has_extra(from)) {
+      data.frame(get_extra(from), from)
+    } else {
+      as.data.frame(from)
+    }
   }
 )
 

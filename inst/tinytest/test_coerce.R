@@ -1,6 +1,6 @@
 # Data with groups =============================================================
 data("slides")
-coda <- as_composition(slides, sample = 2, group = 1)
+coda <- as_composition(slides)
 expect_equal_to_reference(as_features(coda), file = "_snaps/features.rds")
 
 clr <- transform_clr(coda, weights = FALSE)

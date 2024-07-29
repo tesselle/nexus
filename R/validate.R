@@ -17,15 +17,12 @@ setValidity(
   method = function(object) {
     ## Get data
     n <- nrow(object)
-    samples <- object@samples
-    groups <- object@groups
     totals <- object@totals
+    extra <- object@extra
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_missing(samples)),
-      arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
+      # arkhe::validate(arkhe::assert_lengths(extra, n)),
       arkhe::validate(arkhe::assert_positive(object, strict = FALSE, na.rm = TRUE))
     )
     arkhe::check_class(object, cnd)
@@ -37,27 +34,23 @@ setValidity(
   Class = "LogRatio",
   method = function(object) {
     ## Get data
-    data <- object@.Data
     parts <- object@parts
     ratio <- object@ratio
     order <- object@order
     base <- object@base
     weights <- object@weights
 
-    samples <- object@samples
-    groups <- object@groups
     totals <- object@totals
+    extra <- object@extra
 
     n <- nrow(object)
     m <- length(parts)
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_missing(data)),
-      arkhe::validate(arkhe::assert_infinite(data)),
-      arkhe::validate(arkhe::assert_missing(samples)),
-      arkhe::validate(arkhe::assert_length(samples, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
+      arkhe::validate(arkhe::assert_missing(object)),
+      arkhe::validate(arkhe::assert_infinite(object)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
+      # arkhe::validate(arkhe::assert_lengths(extra, n)),
 
       arkhe::validate(arkhe::assert_length(order, m, empty = FALSE))
     )

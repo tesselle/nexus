@@ -6,7 +6,7 @@
 \alias{plot,CompositionMatrix,missing-method}
 \title{Plot Compositional Data}
 \usage{
-\S4method{plot}{CompositionMatrix,missing}(x, ..., margin = NULL, groups = get_groups(x))
+\S4method{plot}{CompositionMatrix,missing}(x, ..., margin = NULL, groups = NULL)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
@@ -18,7 +18,9 @@ the column to be used as the third part of the ternary plots. If \code{NULL}
 (the default), marginal compositions will be used (i.e. the geometric mean
 of the non-selected parts).}
 
-\item{groups}{A \code{vector} of grouping elements, as long as the variables in \code{x}.}
+\item{groups}{A \code{vector} of grouping elements, as long as the variables in
+\code{x}. If a single \code{character} string is passed, it must be the name of a
+categorical variable from the original dataset.}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being
@@ -31,9 +33,9 @@ Displays a matrix of ternary plots.
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
+coda <- as_composition(kommos) # Use ceramic types for grouping
 
-plot(coda[, 1:6, drop = FALSE])
+plot(coda[, 1:6, drop = FALSE], groups = "type")
 plot(coda[, 1:6, drop = FALSE], groups = NULL)
 }
 \seealso{

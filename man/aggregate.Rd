@@ -12,7 +12,8 @@
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{by}{A \code{vector} or a list of grouping elements, each as long as the
-variables in \code{x}. The elements are coerced to factors before use.}
+variables in \code{x}. The elements are coerced to factors before use
+(in the sense that \code{\link[=as.factor]{as.factor(by)}} defines the grouping).}
 
 \item{FUN}{A \code{\link{function}} to compute the summary statistics.}
 
@@ -36,16 +37,13 @@ returns the result.
 data("slides")
 
 ## Coerce to a compositional matrix
-coda <- as_composition(slides, sample = 2, group = 1)
+coda <- as_composition(slides)
 
-## Compositional mean by sample
-aggregate(coda, by = get_samples(coda), FUN = mean)
+## Compositional mean by slide
+aggregate(coda, by = slides$slide, FUN = mean)
 
-## Compositional mean by group
-aggregate(coda, by = get_groups(coda), FUN = mean)
-
-## Metric variance by group
-aggregate(coda, by = get_groups(coda), FUN = metric_var)
+## Metric variance by slide
+aggregate(coda, by = slides$slide, FUN = metric_var)
 }
 \seealso{
 Other statistics: 

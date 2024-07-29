@@ -9,14 +9,17 @@
 \usage{
 condense(x, ...)
 
-\S4method{condense}{CompositionMatrix}(x, by = get_samples(x), ...)
+\S4method{condense}{CompositionMatrix}(x, by, ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Further arguments to be passed to \code{\link[=mean]{mean()}}.}
 
-\item{by}{A \code{vector} of grouping elements, as long as the variables in \code{x}.}
+\item{by}{A \code{vector} of grouping elements, as long as the variables in \code{x}
+(in the sense that \code{\link[=as.factor]{as.factor(by)}} defines the grouping).
+If a single \code{character} string is passed, it must be the name of a
+categorical variable from the original dataset.}
 }
 \value{
 A \code{\linkS4class{CompositionMatrix}} object.
@@ -29,13 +32,10 @@ Splits the data into subsets and computes compositional mean for each.
 data("slides")
 
 ## Coerce to a compositional matrix
-coda <- as_composition(slides, sample = 2, group = 1)
-
-## Compositional mean by sample
-condense(coda, by = get_samples(coda))
+coda <- as_composition(slides)
 
 ## Compositional mean by group
-condense(coda, by = get_groups(coda))
+condense(coda, by = "slide")
 }
 \seealso{
 \code{\link[=mean]{mean()}}, \code{\link[=aggregate]{aggregate()}}

@@ -115,13 +115,6 @@ cts <- as_composition(mtx)
 
 expect_identical(get_totals(cts[1:5, , drop = FALSE]), get_totals(cts)[1:5])
 
-set_groups(cts) <- rep(c("A", "B"), each = 10)
-set_samples(cts) <- rep(c("X", "Y"), times = 10)
-
-tmp <- cts[1:10, , drop = FALSE]
-expect_identical(get_groups(tmp), rep("A", 10))
-expect_identical(get_samples(tmp), rep(c("X", "Y"), times = 5))
-
 # Transpose ====================================================================
 mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 5)
 cts <- as_composition(mtx)

@@ -8,6 +8,7 @@
 \alias{set_totals<-}
 \alias{set_totals-method}
 \alias{get_totals,CompositionMatrix-method}
+\alias{get_totals,LogRatio-method}
 \alias{set_totals<-,CompositionMatrix-method}
 \alias{set_totals,CompositionMatrix-method}
 \title{Row Sums}
@@ -17,6 +18,8 @@ get_totals(x)
 set_totals(x) <- value
 
 \S4method{get_totals}{CompositionMatrix}(x)
+
+\S4method{get_totals}{LogRatio}(x)
 
 \S4method{set_totals}{CompositionMatrix}(x) <- value
 }
@@ -55,7 +58,6 @@ head(X)
 \seealso{
 Other mutators: 
 \code{\link{groups}},
-\code{\link{samples}},
 \code{\link{split}()},
 \code{\link{subset}()}
 }

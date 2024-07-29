@@ -2,13 +2,10 @@
 data("slides")
 
 ## Coerce to a compositional matrix
-coda <- as_composition(slides, sample = 2, group = 1)
+coda <- as_composition(slides)
 
-## Compositional mean by sample
-aggregate(coda, by = get_samples(coda), FUN = mean)
+## Compositional mean by slide
+aggregate(coda, by = slides$slide, FUN = mean)
 
-## Compositional mean by group
-aggregate(coda, by = get_groups(coda), FUN = mean)
-
-## Metric variance by group
-aggregate(coda, by = get_groups(coda), FUN = metric_var)
+## Metric variance by slide
+aggregate(coda, by = slides$slide, FUN = metric_var)

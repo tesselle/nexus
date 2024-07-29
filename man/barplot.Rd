@@ -9,9 +9,9 @@
 \S4method{barplot}{CompositionMatrix}(
   height,
   ...,
+  groups = NULL,
   order = NULL,
   decreasing = FALSE,
-  groups = get_groups(height),
   horiz = TRUE,
   xlab = NULL,
   ylab = NULL,
@@ -28,14 +28,16 @@
 
 \item{...}{Further parameters to be passed to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 
+\item{groups}{A \code{vector} of grouping elements, as long as the variables in
+\code{height}. If a single \code{character} string is passed, it must be the name of a
+categorical variable from the original dataset.
+If set, a matrix of panels defined by \code{groups} will be drawn.}
+
 \item{order}{An \code{\link{integer}} vector giving the index of the column to be used
 for the ordering of the data.}
 
 \item{decreasing}{A \code{\link{logical}} scalar: should the sort order be increasing
 or decreasing?}
-
-\item{groups}{A \code{vector} of grouping elements, as long as the variables in
-\code{height}. If set, a matrix of panels defined by \code{groups} will be drawn.}
 
 \item{horiz}{A \code{\link{logical}} scalar. If \code{FALSE}, the bars are drawn vertically
 with the first bar to the left. If \code{TRUE} (the default), the bars are drawn
@@ -78,10 +80,11 @@ barplot(coda, order = 2)
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
+coda <- as_composition(kommos)
 
-barplot(coda, order = 1)
-barplot(coda, order = 1, horiz = FALSE)
+## Use ceramic types for grouping
+barplot(coda, groups = "type", order = 1)
+barplot(coda, groups = "type", order = 1, horiz = FALSE)
 }
 \seealso{
 Other plot methods: 
