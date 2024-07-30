@@ -10,6 +10,7 @@
   x,
   ...,
   groups = NULL,
+  palette_color = palette_color_discrete(),
   rug = TRUE,
   ticksize = 0.05,
   ncol = NULL,
@@ -33,6 +34,9 @@
 \code{x}. If a single \code{character} string is passed, it must be the name of a
 categorical variable from the original dataset.
 If set, a matrix of panels defined by \code{groups} will be drawn.}
+
+\item{palette_color}{A palette \code{\link{function}} that when called with a single
+argument (\code{groups}) returns a \code{character} vector of colors.}
 
 \item{rug}{A \code{\link{logical}} scalar: should a \emph{rug} representation (1-d plot) of
 the data be added to the plot?}
@@ -74,11 +78,15 @@ Displays a density plot.
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos) # Use ceramic types for grouping
+coda <- as_composition(kommos)
 
 ## Log ratio
 clr <- transform_clr(coda)
-plot(clr, groups = NULL, flip = TRUE, border = "black", col = NA)
+
+## Density plot
+plot(clr, groups = NULL, flip = TRUE)
+
+## Use ceramic types for grouping
 plot(clr, groups = "type", flip = TRUE)
 }
 \seealso{

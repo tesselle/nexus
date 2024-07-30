@@ -958,6 +958,10 @@ NULL
 #' @param groups A `vector` of grouping elements, as long as the variables in
 #'  `x`. If a single `character` string is passed, it must be the name of a
 #'  categorical variable from the original dataset.
+#' @param palette_color A palette [`function`] that when called with a single
+#'  argument (`groups`) returns a `character` vector of colors.
+#' @param palette_symbol A palette [`function`] that when called with a single
+#'  argument (`groups`) returns a vector of symbols.
 #' @inheritParams isopleuros::ternary_pairs
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
@@ -980,6 +984,8 @@ NULL
 #'  `x`. If a single `character` string is passed, it must be the name of a
 #'  categorical variable from the original dataset.
 #'  If set, a matrix of panels defined by `groups` will be drawn.
+#' @param palette_color A palette [`function`] that when called with a single
+#'  argument (`groups`) returns a `character` vector of colors.
 #' @param rug A [`logical`] scalar: should a *rug* representation (1-d plot) of
 #'  the data be added to the plot?
 #' @param ticksize A length-one [`numeric`] vector giving the length of the

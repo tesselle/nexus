@@ -6,7 +6,14 @@
 \alias{plot,CompositionMatrix,missing-method}
 \title{Plot Compositional Data}
 \usage{
-\S4method{plot}{CompositionMatrix,missing}(x, ..., margin = NULL, groups = NULL)
+\S4method{plot}{CompositionMatrix,missing}(
+  x,
+  ...,
+  margin = NULL,
+  groups = NULL,
+  palette_color = palette_color_discrete(),
+  palette_symbol = palette_shape()
+)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
@@ -21,6 +28,12 @@ of the non-selected parts).}
 \item{groups}{A \code{vector} of grouping elements, as long as the variables in
 \code{x}. If a single \code{character} string is passed, it must be the name of a
 categorical variable from the original dataset.}
+
+\item{palette_color}{A palette \code{\link{function}} that when called with a single
+argument (\code{groups}) returns a \code{character} vector of colors.}
+
+\item{palette_symbol}{A palette \code{\link{function}} that when called with a single
+argument (\code{groups}) returns a vector of symbols.}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being
@@ -33,10 +46,13 @@ Displays a matrix of ternary plots.
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos) # Use ceramic types for grouping
+coda <- as_composition(kommos, parts = 3:8)
 
-plot(coda[, 1:6, drop = FALSE], groups = "type")
-plot(coda[, 1:6, drop = FALSE], groups = NULL)
+## Use ceramic types for grouping
+plot(coda, groups = "type")
+
+## Center and scale ternary plots
+plot(coda, groups = NULL, center = TRUE, scale = TRUE)
 }
 \seealso{
 \code{\link[isopleuros:ternary_pairs]{isopleuros::ternary_pairs()}}, \code{\link[isopleuros:ternary_plot]{isopleuros::ternary_plot()}}

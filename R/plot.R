@@ -5,13 +5,15 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = NULL) {
+plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = NULL,
+                                   palette_color = palette_color_discrete(),
+                                   palette_symbol = palette_shape()) {
   ## Grouping
   groups <- get_variable(x, which = groups)
   if (!is.null(groups) && !all(is.na(groups))) {
     arkhe::assert_length(groups, nrow(x))
-    col <- dimensio::palette_color_discrete(list(...)$col)(groups)
-    pch <- dimensio::palette_shape(list(...)$pch)(groups)
+    col <- palette_color(groups)
+    pch <- palette_symbol(groups)
   } else {
     col <- list(...)$col %||% graphics::par("col")
     pch <- list(...)$pch %||% graphics::par("pch")
@@ -30,6 +32,7 @@ setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMat
 #' @export
 #' @method plot LogRatio
 plot.LogRatio <- function(x, ..., groups = NULL,
+                          palette_color = palette_color_discrete(),
                           rug = TRUE, ticksize = 0.05,
                           ncol = NULL, flip = FALSE,
                           xlab = NULL, ylab = NULL,
@@ -50,9 +53,11 @@ plot.LogRatio <- function(x, ..., groups = NULL,
   if (is.null(groups) || all(is.na(groups))) {
     grp <- list(all = z)
     groups <- rep("all", m)
+    border <- list(...)$border %||% graphics::par("col")
   } else {
     arkhe::assert_length(groups, m)
     grp <- split(z, f = groups)
+    border <- palette_color(names(grp))
     rug <- FALSE
   }
   k <- length(grp)
@@ -74,8 +79,7 @@ plot.LogRatio <- function(x, ..., groups = NULL,
   col.main <- list(...)$col.main %||% graphics::par("col.main")
 
   lty <- list(...)$lty %||% graphics::par("lty")
-  border <- dimensio::palette_color_discrete(list(...)$border)(names(grp))
-  col <- list(...)$col %||% grDevices::adjustcolor(border, alpha.f = 0.5)
+  col <- grDevices::adjustcolor(border, alpha.f = 0.25)
 
   ## Compute densities
   n_dens <- 512

@@ -30,6 +30,7 @@ Imports:
     graphics,
     grDevices,
     isopleuros (>= 1.2.0),
+    khroma (>= 1.13.0),
     methods,
     MASS,
     stats,
