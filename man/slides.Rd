@@ -3,20 +3,19 @@
 \docType{data}
 \name{slides}
 \alias{slides}
-\title{Thin Sections}
+\title{Thin Sections Compositions}
 \format{
 A \code{\link{data.frame}} with 9 variables:
 \describe{
-\item{analyst}{Analyst number.}
-\item{slide}{Slide number.}
-\item{quartz}{Quartz (percent).}
-\item{microcline}{Microcline (percent).}
-\item{plagioclass}{Plagioclass (percent).}
-\item{biotite}{Biotite (percent).}
-\item{plagioclass}{Plagioclass (percent).}
-\item{muscovite}{Muscovite (percent).}
-\item{opaques}{Opaque minerals (percent).}
-\item{nonopaques}{Non-opaque minerals (percent).}
+\item{\code{analyst}}{Analyst number.}
+\item{\code{slide}}{Slide number.}
+\item{\code{quartz}}{Quartz (percent).}
+\item{\code{microcline}}{Microcline (percent).}
+\item{\code{plagioclass}}{Plagioclass (percent).}
+\item{\code{biotite}}{Biotite (percent).}
+\item{\code{muscovite}}{Muscovite (percent).}
+\item{\code{opaques}}{Opaque minerals (percent).}
+\item{\code{nonopaques}}{Non-opaque minerals (percent).}
 }
 }
 \usage{
@@ -32,7 +31,12 @@ London: Chapman and Hall.
 \seealso{
 Other datasets: 
 \code{\link{arctic}},
-\code{\link{hongite}}
+\code{\link{boxite}},
+\code{\link{coxite}},
+\code{\link{hongite}},
+\code{\link{kongite}},
+\code{\link{lava}},
+\code{\link{predator}}
 }
 \concept{datasets}
 \keyword{datasets}

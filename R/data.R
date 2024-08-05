@@ -1,31 +1,13 @@
-#' Arctic Lake
-#'
-#' Sand, silt, clay compositions of 39 sediment samples at different water
-#' depths in an Arctic lake.
-#' @format A [`data.frame`] with 4 variables:
-#'  \describe{
-#'    \item{sand}{Sand content (percent).}
-#'    \item{silt}{Silt content (percent).}
-#'    \item{clay}{Clay content (percent).}
-#'    \item{depth}{Water depth (m).}
-#'  }
-#' @references
-#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
-#'  London: Chapman and Hall.
-#' @family datasets
-#' @keywords datasets
-"arctic"
-
 #' Hongite Mineralogy
 #'
-#' Mineral compositions of 25 rock specimens of hongite type.
+#' Mineral compositions of 25 specimens of hongite.
 #' @format A [`data.frame`] with 5 variables (minerals):
 #'  \describe{
-#'    \item{A}{Albite (percent).}
-#'    \item{B}{Blandite (percent).}
-#'    \item{C}{Cornite (percent).}
-#'    \item{D}{Daubite (percent).}
-#'    \item{E}{Endite (percent).}
+#'    \item{`A`}{Albite (weight percent).}
+#'    \item{`B`}{Blandite (weight percent).}
+#'    \item{`C`}{Cornite (weight percent).}
+#'    \item{`D`}{Daubite (weight percent).}
+#'    \item{`E`}{Endite (weight percent).}
 #'  }
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
@@ -34,21 +16,127 @@
 #' @keywords datasets
 "hongite"
 
-#' Thin Sections
+#' Kongite Mineralogy
+#'
+#' Mineral compositions of 25 specimens of kongite.
+#' @format A [`data.frame`] with 5 variables (minerals):
+#'  \describe{
+#'    \item{`A`}{Albite (weight percent).}
+#'    \item{`B`}{Blandite (weight percent).}
+#'    \item{`C`}{Cornite (weight percent).}
+#'    \item{`D`}{Daubite (weight percent).}
+#'    \item{`E`}{Endite (weight percent).}
+#'  }
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall.
+#' @family datasets
+#' @keywords datasets
+"kongite"
+
+#' Boxite Mineralogy
+#'
+#' Mineral compositions and depths of 25 specimens of boxite.
+#' @format A [`data.frame`] with 5 variables (minerals):
+#'  \describe{
+#'    \item{`A`}{Albite (weight percent).}
+#'    \item{`B`}{Blandite (weight percent).}
+#'    \item{`C`}{Cornite (weight percent).}
+#'    \item{`D`}{Daubite (weight percent).}
+#'    \item{`E`}{Endite (weight percent).}
+#'    \item{`depth`}{Depth (meter).}
+#'  }
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall.
+#' @family datasets
+#' @keywords datasets
+"boxite"
+
+#' Coxite Mineralogy
+#'
+#' Mineral compositions, depths and porosity of 25 specimens of coxite.
+#' @format A [`data.frame`] with 5 variables (minerals):
+#'  \describe{
+#'    \item{`A`}{Albite (weight percent).}
+#'    \item{`B`}{Blandite (weight percent).}
+#'    \item{`C`}{Cornite (weight percent).}
+#'    \item{`D`}{Daubite (weight percent).}
+#'    \item{`E`}{Endite (weight percent).}
+#'    \item{`depth`}{Depth (meter).}
+#'    \item{`porosity`}{Porosity (percent).}
+#'  }
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall.
+#' @family datasets
+#' @keywords datasets
+"coxite"
+
+#' Arctic Lake
+#'
+#' Sand, silt, clay compositions of 39 sediment samples at different water
+#' depths in an Arctic lake.
+#' @format A [`data.frame`] with 4 variables:
+#'  \describe{
+#'    \item{`sand`}{Sand content (percent).}
+#'    \item{`silt`}{Silt content (percent).}
+#'    \item{`clay`}{Clay content (percent).}
+#'    \item{`depth`}{Water depth (m).}
+#'  }
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall.
+#' @family datasets
+#' @keywords datasets
+"arctic"
+
+#' Skye Lavas Compositions
+#'
+#' Chemical compositions of 23 aphyric Skye lavas.
+#' @format A [`data.frame`] with 3 variables (percent):
+#'  \describe{
+#'    \item{`A`}{Na2O + K2O.}
+#'    \item{`F`}{Fe2O3.}
+#'    \item{`M`}{MgO.}
+#'  }
+#' @source
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#' @family datasets
+#' @keywords datasets
+"lava"
+
+#' Predator-Prey Compositions
+#'
+#' Predator-prey compositions at 25 different sites.
+#' @format A [`data.frame`] with 3 variables (proportions):
+#'  \describe{
+#'    \item{`P`}{Predator.}
+#'    \item{`Q`}{Prey of species Q.}
+#'    \item{`R`}{Prey of species R.}
+#'  }
+#' @source
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall. \doi{10.1007/978-94-009-4109-0}.
+#' @family datasets
+#' @keywords datasets
+"predator"
+
+#' Thin Sections Compositions
 #'
 #' Mineral compositions of five slides as reported by five analysts.
 #' @format A [`data.frame`] with 9 variables:
 #'  \describe{
-#'    \item{analyst}{Analyst number.}
-#'    \item{slide}{Slide number.}
-#'    \item{quartz}{Quartz (percent).}
-#'    \item{microcline}{Microcline (percent).}
-#'    \item{plagioclass}{Plagioclass (percent).}
-#'    \item{biotite}{Biotite (percent).}
-#'    \item{plagioclass}{Plagioclass (percent).}
-#'    \item{muscovite}{Muscovite (percent).}
-#'    \item{opaques}{Opaque minerals (percent).}
-#'    \item{nonopaques}{Non-opaque minerals (percent).}
+#'    \item{`analyst`}{Analyst number.}
+#'    \item{`slide`}{Slide number.}
+#'    \item{`quartz`}{Quartz (percent).}
+#'    \item{`microcline`}{Microcline (percent).}
+#'    \item{`plagioclass`}{Plagioclass (percent).}
+#'    \item{`biotite`}{Biotite (percent).}
+#'    \item{`muscovite`}{Muscovite (percent).}
+#'    \item{`opaques`}{Opaque minerals (percent).}
+#'    \item{`nonopaques`}{Non-opaque minerals (percent).}
 #'  }
 #' @references
 #'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.

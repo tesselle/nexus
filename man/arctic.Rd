@@ -7,10 +7,10 @@
 \format{
 A \code{\link{data.frame}} with 4 variables:
 \describe{
-\item{sand}{Sand content (percent).}
-\item{silt}{Silt content (percent).}
-\item{clay}{Clay content (percent).}
-\item{depth}{Water depth (m).}
+\item{\code{sand}}{Sand content (percent).}
+\item{\code{silt}}{Silt content (percent).}
+\item{\code{clay}}{Clay content (percent).}
+\item{\code{depth}}{Water depth (m).}
 }
 }
 \usage{
@@ -26,7 +26,12 @@ London: Chapman and Hall.
 }
 \seealso{
 Other datasets: 
+\code{\link{boxite}},
+\code{\link{coxite}},
 \code{\link{hongite}},
+\code{\link{kongite}},
+\code{\link{lava}},
+\code{\link{predator}},
 \code{\link{slides}}
 }
 \concept{datasets}
