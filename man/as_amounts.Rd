@@ -42,7 +42,7 @@ head(X)
 \seealso{
 Other compositional data tools: 
 \code{\link{as_composition}()},
-\code{\link{as_features}()}
+\code{\link{augment}()}
 }
 \author{
 N. Frerebeau

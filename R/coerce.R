@@ -75,7 +75,7 @@ setMethod(
   }
 )
 
-# To Amounts ===================================================================
+# To amounts ===================================================================
 #' @export
 #' @rdname as_amounts
 #' @aliases as_amounts,CompositionMatrix-method
@@ -87,33 +87,33 @@ setMethod(
   }
 )
 
-# To Features ==================================================================
+# To features ==================================================================
 #' @export
-#' @rdname as_features
-#' @aliases as_features,CompositionMatrix-method
+#' @rdname augment
+#' @aliases augment,CompositionMatrix-method
 setMethod(
-  f = "as_features",
-  signature = c(from = "CompositionMatrix"),
-  definition = function(from) {
-    if (has_extra(from)) {
-      data.frame(get_extra(from), from)
+  f = "augment",
+  signature = c(x = "CompositionMatrix"),
+  definition = function(x, ...) {
+    if (has_extra(x)) {
+      data.frame(get_extra(x), x)
     } else {
-      as.data.frame(from)
+      as.data.frame(x)
     }
   }
 )
 
 #' @export
-#' @rdname as_features
-#' @aliases as_features,LogRatio-method
+#' @rdname augment
+#' @aliases augment,LogRatio-method
 setMethod(
-  f = "as_features",
-  signature = c(from = "LogRatio"),
-  definition = function(from) {
-    if (has_extra(from)) {
-      data.frame(get_extra(from), from)
+  f = "augment",
+  signature = c(x = "LogRatio"),
+  definition = function(x, ...) {
+    if (has_extra(x)) {
+      data.frame(get_extra(x), x)
     } else {
-      as.data.frame(from)
+      as.data.frame(x)
     }
   }
 )

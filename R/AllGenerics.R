@@ -10,6 +10,7 @@ setGeneric("mahalanobis", package = "stats")
 #' @importMethodsFrom arkhe describe
 #' @importMethodsFrom arkhe replace_NA
 #' @importMethodsFrom arkhe replace_zero
+#' @importMethodsFrom dimensio augment
 #' @importMethodsFrom dimensio pca
 NULL
 
@@ -54,22 +55,20 @@ setGeneric(
   valueClass = "matrix"
 )
 
-#' Coerce to Features
+#' Augment Data with Extra Columns
 #'
-#' Converts an object to a collection of features.
-#' @param from A [`CompositionMatrix-class`] object.
+#' Adds columns from the original data.
+#' @param x A [`CompositionMatrix-class`] or [`LogRatio-class`] object.
 #' @param ... Currently not used.
 #' @return
 #'  A [`data.frame`].
-#' @example inst/examples/ex-coerce.R
+#' @example inst/examples/ex-augment.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family compositional data tools
-#' @aliases as_features-method
-setGeneric(
-  name = "as_features",
-  def = function(from, ...) standardGeneric("as_features")
-)
+#' @name augment
+#' @rdname augment
+NULL
 
 #' Data Description
 #'

@@ -30,7 +30,7 @@ head(slides)
 
 ## Coerce to compositional data
 coda <- as_composition(slides)
-head(as_features(coda))
+head(augment(coda))
 }
 \seealso{
 Other mutators: 
