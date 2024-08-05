@@ -32,9 +32,7 @@ London: Chapman and Hall.
 \seealso{
 Other datasets: 
 \code{\link{arctic}},
-\code{\link{chemistry}},
-\code{\link{hongite}},
-\code{\link{petrography}}
+\code{\link{hongite}}
 }
 \concept{datasets}
 \keyword{datasets}

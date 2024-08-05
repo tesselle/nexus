@@ -27,8 +27,6 @@ London: Chapman and Hall.
 \seealso{
 Other datasets: 
 \code{\link{arctic}},
-\code{\link{chemistry}},
-\code{\link{petrography}},
 \code{\link{slides}}
 }
 \concept{datasets}

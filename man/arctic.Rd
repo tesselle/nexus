@@ -26,9 +26,7 @@ London: Chapman and Hall.
 }
 \seealso{
 Other datasets: 
-\code{\link{chemistry}},
 \code{\link{hongite}},
-\code{\link{petrography}},
 \code{\link{slides}}
 }
 \concept{datasets}
