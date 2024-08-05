@@ -117,9 +117,6 @@ head(hongite)
 #> H4 50.9 23.8  7.2 10.1  8.0
 #> H5 44.2 38.3  2.9  7.7  6.9
 #> H6 52.3 26.2  4.2 12.5  4.8
-```
-
-``` r
 
 ## Coerce to compositional data
 coda <- as_composition(hongite)
@@ -132,60 +129,12 @@ head(coda)
 #> H4 0.509 0.238 0.072 0.101 0.080
 #> H5 0.442 0.383 0.029 0.077 0.069
 #> H6 0.523 0.262 0.042 0.125 0.048
-```
 
-**nexus** allows to specify whether an observation belongs to a specific
-group (or not). Additionally, the presence of repeated measurements can
-be specified by giving several observations the same sample name:
-
-``` r
-## Mineral compositions of five slides as reported by five analysts
-## Data from Aitchison 1986
-data("slides")
-head(slides)
-#>   analyst slide quartz microcline plagioclass biotite muscovite opaques
-#> 1      A1     A   24.7       35.6        33.3     3.3       2.0     0.6
-#> 2      A1     B   26.8       35.7        32.6     3.5       0.4     0.6
-#> 3      A1     C   28.0       34.2        32.1     3.4       1.1     0.7
-#> 4      A1     D   27.8       35.0        31.5     3.3       1.0     0.9
-#> 5      A1     E   26.6       34.5        33.6     3.0       1.4     0.6
-#> 6      A2     A   27.3       35.5        32.1     2.5       1.5     0.8
-#>   nonopaques
-#> 1        0.6
-#> 2        0.4
-#> 3        0.4
-#> 4        0.5
-#> 5        0.3
-#> 6        0.3
-```
-
-``` r
-
-## Coerce to compositional data
-coda <- as_composition(slides, samples = 2, groups = 1)
-describe(coda)
-#> 25 compositions with 7 parts:
-#> * 5 unique samples.
-#> * 25 replicated observations.
-#> * 5 groups: "A1", "A2", "A3", "A4", "A5".
-#> * 0 unassigned samples.
-#> 
-#> Data checking:
-#> * 0% of values are zero.
-#> * 0 parts with no variance.
-#> 
-#> Missing values:
-#> * 0 compositions (0%) containing missing values.
-#> * 0 parts (0%) containing missing values.
-```
-
-``` r
-
-## Grouped compositional barplots
+## Compositional barplots
 barplot(coda, order = 1)
 ```
 
-<img src="man/figures/README-groups-1.png" style="display: block; margin: auto;" />
+![](man/figures/README-groups-1.png)<!-- -->
 
 ## Contributing
 

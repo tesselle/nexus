@@ -84,7 +84,7 @@ library(nexus)
 
 These new classes are of simple use as they inherit from base `matrix` (see `vignette("nexus")`):
   
-```{r create}
+```{r groups}
 ## Mineral compositions of rock specimens
 ## Data from Aitchison 1986
 data("hongite")
@@ -93,21 +93,8 @@ head(hongite)
 ## Coerce to compositional data
 coda <- as_composition(hongite)
 head(coda)
-```
 
-**nexus** allows to specify whether an observation belongs to a specific group (or not). Additionally, the presence of repeated measurements can be specified by giving several observations the same sample name:
-
-```{r groups, fig.width=7, fig.height=5, fig.align='center'}
-## Mineral compositions of five slides as reported by five analysts
-## Data from Aitchison 1986
-data("slides")
-head(slides)
-
-## Coerce to compositional data
-coda <- as_composition(slides, samples = 2, groups = 1)
-describe(coda)
-
-## Grouped compositional barplots
+## Compositional barplots
 barplot(coda, order = 1)
 ```
 
