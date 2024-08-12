@@ -49,6 +49,8 @@ This package also includes methods for provenance studies:
 
 [**isopleuros**](https://packages.tesselle.org/isopleuros/) is a companion package to **nexus** that allows to create ternary plots.
 
+This package is currently *experimental*. This means that it is functional, but interfaces and functionalities may change over time, testing and documentation may be lacking.
+
 ---
 
 ```{r citation, echo=FALSE, comment='', results='asis'}

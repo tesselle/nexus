@@ -55,6 +55,10 @@ This package also includes methods for provenance studies:
 [**isopleuros**](https://packages.tesselle.org/isopleuros/) is a
 companion package to **nexus** that allows to create ternary plots.
 
+This package is currently *experimental*. This means that it is
+functional, but interfaces and functionalities may change over time,
+testing and documentation may be lacking.
+
 ------------------------------------------------------------------------
 
 To cite nexus in publications use:
@@ -62,7 +66,7 @@ To cite nexus in publications use:
 Frerebeau N, Philippe A (2024). *nexus: Sourcing Archaeological
 Materials by Chemical Composition*. Université Bordeaux Montaigne,
 Pessac, France. <doi:10.5281/zenodo.10225630>
-<https://doi.org/10.5281/zenodo.10225630>, R package version 0.3.0,
+<https://doi.org/10.5281/zenodo.10225630>, R package version 0.2.0.9000,
 <https://packages.tesselle.org/nexus/>.
 
 This package is a part of the tesselle project
