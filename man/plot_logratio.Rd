@@ -9,7 +9,7 @@
 \S4method{plot}{LogRatio,missing}(
   x,
   ...,
-  groups = NULL,
+  groups = get_groups(x),
   palette_color = palette_color_discrete(),
   rug = TRUE,
   ticksize = 0.05,
@@ -31,9 +31,7 @@
 \code{border} and \code{col}.}
 
 \item{groups}{A \code{vector} of grouping elements, as long as the variables in
-\code{x}. If a single \code{character} string is passed, it must be the name of a
-categorical variable from the original dataset.
-If set, a matrix of panels defined by \code{groups} will be drawn.}
+\code{x}. If set, a matrix of panels defined by \code{groups} will be drawn.}
 
 \item{palette_color}{A palette \code{\link{function}} that when called with a single
 argument (\code{groups}) returns a \code{character} vector of colors.}
@@ -78,7 +76,7 @@ Displays a density plot.
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos)
+coda <- as_composition(kommos, groups = 1)
 
 ## Log ratio
 clr <- transform_clr(coda)
@@ -87,7 +85,7 @@ clr <- transform_clr(coda)
 plot(clr, groups = NULL, flip = TRUE)
 
 ## Use ceramic types for grouping
-plot(clr, groups = "type", flip = TRUE)
+plot(clr, flip = TRUE)
 }
 \seealso{
 Other plot methods: 

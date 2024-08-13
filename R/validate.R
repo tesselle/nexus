@@ -18,11 +18,11 @@ setValidity(
     ## Get data
     n <- nrow(object)
     totals <- object@totals
-    extra <- object@extra
+    groups <- object@groups
 
     cnd <- list(
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
-      # arkhe::validate(arkhe::assert_lengths(extra, n)),
+      arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_positive(object, strict = FALSE, na.rm = TRUE))
     )
     arkhe::check_class(object, cnd)
@@ -41,7 +41,7 @@ setValidity(
     weights <- object@weights
 
     totals <- object@totals
-    extra <- object@extra
+    groups <- object@groups
 
     n <- nrow(object)
     m <- length(parts)
@@ -50,8 +50,7 @@ setValidity(
       arkhe::validate(arkhe::assert_missing(object)),
       arkhe::validate(arkhe::assert_infinite(object)),
       arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
-      # arkhe::validate(arkhe::assert_lengths(extra, n)),
-
+      arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
       arkhe::validate(arkhe::assert_length(order, m, empty = FALSE))
     )
     arkhe::check_class(object, cnd)

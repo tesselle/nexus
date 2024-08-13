@@ -69,7 +69,7 @@ setMethod(
       base = base,
       weights = rep(1 / D, D),
       totals = get_totals(object),
-      extra = get_extra(object)
+      groups = get_groups(object)
     )
   }
 )

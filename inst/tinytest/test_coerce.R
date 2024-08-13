@@ -1,10 +1,7 @@
 # Data with groups =============================================================
 data("slides")
-coda <- as_composition(slides)
-expect_equal_to_reference(augment(coda), file = "_snaps/augment_coda.rds")
-
-clr <- transform_clr(coda, weights = FALSE)
-expect_equal_to_reference(clr, file = "_snaps/augment_clr.rds")
+coda <- as_composition(slides, group = 1)
+expect_equal_to_reference(coda, file = "_snaps/coerce.rds")
 
 # Back transform to count ======================================================
 data("hongite")

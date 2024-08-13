@@ -28,7 +28,7 @@ Provenance studies rely on the identification of probable sources, such that the
 # Get started
 
 ```{r setup}
-## Install extra packages (if needed):
+## Install extra packages (if needed)
 # install.packages("folio")
 
 library(nexus)
@@ -62,23 +62,7 @@ counts <- as_amounts(coda)
 all.equal(hongite, as.data.frame(counts))
 ```
 
-
-
-```{r plot, fig.width=7, fig.height=5, out.width='100%'}
-## Ternary plots
-plot(coda)
-```
-
-# Working with (reference) groups
-
-Provenance studies typically rely on two approaches, which can be used together:
-
-* Identification of groups among the artifacts being studied, based on mineralogical or geochemical criteria (*clustering*).
-* Comparison with so-called reference groups, i.e. known geological sources or productive contexts (*classification*).
-
-**nexus** allows to specify whether an observation belongs to a specific group (or not):
-
-The `parts` argument of the function `as_composition()` is used to define the columns to be used as the compositional part. If `parts` is `NULL` (the default), all non-integer numeric columns (i.e. of type `double`) are used. In the case of a `data.frame` coercion, additional columns are stored internally. This preserves the information contained in these additional variables (whether qualitative or quantitative).
+The `parts` argument of the function `as_composition()` is used to define the columns to be used as the compositional part. If `parts` is `NULL` (the default), all non-integer numeric columns (i.e. of type `double`) are used. In the case of a `data.frame` coercion, additional columns are removed.
 
 ```{r}
 ## Create a data.frame
@@ -90,15 +74,44 @@ X <- data.frame(
 )
 
 ## Coerce to a compositional matrix
-## (the 'type' column will be preserved)
+## (the 'type' column will be removed)
 Y <- as_composition(X)
 ```
 
-These additional variables can be used by further methods (e.g. through the `groups` argument of the plotting functions):
+# Working with (reference) groups
+
+Provenance studies typically rely on two approaches, which can be used together:
+
+* Identification of groups among the artifacts being studied, based on mineralogical or geochemical criteria (*clustering*).
+* Comparison with so-called reference groups, i.e. known geological sources or archaeological contexts (*classification*).
+
+When coercing a `data.frame` to a `CompositionMatrix` object, **nexus** allows to specify whether an observation belongs to a specific group (or not):
+
+```{r}
+## Coerce to a compositional matrix
+## Use the first column for grouping
+Y <- as_composition(X, groups = 1)
+
+any_assigned(Y)
+is_assigned(Y)
+```
+
+`get_groups(x)` and `set_groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) can be used to specify that a sample does not belong to any group):
+
+```{r}
+## Set groups (NA means no group)
+set_groups(Y) <- c("X", "X", "Y", "X", "Y", NA, NA, NA, "Y")
+is_assigned(Y)
+
+## Retrieve groups
+get_groups(Y)
+```
+
+Once groups have been defined, they can be used by further methods (e.g. plotting).
 
 ```{r barplot, fig.width=7, fig.height=5, out.width='100%'}
 ## Compositional bar plot
-barplot(Y, groups = "type", order = "Ca")
+plot(Y)
 ```
 
 # Log-ratio transformations
@@ -120,20 +133,21 @@ all.equal(back, coda)
 ```{r ceramics}
 ## Data from Day et al. 2011
 data("kommos", package = "folio")
+describe(kommos)
 
 ## Remove rows with missing values
 kommos <- remove_NA(kommos, margin = 1)
 
 ## Coerce to a compositional matrix
-coda <- as_composition(kommos, parts = 3:22)
+coda <- as_composition(kommos, parts = 3:22, groups = "type")
 ```
 
 ```{r ceramics-barplot, fig.width=7, fig.height=7, out.width='100%'}
 ## Compositional bar plot
-barplot(coda, groups = "type", order = "Ca")
+barplot(coda, order = "Ca")
 ```
 
-## Principle Component Analysis
+## Principal Components Analysis
 
 ```{r pca, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
 ## CLR
@@ -145,7 +159,7 @@ clr_pca <- pca(clr, scale = FALSE)
 ## Visualize results
 viz_individuals(
   x = clr_pca,
-  highlight = "type",
+  highlight = get_groups(clr),
   pch = 16, 
   col = c("#EE7733", "#0077BB", "#33BBEE", "#EE3377")
 )
@@ -154,11 +168,13 @@ viz_variables(clr_pca)
 
 ## MANOVA
 
+The log-transformed data can be assigned to a new column, allowing us to keep working with the data in the context of the original `data.frame`:
+
 ```{r manova}
 ## ILR
 ilr <- transform_ilr(coda)
 
-kommos$ilr <- ilr  
+kommos$ilr <- ilr
 
 ## MANOVA
 fit <- manova(ilr ~ type, data = kommos)
@@ -167,7 +183,7 @@ summary(fit)
 
 The MANOVA results suggest that there are statistically significant differences between groups.
 
-## Discriminant Analysis
+## Linear Discriminant Analysis
 
 ```{r lda, fig.width=7, fig.height=7, out.width='100%'}
 ## LDA

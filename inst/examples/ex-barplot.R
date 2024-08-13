@@ -10,8 +10,8 @@ barplot(coda, order = 2)
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos)
+coda <- as_composition(kommos, groups = 1)
 
 ## Use ceramic types for grouping
-barplot(coda, groups = "type", order = 1)
-barplot(coda, groups = "type", order = 1, horiz = FALSE)
+barplot(coda, order = 1)
+barplot(coda, order = 1, horiz = FALSE)

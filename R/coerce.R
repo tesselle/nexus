@@ -31,7 +31,8 @@ setMethod(
     totals <- rowSums(from, na.rm = TRUE)
     from <- from / totals
 
-    .CompositionMatrix(from, totals = unname(totals))
+    grp <- rep(NA_character_, nrow(from))
+    .CompositionMatrix(from, totals = unname(totals), groups = grp)
   }
 )
 
@@ -41,12 +42,20 @@ setMethod(
 setMethod(
   f = "as_composition",
   signature = c(from = "data.frame"),
-  definition = function(from, parts = NULL,
+  definition = function(from, parts = NULL, groups = NULL,
                         verbose = getOption("nexus.verbose")) {
     ## Clean row/column names
     lab <- make_names(x = NULL, n = nrow(from), prefix = "S")
     rownames(from) <- if (has_rownames(from)) rownames(from) else lab
     colnames(from) <- make_names(x = colnames(from), n = ncol(from), prefix = "V")
+
+    ## Group names
+    grp <- rep(NA_character_, nrow(from))
+    if (!is.null(groups)) {
+      grp <- from[, groups, drop = FALSE]
+      grp <- as.character(interaction(grp, sep = "_"))
+      grp[grp == ""] <- NA_character_
+    }
 
     ## Remove non-numeric columns
     if (is.null(parts)) {
@@ -63,7 +72,6 @@ setMethod(
       if (is.character(parts)) parts <- colnames(from) %in% parts
     }
     coda <- from[, parts, drop = FALSE]
-    extra <- from[, !parts, drop = FALSE]
     arkhe::assert_filled(coda)
 
     ## Build matrix
@@ -71,7 +79,7 @@ setMethod(
     totals <- rowSums(coda, na.rm = TRUE)
     coda <- coda / totals
 
-    .CompositionMatrix(coda, totals = unname(totals), extra = as.list(extra))
+    .CompositionMatrix(coda, totals = unname(totals), groups = grp)
   }
 )
 
@@ -84,37 +92,6 @@ setMethod(
   signature = c(from = "CompositionMatrix"),
   definition = function(from) {
     methods::as(from, "matrix") * get_totals(from)
-  }
-)
-
-# To features ==================================================================
-#' @export
-#' @rdname augment
-#' @aliases augment,CompositionMatrix-method
-setMethod(
-  f = "augment",
-  signature = c(x = "CompositionMatrix"),
-  definition = function(x, ...) {
-    if (has_extra(x)) {
-      data.frame(get_extra(x), x)
-    } else {
-      as.data.frame(x)
-    }
-  }
-)
-
-#' @export
-#' @rdname augment
-#' @aliases augment,LogRatio-method
-setMethod(
-  f = "augment",
-  signature = c(x = "LogRatio"),
-  definition = function(x, ...) {
-    if (has_extra(x)) {
-      data.frame(get_extra(x), x)
-    } else {
-      as.data.frame(x)
-    }
   }
 )
 

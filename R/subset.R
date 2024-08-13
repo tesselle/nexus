@@ -12,11 +12,7 @@ NULL
   if (missing(i)) i <- seq_len(nrow(x))
   if (is.character(i)) i <- match(i, dimnames(x)[1L])
   totals <- get_totals(x)[i]
-  if (has_extra(x)) {
-    extra <- lapply(X = get_extra(x), FUN = function(val, i) { val[i] }, i = i)
-  } else {
-    extra <- list()
-  }
+  groups <- get_groups(x)[i]
 
   ## Columns
   if (missing(j)) j <- seq_len(ncol(x))
@@ -32,7 +28,7 @@ NULL
   #   z <- z / tot
   # }
 
-  methods::initialize(x, z, totals = totals, extra = extra)
+  methods::initialize(x, z, totals = totals, groups = groups)
 }
 
 wrong_dimensions <- function(i, j) {

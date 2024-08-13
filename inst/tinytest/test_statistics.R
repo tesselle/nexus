@@ -3,7 +3,7 @@ data("slides")
 petro <- as_composition(slides)
 
 expect_equal_to_reference(aggregate(petro, by = slides$analyst, FUN = mean),
-                          file = "_snaps/aggregate_group.rds")
+                          file = "_snaps/aggregate.rds")
 
 # Mean =========================================================================
 expect_equal(nexus:::gmean(c(7.72, 0, 3.11, 7.19), zero.rm = FALSE), 0)

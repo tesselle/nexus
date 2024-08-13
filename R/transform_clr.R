@@ -32,7 +32,7 @@ setMethod(
       base = base,
       weights = w,
       totals = get_totals(object),
-      extra = get_extra(object)
+      groups = get_groups(object)
     )
   }
 )

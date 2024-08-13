@@ -9,7 +9,7 @@ NULL
 setMethod(
   f = "outliers",
   signature = c(object = "CompositionMatrix"),
-  definition = function(object, ..., groups = NULL,
+  definition = function(object, ..., groups = get_groups(object),
                         method = c("mve", "mcd"), quantile = 0.975) {
     ## Transformation
     z <- transform_ilr(object)
@@ -17,14 +17,13 @@ setMethod(
     ## Grouping
     m <- nrow(z)
     p <- ncol(z)
-    groups <- get_variable(object, which = groups)
-    if (is.null(groups) || all(is.na(groups))) {
-      grp <- list(z)
-      groups <- list(seq_len(m))
-    } else {
+    if (has_groups(groups)) {
       arkhe::assert_length(groups, m)
       grp <- split(z, f = groups)
       groups <- split(seq_len(m), f = groups)
+    } else {
+      grp <- list(z)
+      groups <- list(seq_len(m))
     }
 
     ## Clean

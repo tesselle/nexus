@@ -8,11 +8,10 @@ NULL
 setMethod(
   f = "condense",
   signature = c("CompositionMatrix"),
-  definition = function(x, by, ...) {
+  definition = function(x, by = get_groups(x), ...) {
     m <- nrow(x)
 
     ## Grouping
-    by <- get_variable(x, which = by)
     arkhe::assert_length(by, m)
     by <- as.factor(by)
 
@@ -29,8 +28,9 @@ setMethod(
     z <- do.call(rbind, z)
 
     tot <- tapply(X = get_totals(x), INDEX = by, FUN = mean, simplify = TRUE)
+    grp <- flatten_chr(x = get_groups(x), by = by)
 
     rownames(z) <- levels(by)
-    .CompositionMatrix(z, totals = as.numeric(tot))
+    .CompositionMatrix(z, totals = as.numeric(tot), groups = grp)
   }
 )

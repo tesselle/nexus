@@ -1,5 +1,21 @@
+# CompositionMatrix groups =====================================================
 data("hongite")
 coda <- as_composition(hongite)
+
+expect_equal(get_groups(coda), rep(NA_character_, nrow(coda)))
+expect_false(any_assigned(coda))
+
+set_groups(coda) <- rep(c("A", "B", "C", "D", NA), each = 5)
+expect_equal(get_groups(coda), rep(c("A", "B", "C", "D", NA), each = 5))
+expect_true(any_assigned(coda))
+expect_equal(is_assigned(coda), rep(c(TRUE, FALSE), c(20, 5)))
+
+set_groups(coda) <- NULL
+expect_false(any_assigned(coda))
+
+# Invalid values
+# Try wrong length
+expect_error(set_groups(coda) <- LETTERS, class = "arkhe_error_class")
 
 # CompositionMatrix totals =====================================================
 mtx <- matrix(sample(1:100, 75, TRUE), ncol = 5)

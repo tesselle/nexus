@@ -37,7 +37,7 @@ setMethod(
       order = seq_len(J),
       weights = w,
       totals = get_totals(object),
-      extra = get_extra(object)
+      groups = get_groups(object)
     )
   }
 )

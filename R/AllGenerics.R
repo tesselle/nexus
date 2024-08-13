@@ -10,7 +10,6 @@ setGeneric("mahalanobis", package = "stats")
 #' @importMethodsFrom arkhe describe
 #' @importMethodsFrom arkhe replace_NA
 #' @importMethodsFrom arkhe replace_zero
-#' @importMethodsFrom dimensio augment
 #' @importMethodsFrom dimensio pca
 NULL
 
@@ -22,6 +21,8 @@ NULL
 #' @param parts A `vector` giving the index of the column to be used a
 #'  compositional parts. If `NULL` (the default), all [`double`] columns will be
 #'  used.
+#' @param groups An [`integer`] giving the index of the column to be used to
+#'  group the samples. If `NULL` (the default), no grouping is stored.
 #' @param verbose A [`logical`] scalar: should \R report extra information
 #'  on progress?
 #' @param ... Currently not used.
@@ -54,21 +55,6 @@ setGeneric(
   def = function(from, ...) standardGeneric("as_amounts"),
   valueClass = "matrix"
 )
-
-#' Augment Data with Extra Columns
-#'
-#' Adds columns from the original data.
-#' @param x A [`CompositionMatrix-class`] or [`LogRatio-class`] object.
-#' @param ... Currently not used.
-#' @return
-#'  A [`data.frame`].
-#' @example inst/examples/ex-augment.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family compositional data tools
-#' @name augment
-#' @rdname augment
-NULL
 
 #' Data Description
 #'
@@ -202,9 +188,15 @@ setGeneric(
 #'
 #' Retrieves or defines the groups to which the observations belong.
 #' @param x An object from which to get or set `groups`.
-# @param value A possible value for the `groups` of `x`.
+#' @param value A possible value for the `groups` of `x`.
 #' @return
+#'  * `set_groups()` returns an object of the same sort as `x` with the new
+#'    group names assigned.
 #'  * `get_groups()` returns a [`character`] vector giving the group names of `x`.
+#'  * `any_assigned()` returns a [`logical`] scalar specifying whether or not `x`
+#'    has groups.
+#'  * `is_assigned()` returns a [`logical`] vector specifying whether or not an
+#'    observation belongs to a group.
 #' @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -214,10 +206,31 @@ setGeneric(
 NULL
 
 #' @rdname groups
+#' @aliases any_assigned-method
+setGeneric(
+  name = "any_assigned",
+  def = function(x) standardGeneric("any_assigned")
+)
+
+#' @rdname groups
+#' @aliases is_assigned-method
+setGeneric(
+  name = "is_assigned",
+  def = function(x) standardGeneric("is_assigned")
+)
+
+#' @rdname groups
 #' @aliases get_groups-method
 setGeneric(
   name = "get_groups",
   def = function(x) standardGeneric("get_groups")
+)
+
+#' @rdname groups
+#' @aliases set_groups-method
+setGeneric(
+  name = "set_groups<-",
+  def = function(x, value) standardGeneric("set_groups<-")
 )
 
 #' Row Sums
@@ -621,8 +634,6 @@ NULL
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param by A `vector` of grouping elements, as long as the variables in `x`
 #'  (in the sense that [`as.factor(by)`][as.factor()] defines the grouping).
-#'  If a single `character` string is passed, it must be the name of a
-#'  categorical variable from the original dataset.
 #' @param ... Further arguments to be passed to [mean()].
 #' @return A [`CompositionMatrix-class`] object.
 #' @seealso [mean()], [aggregate()]
@@ -881,9 +892,7 @@ NULL
 #' Displays a compositional bar chart.
 #' @param height A [`CompositionMatrix-class`] object.
 #' @param groups A `vector` of grouping elements, as long as the variables in
-#'  `height`. If a single `character` string is passed, it must be the name of a
-#'  categorical variable from the original dataset.
-#'  If set, a matrix of panels defined by `groups` will be drawn.
+#'  `height`. If set, a matrix of panels defined by `groups` will be drawn.
 #' @param order An [`integer`] vector giving the index of the column to be used
 #'  for the ordering of the data.
 #' @param decreasing A [`logical`] scalar: should the sort order be increasing
@@ -955,8 +964,7 @@ NULL
 #' Displays a matrix of ternary plots.
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param groups A `vector` of grouping elements, as long as the variables in
-#'  `x`. If a single `character` string is passed, it must be the name of a
-#'  categorical variable from the original dataset.
+#'  `x`.
 #' @param palette_color A palette [`function`] that when called with a single
 #'  argument (`groups`) returns a `character` vector of colors.
 #' @param palette_symbol A palette [`function`] that when called with a single
@@ -980,9 +988,7 @@ NULL
 #' Displays a density plot.
 #' @param x A [`LogRatio-class`] object.
 #' @param groups A `vector` of grouping elements, as long as the variables in
-#'  `x`. If a single `character` string is passed, it must be the name of a
-#'  categorical variable from the original dataset.
-#'  If set, a matrix of panels defined by `groups` will be drawn.
+#'  `x`. If set, a matrix of panels defined by `groups` will be drawn.
 #' @param palette_color A palette [`function`] that when called with a single
 #'  argument (`groups`) returns a `character` vector of colors.
 #' @param rug A [`logical`] scalar: should a *rug* representation (1-d plot) of
@@ -1159,8 +1165,7 @@ NULL
 #'  with larger (squared) Mahalanobis distance are considered as potential
 #'  outliers.
 #' @param groups A `vector` of grouping elements, as long as the variables in
-#'  `object`. If a single `character` string is passed, it must be the name of a
-#'  categorical variable from the original dataset.
+#'  `object`.
 #' @details
 #'  An outlier can be defined as having a very large Mahalanobis distance from
 #'  all observations. In this way, a certain proportion of the observations can

@@ -46,7 +46,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' An S4 class to represent compositional data.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
-#' @slot extra A [`list`] of extra variables.
+#' @slot groups A [`character`] vector to store the group names.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `CompositionMatrix` object.
 #'  \describe{
@@ -70,7 +70,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "CompositionMatrix",
   slots = c(
     totals = "numeric",
-    extra = "list"
+    groups = "character"
   ),
   contains = c("NumericMatrix")
 )
@@ -81,7 +81,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' S4 classes to represent log-ratio data transformations.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
-#' @slot extra A [`list`] of extra variables.
+#' @slot groups A [`character`] vector to store the group names.
 #' @slot parts A [`character`] vector to store the part names.
 #' @slot ratio A [`character`] vector to store the ratio names.
 #' @slot order An [`integer`] vector to store the original ordering of the
@@ -107,7 +107,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "LogRatio",
   slots = c(
     totals = "numeric",
-    extra = "list",
+    groups = "character",
 
     parts = "character",
     ratio = "character",

@@ -1,10 +1,8 @@
 data("slides")
-coda <- as_composition(slides)
+coda <- as_composition(slides, groups = 2)
 
 ## Compositional mean by sample
-by <- c("A", "A", "C", "D", "B", "E", "C", "B", "E", "D", "C", "E",
-        "B", "E", "C", "D", "B", "C", "A", "B", "A", "C", "B", "A", "E")
-flat <- condense(coda, by = by)
+flat <- condense(coda, by = get_groups(coda))
 expect_equal_to_reference(as.data.frame(flat), file = "_snaps/condense.rds")
 
 ## With zeros

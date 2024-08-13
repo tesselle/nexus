@@ -24,8 +24,6 @@ setMethod(
   definition = function(object, center = TRUE, scale = FALSE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
-    z <- methods::callNextMethod()
-    z@extra <- get_extra(object)
-    z
+    methods::callNextMethod()
   }
 )

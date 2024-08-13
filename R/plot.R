@@ -5,12 +5,11 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = NULL,
+plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = get_groups(x),
                                    palette_color = palette_color_discrete(),
                                    palette_symbol = palette_shape()) {
   ## Grouping
-  groups <- get_variable(x, which = groups)
-  if (!is.null(groups) && !all(is.na(groups))) {
+  if (has_groups(groups)) {
     arkhe::assert_length(groups, nrow(x))
     col <- palette_color(groups)
     pch <- palette_symbol(groups)
@@ -31,7 +30,7 @@ setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMat
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, ..., groups = NULL,
+plot.LogRatio <- function(x, ..., groups = get_groups(x),
                           palette_color = palette_color_discrete(),
                           rug = TRUE, ticksize = 0.05,
                           ncol = NULL, flip = FALSE,
@@ -49,16 +48,15 @@ plot.LogRatio <- function(x, ..., groups = NULL,
   nrow <- ceiling(p / ncol)
 
   ## Grouping
-  groups <- get_variable(x, which = groups)
-  if (is.null(groups) || all(is.na(groups))) {
-    grp <- list(all = z)
-    groups <- rep("all", m)
-    border <- list(...)$border %||% graphics::par("col")
-  } else {
+  if (has_groups(groups)) {
     arkhe::assert_length(groups, m)
     grp <- split(z, f = groups)
     border <- palette_color(names(grp))
     rug <- FALSE
+  } else {
+    grp <- list(all = z)
+    groups <- rep("all", m)
+    border <- list(...)$border %||% graphics::par("col")
   }
   k <- length(grp)
 

@@ -10,7 +10,7 @@
   x,
   ...,
   margin = NULL,
-  groups = NULL,
+  groups = get_groups(x),
   palette_color = palette_color_discrete(),
   palette_symbol = palette_shape()
 )
@@ -26,8 +26,7 @@ the column to be used as the third part of the ternary plots. If \code{NULL}
 of the non-selected parts).}
 
 \item{groups}{A \code{vector} of grouping elements, as long as the variables in
-\code{x}. If a single \code{character} string is passed, it must be the name of a
-categorical variable from the original dataset.}
+\code{x}.}
 
 \item{palette_color}{A palette \code{\link{function}} that when called with a single
 argument (\code{groups}) returns a \code{character} vector of colors.}
@@ -46,10 +45,10 @@ Displays a matrix of ternary plots.
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, parts = 3:8)
+coda <- as_composition(kommos, parts = 3:8, groups = 1)
 
 ## Use ceramic types for grouping
-plot(coda, groups = "type")
+plot(coda)
 
 ## Center and scale ternary plots
 plot(coda, groups = NULL, center = TRUE, scale = TRUE)

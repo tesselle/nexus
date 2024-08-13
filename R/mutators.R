@@ -14,33 +14,64 @@ get_transformation <- function(x) {
   )
 }
 
-# Supplementary variables ======================================================
-get_extra <- function(x) {
-  x@extra
-}
-
-has_extra <- function(x) {
-  extra <- get_extra(x)
-  length(extra) > 0 && all(lengths(extra) > 0)
-}
-
-get_variable <- function(x, which = NULL) {
-  if (is.character(which) && length(which) == 1) {
-    extra <- get_extra(x)[[which]]
-    if (is.null(extra)) {
-      warning(sprintf("There is no such variable: %s.", which), call. = FALSE)
-    }
-    return(extra)
-  }
-  which
-}
-
 # Groups =======================================================================
-# is_assigned any_assigned
+has_groups <- function(x) {
+  length(x) > 0 && !all(is.na(x))
+}
+
+#' @export
+#' @rdname groups
+#' @aliases is_assigned,CompositionMatrix-method
+setMethod("is_assigned", "CompositionMatrix", function(x) !is.na(get_groups(x)))
+
+#' @export
+#' @rdname groups
+#' @aliases is_assigned,LogRatio-method
+setMethod("is_assigned", "LogRatio", function(x) !is.na(get_groups(x)))
+
+#' @export
+#' @rdname groups
+#' @aliases any_assigned,CompositionMatrix-method
+setMethod("any_assigned", "CompositionMatrix", function(x) any(is_assigned(x)))
+
+#' @export
+#' @rdname groups
+#' @aliases any_assigned,LogRatio-method
+setMethod("any_assigned", "LogRatio", function(x) any(is_assigned(x)))
+
+#' @export
+#' @rdname groups
+#' @aliases get_groups,CompositionMatrix-method
+setMethod("get_groups", "CompositionMatrix", function(x) x@groups)
+
+#' @export
+#' @rdname groups
+#' @aliases get_groups,LogRatio-method
+setMethod("get_groups", "LogRatio", function(x) x@groups)
+
 #' @export
 #' @rdname groups
 #' @aliases get_groups,OutlierIndex-method
 setMethod("get_groups", "OutlierIndex", function(x) x@groups)
+
+#' @export
+#' @rdname groups
+#' @aliases set_groups,CompositionMatrix-method
+setMethod(
+  f = "set_groups<-",
+  signature = "CompositionMatrix",
+  definition = function(x, value) {
+    if (is.null(value)) {
+      x@groups <- rep(NA_character_, nrow(x))
+    } else {
+      value <- as.character(value)
+      value[value == ""] <- NA_character_
+      x@groups <- value
+    }
+    methods::validObject(x)
+    x
+  }
+)
 
 # Totals =======================================================================
 #' @export

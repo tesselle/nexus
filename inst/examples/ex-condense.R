@@ -2,7 +2,7 @@
 data("slides")
 
 ## Coerce to a compositional matrix
-coda <- as_composition(slides)
+coda <- as_composition(slides, groups = 2)
 
 ## Compositional mean by group
-condense(coda, by = "slide")
+condense(coda)

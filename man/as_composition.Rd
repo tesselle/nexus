@@ -15,7 +15,12 @@ as_composition(from, ...)
 
 \S4method{as_composition}{matrix}(from)
 
-\S4method{as_composition}{data.frame}(from, parts = NULL, verbose = getOption("nexus.verbose"))
+\S4method{as_composition}{data.frame}(
+  from,
+  parts = NULL,
+  groups = NULL,
+  verbose = getOption("nexus.verbose")
+)
 }
 \arguments{
 \item{from}{A \code{\link{matrix}} or \code{\link{data.frame}} to be coerced.}
@@ -25,6 +30,9 @@ as_composition(from, ...)
 \item{parts}{A \code{vector} giving the index of the column to be used a
 compositional parts. If \code{NULL} (the default), all \code{\link{double}} columns will be
 used.}
+
+\item{groups}{An \code{\link{integer}} giving the index of the column to be used to
+group the samples. If \code{NULL} (the default), no grouping is stored.}
 
 \item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
 on progress?}
@@ -57,8 +65,7 @@ head(X)
 }
 \seealso{
 Other compositional data tools: 
-\code{\link{as_amounts}()},
-\code{\link{augment}()}
+\code{\link{as_amounts}()}
 }
 \author{
 N. Frerebeau

@@ -20,7 +20,7 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{arkhe}{\code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_constant}}, \code{\link[arkhe]{remove_zero}}, \code{\link[arkhe]{sparsity}}}
+  \item{arkhe}{\code{\link[arkhe]{remove_constant}}, \code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_zero}}, \code{\link[arkhe]{sparsity}}}
 
   \item{khroma}{\code{\link[khroma]{palette_color_continuous}}, \code{\link[khroma]{palette_color_discrete}}, \code{\link[khroma]{palette_color_picker}}, \code{\link[khroma:palette_shape]{palette_line}}, \code{\link[khroma]{palette_shape}}, \code{\link[khroma]{palette_size_range}}}
 }}

@@ -40,7 +40,17 @@ setMethod(
     spa <- arkhe::sparsity(x, count = FALSE)
     msg_spa <- sprintf("%s of values are zero.", label_percent(spa, digits = 1))
 
-    cat(msg_tbl, sep = "\n* ")
+    ## Groups
+    groups <- get_groups(x)
+    grp <- unique(groups[!is.na(groups)])
+    n_grp <- length(grp)
+    n_ung <- sum(is.na(groups))
+    ls_grp <- if (n_grp == 0) "" else paste0(": ", paste0(dQuote(grp), collapse = ", "))
+    msg_grp <- sprintf("%d %s%s.", n_grp, ngettext(n_grp, "group", "groups"),
+                       ls_grp)
+    msg_ung <- sprintf("%d unassigned %s.", n_ung, ngettext(n_ung, "sample", "samples"))
+
+    cat(msg_tbl, msg_grp, msg_ung, sep = "\n* ")
     cat("\nData checking:", msg_spa, msg_col_var, sep = "\n* ")
     cat("\nMissing values:", msg_row_NA, msg_col_NA, sep = "\n* ")
 
