@@ -833,7 +833,7 @@ NULL
 # Distances ====================================================================
 #' Distances
 #'
-#' Computes the log-ratio variance matrix.
+#' Computes the distances between all rows of in `x`.
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param method A [`character`] string specifying the distance measure to be
 #'  used. See [stats::dist()] for the available distances.
@@ -1041,15 +1041,15 @@ setGeneric(
   def = function(object, ...) standardGeneric("as_graph")
 )
 
-# PCA ==========================================================================
+# Multivariate analysis ========================================================
 #' Principal Components Analysis
 #'
 #' Computes a principal components analysis based on the singular value
 #' decomposition.
-#' @param object A [`LogRatio-class`] object.
+#' @param object A [`CompositionMatrix-class`] or [`LogRatio-class`] object.
 #' @inheritParams dimensio::pca
 #' @return
-#'  A [`dimensio::PCA-class`] object. See package \pkg{dimensio} for details.
+#'  A [`dimensio::PCA-class`] object. See [dimensio::pca()] for details.
 #' @references
 #'  Aitchison, J. and Greenacre, M. (2002). Biplots of compositional data.
 #'  *Journal of the Royal Statistical Society: Series C (Applied Statistics)*,
@@ -1064,7 +1064,7 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family multivariate analysis
-#' @name pca_coda
+#' @name pca
 #' @rdname pca
 NULL
 
@@ -1159,13 +1159,16 @@ NULL
 #' Outlier Detection
 #'
 #' @param object A [`CompositionMatrix-class`].
-#' @inheritParams mahalanobis
+#' @param method A [`character`] string specifying the method to be used.
+#'  It must be one of "`mve`" (minimum volume ellipsoid) or "`mcd`" (minimum
+#'  covariance determinant; see [MASS::cov.rob()]).
 #' @param quantile A length-one [`numeric`] vector giving the significance level.
 #'  `quantile` is used as a cut-off value for outlier detection: observations
 #'  with larger (squared) Mahalanobis distance are considered as potential
 #'  outliers.
 #' @param groups A `vector` of grouping elements, as long as the variables in
 #'  `object`.
+#' @param ... Extra parameters to be passed to [MASS::cov.rob()].
 #' @details
 #'  An outlier can be defined as having a very large Mahalanobis distance from
 #'  all observations. In this way, a certain proportion of the observations can

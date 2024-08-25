@@ -19,7 +19,7 @@
   sub = NULL,
   ann = graphics::par("ann"),
   axes = TRUE,
-  col = grDevices::hcl.colors(ncol(height), "viridis"),
+  col = color("discreterainbow")(ncol(height)),
   legend = list(x = "top")
 )
 }

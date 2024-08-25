@@ -37,6 +37,15 @@ coda <- as_composition(hongite)
 d <- as.dist(varia)
 h <- hclust(d, method = "ward.D2")
 plot(h)
+
+## Heatmap
+stats::heatmap(
+  varia,
+  distfun = stats::as.dist,
+  hclustfun = function(x) stats::hclust(x, method = "ward.D2"),
+  symm = TRUE,
+  scale = "none"
+)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.

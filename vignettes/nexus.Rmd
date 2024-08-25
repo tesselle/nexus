@@ -157,12 +157,7 @@ clr <- transform_clr(coda)
 clr_pca <- pca(clr, scale = FALSE)
 
 ## Visualize results
-viz_individuals(
-  x = clr_pca,
-  highlight = get_groups(clr),
-  pch = 16, 
-  col = c("#EE7733", "#0077BB", "#33BBEE", "#EE3377")
-)
+viz_individuals(x = clr_pca)
 viz_variables(clr_pca)
 ```
 

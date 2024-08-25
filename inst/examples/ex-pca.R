@@ -10,5 +10,5 @@ clr <- transform_clr(coda)
 X <- pca(clr, scale = FALSE)
 
 ## Explore results
-viz_individuals(X, highlight = get_groups(coda), pch = 16)
+viz_individuals(X, pch = 16)
 viz_variables(X)

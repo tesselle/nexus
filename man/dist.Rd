@@ -26,7 +26,7 @@ the distance matrix should be printed.}
 A \code{\link[stats:dist]{stats::dist}} object.
 }
 \description{
-Computes the log-ratio variance matrix.
+Computes the distances between all rows of in \code{x}.
 }
 \details{
 Distances are computed on \link[=transform_clr]{CLR-transformed} data.

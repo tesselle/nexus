@@ -11,7 +11,7 @@ barplot.CompositionMatrix <- function(height, ..., groups = get_groups(height),
                                       xlab = NULL, ylab = NULL,
                                       main = NULL, sub = NULL,
                                       ann = graphics::par("ann"), axes = TRUE,
-                                      col = grDevices::hcl.colors(ncol(height), "viridis"),
+                                      col = color("discreterainbow")(ncol(height)),
                                       legend = list(x = "top")) {
   ## Get data
   z <- height
@@ -47,7 +47,7 @@ barplot.CompositionMatrix <- function(height, ..., groups = get_groups(height),
 
     ## Save and restore
     old_par <- graphics::par(
-      mar = if (horiz) c(0, 5.1, 0, 1) else  c(5.1, 0, 0, 1),
+      mar = if (horiz) c(0, 5.1, 0, 1) else c(5.1, 0, 0, 1),
       oma = if (horiz) c(6, 0, 5, 0) else c(0, 6, 5, 0),
       mfcol = if (horiz) c(n, 1) else c(1, n)
     )

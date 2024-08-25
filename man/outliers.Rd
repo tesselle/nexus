@@ -20,15 +20,14 @@ outliers(object, ...)
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}}.}
 
-\item{...}{Extra parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.
-Only used if \code{robust} is \code{TRUE}.}
+\item{...}{Extra parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.}
 
 \item{groups}{A \code{vector} of grouping elements, as long as the variables in
 \code{object}.}
 
 \item{method}{A \code{\link{character}} string specifying the method to be used.
 It must be one of "\code{mve}" (minimum volume ellipsoid) or "\code{mcd}" (minimum
-covariance determinant). Only used if \code{robust} is \code{TRUE}.}
+covariance determinant; see \code{\link[MASS:cov.rob]{MASS::cov.rob()}}).}
 
 \item{quantile}{A length-one \code{\link{numeric}} vector giving the significance level.
 \code{quantile} is used as a cut-off value for outlier detection: observations

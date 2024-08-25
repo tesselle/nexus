@@ -18,6 +18,10 @@ arkhe::sparsity
 
 # REEXPORT FROM KHROMA
 
+#' @importFrom khroma color
+#' @export
+khroma::color
+
 #' @importFrom khroma palette_color_continuous
 #' @export
 khroma::palette_color_continuous
