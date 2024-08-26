@@ -48,10 +48,16 @@ barplot.CompositionMatrix <- function(height, ..., groups = get_groups(height),
     ## Save and restore
     old_par <- graphics::par(
       mar = if (horiz) c(0, 5.1, 0, 1) else c(5.1, 0, 0, 1),
-      oma = if (horiz) c(6, 0, 5, 0) else c(0, 6, 5, 0),
-      mfcol = if (horiz) c(n, 1) else c(1, n)
+      oma = if (horiz) c(6, 0, 5, 0) else c(0, 6, 5, 0)
     )
     on.exit(graphics::par(old_par))
+
+    ## Plot layout
+    mat <- matrix(data = seq_len(n), nrow = ifelse(horiz, n, 1))
+    mat_prop <- vapply(X = z, FUN = nrow, FUN.VALUE = integer(1))
+    mat_widths <- if (horiz) rep.int(1, nrow(mat)) else mat_prop
+    mat_heights <- if (horiz) mat_prop else rep.int(1, nrow(mat))
+    graphics::layout(mat, widths = mat_widths, heights = mat_heights)
 
     for (i in seq_len(n)) {
       graphics::barplot(height = t(z[[i]]), horiz = horiz, axes = FALSE,
