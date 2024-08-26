@@ -24,7 +24,7 @@ URL: https://packages.tesselle.org/nexus/,
 BugReports: https://github.com/tesselle/nexus/issues
 Depends: 
     R (>= 3.5),
-    dimensio (>= 0.8.0)
+    dimensio (>= 0.9.0)
 Imports: 
     arkhe (>= 1.7.0),
     graphics,
