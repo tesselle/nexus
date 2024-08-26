@@ -96,6 +96,34 @@ setMethod(
 )
 
 # To data.frame ================================================================
+# @export
+# @rdname augment
+# @aliases augment,CompositionMatrix-method
+# setMethod(
+#   f = "augment",
+#   signature = c(x = "CompositionMatrix"),
+#   definition = function(x) {
+#     data.frame(
+#       .group = get_groups(x),
+#       x
+#     )
+#   }
+# )
+
+# @export
+# @rdname augment
+# @aliases augment,LogRatio-method
+# setMethod(
+#   f = "augment",
+#   signature = c(x = "LogRatio"),
+#   definition = function(x) {
+#     data.frame(
+#       .group = get_groups(x),
+#       x
+#     )
+#   }
+# )
+
 #' @method as.data.frame CompositionMatrix
 #' @export
 as.data.frame.CompositionMatrix <- function(x, ...) {

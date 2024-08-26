@@ -197,7 +197,7 @@ setGeneric(
 #'    has groups.
 #'  * `is_assigned()` returns a [`logical`] vector specifying whether or not an
 #'    observation belongs to a group.
-#' @example inst/examples/ex-mutators.R
+#' @example inst/examples/ex-groups.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators

@@ -88,30 +88,35 @@ Provenance studies typically rely on two approaches, which can be used together:
 When coercing a `data.frame` to a `CompositionMatrix` object, **nexus** allows to specify whether an observation belongs to a specific group (or not):
 
 ```{r}
-## Coerce to a compositional matrix
-## Use the first column for grouping
-Y <- as_composition(X, groups = 1)
+## Data from Day et al. 2011
+data("kommos", package = "folio")
+kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 
-any_assigned(Y)
-is_assigned(Y)
+## Use the first column (ceramic types) for grouping
+coda <- as_composition(kommos, groups = 1)
 ```
 
-`get_groups(x)` and `set_groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) can be used to specify that a sample does not belong to any group):
+`get_groups(x)` and `set_groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) or empty strings can be used to specify that a sample does not belong to any group):
 
 ```{r}
-## Set groups (NA means no group)
-set_groups(Y) <- c("X", "X", "Y", "X", "Y", NA, NA, NA, "Y")
-is_assigned(Y)
+## Assume that a third of the samples does not belong to any group
+grp <- kommos$type
+grp[sample(length(grp), size = length(grp) / 3)] <- NA
+
+## Set groups
+set_groups(coda) <- grp
+is_assigned(coda)
 
 ## Retrieve groups
-get_groups(Y)
+get_groups(coda)
 ```
 
 Once groups have been defined, they can be used by further methods (e.g. plotting).
 
-```{r barplot, fig.width=7, fig.height=5, out.width='100%'}
+```{r barplot, fig.width=7, fig.height=7, out.width='100%'}
 ## Compositional bar plot
-plot(Y)
+## (unassigned sample are not displayed)
+barplot(coda, order = "Ca")
 ```
 
 # Log-ratio transformations
@@ -129,23 +134,6 @@ all.equal(back, coda)
 ```
 
 # Multivariate methods
-
-```{r ceramics}
-## Data from Day et al. 2011
-data("kommos", package = "folio")
-describe(kommos)
-
-## Remove rows with missing values
-kommos <- remove_NA(kommos, margin = 1)
-
-## Coerce to a compositional matrix
-coda <- as_composition(kommos, parts = 3:22, groups = "type")
-```
-
-```{r ceramics-barplot, fig.width=7, fig.height=7, out.width='100%'}
-## Compositional bar plot
-barplot(coda, order = "Ca")
-```
 
 ## Principal Components Analysis
 
