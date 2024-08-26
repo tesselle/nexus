@@ -16,7 +16,7 @@ src="https://tesselle.r-universe.dev/badges/nexus"
 alt="r-universe" /></a>
 <a href="https://cran.r-project.org/package=nexus"
 class="pkgdown-release"><img
-src="http://www.r-pkg.org/badges/version/nexus"
+src="https://www.r-pkg.org/badges/version/nexus"
 alt="CRAN Version" /></a>
 <a href="https://cran.r-project.org/web/checks/check_results_nexus.html"
 class="pkgdown-release"><img
@@ -24,7 +24,8 @@ src="https://badges.cranchecks.info/worst/nexus.svg"
 alt="CRAN checks" /></a>
 <a href="https://cran.r-project.org/package=nexus"
 class="pkgdown-release"><img
-src="http://cranlogs.r-pkg.org/badges/nexus" alt="CRAN Downloads" /></a>
+src="https://cranlogs.r-pkg.org/badges/nexus"
+alt="CRAN Downloads" /></a>
 
 [![Project Status: WIP – Initial development is in progress, but there
 has not yet been a stable, usable release suitable for the
@@ -35,7 +36,11 @@ public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostat
 
 ## Overview
 
-Exploration and analysis of compositional data in the framework of
+This package is currently *experimental*. This means that it is
+functional, but interfaces and functionalities may change over time,
+testing and documentation may be lacking.
+
+Exploration and analysis of compositional data in the framework of J.
 Aitchison (1986). **nexus** provides tools for chemical fingerprinting
 and source tracking of ancient materials. This package provides methods
 for compositional data analysis:
@@ -54,10 +59,6 @@ This package also includes methods for provenance studies:
 
 [**isopleuros**](https://packages.tesselle.org/isopleuros/) is a
 companion package to **nexus** that allows to create ternary plots.
-
-This package is currently *experimental*. This means that it is
-functional, but interfaces and functionalities may change over time,
-testing and documentation may be lacking.
 
 ------------------------------------------------------------------------
 
@@ -99,8 +100,8 @@ library(nexus)
 **nexus** provides a set of S4 classes that represent different special
 types of matrix. The most basic class represents a compositional data
 matrix, i.e. quantitative (nonnegative) descriptions of the parts of
-some whole, carrying relative, rather than absolute, information
-(Aitchison 1986).
+some whole, carrying relative, rather than absolute, information (J.
+Aitchison 1986).
 
 *It assumes that you keep your data tidy*: each variable must be saved
 in its own column and each observation (sample) must be saved in its own
@@ -159,12 +160,204 @@ York, USA: Chapman and Hall.
 
 </div>
 
+<div id="ref-aitchison2002" class="csl-entry">
+
+Aitchison, John, and Michael Greenacre. 2002. “Biplots of Compositional
+Data.” *Journal of the Royal Statistical Society: Series C (Applied
+Statistics)* 51 (4): 375–92. <https://doi.org/10.1111/1467-9876.00275>.
+
+</div>
+
 <div id="ref-baxter2008" class="csl-entry">
 
 Baxter, M. J., C. C. Beardah, I. Papageorgiou, M. A. Cau, P. M. Day, and
 V. Kilikoglou. 2008. “On Statistical Approaches to the Study of Ceramic
 Artefacts Using Geochemical and Petrographic Data.” *Archaeometry* 50
 (1): 142–57. <https://doi.org/10.1111/j.1475-4754.2007.00359.x>.
+
+</div>
+
+<div id="ref-beardah2003" class="csl-entry">
+
+Beardah, C. C., M. J. Baxter, I. Papageorgiou, and M. A. Cau. 2003.
+“"<span class="nocase">Mixed-mode</span>" Approaches to the Grouping of
+Ceramic Artefacts Using S-Plus.” In *The Digital Heritage of
+Archaeology.*, edited by M. Doerr and A. Sarris, 261–66. Athens: Archive
+of Monuments and Publications, Hellenic Ministry of Culture.
+
+</div>
+
+<div id="ref-vandenboogaart2013" class="csl-entry">
+
+Boogaart, K. Gerald van den, and Raimon Tolosana-Delgado. 2013.
+*Analyzing Compositional Data with R*. Use R! Berlin Heidelberg:
+Springer-Verlag. <https://doi.org/10.1007/978-3-642-36809-7>.
+
+</div>
+
+<div id="ref-cau2004" class="csl-entry">
+
+Cau, Miguel-Angel, Peter M Day, Michael J Baxter, Ioulia Papageorgiou,
+Ioannis Iliopoulos, and Giuseppe Montana. 2004. “Exploring Automatic
+Grouping Procedures in Ceramic Petrology.” *Journal of Archaeological
+Science* 31 (9): 1325–38. <https://doi.org/10.1016/j.jas.2004.03.006>.
+
+</div>
+
+<div id="ref-egozcue2003" class="csl-entry">
+
+Egozcue, J. J., V. Pawlowsky-Glahn, G. Mateu-Figueras, and C.
+Barceló-Vidal. 2003. “Isometric Logratio Transformations for
+Compositional Data Analysis.” *Mathematical Geology* 35 (3): 279–300.
+<https://doi.org/10.1023/A:1023818214614>.
+
+</div>
+
+<div id="ref-filzmoser2005" class="csl-entry">
+
+Filzmoser, Peter, Robert G. Garrett, and Clemens Reimann. 2005.
+“Multivariate Outlier Detection in Exploration Geochemistry.” *Computers
+& Geosciences* 31 (5): 579–87.
+<https://doi.org/10.1016/j.cageo.2004.11.013>.
+
+</div>
+
+<div id="ref-filzmoser2008" class="csl-entry">
+
+Filzmoser, Peter, and Karel Hron. 2008. “Outlier Detection for
+Compositional Data Using Robust Methods.” *Mathematical Geosciences* 40
+(3): 233–48. <https://doi.org/10.1007/s11004-007-9141-5>.
+
+</div>
+
+<div id="ref-filzmoser2009" class="csl-entry">
+
+Filzmoser, Peter, Karel Hron, and Clemens Reimann. 2009a. “Principal
+Component Analysis for Compositional Data with Outliers.”
+*Environmetrics* 20 (6): 621–32. <https://doi.org/10.1002/env.966>.
+
+</div>
+
+<div id="ref-filzmoser2009a" class="csl-entry">
+
+———. 2009b. “Univariate Statistical Analysis of Environmental
+(Compositional) Data: Problems and Possibilities.” *Science of The Total
+Environment* 407 (23): 6100–6108.
+<https://doi.org/10.1016/j.scitotenv.2009.08.008>.
+
+</div>
+
+<div id="ref-filzmoser2012" class="csl-entry">
+
+———. 2012. “Interpretation of Multivariate Outliers for Compositional
+Data.” *Computers & Geosciences* 39: 77–85.
+<https://doi.org/10.1016/j.cageo.2011.06.014>.
+
+</div>
+
+<div id="ref-filzmoser2018" class="csl-entry">
+
+Filzmoser, Peter, Karel Hron, and Matthias Templ. 2018. *Applied
+Compositional Data Analysis: With Worked Examples in R*. Use R! Berlin
+Heidelberg: Springer-Verlag.
+<https://doi.org/10.1007/978-3-319-96422-5>.
+
+</div>
+
+<div id="ref-fiserova2011" class="csl-entry">
+
+Fišerová, Eva, and Karel Hron. 2011. “On the Interpretation of
+Orthonormal Coordinates for Compositional Data.” *Mathematical
+Geosciences* 43 (4): 455–68.
+<https://doi.org/10.1007/s11004-011-9333-x>.
+
+</div>
+
+<div id="ref-greenacre2021" class="csl-entry">
+
+Greenacre, Michael. 2021. “Compositional Data Analysis.” *Annual Review
+of Statistics and Its Application* 8 (1): 271–99.
+<https://doi.org/10.1146/annurev-statistics-042720-124436>.
+
+</div>
+
+<div id="ref-greenacre2019" class="csl-entry">
+
+Greenacre, Michael J. 2019. *Compositional Data Analysis in Practice*.
+Chapman & Hall/CRC Interdisciplinary Statistics. Boca Raton: CRC Press,
+Taylor & Francis Group.
+
+</div>
+
+<div id="ref-hron2017" class="csl-entry">
+
+Hron, Karel, Peter Filzmoser, Patrice de Caritat, Eva Fišerová, and
+Alžběta Gardlo. 2017. “Weighted Pivot Coordinates for Compositional Data
+and Their Application to Geochemical Mapping.” *Mathematical
+Geosciences* 49 (6): 797–814.
+<https://doi.org/10.1007/s11004-017-9684-z>.
+
+</div>
+
+<div id="ref-hron2011" class="csl-entry">
+
+Hron, Karel, and Lubomír Kubáček. 2011. “Statistical Properties of the
+Total Variation Estimator for Compositional Data.” *Metrika* 74 (2):
+221–30. <https://doi.org/10.1007/s00184-010-0299-3>.
+
+</div>
+
+<div id="ref-hron2010" class="csl-entry">
+
+Hron, K., M. Templ, and P. Filzmoser. 2010. “Imputation of Missing
+Values for Compositional Data Using Classical and Robust Methods.”
+*Computational Statistics & Data Analysis* 54 (12): 3095–3107.
+<https://doi.org/10.1016/j.csda.2009.11.023>.
+
+</div>
+
+<div id="ref-martin-fernandez2003" class="csl-entry">
+
+Martín-Fernández, J. A., C. Barceló-Vidal, and V. Pawlowsky-Glahn. 2003.
+“Dealing with Zeros and Missing Values in Compositional Data Sets Using
+Nonparametric Imputation.” *Mathematical Geology* 35 (3): 253–78.
+<https://doi.org/10.1023/A:1023866030544>.
+
+</div>
+
+<div id="ref-pawlowsky-glahn2001" class="csl-entry">
+
+Pawlowsky-Glahn, V., and J. J. Egozcue. 2001. “Geometric Approach to
+Statistical Analysis on the Simplex.” *Stochastic Environmental Research
+and Risk Assessment* 15 (5): 384–98.
+<https://doi.org/10.1007/s004770100077>.
+
+</div>
+
+<div id="ref-rousseeuw1990" class="csl-entry">
+
+Rousseeuw, Peter J., and Bert C. van Zomeren. 1990. “Unmasking
+Multivariate Outliers and Leverage Points.” *Journal of the American
+Statistical Association* 85 (411): 633–39.
+<https://doi.org/10.1080/01621459.1990.10474920>.
+
+</div>
+
+<div id="ref-santos2020" class="csl-entry">
+
+Santos, Frédéric. 2020. “Modern Methods for Old Data: An Overview of
+Some Robust Methods for Outliers Detection with Applications in
+Osteology.” *Journal of Archaeological Science: Reports* 32: 102423.
+<https://doi.org/10.1016/j.jasrep.2020.102423>.
+
+</div>
+
+<div id="ref-weigand1977" class="csl-entry">
+
+Weigand, P. C., G. Harbottle, and E. Sayre. 1977. “Turquoise Sources and
+Source Analysisis: Mesoamerica and the Southwestern U.S.A.” In *Exchange
+Systems in Prehistory*, edited by J. Ericson and T. K. Earle, 15–34. New
+York, NY: Academic Press.
 
 </div>
 
