@@ -12,6 +12,7 @@ setMethod(
     m <- nrow(x)
 
     ## Grouping
+    if (!has_groups(by)) return(x) # Nothing to do
     arkhe::assert_length(by, m)
     by <- as.factor(by)
 
@@ -28,7 +29,9 @@ setMethod(
     z <- do.call(rbind, z)
 
     tot <- tapply(X = get_totals(x), INDEX = by, FUN = mean, simplify = TRUE)
-    grp <- flatten_chr(x = get_groups(x), by = by)
+    grp <- get_groups(x)
+    if (has_groups(grp)) grp <- flatten_chr(x = grp, by = by)
+    else grp <- rep(NA_character_, length(tot))
 
     rownames(z) <- levels(by)
     .CompositionMatrix(z, totals = as.numeric(tot), groups = grp)
