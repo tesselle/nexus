@@ -14,6 +14,18 @@ get_transformation <- function(x) {
   )
 }
 
+# Getter =======================================================================
+#' @export
+#' @method weights LogRatio
+weights.LogRatio <- function(object, ...) {
+  object@weights
+}
+
+#' @export
+#' @rdname mutators
+#' @aliases weights,LogRatio-method
+setMethod("weights", "LogRatio", weights.LogRatio)
+
 # Groups =======================================================================
 has_groups <- function(x) {
   length(x) > 0 && !all(is.na(x))

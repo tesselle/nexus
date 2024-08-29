@@ -184,6 +184,21 @@ setGeneric(
 
 # Extract ======================================================================
 ## Mutators --------------------------------------------------------------------
+#' Get or Set Parts of an Object
+#'
+#' Getters and setters to retrieve or set parts of an object.
+#' @param object An object from which to get or set element(s).
+# @param value A possible value for the element(s) of `x`.
+#' @param ... Currently not used.
+# @example inst/examples/ex-mutators.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name mutators
+#' @rdname mutators
+#' @aliases get set
+NULL
+
 #' Working With Groups
 #'
 #' Retrieves or defines the groups to which the observations belong.
@@ -365,7 +380,7 @@ setGeneric(
 #'
 #' Computes CLR transformation.
 #' @param object A [`CompositionMatrix-class`] object.
-#' @param weights A [`logical`] scalar: sould a varying weight be used. If
+#' @param weights A [`logical`] scalar: should a varying weight be used. If
 #'  `FALSE` (the default), equally-weighted parts are used. Alternatively, a
 #'  positive [`numeric`] vector of weights can be specified.
 #' @param ... Currently not used.

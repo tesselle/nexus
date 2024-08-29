@@ -5,18 +5,21 @@
 \alias{transform_clr}
 \alias{transform_clr-method}
 \alias{transform_clr,CompositionMatrix-method}
+\alias{transform_clr,ALR-method}
 \title{Centered Log-Ratios (CLR)}
 \usage{
 transform_clr(object, ...)
 
 \S4method{transform_clr}{CompositionMatrix}(object, weights = FALSE)
+
+\S4method{transform_clr}{ALR}(object)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 
-\item{weights}{A \code{\link{logical}} scalar: sould a varying weight be used. If
+\item{weights}{A \code{\link{logical}} scalar: should a varying weight be used. If
 \code{FALSE} (the default), equally-weighted parts are used. Alternatively, a
 positive \code{\link{numeric}} vector of weights can be specified.}
 }

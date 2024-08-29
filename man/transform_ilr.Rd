@@ -6,6 +6,8 @@
 \alias{transform_ilr-method}
 \alias{transform_ilr,CompositionMatrix,missing-method}
 \alias{transform_ilr,CompositionMatrix,matrix-method}
+\alias{transform_ilr,CLR,missing-method}
+\alias{transform_ilr,ALR,missing-method}
 \title{Isometric Log-Ratios (ILR)}
 \usage{
 transform_ilr(object, base, ...)
@@ -13,6 +15,10 @@ transform_ilr(object, base, ...)
 \S4method{transform_ilr}{CompositionMatrix,missing}(object)
 
 \S4method{transform_ilr}{CompositionMatrix,matrix}(object, base)
+
+\S4method{transform_ilr}{CLR,missing}(object, base)
+
+\S4method{transform_ilr}{ALR,missing}(object, base)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}} object.}

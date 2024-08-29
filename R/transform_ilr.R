@@ -42,37 +42,66 @@ setMethod(
   f = "transform_ilr",
   signature = c(object = "CompositionMatrix", base = "matrix"),
   definition = function(object, base) {
-    D <- ncol(object)
-    seq_parts <- seq_len(D - 1)
-    parts <- colnames(object)
-
-    ## Rotated and centered values
-    y <- log(object, base = exp(1))
-    ilr <- y %*% base
-
-    ratio <- vapply(
-      X = seq_parts,
-      FUN = function(i, k) {
-        paste(paste0(k[seq_len(i)], collapse = "-"), k[i + 1], sep = "_")
-      },
-      FUN.VALUE = character(1),
-      k = parts
-    )
-    colnames(ilr) <- paste0("Z", seq_parts)
-    rownames(ilr) <- rownames(object)
-
-    .ILR(
-      ilr,
-      parts = parts,
-      ratio = ratio,
-      order = seq_len(D),
-      base = base,
-      weights = rep(1 / D, D),
-      totals = get_totals(object),
-      groups = get_groups(object)
-    )
+    .transform_ilr(object, base)
   }
 )
+
+#' @export
+#' @rdname transform_ilr
+#' @aliases transform_ilr,CLR,missing-method
+setMethod(
+  f = "transform_ilr",
+  signature = c(object = "CLR", base = "missing"),
+  definition = function(object, base) {
+    base <- ilr_base(D = ncol(object), method = "basic")
+    object@.Data <- exp(object@.Data)
+    .transform_ilr(object, base)
+  }
+)
+
+#' @export
+#' @rdname transform_ilr
+#' @aliases transform_ilr,ALR,missing-method
+setMethod(
+  f = "transform_ilr",
+  signature = c(object = "ALR", base = "missing"),
+  definition = function(object, base) {
+    object <- transform_clr(object)
+    methods::callGeneric(object)
+  }
+)
+
+.transform_ilr <- function(object, base) {
+  D <- ncol(object)
+  seq_parts <- seq_len(D - 1)
+  parts <- colnames(object)
+
+  ## Rotated and centered values
+  y <- log(object, base = exp(1))
+  ilr <- y %*% base
+
+  ratio <- vapply(
+    X = seq_parts,
+    FUN = function(i, k) {
+      paste(paste0(k[seq_len(i)], collapse = "-"), k[i + 1], sep = "_")
+    },
+    FUN.VALUE = character(1),
+    k = parts
+  )
+  colnames(ilr) <- paste0("Z", seq_parts)
+  rownames(ilr) <- rownames(object)
+
+  .ILR(
+    ilr,
+    parts = parts,
+    ratio = ratio,
+    order = seq_len(D),
+    base = base,
+    weights = rep(1 / D, D),
+    totals = get_totals(object),
+    groups = get_groups(object)
+  )
+}
 
 # Univariate ILR ===============================================================
 #' @export

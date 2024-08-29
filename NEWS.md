@@ -2,10 +2,17 @@
 ## New classes and methods
 * Add `condense()` to compute compositional mean of data subsets.
 * Add `pip()` to compute proportionality index of parts.
-* Add `show()` methods for `LogRatio-class` objects.
+* Add `show()` methods for `LogRatio` objects.
+* Add transformation methods for `LogRatio` objects (clr <-> alr, clr -> ilr, alr -> ilr).
+
+## Enhancements
+* Add example datasets.
+* Allow proportional sizing of faceted barplot.
 
 ## Breaking changes
 * `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.
+* Remove `samples` slot in all classes.
+* Remove `as_features()`.
 * Rewrite `plot()` method for `OutlierIndex` object.
 
 # nexus 0.2.0

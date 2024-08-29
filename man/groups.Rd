@@ -77,6 +77,7 @@ get_groups(coda)
 }
 \seealso{
 Other mutators: 
+\code{\link{mutators}},
 \code{\link{split}()},
 \code{\link{subset}()},
 \code{\link{totals}}

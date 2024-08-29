@@ -47,6 +47,7 @@ split(Y, f = X$groups)
 \seealso{
 Other mutators: 
 \code{\link{groups}},
+\code{\link{mutators}},
 \code{\link{subset}()},
 \code{\link{totals}}
 }

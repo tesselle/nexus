@@ -5,11 +5,14 @@
 \alias{transform_alr}
 \alias{transform_alr-method}
 \alias{transform_alr,CompositionMatrix-method}
+\alias{transform_alr,CLR-method}
 \title{Additive Log-Ratios (ALR)}
 \usage{
 transform_alr(object, ...)
 
 \S4method{transform_alr}{CompositionMatrix}(object, j = ncol(object))
+
+\S4method{transform_alr}{CLR}(object, j = ncol(object))
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}} object.}

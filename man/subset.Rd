@@ -81,6 +81,7 @@ head(subcoda)
 \seealso{
 Other mutators: 
 \code{\link{groups}},
+\code{\link{mutators}},
 \code{\link{split}()},
 \code{\link{totals}}
 }
