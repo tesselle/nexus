@@ -82,7 +82,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
 #' @slot groups A [`character`] vector to store the group names.
-#' @slot parts A [`character`] vector to store the part names.
+#' @slot parts A [`character`] vector to store the original part names.
 #' @slot ratio A [`character`] vector to store the ratio names.
 #' @slot order An [`integer`] vector to store the original ordering of the
 #'  columns.

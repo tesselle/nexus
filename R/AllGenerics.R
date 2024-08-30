@@ -248,6 +248,59 @@ setGeneric(
   def = function(x, value) standardGeneric("set_groups<-")
 )
 
+#' Chemical Elements and Compounds
+#'
+#' Identify major, minor and traces elements in a compositional data matrix.
+#' @param object A [`CompositionMatrix-class`] object.
+#' @param min A length-one [`numeric`] vector specifying the lower bound for
+#'  element identification.
+#' @param max A length-one [`numeric`] vector specifying the upper bound for
+#'  element identification.
+#' @param ... Currently not used.
+#' @details
+#'  There is no definite classification of what are the major, minor and trace
+#'  elements are. By default, the following rule of thumb is used:
+#'  \describe{
+#'   \item{major elements}{The major elements are those that define the material
+#'   under study. Major elements usually have concentrations of above 1%.}
+#'   \item{minor elements}{Minor elements usually have concentrations between
+#'   1% and 0.1%}
+#'   \item{trace elements}{Trace elements usually have concentrations of less
+#'   than 0.1%.}
+#'  }
+#' @return A [`logical`] vector.
+#' @example inst/examples/ex-barplot.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family tools
+#' @name element
+#' @rdname element
+NULL
+
+#' @rdname element
+#' @aliases element_major-method
+setGeneric(
+  name = "element_major",
+  def = function(object, ...) standardGeneric("element_major"),
+  valueClass = "logical"
+)
+
+#' @rdname element
+#' @aliases element_minor-method
+setGeneric(
+  name = "element_minor",
+  def = function(object, ...) standardGeneric("element_minor"),
+  valueClass = "logical"
+)
+
+#' @rdname element
+#' @aliases element_trace-method
+setGeneric(
+  name = "element_trace",
+  def = function(object, ...) standardGeneric("element_trace"),
+  valueClass = "logical"
+)
+
 #' Row Sums
 #'
 #' Retrieves or defines the row sums (before closure).
@@ -305,7 +358,7 @@ setGeneric(
 #' @example inst/examples/ex-subset.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family mutators
+#' @family subsetting methods
 #' @name subset
 #' @rdname subset
 NULL
@@ -324,9 +377,24 @@ NULL
 #' @example inst/examples/ex-split.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family mutators
+#' @family subsetting methods
 #' @name split
 #' @rdname split
+NULL
+
+#' Combine Two Composition Matrices
+#'
+#' @param x,y A [`CompositionMatrix-class`] object.
+#' @details
+#'  `rbind2()` combine by rows.
+#' @return
+#'  A [`CompositionMatrix-class`] objects.
+#' @example inst/examples/ex-split.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family subsetting methods
+#' @name bind
+#' @rdname bind
 NULL
 
 #' Matrix Transpose
@@ -906,25 +974,26 @@ NULL
 #'
 #' Displays a compositional bar chart.
 #' @param height A [`CompositionMatrix-class`] object.
+#' @param subset A vector of column indices.
 #' @param groups A `vector` of grouping elements, as long as the variables in
-#'  `height`. If set, a matrix of panels defined by `groups` will be drawn.
-#' @param order An [`integer`] vector giving the index of the column to be used
-#'  for the ordering of the data.
-#' @param decreasing A [`logical`] scalar: should the sort order be increasing
-#'  or decreasing?
-#' @param horiz A [`logical`] scalar. If `FALSE`, the bars are drawn vertically
-#'  with the first bar to the left. If `TRUE` (the default), the bars are drawn
-#'  horizontally with the first at the bottom.
-#' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
-#' @param main A [`character`] string giving a main title for the plot.
-#' @param sub A [`character`] string giving a subtitle for the plot.
-#' @param ann A [`logical`] scalar: should the default annotation (title and x
-#'  and y axis labels) appear on the plot?
+#'  `height`.
+#' @param order_columns A [`logical`] scalar: should should columns be reorderd?
+#' @param order_rows An [`integer`] vector giving the index of the column to be
+#'  used for the ordering of the data.
+#' @param decreasing A [`logical`] scalar: should the sort order of rows be
+#'  increasing or decreasing?
+#' @param space A length-one [`numeric`] vector giving the the amount of space
+#'  (as a fraction of the width of a bar) left between each bar
+#'  (defaults to \eqn{0.2}).
+#' @param offset A length-one [`numeric`] vector giving the the amount of space
+#'  (as a fraction) left between groups (defaults to \eqn{0.025}). Only used if
+#'  `groups` is not `NULL`.
+#' @param colors A vector of colors or a `function` that when called with a
+#'  single argument (an integer specifying the number of colors) returns a
+#'  vector of colors. Will be mapped to the part names.
+#' @param border The color to draw the borders.
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
-#' @param col A vector of colors for the bar components.
-#' @param legend A [`list`] of additional arguments to be passed to
-#'  [graphics::legend()]; names of the list are used as argument names.
-#'  If `NULL`, no legend is displayed.
+#' @param legend A [`logical`] scalar: should the legend be displayed?
 #' @param ... Further parameters to be passed to [graphics::barplot()].
 #' @return
 #'  `barplot()` is called for its side-effects: is results in a graphic being

@@ -5,9 +5,15 @@
 \alias{mutators}
 \alias{get}
 \alias{set}
+\alias{labels,CompositionMatrix-method}
+\alias{labels,LogRatio-method}
 \alias{weights,LogRatio-method}
 \title{Get or Set Parts of an Object}
 \usage{
+\S4method{labels}{CompositionMatrix}(object, ...)
+
+\S4method{labels}{LogRatio}(object, ...)
+
 \S4method{weights}{LogRatio}(object, ...)
 }
 \arguments{
@@ -21,8 +27,6 @@ Getters and setters to retrieve or set parts of an object.
 \seealso{
 Other mutators: 
 \code{\link{groups}},
-\code{\link{split}()},
-\code{\link{subset}()},
 \code{\link{totals}}
 }
 \author{

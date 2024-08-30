@@ -58,9 +58,7 @@ head(X)
 \seealso{
 Other mutators: 
 \code{\link{groups}},
-\code{\link{mutators}},
-\code{\link{split}()},
-\code{\link{subset}()}
+\code{\link{mutators}}
 }
 \author{
 N. Frerebeau

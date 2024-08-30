@@ -5,116 +5,93 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method barplot CompositionMatrix
-barplot.CompositionMatrix <- function(height, ..., groups = get_groups(height),
-                                      order = NULL, decreasing = FALSE,
-                                      horiz = TRUE,
-                                      xlab = NULL, ylab = NULL,
-                                      main = NULL, sub = NULL,
-                                      ann = graphics::par("ann"), axes = TRUE,
-                                      col = color("discreterainbow")(ncol(height)),
-                                      legend = list(x = "top")) {
+barplot.CompositionMatrix <- function(height, ..., subset = NULL,
+                                      groups = get_groups(height),
+                                      order_columns = FALSE, order_rows = NULL,
+                                      decreasing = TRUE,
+                                      space = 0.2, offset = 0.025,
+                                      colors = color("discreterainbow"),
+                                      border = "black", axes = TRUE, legend = TRUE) {
   ## Get data
-  z <- height
-
-  ## Ordering
-  ordering <- seq_len(nrow(height))
-  if (!is.null(order)) {
-    i <- z[, order, drop = TRUE]
-    ordering <- order(i, decreasing = decreasing)
+  if (is.null(subset)) subset <- seq_len(ncol(height))
+  z <- height[, subset, drop = FALSE]
+  if (ncol(z) == 1) {
+    warning("Only one part is selected. Displaying all data.", call. = FALSE)
+    z <- height
   }
-  z <- z[ordering, , drop = FALSE]
+  n <- nrow(z)
+
+  ## Prepare data
+  xy <- prepare_barplot(z, groups = groups, order_columns = order_columns,
+                        order_rows = order_rows, decreasing = decreasing,
+                        offset = offset)
+  parts <- factor(xy$data$column, levels = colnames(z))
+  col <- khroma::palette_color_discrete(colors)(parts)
 
   ## Graphical parameters
-  cex.lab <- list(...)$cex.lab %||% graphics::par("cex.lab")
-  col.lab <- list(...)$col.lab %||% graphics::par("col.lab")
-  font.lab <- list(...)$font.lab %||% graphics::par("font.lab")
-  cex.main <- list(...)$cex.main %||% graphics::par("cex.main")
-  font.main <- list(...)$font.main %||% graphics::par("font.main")
-  col.main <- list(...)$col.main %||% graphics::par("col.main")
+  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
+  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
+  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
 
-  x_side <- if (horiz) 1 else 2
-  y_side <- if (horiz) 2 else 1
+  ## Save and restore
+  mfrow <- graphics::par("mfrow")
+  mar <- graphics::par("mar")
+  mar[1] <- 3
+  mar[2] <- width2line(rownames(z), cex = cex.axis) + 0.1
+  mar[3] <- height2line("M", cex = cex.axis)
+  mar[4] <- height2line("M", cex = cex.axis)
 
-  ## Grouping
-  if (has_groups(groups)) {
-    arkhe::assert_length(groups, nrow(z))
-    groups <- groups[ordering]
+  old_par <- graphics::par(mfrow = mfrow, mar = mar)
+  on.exit(graphics::par(old_par))
 
-    z <- split(z, f = groups)
-    n <- length(z)
+  ## Open new window
+  grDevices::dev.hold()
+  on.exit(grDevices::dev.flush(), add = TRUE)
+  graphics::plot.new()
 
-    ylabs <- ylab %||% names(z) %||% paste0("G", seq_len(n))
+  ## Set plotting coordinates
+  space <- 1 / n * 0.5 - space / n * 0.5
+  xlim <- range(0, 1)
+  ylim <- range(xy$data$y)
+  ylim <- ylim + c(0, 2 * (offset + space) * legend) + c(-1, 1) * space
+  graphics::plot.window(xlim = xlim, ylim = ylim, xaxs = "i", yaxs = "i")
 
-    ## Save and restore
-    old_par <- graphics::par(
-      mar = if (horiz) c(0, 5.1, 0, 1) else c(5.1, 0, 0, 1),
-      oma = if (horiz) c(6, 0, 5, 0) else c(0, 6, 5, 0)
-    )
-    on.exit(graphics::par(old_par))
+  ## Plot
+  graphics::rect(
+    xleft = xy$data$xmin,
+    ybottom = xy$data$y - space,
+    xright = xy$data$xmax,
+    ytop = xy$data$y + space,
+    col = col,
+    border = border
+  )
 
-    ## Plot layout
-    mat <- matrix(data = seq_len(n), nrow = ifelse(horiz, n, 1))
-    mat_prop <- vapply(X = z, FUN = nrow, FUN.VALUE = integer(1))
-    mat_widths <- if (horiz) rep.int(1, nrow(mat)) else mat_prop
-    mat_heights <- if (horiz) mat_prop else rep.int(1, nrow(mat))
-    graphics::layout(mat, widths = mat_widths, heights = mat_heights)
-
-    for (i in seq_len(n)) {
-      graphics::barplot(height = t(z[[i]]), horiz = horiz, axes = FALSE,
-                        main = NULL, sub = NULL, xlab = NULL, ylab = NULL,
-                        col = col, las = x_side, ...)
-
-      ## Construct Axis
-      do_x <- (horiz & i == n) | (!horiz & i == 1)
-      if (axes) {
-        if (do_x) {
-          at <- graphics::axTicks(side = x_side)
-          graphics::axis(side = x_side, at = at, labels = label_percent(at),
-                         xpd = NA, las = 1)
-        }
-      }
-
-      ## Add annotation
-      if (ann) {
-        if (do_x) {
-          graphics::mtext(xlab, side = x_side, line = 3, cex = cex.lab,
-                          col = col.lab, font = font.lab)
-        }
-        graphics::mtext(ylabs[i], side = y_side, line = 3, cex = cex.lab,
-                        col = col.lab, font = font.lab)
-      }
-    }
-
-    ## Add annotation
-    if (ann) {
-      graphics::par(mfcol = c(1, 1))
-      graphics::mtext(main, side = 3, line = 3, cex = cex.main,
-                      font = font.main, col = col.main)
-    }
-  } else {
-    graphics::barplot(height = t(z), horiz = horiz, col = col, las = 1,
-                      main = main, sub = sub, xlab = xlab, ylab = ylab,
-                      axes = FALSE, ann = ann, ...)
-    at <- graphics::axTicks(side = x_side)
-    graphics::axis(side = x_side, at = at, labels = label_percent(at),
-                   xpd = NA, las = 1)
+  ## Construct axis
+  if (axes) {
+    at <- graphics::axTicks(side = 1)
+    graphics::axis(side = 1, at = at, labels = label_percent(at),
+                   xpd = NA, las = 1, cex.axis = cex.axis, col.axis = col.axis,
+                   font.axis = font.axis)
+    graphics::axis(side = 2, at = unique(xy$data$y), labels = unique(xy$data$row),
+                   las = 2, lty = 0, cex.axis = cex.axis, col.axis = col.axis,
+                   font.axis = font.axis)
+    graphics::mtext(text = names(xy$groups), side = 4, line = 0, at = xy$groups,
+                    cex = cex.axis, col = col.axis, font = font.axis)
   }
 
   ## Add legend
-  # https://stackoverflow.com/a/42076830
-  if (is.list(legend)) {
-    leg_par <- graphics::par(mar = c(0, 0, 0, 0), oma = c(0, 0, 0, 0),
-                             mfcol = c(1, 1), new = TRUE)
-    on.exit(graphics::par(leg_par), add = TRUE)
-    graphics::plot(0, 0, type = "n", ann = FALSE, axes = FALSE)
-
-    ## Compute legend position
-    args <- list(x = "top", legend = colnames(height), fill = col,
-                 ncol = ceiling(ncol(height) / 2), bty = "n", xpd = NA)
-    args <- utils::modifyList(args, legend)
-
-    ## Plot legend
-    do.call(graphics::legend, args = args)
+  if (legend) {
+    graphics::rect(
+      xleft = cumsum(xy$mean) - xy$mean,
+      ybottom = max(xy$data$y) + offset + space,
+      xright = cumsum(xy$mean),
+      ytop = max(xy$data$y) + 2 * (offset + space),
+      col = unique(col),
+      border = border
+    )
+    graphics::mtext(text = names(xy$mean), side = 3, line = 0,
+                    at = cumsum(xy$mean) - xy$mean / 2,
+                    cex = cex.axis, col = unique(col), font = font.axis)
   }
 
   invisible(height)
@@ -124,3 +101,69 @@ barplot.CompositionMatrix <- function(height, ..., groups = get_groups(height),
 #' @rdname barplot
 #' @aliases barplot,CompositionMatrix-method
 setMethod("barplot", c(height = "CompositionMatrix"), barplot.CompositionMatrix)
+
+prepare_barplot <- function(x, groups = NULL,
+                            order_rows = NULL, order_columns = FALSE,
+                            decreasing = TRUE, offset = 0.025) {
+  ## Validation
+  stopifnot(methods::is(x, "CompositionMatrix"))
+  if (!has_groups(groups)) groups <- rep("", nrow(x))
+  arkhe::assert_length(groups, nrow(x))
+
+  ## Row order
+  grp <- factor(groups, exclude = NULL)
+  spl <- lapply(
+    X = split(x = x, f = grp),
+    FUN = function(x, order, decrease) {
+      i <- seq_len(nrow(x))
+      if (!is.null(order)) {
+        j <- x[, order, drop = TRUE]
+        i <- order(j, decreasing = decrease)
+      }
+      x[i, , drop = FALSE]
+    },
+    order = order_rows,
+    decrease = decreasing
+  )
+  z <- do.call(rbind, spl)
+
+  ## Columns order
+  center <- mean(x)
+  if (order_columns) {
+    col_order <- order(center, decreasing = FALSE)
+    center <- center[col_order]
+    z <- z[, col_order, drop = FALSE]
+  }
+  names(center) <- labels(x)
+
+  ## Relative frequencies
+  freq <- z / rowSums(z)
+  xmax <- t(apply(X = freq, MARGIN = 1, FUN = cumsum))
+  xmin <- xmax - freq
+
+  ## Build a long table
+  row <- row(z, as.factor = TRUE)
+  col <- col(z, as.factor = TRUE)
+  data <- data.frame(
+    row = as.vector(row),
+    column = as.vector(col),
+    value = as.vector(freq)
+  )
+
+  n <- nrow(freq)
+  data$xmin <- as.vector(xmin)
+  data$xmax <- as.vector(xmax)
+  data$y <- as.vector(n + 1 - as.numeric(row)) / n # Reverse levels order
+
+  ## Offset
+  n_grp <- length(spl)
+  n_spl <- tapply(X = groups, INDEX = grp, FUN = length)
+  offset <- rev(seq_len(n_grp)) * offset - offset
+  data$y <- data$y + rep(offset, n_spl)[as.numeric(row)]
+
+  list(
+    data = data,
+    mean = center,
+    groups = 1 - cumsum(n_spl) / n + n_spl / n * 0.5 + offset
+  )
+}

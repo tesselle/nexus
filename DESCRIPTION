@@ -30,7 +30,7 @@ Imports:
     graphics,
     grDevices,
     isopleuros (>= 1.2.0),
-    khroma (>= 1.13.0),
+    khroma (>= 1.14.0),
     methods,
     MASS,
     stats,
@@ -56,6 +56,7 @@ Collate:
     'AllGenerics.R'
     'aggregate.R'
     'barplot.R'
+    'chemistry.R'
     'coerce.R'
     'condense.R'
     'covariance.R'

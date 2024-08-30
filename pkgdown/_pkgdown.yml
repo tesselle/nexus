@@ -34,6 +34,12 @@ reference:
 - title: Provenance Tools
   contents:
   - has_concept("sourcing methods")
+- title: Tools
+  contents:
+  - has_concept("tools")
+- title: Subsets
+  contents:
+  - has_concept("subsetting methods")
 - title: Getters and Setters
   contents:
   - has_concept("mutators")

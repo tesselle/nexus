@@ -16,6 +16,28 @@ get_transformation <- function(x) {
 
 # Getter =======================================================================
 #' @export
+#' @method labels CompositionMatrix
+labels.CompositionMatrix <- function(object, ...) {
+  colnames(object)
+}
+
+#' @export
+#' @rdname mutators
+#' @aliases labels,CompositionMatrix-method
+setMethod("labels", "CompositionMatrix", labels.CompositionMatrix)
+
+#' @export
+#' @method labels LogRatio
+labels.LogRatio <- function(object, ...) {
+  object@ratio
+}
+
+#' @export
+#' @rdname mutators
+#' @aliases labels,LogRatio-method
+setMethod("labels", "LogRatio", labels.LogRatio)
+
+#' @export
 #' @method weights LogRatio
 weights.LogRatio <- function(object, ...) {
   object@weights
@@ -28,18 +50,24 @@ setMethod("weights", "LogRatio", weights.LogRatio)
 
 # Groups =======================================================================
 has_groups <- function(x) {
-  length(x) > 0 && !all(is.na(x))
+  length(x) > 0 && any(in_groups(x))
+}
+in_groups <- function(x) {
+  !is.na(x) & nzchar(x, keepNA = TRUE)
+}
+ngroups <- function(x) {
+  length(unique(x))
 }
 
 #' @export
 #' @rdname groups
 #' @aliases is_assigned,CompositionMatrix-method
-setMethod("is_assigned", "CompositionMatrix", function(x) !is.na(get_groups(x)))
+setMethod("is_assigned", "CompositionMatrix", function(x) in_groups(get_groups(x)))
 
 #' @export
 #' @rdname groups
 #' @aliases is_assigned,LogRatio-method
-setMethod("is_assigned", "LogRatio", function(x) !is.na(get_groups(x)))
+setMethod("is_assigned", "LogRatio", function(x) in_groups(get_groups(x)))
 
 #' @export
 #' @rdname groups

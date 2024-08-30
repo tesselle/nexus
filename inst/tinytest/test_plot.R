@@ -18,18 +18,17 @@ if (at_home()) {
   expect_snapshot_plot(plot_hist, "plot_hist")
 
   # Barplot ====================================================================
-  plot_barplot <- function() barplot(coda, order = NULL)
+  plot_barplot <- function() barplot(coda)
   expect_snapshot_plot(plot_barplot, "plot_barplot")
 
-  plot_barplot_order <- function() barplot(coda, order = 2)
-  expect_snapshot_plot(plot_barplot_order, "plot_barplot_order")
+  plot_barplot_order <- function() barplot(coda, order_rows = 2)
+  expect_snapshot_plot(plot_barplot_order, "plot_barplot_order_rows")
 
-  plot_barplot_group <- function() barplot(coda, groups = rep(1:5, 5), order = 2)
+  plot_barplot_order <- function() barplot(coda, order_columns = TRUE)
+  expect_snapshot_plot(plot_barplot_order, "plot_barplot_order_columns")
+
+  plot_barplot_group <- function() barplot(coda, groups = rep(1:5, 5), order_columns = TRUE)
   expect_snapshot_plot(plot_barplot_group, "plot_barplot_group")
-
-  plot_barplot_vertical <- function() barplot(coda, groups = rep(1:5, 5),
-                                              order = NULL, horiz = FALSE)
-  expect_snapshot_plot(plot_barplot_vertical, "plot_barplot_vertical")
 
   # Density ====================================================================
   # See argument old.coords of density().

@@ -1,13 +1,15 @@
 # nexus 0.2.0.9000
 ## New classes and methods
+* Add transformation methods for `LogRatio` objects (clr <-> alr, clr -> ilr, alr -> ilr).
 * Add `condense()` to compute compositional mean of data subsets.
 * Add `pip()` to compute proportionality index of parts.
+* Add `rbind()` method for `CompositionMatrix` objects.
 * Add `show()` methods for `LogRatio` objects.
-* Add transformation methods for `LogRatio` objects (clr <-> alr, clr -> ilr, alr -> ilr).
+* Add `element_major()`, `element_minor()` and `element_trace()` methods for `CompositionMatrix` objects.
 
 ## Enhancements
 * Add example datasets.
-* Allow proportional sizing of faceted barplot.
+* Improve bar chart rendering.
 
 ## Breaking changes
 * `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.

@@ -79,13 +79,11 @@ subcoda <- coda[, 1:3] # Get the first three column
 head(subcoda)
 }
 \seealso{
-Other mutators: 
-\code{\link{groups}},
-\code{\link{mutators}},
-\code{\link{split}()},
-\code{\link{totals}}
+Other subsetting methods: 
+\code{\link{bind}},
+\code{\link{split}()}
 }
 \author{
 N. Frerebeau
 }
-\concept{mutators}
+\concept{subsetting methods}

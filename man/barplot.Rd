@@ -9,18 +9,17 @@
 \S4method{barplot}{CompositionMatrix}(
   height,
   ...,
+  subset = NULL,
   groups = get_groups(height),
-  order = NULL,
-  decreasing = FALSE,
-  horiz = TRUE,
-  xlab = NULL,
-  ylab = NULL,
-  main = NULL,
-  sub = NULL,
-  ann = graphics::par("ann"),
+  order_columns = FALSE,
+  order_rows = NULL,
+  decreasing = TRUE,
+  space = 0.2,
+  offset = 0.025,
+  colors = color("discreterainbow"),
+  border = "black",
   axes = TRUE,
-  col = color("discreterainbow")(ncol(height)),
-  legend = list(x = "top")
+  legend = TRUE
 )
 }
 \arguments{
@@ -28,35 +27,36 @@
 
 \item{...}{Further parameters to be passed to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 
+\item{subset}{A vector of column indices.}
+
 \item{groups}{A \code{vector} of grouping elements, as long as the variables in
-\code{height}. If set, a matrix of panels defined by \code{groups} will be drawn.}
+\code{height}.}
 
-\item{order}{An \code{\link{integer}} vector giving the index of the column to be used
-for the ordering of the data.}
+\item{order_columns}{A \code{\link{logical}} scalar: should should columns be reorderd?}
 
-\item{decreasing}{A \code{\link{logical}} scalar: should the sort order be increasing
-or decreasing?}
+\item{order_rows}{An \code{\link{integer}} vector giving the index of the column to be
+used for the ordering of the data.}
 
-\item{horiz}{A \code{\link{logical}} scalar. If \code{FALSE}, the bars are drawn vertically
-with the first bar to the left. If \code{TRUE} (the default), the bars are drawn
-horizontally with the first at the bottom.}
+\item{decreasing}{A \code{\link{logical}} scalar: should the sort order of rows be
+increasing or decreasing?}
 
-\item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
+\item{space}{A length-one \code{\link{numeric}} vector giving the the amount of space
+(as a fraction of the width of a bar) left between each bar
+(defaults to \eqn{0.2}).}
 
-\item{main}{A \code{\link{character}} string giving a main title for the plot.}
+\item{offset}{A length-one \code{\link{numeric}} vector giving the the amount of space
+(as a fraction) left between groups (defaults to \eqn{0.025}). Only used if
+\code{groups} is not \code{NULL}.}
 
-\item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
+\item{colors}{A vector of colors or a \code{function} that when called with a
+single argument (an integer specifying the number of colors) returns a
+vector of colors. Will be mapped to the part names.}
 
-\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
-and y axis labels) appear on the plot?}
+\item{border}{The color to draw the borders.}
 
 \item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
 
-\item{col}{A vector of colors for the bar components.}
-
-\item{legend}{A \code{\link{list}} of additional arguments to be passed to
-\code{\link[graphics:legend]{graphics::legend()}}; names of the list are used as argument names.
-If \code{NULL}, no legend is displayed.}
+\item{legend}{A \code{\link{logical}} scalar: should the legend be displayed?}
 }
 \value{
 \code{barplot()} is called for its side-effects: is results in a graphic being
@@ -73,16 +73,18 @@ data("hongite")
 coda <- as_composition(hongite)
 
 ## Bar plot
-barplot(coda, order = 2)
+barplot(coda)
 
 ## Data from Day et al. 2011
-data("kommos", package = "folio") # Coerce to compositional data
+data("kommos", package = "folio")
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, groups = 1)
+coda <- as_composition(kommos, groups = 1) # Coerce to compositional data
 
 ## Use ceramic types for grouping
-barplot(coda, order = 1)
-barplot(coda, order = 1, horiz = FALSE)
+barplot(coda, order_columns = TRUE)
+
+## Display only minor elements
+barplot(coda, subset = element_minor(coda), order_columns = TRUE)
 }
 \seealso{
 Other plot methods: 
