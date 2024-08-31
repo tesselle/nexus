@@ -5,7 +5,6 @@ NULL
 # S4 dispatch to base S3 generic ===============================================
 setGeneric("dist", package = "stats")
 setGeneric("mahalanobis", package = "stats")
-setGeneric("dotchart", package = "graphics")
 
 # Import S4 generics ===========================================================
 #' @importMethodsFrom arkhe describe
@@ -203,7 +202,7 @@ NULL
 #' Row Sums
 #'
 #' Retrieves or defines the row sums (before closure).
-#' @param x An object from which to get or set `totals`.
+#' @param object An object from which to get or set `totals`.
 #' @param value A possible value for the `totals` of `x`.
 #' @return
 #'  * `total() <- value` returns an object of the same sort as `x` with the new
@@ -216,13 +215,13 @@ NULL
 #' @aliases total-method
 setGeneric(
   name = "total",
-  def = function(x) standardGeneric("total")
+  def = function(object) standardGeneric("total")
 )
 
 #' @rdname total
 setGeneric(
   name = "total<-",
-  def = function(x, value) standardGeneric("total<-")
+  def = function(object, value) standardGeneric("total<-")
 )
 
 #' Working With Groups

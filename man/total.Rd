@@ -10,18 +10,18 @@
 \alias{total<-,CompositionMatrix-method}
 \title{Row Sums}
 \usage{
-total(x)
+total(object)
 
-total(x) <- value
+total(object) <- value
 
-\S4method{total}{CompositionMatrix}(x)
+\S4method{total}{CompositionMatrix}(object)
 
-\S4method{total}{LogRatio}(x)
+\S4method{total}{LogRatio}(object)
 
-\S4method{total}{CompositionMatrix}(x) <- value
+\S4method{total}{CompositionMatrix}(object) <- value
 }
 \arguments{
-\item{x}{An object from which to get or set \code{totals}.}
+\item{object}{An object from which to get or set \code{totals}.}
 
 \item{value}{A possible value for the \code{totals} of \code{x}.}
 }

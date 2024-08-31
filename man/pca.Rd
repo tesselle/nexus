@@ -80,7 +80,7 @@ X <- pca(coda)
 biplot(X)
 
 ## Explore results
-viz_individuals(X, pch = 16)
+viz_individuals(X)
 viz_variables(X)
 }
 \references{
