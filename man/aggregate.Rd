@@ -43,7 +43,7 @@ coda <- as_composition(slides)
 aggregate(coda, by = slides$slide, FUN = mean)
 
 ## Metric variance by slide
-aggregate(coda, by = slides$slide, FUN = metric_var)
+aggregate(coda, by = slides$slide, FUN = variance_total)
 }
 \seealso{
 Other statistics: 
@@ -53,10 +53,11 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},
-\code{\link{metric_var}()},
 \code{\link{pip}()},
 \code{\link{quantile}()},
 \code{\link{scale}()},
+\code{\link{variance}()},
+\code{\link{variance_total}()},
 \code{\link{variation}()}
 }
 \author{

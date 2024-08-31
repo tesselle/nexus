@@ -33,10 +33,23 @@ mar <- margin(coda, parts = c("B", "D"))
 expect_equal_to_reference(mar, file = "_snaps/margin.rds")
 
 # Metric variance ==============================================================
-expect_equal(round(metric_var(coda), 5), 1.69132)
+expect_equal(round(variance_total(coda), 5), 1.69132)
+
+clr <- transform_clr(coda)
+lr <- transform_lr(coda)
+
+expect_equal(
+  variance_total(clr),
+  variance_total(coda) * (1 / ncol(coda)) * (1 - (1 / nrow(coda)))
+)
+
+expect_equal(variance_total(clr), variance_total(lr))
+expect_equal(round(variance_total(clr), 5), 0.32473)
+
+expect_equal(round(variance(clr), 5), c(A = 0.01237, B = 0.10617, C = 0.18821, D = 0.00911, E = 0.00887))
 
 # Metric standard deviation ====================================================
-expect_equal(round(metric_sd(coda), 5), 0.65025)
+expect_equal(round(variance_total(coda, sd = TRUE), 5), 0.65025)
 
 # Variation =====================================================================
 expect_equal_to_reference(variation(coda), file = "_snaps/variation.rds")
@@ -48,3 +61,5 @@ expect_equal_to_reference(covariance(coda, center = TRUE), file = "_snaps/covari
 
 # Variation array ==============================================================
 # expect_equal_to_reference(variation_array(coda), file = "_snaps/variation_array.rds")
+
+# Log-ratio variance ===========================================================

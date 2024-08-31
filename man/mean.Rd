@@ -34,12 +34,6 @@ mean(coda)
 
 ## Quantile
 quantile(coda)
-
-## Metric variance
-metric_var(coda)
-
-## Metric standard deviation
-metric_sd(coda)
 }
 \references{
 Aitchison, J. (1986). \emph{The Statistical Analysis of Compositional Data}.
@@ -53,10 +47,11 @@ Other statistics:
 \code{\link{dist}},
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
-\code{\link{metric_var}()},
 \code{\link{pip}()},
 \code{\link{quantile}()},
 \code{\link{scale}()},
+\code{\link{variance}()},
+\code{\link{variance_total}()},
 \code{\link{variation}()}
 }
 \author{

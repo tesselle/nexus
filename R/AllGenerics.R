@@ -751,46 +751,6 @@ setGeneric(
   valueClass = "CompositionMatrix"
 )
 
-#' Metric Variance and Standard Deviation
-#'
-#' @description
-#'  * `metric_var()` computes the metric variance (or total variance), i.e. a
-#'    global measure of spread.
-#'  * `metric_sd()` computes the metric standard deviation.
-#' @param x A [`CompositionMatrix-class`] object.
-#' @param ... Currently not used.
-#' @return A [`numeric`] vector.
-#' @details
-#'  The metric variance is the average of the [CLR][transform_clr()] variances.
-#' @references
-#'  Boogaart, K. G. van den & Tolosana-Delgado, R. (2013). *Analyzing
-#'  Compositional Data with R*. Berlin Heidelberg: Springer-Verlag.
-#'  \doi{10.1007/978-3-642-36809-7}.
-#'
-#'  Hron, K. & Kubáček. L. (2011). Statistical Properties of the Total Variation
-#'  Estimator for Compositional Data. *Metrika*, 74 (2): 221-230.
-#'  \doi{10.1007/s00184-010-0299-3}.
-#'
-#'  Pawlowsky-Glahn, V. & Egozcue, J. J. (2001). Geometric Approach to
-#'  Statistical Analysis on the Simplex. *Stochastic Environmental Research and
-#'  Risk Assessment*, 15(5): 384-398. \doi{10.1007/s004770100077}.
-#' @example inst/examples/ex-mean.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family statistics
-#' @aliases metric_var-method
-setGeneric(
-  name = "metric_var",
-  def = function(x, ...) standardGeneric("metric_var")
-)
-
-#' @rdname metric_var
-#' @aliases metric_sd-method
-setGeneric(
-  name = "metric_sd",
-  def = function(x, ...) standardGeneric("metric_sd")
-)
-
 #' Covariance Matrix
 #'
 #' Computes the (centered) log-ratio covariance matrix (see below).
@@ -816,6 +776,74 @@ setGeneric(
   name = "covariance",
   def = function(x, ...) standardGeneric("covariance"),
   valueClass = "matrix"
+)
+
+#' Log-Ratios Variances
+#'
+#' Computes log-ratio (weighted) variances.
+#' @param x A [`CompositionMatrix-class`] object.
+#' @param row_weights A [`numeric`] vector of row weights. If `NULL` (the
+#'  default), equal weights are used.
+#' @param column_weights A [`logical`] scalar: should the weights of the
+#'  log-ratio be used? If `FALSE`, equally-weighted parts are used.
+#'  Alternatively, a positive [`numeric`] vector of weights can be specified.
+#' @param ... Currently not used.
+#' @return A [`numeric`] vector of individual variances.
+#' @references
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#' @example inst/examples/ex-variance.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @aliases variance-method
+setGeneric(
+  name = "variance",
+  def = function(x, ...) standardGeneric("variance"),
+  valueClass = "numeric"
+)
+
+#' Total Variance
+#'
+#' Computes the total (or metric) variance, a global measure of spread.
+#' @inheritParams variance
+#' @param sd A [`logical`] scalar: should the metric standard deviation be
+#'  returned instead of the metric variance?
+#' @return A [`numeric`] vector.
+#' @details
+#'  Two methods are available, see below.
+#' @references
+#'  Aitchison, J. (1986). *The Statistical Analysis of Compositional Data*.
+#'  London: Chapman and Hall, p. 64-91.
+#'
+#'  Aitchison, J. (1997). The One-Hour Course in Compositional Data Analysis or
+#'  Compositional Data Analysis Is Simple. In V. Pawlowsky-Glahn (ed.),
+#'  *IAMG'97*. Barcelona: International Center for Numerical Methods in
+#'  Engineering (CIMNE), p. 3-35.
+#'
+#'  Boogaart, K. G. van den & Tolosana-Delgado, R. (2013). *Analyzing
+#'  Compositional Data with R*. Berlin Heidelberg: Springer-Verlag.
+#'  \doi{10.1007/978-3-642-36809-7}.
+#'
+#'  Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*.
+#'  Boca Raton: CRC Press.
+#'
+#'  Hron, K. & Kubáček. L. (2011). Statistical Properties of the Total Variation
+#'  Estimator for Compositional Data. *Metrika*, 74 (2): 221-230.
+#'  \doi{10.1007/s00184-010-0299-3}.
+#'
+#'  Pawlowsky-Glahn, V. & Egozcue, J. J. (2001). Geometric Approach to
+#'  Statistical Analysis on the Simplex. *Stochastic Environmental Research and
+#'  Risk Assessment*, 15(5): 384-398. \doi{10.1007/s004770100077}.
+#' @example inst/examples/ex-variance.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family statistics
+#' @aliases variance_total-method
+setGeneric(
+  name = "variance_total",
+  def = function(x, ...) standardGeneric("variance_total"),
+  valueClass = "numeric"
 )
 
 #' Variation Matrix

@@ -47,10 +47,11 @@ Other statistics:
 \code{\link{dist}},
 \code{\link{mahalanobis}()},
 \code{\link{mean}()},
-\code{\link{metric_var}()},
 \code{\link{pip}()},
 \code{\link{quantile}()},
 \code{\link{scale}()},
+\code{\link{variance}()},
+\code{\link{variance_total}()},
 \code{\link{variation}()}
 }
 \author{

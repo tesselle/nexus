@@ -6,6 +6,7 @@
 * Add `rbind()` method for `CompositionMatrix` objects.
 * Add `show()` methods for `LogRatio` objects.
 * Add `element_major()`, `element_minor()` and `element_trace()` methods for `CompositionMatrix` objects.
+* Add `variance()` and `variance_total()` to compute total variance.
 
 ## Enhancements
 * Add example datasets.
@@ -15,6 +16,7 @@
 * `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.
 * Remove `samples` slot in all classes.
 * Remove `as_features()`.
+* Remove `metrix_var()` and `metric_sd()`.
 * Rewrite `plot()` method for `OutlierIndex` object.
 
 # nexus 0.2.0

@@ -8,4 +8,4 @@ coda <- as_composition(slides)
 aggregate(coda, by = slides$slide, FUN = mean)
 
 ## Metric variance by slide
-aggregate(coda, by = slides$slide, FUN = metric_var)
+aggregate(coda, by = slides$slide, FUN = variance_total)

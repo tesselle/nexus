@@ -9,9 +9,3 @@ mean(coda)
 
 ## Quantile
 quantile(coda)
-
-## Metric variance
-metric_var(coda)
-
-## Metric standard deviation
-metric_sd(coda)

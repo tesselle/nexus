@@ -37,12 +37,6 @@ mean(coda)
 
 ## Quantile
 quantile(coda)
-
-## Metric variance
-metric_var(coda)
-
-## Metric standard deviation
-metric_sd(coda)
 }
 \references{
 Filzmoser, P., Hron, K. & Reimann, C. (2009). Univariate Statistical
@@ -59,9 +53,10 @@ Other statistics:
 \code{\link{mahalanobis}()},
 \code{\link{margin}()},
 \code{\link{mean}()},
-\code{\link{metric_var}()},
 \code{\link{pip}()},
 \code{\link{scale}()},
+\code{\link{variance}()},
+\code{\link{variance_total}()},
 \code{\link{variation}()}
 }
 \author{
