@@ -60,45 +60,45 @@ ngroups <- function(x) {
 }
 
 #' @export
-#' @rdname groups
+#' @rdname group
 #' @aliases is_assigned,CompositionMatrix-method
-setMethod("is_assigned", "CompositionMatrix", function(x) in_groups(get_groups(x)))
+setMethod("is_assigned", "CompositionMatrix", function(x) in_groups(group(x)))
 
 #' @export
-#' @rdname groups
+#' @rdname group
 #' @aliases is_assigned,LogRatio-method
-setMethod("is_assigned", "LogRatio", function(x) in_groups(get_groups(x)))
+setMethod("is_assigned", "LogRatio", function(x) in_groups(group(x)))
 
 #' @export
-#' @rdname groups
+#' @rdname group
 #' @aliases any_assigned,CompositionMatrix-method
 setMethod("any_assigned", "CompositionMatrix", function(x) any(is_assigned(x)))
 
 #' @export
-#' @rdname groups
+#' @rdname group
 #' @aliases any_assigned,LogRatio-method
 setMethod("any_assigned", "LogRatio", function(x) any(is_assigned(x)))
 
 #' @export
-#' @rdname groups
-#' @aliases get_groups,CompositionMatrix-method
-setMethod("get_groups", "CompositionMatrix", function(x) x@groups)
+#' @rdname group
+#' @aliases group,CompositionMatrix-method
+setMethod("group", "CompositionMatrix", function(x) x@groups)
 
 #' @export
-#' @rdname groups
-#' @aliases get_groups,LogRatio-method
-setMethod("get_groups", "LogRatio", function(x) x@groups)
+#' @rdname group
+#' @aliases group,LogRatio-method
+setMethod("group", "LogRatio", function(x) x@groups)
 
 #' @export
-#' @rdname groups
-#' @aliases get_groups,OutlierIndex-method
-setMethod("get_groups", "OutlierIndex", function(x) x@groups)
+#' @rdname group
+#' @aliases group,OutlierIndex-method
+setMethod("group", "OutlierIndex", function(x) x@groups)
 
 #' @export
-#' @rdname groups
-#' @aliases set_groups,CompositionMatrix-method
+#' @rdname group
+#' @aliases group,CompositionMatrix-method
 setMethod(
-  f = "set_groups<-",
+  f = "group<-",
   signature = "CompositionMatrix",
   definition = function(x, value) {
     if (is.null(value)) {
@@ -115,17 +115,17 @@ setMethod(
 
 # Totals =======================================================================
 #' @export
-#' @rdname totals
+#' @rdname total
 #' @aliases total,CompositionMatrix-method
 setMethod("total", "CompositionMatrix", function(x) x@totals)
 
 #' @export
-#' @rdname totals
+#' @rdname total
 #' @aliases total,LogRatio-method
 setMethod("total", "LogRatio", function(x) x@totals)
 
 #' @export
-#' @rdname totals
+#' @rdname total
 setMethod(
   f = "total<-",
   signature = "CompositionMatrix",

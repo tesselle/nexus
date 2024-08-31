@@ -5,7 +5,7 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = get_groups(x),
+plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = group(x),
                                    palette_color = palette_color_discrete(),
                                    palette_symbol = palette_shape()) {
   ## Grouping
@@ -30,7 +30,7 @@ setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMat
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, ..., groups = get_groups(x),
+plot.LogRatio <- function(x, ..., groups = group(x),
                           palette_color = palette_color_discrete(),
                           rug = TRUE, ticksize = 0.05,
                           ncol = NULL, flip = FALSE,

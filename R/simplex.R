@@ -40,7 +40,7 @@ setMethod(
 
     z <- x * y
     z <- as_composition(z)
-    set_groups(z) <- get_groups(x)
+    group(z) <- group(x)
 
     z
   }
@@ -92,7 +92,7 @@ setMethod(
     arkhe::assert_length(y, 1L)
     z <- x ^ y
     z <- as_composition(z)
-    set_groups(z) <- get_groups(x)
+    group(z) <- group(x)
     z
   }
 )

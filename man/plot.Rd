@@ -10,7 +10,7 @@
   x,
   ...,
   margin = NULL,
-  groups = get_groups(x),
+  groups = group(x),
   palette_color = palette_color_discrete(),
   palette_symbol = palette_shape()
 )

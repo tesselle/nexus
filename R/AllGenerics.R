@@ -205,25 +205,20 @@ NULL
 #' @param x An object from which to get or set `totals`.
 #' @param value A possible value for the `totals` of `x`.
 #' @return
-#'  * `total()<-` returns an object of the same sort as `x` with the new
+#'  * `total() <- value` returns an object of the same sort as `x` with the new
 #'    row sums assigned.
 #'  * `total()` returns the row sums of `x`.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
-#' @name totals
-#' @rdname totals
-NULL
-
-#' @rdname totals
 #' @aliases total-method
 setGeneric(
   name = "total",
   def = function(x) standardGeneric("total")
 )
 
-#' @rdname totals
+#' @rdname total
 setGeneric(
   name = "total<-",
   def = function(x, value) standardGeneric("total<-")
@@ -235,9 +230,9 @@ setGeneric(
 #' @param x An object from which to get or set `groups`.
 #' @param value A possible value for the `groups` of `x`.
 #' @return
-#'  * `set_groups()` returns an object of the same sort as `x` with the new
+#'  * `group() <- value` returns an object of the same sort as `x` with the new
 #'    group names assigned.
-#'  * `get_groups()` returns a [`character`] vector giving the group names of `x`.
+#'  * `group()` returns a [`character`] vector giving the group names of `x`.
 #'  * `any_assigned()` returns a [`logical`] scalar specifying whether or not `x`
 #'    has groups.
 #'  * `is_assigned()` returns a [`logical`] vector specifying whether or not an
@@ -246,36 +241,30 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
-#' @name groups
-#' @rdname groups
-NULL
+#' @aliases group-method
+setGeneric(
+  name = "group",
+  def = function(x) standardGeneric("group")
+)
 
-#' @rdname groups
+#' @rdname group
+setGeneric(
+  name = "group<-",
+  def = function(x, value) standardGeneric("group<-")
+)
+
+#' @rdname group
 #' @aliases any_assigned-method
 setGeneric(
   name = "any_assigned",
   def = function(x) standardGeneric("any_assigned")
 )
 
-#' @rdname groups
+#' @rdname group
 #' @aliases is_assigned-method
 setGeneric(
   name = "is_assigned",
   def = function(x) standardGeneric("is_assigned")
-)
-
-#' @rdname groups
-#' @aliases get_groups-method
-setGeneric(
-  name = "get_groups",
-  def = function(x) standardGeneric("get_groups")
-)
-
-#' @rdname groups
-#' @aliases set_groups-method
-setGeneric(
-  name = "set_groups<-",
-  def = function(x, value) standardGeneric("set_groups<-")
 )
 
 #' Chemical Elements and Compounds

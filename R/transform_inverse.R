@@ -19,7 +19,7 @@ setMethod(
     .CompositionMatrix(
       y,
       totals = total(object),
-      groups = get_groups(object)
+      groups = group(object)
     )
   }
 )
@@ -43,7 +43,7 @@ setMethod(
     .CompositionMatrix(
       y,
       totals = total(object),
-      groups = get_groups(object)
+      groups = group(object)
     )
   }
 )
@@ -66,7 +66,7 @@ setMethod(
     .CompositionMatrix(
       y,
       totals = total(object),
-      groups = get_groups(object)
+      groups = group(object)
     )
   }
 )

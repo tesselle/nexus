@@ -96,7 +96,7 @@ kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1)
 ```
 
-`get_groups(x)` and `set_groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) or empty strings can be used to specify that a sample does not belong to any group):
+`group(x)` and `group(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) or empty strings can be used to specify that a sample does not belong to any group):
 
 ```{r}
 ## Assume that a third of the samples does not belong to any group
@@ -104,11 +104,11 @@ grp <- kommos$type
 grp[sample(length(grp), size = length(grp) / 3)] <- NA
 
 ## Set groups
-set_groups(coda) <- grp
+group(coda) <- grp
 is_assigned(coda)
 
 ## Retrieve groups
-get_groups(coda)
+group(coda)
 ```
 
 Once groups have been defined, they can be used by further methods (e.g. plotting).

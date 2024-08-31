@@ -9,7 +9,7 @@
 \S4method{plot}{LogRatio,missing}(
   x,
   ...,
-  groups = get_groups(x),
+  groups = group(x),
   palette_color = palette_color_discrete(),
   rug = TRUE,
   ticksize = 0.05,

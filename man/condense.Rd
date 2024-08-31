@@ -9,7 +9,7 @@
 \usage{
 condense(x, ...)
 
-\S4method{condense}{CompositionMatrix}(x, by = get_groups(x), ...)
+\S4method{condense}{CompositionMatrix}(x, by = group(x), ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}

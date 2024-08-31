@@ -2,7 +2,7 @@ data("slides")
 coda <- as_composition(slides, groups = 2)
 
 ## Compositional mean by sample
-flat <- condense(coda, by = get_groups(coda))
+flat <- condense(coda, by = group(coda))
 expect_equal_to_reference(as.data.frame(flat), file = "_snaps/condense.rds")
 
 ## With zeros

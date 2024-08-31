@@ -6,7 +6,7 @@ NULL
 #' @export
 #' @method barplot CompositionMatrix
 barplot.CompositionMatrix <- function(height, ..., subset = NULL,
-                                      groups = get_groups(height),
+                                      groups = group(height),
                                       order_columns = FALSE, order_rows = NULL,
                                       decreasing = TRUE,
                                       space = 0.2, offset = 0.025,

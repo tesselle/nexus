@@ -9,7 +9,7 @@ NULL
 setMethod(
   f = "outliers",
   signature = c(object = "CompositionMatrix"),
-  definition = function(object, ..., groups = get_groups(object),
+  definition = function(object, ..., groups = group(object),
                         method = c("mve", "mcd"), quantile = 0.975) {
     ## Transformation
     z <- transform_ilr(object)

@@ -12,7 +12,7 @@ outliers(object, ...)
 \S4method{outliers}{CompositionMatrix}(
   object,
   ...,
-  groups = get_groups(object),
+  groups = group(object),
   method = c("mve", "mcd"),
   quantile = 0.975
 )

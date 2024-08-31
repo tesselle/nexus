@@ -26,8 +26,8 @@ Getters and setters to retrieve or set parts of an object.
 }
 \seealso{
 Other mutators: 
-\code{\link{groups}},
-\code{\link{totals}}
+\code{\link{group}()},
+\code{\link{total}()}
 }
 \author{
 N. Frerebeau

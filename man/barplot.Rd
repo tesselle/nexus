@@ -10,7 +10,7 @@
   height,
   ...,
   subset = NULL,
-  groups = get_groups(height),
+  groups = group(height),
   order_columns = FALSE,
   order_rows = NULL,
   decreasing = TRUE,
