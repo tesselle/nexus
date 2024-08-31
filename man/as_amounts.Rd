@@ -30,7 +30,7 @@ A1 <- matrix(data = sample(1:100, 100, TRUE), nrow = 20)
 B <- as_composition(A1)
 
 ## Row sums are internally stored before coercing to relative frequencies
-get_totals(B)
+total(B)
 
 ## This allows to restore the source data
 A2 <- as_amounts(B)

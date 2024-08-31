@@ -28,7 +28,7 @@ setMethod(
     )
     z <- do.call(rbind, z)
 
-    tot <- tapply(X = get_totals(x), INDEX = by, FUN = mean, simplify = TRUE)
+    tot <- tapply(X = total(x), INDEX = by, FUN = mean, simplify = TRUE)
     grp <- get_groups(x)
     if (has_groups(grp)) grp <- flatten_chr(x = grp, by = by)
     else grp <- rep(NA_character_, length(tot))

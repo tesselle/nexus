@@ -116,19 +116,18 @@ setMethod(
 # Totals =======================================================================
 #' @export
 #' @rdname totals
-#' @aliases get_totals,CompositionMatrix-method
-setMethod("get_totals", "CompositionMatrix", function(x) x@totals)
+#' @aliases total,CompositionMatrix-method
+setMethod("total", "CompositionMatrix", function(x) x@totals)
 
 #' @export
 #' @rdname totals
-#' @aliases get_totals,LogRatio-method
-setMethod("get_totals", "LogRatio", function(x) x@totals)
+#' @aliases total,LogRatio-method
+setMethod("total", "LogRatio", function(x) x@totals)
 
 #' @export
 #' @rdname totals
-#' @aliases set_totals,CompositionMatrix-method
 setMethod(
-  f = "set_totals<-",
+  f = "total<-",
   signature = "CompositionMatrix",
   definition = function(x, value) {
     x@totals <- if (is.null(value)) rowSums(x) else as.numeric(value)

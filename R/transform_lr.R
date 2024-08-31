@@ -36,7 +36,7 @@ setMethod(
       ratio = r,
       order = seq_len(J),
       weights = w,
-      totals = get_totals(object),
+      totals = total(object),
       groups = get_groups(object)
     )
   }

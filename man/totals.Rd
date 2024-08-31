@@ -3,25 +3,23 @@
 \docType{methods}
 \name{totals}
 \alias{totals}
-\alias{get_totals}
-\alias{get_totals-method}
-\alias{set_totals<-}
-\alias{set_totals-method}
-\alias{get_totals,CompositionMatrix-method}
-\alias{get_totals,LogRatio-method}
-\alias{set_totals<-,CompositionMatrix-method}
-\alias{set_totals,CompositionMatrix-method}
+\alias{total}
+\alias{total-method}
+\alias{total<-}
+\alias{total,CompositionMatrix-method}
+\alias{total,LogRatio-method}
+\alias{total<-,CompositionMatrix-method}
 \title{Row Sums}
 \usage{
-get_totals(x)
+total(x)
 
-set_totals(x) <- value
+total(x) <- value
 
-\S4method{get_totals}{CompositionMatrix}(x)
+\S4method{total}{CompositionMatrix}(x)
 
-\S4method{get_totals}{LogRatio}(x)
+\S4method{total}{LogRatio}(x)
 
-\S4method{set_totals}{CompositionMatrix}(x) <- value
+\S4method{total}{CompositionMatrix}(x) <- value
 }
 \arguments{
 \item{x}{An object from which to get or set \code{totals}.}
@@ -30,9 +28,9 @@ set_totals(x) <- value
 }
 \value{
 \itemize{
-\item \code{set_totals()} returns an object of the same sort as \code{x} with the new
+\item \verb{total()<-} returns an object of the same sort as \code{x} with the new
 row sums assigned.
-\item \code{get_totals()} returns the row sums of \code{x}.
+\item \code{total()} returns the row sums of \code{x}.
 }
 }
 \description{
@@ -46,7 +44,7 @@ A1 <- matrix(data = sample(1:100, 100, TRUE), nrow = 20)
 B <- as_composition(A1)
 
 ## Row sums are internally stored before coercing to relative frequencies
-get_totals(B)
+total(B)
 
 ## This allows to restore the source data
 A2 <- as_amounts(B)

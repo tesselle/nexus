@@ -199,6 +199,36 @@ setGeneric(
 #' @aliases get set
 NULL
 
+#' Row Sums
+#'
+#' Retrieves or defines the row sums (before closure).
+#' @param x An object from which to get or set `totals`.
+#' @param value A possible value for the `totals` of `x`.
+#' @return
+#'  * `total()<-` returns an object of the same sort as `x` with the new
+#'    row sums assigned.
+#'  * `total()` returns the row sums of `x`.
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name totals
+#' @rdname totals
+NULL
+
+#' @rdname totals
+#' @aliases total-method
+setGeneric(
+  name = "total",
+  def = function(x) standardGeneric("total")
+)
+
+#' @rdname totals
+setGeneric(
+  name = "total<-",
+  def = function(x, value) standardGeneric("total<-")
+)
+
 #' Working With Groups
 #'
 #' Retrieves or defines the groups to which the observations belong.
@@ -299,37 +329,6 @@ setGeneric(
   name = "element_trace",
   def = function(object, ...) standardGeneric("element_trace"),
   valueClass = "logical"
-)
-
-#' Row Sums
-#'
-#' Retrieves or defines the row sums (before closure).
-#' @param x An object from which to get or set `totals`.
-#' @param value A possible value for the `totals` of `x`.
-#' @return
-#'  * `set_totals()` returns an object of the same sort as `x` with the new
-#'    row sums assigned.
-#'  * `get_totals()` returns the row sums of `x`.
-#' @example inst/examples/ex-coerce.R
-#' @author N. Frerebeau
-#' @docType methods
-#' @family mutators
-#' @name totals
-#' @rdname totals
-NULL
-
-#' @rdname totals
-#' @aliases get_totals-method
-setGeneric(
-  name = "get_totals",
-  def = function(x) standardGeneric("get_totals")
-)
-
-#' @rdname totals
-#' @aliases set_totals-method
-setGeneric(
-  name = "set_totals<-",
-  def = function(x, value) standardGeneric("set_totals<-")
 )
 
 ## Subset ----------------------------------------------------------------------

@@ -48,7 +48,7 @@ setMethod(
       order = order(ordering),
       base = H,
       weights = rep(1 / J, J),
-      totals = get_totals(object),
+      totals = total(object),
       groups = get_groups(object)
     )
   }

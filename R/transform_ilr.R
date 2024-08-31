@@ -98,7 +98,7 @@ setMethod(
     order = seq_len(D),
     base = base,
     weights = rep(1 / D, D),
-    totals = get_totals(object),
+    totals = total(object),
     groups = get_groups(object)
   )
 }

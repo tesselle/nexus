@@ -21,13 +21,13 @@ expect_error(set_groups(coda) <- LETTERS, class = "arkhe_error_class")
 mtx <- matrix(sample(1:100, 75, TRUE), ncol = 5)
 coda <- as_composition(mtx)
 
-expect_equal(get_totals(coda), rowSums(mtx), ignore_attr = TRUE)
+expect_equal(total(coda), rowSums(mtx), ignore_attr = TRUE)
 
-set_totals(coda) <- seq_len(15)
-expect_equal(get_totals(coda), seq_len(15))
+total(coda) <- seq_len(15)
+expect_equal(total(coda), seq_len(15))
 
 # Invalid values
 # Try negative values
-expect_error(set_totals(coda) <- -seq_len(10), class = "arkhe_error_class")
+expect_error(total(coda) <- -seq_len(10), class = "arkhe_error_class")
 # Try wrong length
-expect_error(set_totals(coda) <- 1, class = "arkhe_error_class")
+expect_error(total(coda) <- 1, class = "arkhe_error_class")

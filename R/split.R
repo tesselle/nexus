@@ -53,7 +53,7 @@ setMethod(
 
     .CompositionMatrix(
       z,
-      totals = c(get_totals(x), get_totals(y)),
+      totals = c(total(x), total(y)),
       groups = c(get_groups(x), get_groups(y))
     )
   }

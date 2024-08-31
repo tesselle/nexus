@@ -42,7 +42,7 @@ setMethod(
       order = order(ordering),
       base = base,
       weights = w,
-      totals = get_totals(object),
+      totals = total(object),
       groups = get_groups(object)
     )
   }
@@ -80,7 +80,7 @@ setMethod(
       order = order(ordering),
       base = base,
       weights = w,
-      totals = get_totals(object),
+      totals = total(object),
       groups = get_groups(object)
     )
   }
