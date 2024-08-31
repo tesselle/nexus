@@ -16,7 +16,7 @@ setMethod(
 
     w <- unlist(utils::combn(weights, 2, FUN = function(x) Reduce(`*`, x),
                              simplify = FALSE))
-    r <- unlist(utils::combn(parts, 2, FUN = paste, collapse = "_",
+    r <- unlist(utils::combn(parts, 2, FUN = paste, collapse = "/",
                              simplify = FALSE))
 
     jj <- utils::combn(seq_len(J), 2, simplify = FALSE)

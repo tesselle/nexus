@@ -93,7 +93,7 @@ plot.LogRatio <- function(x, ..., groups = get_groups(x),
   }
 
   xlim <- range(dens_x, na.rm = TRUE)
-  ylabs <- ylab %||% colnames(z) %||% paste0("P", p_seq)
+  ylabs <- ylab %||% labels(z) %||% paste0("z", p_seq)
   for (j in p_seq) {
     tmp_x <- dens_x[, j, , drop = FALSE]
     tmp_y <- dens_y[, j, , drop = FALSE]

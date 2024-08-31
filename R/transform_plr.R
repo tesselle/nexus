@@ -33,7 +33,7 @@ setMethod(
       X = seq_len(J - 1),
       FUN = function(i, parts) {
         j <- length(parts)
-        sprintf("%s_%s", parts[1], paste0(parts[(i+1):j], collapse = "-"))
+        sprintf("%s/(%s)", parts[1], paste0(parts[(i+1):j], collapse = ","))
       },
       FUN.VALUE = character(1),
       parts = parts

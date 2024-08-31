@@ -83,7 +83,7 @@ setMethod(
   ratio <- vapply(
     X = seq_parts,
     FUN = function(i, k) {
-      paste(paste0(k[seq_len(i)], collapse = "-"), k[i + 1], sep = "_")
+      sprintf("(%s)/%s", paste0(k[seq_len(i)], collapse = ","), k[i + 1])
     },
     FUN.VALUE = character(1),
     k = parts

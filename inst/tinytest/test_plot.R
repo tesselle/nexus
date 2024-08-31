@@ -33,9 +33,9 @@ if (at_home()) {
   # Density ====================================================================
   # See argument old.coords of density().
   if (getRversion() >= "4.4.0") {
-    clr <- transform_clr(coda)
+    ilr <- transform_ilr(coda)
 
-    plot_ratio <- function() plot(clr, groups = rep(1:5, 5))
+    plot_ratio <- function() plot(ilr, groups = rep(1:5, 5), ncol = 2)
     expect_snapshot_plot(plot_ratio, "plot_ratio")
   }
 }

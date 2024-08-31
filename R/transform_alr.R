@@ -38,7 +38,7 @@ setMethod(
     .ALR(
       alr,
       parts = parts,
-      ratio = colnames(alr),
+      ratio = paste(parts[-D], parts[D], sep = "/"),
       order = order(ordering),
       base = base,
       weights = w,
@@ -76,7 +76,7 @@ setMethod(
     .ALR(
       alr,
       parts = parts,
-      ratio = colnames(alr),
+      ratio = paste(parts[-D], parts[D], sep = "/"),
       order = order(ordering),
       base = base,
       weights = w,
