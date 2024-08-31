@@ -12,8 +12,8 @@ setMethod(
     ## Validation
     arkhe::assert_package("igraph")
 
-    ratio <- object@ratio
-    edges <- do.call(rbind, strsplit(ratio, "_"))
+    ratio <- labels(object)
+    edges <- do.call(rbind, strsplit(ratio, "/"))
     edges <- edges[, c(2, 1)]
     igraph::graph_from_edgelist(edges, directed = FALSE)
   }
@@ -29,8 +29,8 @@ setMethod(
     ## Validation
     arkhe::assert_package("igraph")
 
-    ratio <- object@ratio
-    edges <- do.call(rbind, strsplit(ratio, "_"))
+    ratio <- labels(object)
+    edges <- do.call(rbind, strsplit(ratio, "/"))
     edges <- edges[, c(2, 1)]
     igraph::graph_from_edgelist(edges, directed = TRUE)
   }
@@ -46,12 +46,13 @@ setMethod(
     ## Validation
     arkhe::assert_package("igraph")
 
-    ratio <- object@ratio
+    ratio <- labels(object)
+    ratio <- gsub(pattern = "[\\(\\)]", replacement =  "", x = ratio)
     edges <- lapply(
-      X = strsplit(ratio, "_"),
+      X = strsplit(ratio, "/"),
       FUN = function(x) {
-        a <- unlist(strsplit(x[[1]], "-"))
-        b <- unlist(strsplit(x[[2]], "-"))
+        a <- unlist(strsplit(x[[1]], ","))
+        b <- unlist(strsplit(x[[2]], ","))
         expand.grid(b, a)
       }
     )
