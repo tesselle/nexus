@@ -11,10 +11,9 @@ An S4 class to store the result of outlier detection.
 \section{Slots}{
 
 \describe{
-\item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers
-(allows duplicates in case of repeated measurements).}
+\item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers.}
 
-\item{\code{groups}}{A \code{\link{list}} giving the samples index of each group.}
+\item{\code{groups}}{A \code{\link{character}} vector to store the group names.}
 
 \item{\code{standard}}{A \code{\link{numeric}} matrix giving the standard squared Mahalanobis
 distances.}

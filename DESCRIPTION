@@ -64,6 +64,7 @@ Collate:
     'describe.R'
     'dist.R'
     'graph.R'
+    'group.R'
     'hist.R'
     'margin.R'
     'mean.R'

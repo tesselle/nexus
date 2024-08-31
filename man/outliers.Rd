@@ -4,26 +4,22 @@
 \name{outliers}
 \alias{outliers}
 \alias{outliers-method}
-\alias{outliers,CompositionMatrix-method}
+\alias{outliers,CompositionMatrix,missing-method}
+\alias{outliers,CompositionMatrix,CompositionMatrix-method}
 \title{Outlier Detection}
 \usage{
-outliers(object, ...)
+outliers(object, reference, ...)
 
-\S4method{outliers}{CompositionMatrix}(
-  object,
-  ...,
-  groups = group(object),
-  method = c("mve", "mcd"),
-  quantile = 0.975
-)
+\S4method{outliers}{CompositionMatrix,missing}(object, ..., method = c("mve", "mcd"), quantile = 0.975)
+
+\S4method{outliers}{CompositionMatrix,CompositionMatrix}(object, reference, ..., method = c("mve", "mcd"), quantile = 0.975)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}}.}
 
-\item{...}{Extra parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.}
+\item{reference}{A \code{\linkS4class{CompositionMatrix}}. If missing, \code{object} is used.}
 
-\item{groups}{A \code{vector} of grouping elements, as long as the variables in
-\code{object}.}
+\item{...}{Further parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.}
 
 \item{method}{A \code{\link{character}} string specifying the method to be used.
 It must be one of "\code{mve}" (minimum volume ellipsoid) or "\code{mcd}" (minimum
@@ -63,20 +59,15 @@ kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, parts = 3:17, groups = 1)
 
 ## Detect outliers
-out <- outliers(coda, groups = NULL, method = "mcd")
+out <- outliers(coda, method = "mcd")
 
 plot(out, type = "dotchart")
 plot(out, type = "distance")
-plot(out, type = "qqplot")
 
-## Detect outliers by group
-## (use ceramic types for grouping)
-out <- outliers(coda, method = "mcd")
-
-plot(out, type = "dotchart", select = 1, robust = FALSE)
-plot(out, type = "dotchart", select = 2, robust = FALSE)
-plot(out, type = "dotchart", select = 3, robust = FALSE)
-plot(out, type = "dotchart", select = 4, robust = FALSE)
+## Detect outliers according to CJ
+ref <- extract(coda, "CJ")
+out <- outliers(coda, reference = ref, method = "mcd")
+plot(out, type = "dotchart")
 }
 \references{
 Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier

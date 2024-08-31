@@ -5,6 +5,7 @@ NULL
 # S4 dispatch to base S3 generic ===============================================
 setGeneric("dist", package = "stats")
 setGeneric("mahalanobis", package = "stats")
+setGeneric("dotchart", package = "graphics")
 
 # Import S4 generics ===========================================================
 #' @importMethodsFrom arkhe describe
@@ -227,7 +228,7 @@ setGeneric(
 #' Working With Groups
 #'
 #' Retrieves or defines the groups to which the observations belong.
-#' @param x An object from which to get or set `groups`.
+#' @param object An object from which to get or set `groups`.
 #' @param value A possible value for the `groups` of `x`.
 #' @return
 #'  * `group() <- value` returns an object of the same sort as `x` with the new
@@ -244,27 +245,27 @@ setGeneric(
 #' @aliases group-method
 setGeneric(
   name = "group",
-  def = function(x) standardGeneric("group")
+  def = function(object) standardGeneric("group")
 )
 
 #' @rdname group
 setGeneric(
   name = "group<-",
-  def = function(x, value) standardGeneric("group<-")
+  def = function(object, value) standardGeneric("group<-")
 )
 
 #' @rdname group
 #' @aliases any_assigned-method
 setGeneric(
   name = "any_assigned",
-  def = function(x) standardGeneric("any_assigned")
+  def = function(object) standardGeneric("any_assigned")
 )
 
 #' @rdname group
 #' @aliases is_assigned-method
 setGeneric(
   name = "is_assigned",
-  def = function(x) standardGeneric("is_assigned")
+  def = function(object) standardGeneric("is_assigned")
 )
 
 #' Chemical Elements and Compounds
@@ -350,6 +351,24 @@ setGeneric(
 #' @name subset
 #' @rdname subset
 NULL
+
+#' Group-based Subset
+#'
+#' @param object A [`CompositionMatrix-class`] object.
+#' @param name A [`character`] vector specifying the [group][group()] of
+#'  `object` to extract.
+#' @param ... Currently not used.
+#' @return
+#'  A [`CompositionMatrix-class`] object.
+#' @example inst/examples/ex-groups.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family subset
+#' @aliases extract-method
+setGeneric(
+  name = "extract",
+  def = function(object, ...) standardGeneric("extract")
+)
 
 #' Divide into Groups
 #'
@@ -1260,6 +1279,7 @@ NULL
 #' Outlier Detection
 #'
 #' @param object A [`CompositionMatrix-class`].
+#' @param reference A [`CompositionMatrix-class`]. If missing, `object` is used.
 #' @param method A [`character`] string specifying the method to be used.
 #'  It must be one of "`mve`" (minimum volume ellipsoid) or "`mcd`" (minimum
 #'  covariance determinant; see [MASS::cov.rob()]).
@@ -1267,9 +1287,7 @@ NULL
 #'  `quantile` is used as a cut-off value for outlier detection: observations
 #'  with larger (squared) Mahalanobis distance are considered as potential
 #'  outliers.
-#' @param groups A `vector` of grouping elements, as long as the variables in
-#'  `object`.
-#' @param ... Extra parameters to be passed to [MASS::cov.rob()].
+#' @param ... Further parameters to be passed to [MASS::cov.rob()].
 #' @details
 #'  An outlier can be defined as having a very large Mahalanobis distance from
 #'  all observations. In this way, a certain proportion of the observations can
@@ -1315,20 +1333,22 @@ NULL
 #' @aliases outliers-method
 setGeneric(
   name = "outliers",
-  def = function(object, ...) standardGeneric("outliers")
+  def = function(object, reference, ...) standardGeneric("outliers")
 )
 
 #' Plot Outliers
 #'
 #' @param x An [`OutlierIndex-class`] object.
-#' @param select A length-one vector giving the group to be plotted.
 #' @param type A [`character`] string specifying the type of plot that should be
 #'  made. It must be one of "`dotchart`", "`distance`" or "`qqplot`".
 #'  Any unambiguous substring can be given.
 #' @param robust A [`logical`] scalar: should robust Mahalanobis distances be
 #'  displayed? Only used if `type` is "`dotchart`" or "`qqplot`".
-#' @param pch A lenth-three vector of symbol specification for non-outliers and
-#'  outliers (resp.).
+#' @param colors A vector of colors or a `function` that when called with a
+#'  single argument (an integer specifying the number of colors) returns a
+#'  vector of colors. Will be mapped to the group names.
+#' @param symbols A lenth-three vector of symbol specification for non-outliers
+#'  and outliers (resp.).
 #' @param xlim A length-two [`numeric`] vector giving the x limits of the plot.
 #'  The default value, `NULL`, indicates that the range of the
 #'  [finite][is.finite()] values to be plotted should be used.

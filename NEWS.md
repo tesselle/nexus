@@ -19,6 +19,7 @@
 * Remove `samples` slot in all classes.
 * Remove `as_features()`.
 * Remove `metrix_var()` and `metric_sd()`.
+* Redefine `outlier()` methods.
 * Rewrite `plot()` method for `OutlierIndex` object.
 
 # nexus 0.2.0
