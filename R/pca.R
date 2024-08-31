@@ -3,7 +3,7 @@
 NULL
 
 #' @export
-#' @rdname pca
+#' @describeIn pca PCA of centered log-ratio, i.e. log-ratio analysis (LRA).
 #' @aliases pca,CompositionMatrix-method
 setMethod(
   f = "pca",

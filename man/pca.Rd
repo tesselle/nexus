@@ -3,6 +3,7 @@
 \docType{methods}
 \name{pca}
 \alias{pca}
+\alias{lra}
 \alias{pca,CompositionMatrix-method}
 \alias{pca,LogRatio-method}
 \title{Principal Components Analysis}
@@ -61,17 +62,22 @@ A \code{\link[dimensio:PCA-class]{dimensio::PCA}} object. See \code{\link[dimens
 Computes a principal components analysis based on the singular value
 decomposition.
 }
+\section{Methods (by class)}{
+\itemize{
+\item \code{pca(CompositionMatrix)}: PCA of centered log-ratio, i.e. log-ratio analysis (LRA).
+
+}}
 \examples{
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
-## Centered log-ratio
-clr <- transform_clr(coda)
+## Log-Ratio Analysis
+X <- pca(coda)
 
-## PCA
-X <- pca(clr, scale = FALSE)
+## Biplot
+biplot(X)
 
 ## Explore results
 viz_individuals(X, pch = 16)

@@ -3,12 +3,12 @@ data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
 coda <- as_composition(kommos, groups = 1) # Use ceramic types for grouping
 
-## Centered log-ratio
-clr <- transform_clr(coda)
+## Log-Ratio Analysis
+X <- pca(coda)
 
-## PCA
-X <- pca(clr, scale = FALSE)
+## Biplot
+biplot(X)
 
 ## Explore results
-viz_individuals(X, pch = 16)
+viz_individuals(X)
 viz_variables(X)

@@ -1178,6 +1178,7 @@ setGeneric(
 #' @family multivariate analysis
 #' @name pca
 #' @rdname pca
+#' @aliases lra
 NULL
 
 # Missign Values ===============================================================
