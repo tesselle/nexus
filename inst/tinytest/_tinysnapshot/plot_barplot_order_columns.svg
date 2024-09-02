@@ -202,10 +202,10 @@
 <rect x='265.16' y='29.67' width='215.69' height='16.71' style='stroke-width: 0.75; fill: #1965B0;' />
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHw1MDQuMDA=)'>
-<text x='59.55' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #DC050C; font-family: "Arial";' textLength='8.21px' lengthAdjust='spacingAndGlyphs'>A</text>
-<text x='100.73' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #4EB265; font-family: "Arial";' textLength='8.24px' lengthAdjust='spacingAndGlyphs'>B</text>
-<text x='145.43' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #F7F056; font-family: "Arial";' textLength='8.38px' lengthAdjust='spacingAndGlyphs'>C</text>
-<text x='216.76' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #7BAFDE; font-family: "Arial";' textLength='9.24px' lengthAdjust='spacingAndGlyphs'>D</text>
-<text x='373.01' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #1965B0; font-family: "Arial";' textLength='7.58px' lengthAdjust='spacingAndGlyphs'>E</text>
+<text x='59.55' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #DC050C; font-family: "Arial";' textLength='7.58px' lengthAdjust='spacingAndGlyphs'>E</text>
+<text x='100.73' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #4EB265; font-family: "Arial";' textLength='8.38px' lengthAdjust='spacingAndGlyphs'>C</text>
+<text x='145.43' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #F7F056; font-family: "Arial";' textLength='9.24px' lengthAdjust='spacingAndGlyphs'>D</text>
+<text x='216.76' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #7BAFDE; font-family: "Arial";' textLength='8.24px' lengthAdjust='spacingAndGlyphs'>B</text>
+<text x='373.01' y='20.27' text-anchor='middle' style='font-size: 12.00px;fill: #1965B0; font-family: "Arial";' textLength='8.21px' lengthAdjust='spacingAndGlyphs'>A</text>
 </g>
 </svg>

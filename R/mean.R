@@ -7,7 +7,9 @@ NULL
 #' @method mean CompositionMatrix
 mean.CompositionMatrix <- function(x, ...) {
   m <- apply(X = x, MARGIN = 2, FUN = gmean, ..., simplify = TRUE)
-  closure(m)
+  m <- closure(m)
+  names(m) <- colnames(x)
+  m
 }
 
 #' @export

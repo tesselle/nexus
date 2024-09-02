@@ -25,7 +25,7 @@ barplot.CompositionMatrix <- function(height, ..., subset = NULL,
   xy <- prepare_barplot(z, groups = by, order_columns = order_columns,
                         order_rows = order_rows, decreasing = decreasing,
                         offset = offset)
-  parts <- factor(xy$data$column, levels = colnames(z))
+  parts <- factor(xy$data$column, levels = colnames(height))
   col <- color(parts)
 
   ## Graphical parameters
@@ -134,7 +134,6 @@ prepare_barplot <- function(x, groups = NULL,
     center <- center[col_order]
     z <- z[, col_order, drop = FALSE]
   }
-  names(center) <- labels(x)
 
   ## Relative frequencies
   freq <- z / rowSums(z)

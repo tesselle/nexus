@@ -18,14 +18,14 @@ if (at_home()) {
   expect_snapshot_plot(plot_hist, "plot_hist")
 
   # Barplot ====================================================================
-  plot_barplot <- function() barplot(coda)
+  plot_barplot <- function() barplot(coda, order_columns = FALSE)
   expect_snapshot_plot(plot_barplot, "plot_barplot")
-
-  plot_barplot_order <- function() barplot(coda, order_rows = 2)
-  expect_snapshot_plot(plot_barplot_order, "plot_barplot_order_rows")
 
   plot_barplot_order <- function() barplot(coda, order_columns = TRUE)
   expect_snapshot_plot(plot_barplot_order, "plot_barplot_order_columns")
+
+  plot_barplot_order <- function() barplot(coda, order_rows = 2)
+  expect_snapshot_plot(plot_barplot_order, "plot_barplot_order_rows")
 
   plot_barplot_group <- function() barplot(coda, by = rep(1:5, 5), order_columns = TRUE)
   expect_snapshot_plot(plot_barplot_group, "plot_barplot_group")
