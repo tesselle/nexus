@@ -92,54 +92,58 @@ remotes::install_github("tesselle/nexus")
 ## Usage
 
 ``` r
+## Install extra packages (if needed)
+# install.packages("folio")
+
 ## Load the package
 library(nexus)
 #> Loading required package: dimensio
 ```
 
 **nexus** provides a set of S4 classes that represent different special
-types of matrix. The most basic class represents a compositional data
-matrix, i.e. quantitative (nonnegative) descriptions of the parts of
-some whole, carrying relative, rather than absolute, information (J.
-Aitchison 1986).
+types of matrix (see `vignette("nexus")`). The most basic class
+represents a compositional data matrix, i.e. quantitative (nonnegative)
+descriptions of the parts of some whole, carrying relative, rather than
+absolute, information (J. Aitchison 1986).
 
 *It assumes that you keep your data tidy*: each variable must be saved
 in its own column and each observation (sample) must be saved in its own
 row.
 
-These new classes are of simple use as they inherit from base `matrix`
-(see `vignette("nexus")`):
-
 ``` r
-## Mineral compositions of rock specimens
-## Data from Aitchison 1986
-data("hongite")
-head(hongite)
-#>       A    B    C    D    E
-#> H1 48.8 31.7  3.8  6.4  9.3
-#> H2 48.2 23.8  9.0  9.2  9.8
-#> H3 37.0  9.1 34.2  9.5 10.2
-#> H4 50.9 23.8  7.2 10.1  8.0
-#> H5 44.2 38.3  2.9  7.7  6.9
-#> H6 52.3 26.2  4.2 12.5  4.8
+## Data from Wood and Liu 2023
+data("bronze", package = "folio")
 
 ## Coerce to compositional data
-coda <- as_composition(hongite)
-head(coda)
-#> <CompositionMatrix: 6 x 5>
-#>        A     B     C     D     E
-#> H1 0.488 0.317 0.038 0.064 0.093
-#> H2 0.482 0.238 0.090 0.092 0.098
-#> H3 0.370 0.091 0.342 0.095 0.102
-#> H4 0.509 0.238 0.072 0.101 0.080
-#> H5 0.442 0.383 0.029 0.077 0.069
-#> H6 0.523 0.262 0.042 0.125 0.048
+coda <- as_composition(bronze, parts = 4:11)
 
-## Compositional barplots
-barplot(coda, order = 1)
+## Use dynasties as groups
+groups(coda) <- bronze$dynasty
 ```
 
-![](man/figures/README-groups-1.png)<!-- -->
+``` r
+## Compositional barplots of major elements
+barplot(coda, select = is_element_major(coda), border = NA, space = 0)
+```
+
+![](man/figures/README-barplot-1.png)<!-- -->
+
+``` r
+## Compositional mean by artefact
+coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
+
+## Log-ratio analysis
+## (PCA of centered log-ratio; outliers should be removed first)
+clr <- transform_clr(coda, weights = TRUE)
+lra <- pca(clr)
+
+viz_individuals(lra, color = c("#004488", "#DDAA33", "#BB5566"))
+viz_hull(x = lra, border = c("#004488", "#DDAA33", "#BB5566"))
+
+viz_variables(lra)
+```
+
+<img src="man/figures/README-lra-1.png" width="50%" /><img src="man/figures/README-lra-2.png" width="50%" />
 
 ## Contributing
 
@@ -157,6 +161,15 @@ entry-spacing="0">
 Aitchison, J. 1986. *The Statistical Analysis of Compositional Data*.
 Monographs on Statistics and Applied Probability. Londres, UK ; New
 York, USA: Chapman and Hall.
+
+</div>
+
+<div id="ref-aitchison1997" class="csl-entry">
+
+———. 1997. “The One-Hour Course in Compositional Data Analysis or
+Compositional Data Analysis Is Simple.” In *IAMG’97*, edited by V.
+Pawlowsky-Glahn, 3–35. Barcelona: International Center for Numerical
+Methods in Engineering (CIMNE).
 
 </div>
 
@@ -213,6 +226,14 @@ Compositional Data Analysis.” *Mathematical Geology* 35 (3): 279–300.
 
 </div>
 
+<div id="ref-egozcue2023" class="csl-entry">
+
+Egozcue, Juan José, and Vera Pawlowsky-Glahn. 2023. “Subcompositional
+Coherence and and a Novel Proportionality Index of Parts.” *SORT* 47
+(2): 229–44. <https://doi.org/10.57645/20.8080.02.7>.
+
+</div>
+
 <div id="ref-filzmoser2005" class="csl-entry">
 
 Filzmoser, Peter, Robert G. Garrett, and Clemens Reimann. 2005.
@@ -244,6 +265,14 @@ Component Analysis for Compositional Data with Outliers.”
 (Compositional) Data: Problems and Possibilities.” *Science of The Total
 Environment* 407 (23): 6100–6108.
 <https://doi.org/10.1016/j.scitotenv.2009.08.008>.
+
+</div>
+
+<div id="ref-filzmoser2010" class="csl-entry">
+
+———. 2010. “The Bivariate Statistical Analysis of Environmental
+(Compositional) Data.” *Science of The Total Environment* 408 (19):
+4230–38. <https://doi.org/10.1016/j.scitotenv.2010.05.011>.
 
 </div>
 

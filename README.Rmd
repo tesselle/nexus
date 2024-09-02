@@ -77,28 +77,46 @@ remotes::install_github("tesselle/nexus")
 ## Usage
 
 ```{r packages}
+## Install extra packages (if needed)
+# install.packages("folio")
+
 ## Load the package
 library(nexus)
 ```
 
-**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (nonnegative) descriptions of the parts of some whole, carrying relative, rather than absolute, information [@aitchison1986].
+**nexus** provides a set of S4 classes that represent different special types of matrix (see `vignette("nexus")`). The most basic class represents a compositional data matrix, i.e. quantitative (nonnegative) descriptions of the parts of some whole, carrying relative, rather than absolute, information [@aitchison1986].
 
 *It assumes that you keep your data tidy*: each variable must be saved in its own column and each observation (sample) must be saved in its own row.
-
-These new classes are of simple use as they inherit from base `matrix` (see `vignette("nexus")`):
   
 ```{r groups}
-## Mineral compositions of rock specimens
-## Data from Aitchison 1986
-data("hongite")
-head(hongite)
+## Data from Wood and Liu 2023
+data("bronze", package = "folio")
 
 ## Coerce to compositional data
-coda <- as_composition(hongite)
-head(coda)
+coda <- as_composition(bronze, parts = 4:11)
 
-## Compositional barplots
-barplot(coda, order = 1)
+## Use dynasties as groups
+groups(coda) <- bronze$dynasty
+```
+
+```{r barplot, fig.width=5, fig.height=7}
+## Compositional barplots of major elements
+barplot(coda, select = is_element_major(coda), border = NA, space = 0)
+```
+
+```{r lra, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
+## Compositional mean by artefact
+coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
+
+## Log-ratio analysis
+## (PCA of centered log-ratio; outliers should be removed first)
+clr <- transform_clr(coda, weights = TRUE)
+lra <- pca(clr)
+
+viz_individuals(lra, color = c("#004488", "#DDAA33", "#BB5566"))
+viz_hull(x = lra, border = c("#004488", "#DDAA33", "#BB5566"))
+
+viz_variables(lra)
 ```
 
 ## Contributing
