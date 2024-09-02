@@ -3,10 +3,35 @@
 NULL
 
 #' @export
-#' @rdname element
-#' @aliases element_major,CompositionMatrix-method
+#' @rdname chemistry
+#' @aliases is_oxide,character-method
 setMethod(
-  f = "element_major",
+  f = "is_oxide",
+  signature = c(object = "character"),
+  definition = function(object) {
+    pattern <- "[A-Z]{1}[a-z]{0,1}[0-9]*O[0-9]*"
+    z <- grepl(pattern, x = object)
+    names(z) <- object
+    z
+  }
+)
+
+#' @export
+#' @rdname chemistry
+#' @aliases is_oxide,CompositionMatrix-method
+setMethod(
+  f = "is_oxide",
+  signature = c(object = "CompositionMatrix"),
+  definition = function(object) {
+    methods::callGeneric(colnames(object))
+  }
+)
+
+#' @export
+#' @rdname chemistry
+#' @aliases is_element_major,CompositionMatrix-method
+setMethod(
+  f = "is_element_major",
   signature = c(object = "CompositionMatrix"),
   definition = function(object, min = 1 / 100, max = Inf) {
     .element_threshold(object, min = min, max = max)
@@ -14,10 +39,10 @@ setMethod(
 )
 
 #' @export
-#' @rdname element
-#' @aliases element_minor,CompositionMatrix-method
+#' @rdname chemistry
+#' @aliases is_element_minor,CompositionMatrix-method
 setMethod(
-  f = "element_minor",
+  f = "is_element_minor",
   signature = c(object = "CompositionMatrix"),
   definition = function(object, min = 0.1 / 100, max = 1 / 100) {
     .element_threshold(object, min = min, max = max)
@@ -25,10 +50,10 @@ setMethod(
 )
 
 #' @export
-#' @rdname element
-#' @aliases element_trace,CompositionMatrix-method
+#' @rdname chemistry
+#' @aliases is_element_trace,CompositionMatrix-method
 setMethod(
-  f = "element_trace",
+  f = "is_element_trace",
   signature = c(object = "CompositionMatrix"),
   definition = function(object, min = -Inf, max = 0.1 / 100) {
     .element_threshold(object, min = min, max = max)

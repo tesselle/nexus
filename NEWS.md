@@ -5,8 +5,8 @@
 * Add `pip()` to compute proportionality index of parts.
 * Add `rbind()` method for `CompositionMatrix` objects.
 * Add `show()` methods for `LogRatio` objects.
-* Add `element_major()`, `element_minor()` and `element_trace()` methods for `CompositionMatrix` objects.
-* Add `variance()` and `variance_total()` to compute total variance.
+* Add `is_element_major()`, `is_element_minor()`, `is_element_trace()` and `is_oxide()` methods for `CompositionMatrix` objects.
+* Add `variance()` and `variance_total()` to compute (total) variance.
 
 ## Enhancements
 * Add example datasets.

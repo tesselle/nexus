@@ -75,6 +75,9 @@ expect_equal_to_reference(ilr, file = "_snaps/transform_ilr.rds")
 x <- transform_inverse(ilr)
 expect_equal(coda, x)
 
+x <- transform_inverse(ilr@.Data, origin = ilr)
+expect_equal(coda@.Data, x)
+
 clr <- transform_clr(coda)
 y <- transform_ilr(clr)
 expect_equal(ilr, y)

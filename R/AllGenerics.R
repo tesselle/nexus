@@ -267,9 +267,11 @@ setGeneric(
   def = function(object) standardGeneric("is_assigned")
 )
 
-#' Chemical Elements and Compounds
+# Tools ========================================================================
+#' Chemical Elements and Oxides
 #'
-#' Identify major, minor and traces elements in a compositional data matrix.
+#' Identify oxides and major, minor and traces elements in a compositional data
+#' matrix.
 #' @param object A [`CompositionMatrix-class`] object.
 #' @param min A length-one [`numeric`] vector specifying the lower bound for
 #'  element identification.
@@ -287,36 +289,47 @@ setGeneric(
 #'   \item{trace elements}{Trace elements usually have concentrations of less
 #'   than 0.1%.}
 #'  }
+#' @note
+#'  `is_oxide()` uses a regular expression (it does not check if elements exist
+#'  or if stoichiometry is valid).
 #' @return A [`logical`] vector.
-#' @example inst/examples/ex-barplot.R
+#' @example inst/examples/ex-chemistry.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family tools
-#' @name element
-#' @rdname element
+#' @name chemistry
+#' @rdname chemistry
 NULL
 
-#' @rdname element
-#' @aliases element_major-method
+#' @rdname chemistry
+#' @aliases is_element_major-method
 setGeneric(
-  name = "element_major",
-  def = function(object, ...) standardGeneric("element_major"),
+  name = "is_element_major",
+  def = function(object, ...) standardGeneric("is_element_major"),
   valueClass = "logical"
 )
 
-#' @rdname element
-#' @aliases element_minor-method
+#' @rdname chemistry
+#' @aliases is_element_minor-method
 setGeneric(
-  name = "element_minor",
-  def = function(object, ...) standardGeneric("element_minor"),
+  name = "is_element_minor",
+  def = function(object, ...) standardGeneric("is_element_minor"),
   valueClass = "logical"
 )
 
-#' @rdname element
-#' @aliases element_trace-method
+#' @rdname chemistry
+#' @aliases is_element_trace-method
 setGeneric(
-  name = "element_trace",
-  def = function(object, ...) standardGeneric("element_trace"),
+  name = "is_element_trace",
+  def = function(object, ...) standardGeneric("is_element_trace"),
+  valueClass = "logical"
+)
+
+#' @rdname chemistry
+#' @aliases is_oxide-method
+setGeneric(
+  name = "is_oxide",
+  def = function(object, ...) standardGeneric("is_oxide"),
   valueClass = "logical"
 )
 
