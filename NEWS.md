@@ -15,6 +15,9 @@
 ## Bugfixes & changes
 * Fix `pca()` for `LogRatio` objects (arguments were not passed to the internal method).
 
+## Internals
+* Store groups as `factor` instead of `character`.
+
 ## Breaking changes
 * `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.
 * Rename `get_totals()` and `set_totals()` to `totals()`.

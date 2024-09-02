@@ -46,7 +46,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' An S4 class to represent compositional data.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
-#' @slot groups A [`character`] vector to store the group names.
+#' @slot groups A [`factor`] vector to store the group names.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `CompositionMatrix` object.
 #'  \describe{
@@ -70,7 +70,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "CompositionMatrix",
   slots = c(
     totals = "numeric",
-    groups = "character"
+    groups = "factor"
   ),
   contains = c("NumericMatrix")
 )
@@ -81,7 +81,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' S4 classes to represent log-ratio data transformations.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
-#' @slot groups A [`character`] vector to store the group names.
+#' @slot groups A [`factor`] vector to store the group names.
 #' @slot parts A [`character`] vector to store the original part names.
 #' @slot ratio A [`character`] vector to store the ratio names.
 #' @slot order An [`integer`] vector to store the original ordering of the
@@ -107,7 +107,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "LogRatio",
   slots = c(
     totals = "numeric",
-    groups = "character",
+    groups = "factor",
 
     parts = "character",
     ratio = "character",
@@ -158,7 +158,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #'
 #' An S4 class to store the result of outlier detection.
 #' @slot samples A [`character`] vector to store the sample identifiers.
-#' @slot groups A [`character`] vector to store the group names.
+#' @slot groups A [`factor`] vector to store the group names.
 #' @slot standard A [`numeric`] matrix giving the standard squared Mahalanobis
 #'  distances.
 #' @slot robust A [`numeric`] matrix giving the robust squared Mahalanobis
@@ -180,7 +180,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "OutlierIndex",
   slots = c(
     samples = "character",
-    groups = "character",
+    groups = "factor",
     standard = "numeric",
     robust = "numeric",
     limit = "numeric",

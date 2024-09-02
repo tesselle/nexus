@@ -31,7 +31,7 @@ setMethod(
     totals <- rowSums(from, na.rm = TRUE)
     from <- from / totals
 
-    grp <- rep(NA_character_, nrow(from))
+    grp <- as_groups(rep(NA, nrow(from)))
     .CompositionMatrix(from, totals = unname(totals), groups = grp)
   }
 )
@@ -51,11 +51,8 @@ setMethod(
 
     ## Group names
     grp <- rep(NA_character_, nrow(from))
-    if (!is.null(groups)) {
-      grp <- from[, groups, drop = FALSE]
-      grp <- as.character(interaction(grp, sep = "_"))
-      grp[grp == ""] <- NA_character_
-    }
+    if (!is.null(groups)) grp <- from[, groups, drop = FALSE]
+    grp <- as_groups(grp)
 
     ## Remove non-numeric columns
     if (is.null(parts)) {

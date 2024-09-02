@@ -26,6 +26,24 @@ setMethod(
 )
 
 # Groups =======================================================================
+as_groups <- function(x, drop_levels = TRUE, drop_na = TRUE) {
+  if (!is.factor(x)) {
+    if (!is.list(x)) x <- list(x)
+    x <- rapply(
+      object = x,
+      f = function(x) {
+        x[x == ""] <- NA
+        x
+      },
+      classes = "character",
+      how = "replace"
+    )
+    x <- interaction(x, sep = "_")
+  }
+  if (drop_levels) x <- droplevels(x)
+  if (!drop_na) x <- addNA(x, ifany = TRUE)
+  x
+}
 has_groups <- function(x) {
   length(x) > 0 && any(in_groups(x))
 }
@@ -78,13 +96,9 @@ setMethod(
   f = "groups<-",
   signature = c(object = "CompositionMatrix", value = "ANY"),
   definition = function(object, value) {
-    if (is.null(value)) {
-      object@groups <- rep(NA_character_, nrow(object))
-    } else {
-      value <- as.character(value)
-      value[value == ""] <- NA_character_
-      object@groups <- value
-    }
+    if (is.null(value)) value <- rep(NA_character_, nrow(object))
+    value <- as_groups(value)
+    object@groups <- value
     methods::validObject(object)
     object
   }
@@ -97,9 +111,7 @@ setMethod(
   f = "groups<-",
   signature = c(object = "CompositionMatrix", value = "list"),
   definition = function(object, value) {
-    value <- interaction(value, sep = "_")
-    value <- as.character(value)
-    value[value == ""] <- NA_character_
+    value <- as_groups(value)
     object@groups <- value
     methods::validObject(object)
     object

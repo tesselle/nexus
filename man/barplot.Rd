@@ -17,7 +17,7 @@
   space = 0.2,
   offset = 0.025,
   color = palette_color_discrete(),
-  border = "black",
+  border = NA,
   axes = TRUE,
   legend = TRUE
 )

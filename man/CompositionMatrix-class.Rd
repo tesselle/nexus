@@ -14,7 +14,7 @@ An S4 class to represent compositional data.
 \item{\code{totals}}{A \code{\link{numeric}} vector to store the absolute row sums (before
 the closure of the compositions).}
 
-\item{\code{groups}}{A \code{\link{character}} vector to store the group names.}
+\item{\code{groups}}{A \code{\link{factor}} vector to store the group names.}
 }}
 
 \note{

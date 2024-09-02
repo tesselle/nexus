@@ -2,11 +2,11 @@
 data("hongite")
 coda <- as_composition(hongite)
 
-expect_equal(groups(coda), rep(NA_character_, nrow(coda)))
+expect_equal(groups(coda), factor(rep(NA_character_, nrow(coda))))
 expect_false(any_assigned(coda))
 
 groups(coda) <- rep(c("A", "B", "C", "D", NA), each = 5)
-expect_equal(groups(coda), rep(c("A", "B", "C", "D", NA), each = 5))
+expect_equal(groups(coda), factor(rep(c("A", "B", "C", "D", NA), each = 5)))
 expect_true(any_assigned(coda))
 expect_equal(is_assigned(coda), rep(c(TRUE, FALSE), c(20, 5)))
 

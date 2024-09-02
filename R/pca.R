@@ -31,7 +31,7 @@ setMethod(
     x <- methods::callNextMethod(object = object, center = center, scale = scale,
                                  rank = rank, sup_row = sup_row, sup_col = sup_col,
                                  weight_row = weight_row, weight_col = weight_col)
-    if (any_assigned(object)) x@rows@groups <- groups(object)
+    if (any_assigned(object)) x@rows@groups <- as.character(groups(object))
     x
   }
 )

@@ -11,7 +11,7 @@ barplot.CompositionMatrix <- function(height, ..., select = NULL,
                                       decreasing = TRUE,
                                       space = 0.2, offset = 0.025,
                                       color = palette_color_discrete(),
-                                      border = "black", axes = TRUE, legend = TRUE) {
+                                      border = NA, axes = TRUE, legend = TRUE) {
   ## Get data
   if (is.null(select)) select <- seq_len(ncol(height))
   z <- height[, select, drop = FALSE]
@@ -107,11 +107,11 @@ prepare_barplot <- function(x, groups = NULL,
                             decreasing = TRUE, offset = 0.025) {
   ## Validation
   stopifnot(methods::is(x, "CompositionMatrix"))
-  if (!has_groups(groups)) groups <- rep("", nrow(x))
+  if (!has_groups(groups)) groups <- rep(NA, nrow(x))
   arkhe::assert_length(groups, nrow(x))
 
   ## Row order
-  grp <- factor(groups, exclude = NULL)
+  grp <- as_groups(groups, drop_na = FALSE)
   spl <- lapply(
     X = split(x = x, f = grp),
     FUN = function(x, order, decrease) {

@@ -753,8 +753,6 @@ NULL
 #' @param by A `vector` or a list of grouping elements, each as long as the
 #'  variables in `x`. The elements are coerced to factors before use
 #'  (in the sense that [`interaction(by)`][interaction()] defines the grouping).
-#' @param drop A [`logical`] scalar indicating whether to drop unused
-#'  combinations of grouping values.
 #' @param ... Further arguments to be passed to [mean()].
 #' @return A [`CompositionMatrix-class`] object.
 #' @seealso [mean()], [aggregate()]
@@ -765,8 +763,8 @@ NULL
 #' @aliases condense-method
 setGeneric(
   name = "condense",
-  def = function(x, ...) standardGeneric("condense"),
-  valueClass = "CompositionMatrix"
+  def = function(x, ...) standardGeneric("condense")
+  # valueClass = "CompositionMatrix"
 )
 
 #' Marginal Compositions

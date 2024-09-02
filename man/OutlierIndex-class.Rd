@@ -13,7 +13,7 @@ An S4 class to store the result of outlier detection.
 \describe{
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers.}
 
-\item{\code{groups}}{A \code{\link{character}} vector to store the group names.}
+\item{\code{groups}}{A \code{\link{factor}} vector to store the group names.}
 
 \item{\code{standard}}{A \code{\link{numeric}} matrix giving the standard squared Mahalanobis
 distances.}

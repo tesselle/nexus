@@ -9,7 +9,7 @@
 \usage{
 condense(x, ...)
 
-\S4method{condense}{CompositionMatrix}(x, by = groups(x), drop = TRUE, ...)
+\S4method{condense}{CompositionMatrix}(x, by = groups(x), ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
@@ -19,9 +19,6 @@ condense(x, ...)
 \item{by}{A \code{vector} or a list of grouping elements, each as long as the
 variables in \code{x}. The elements are coerced to factors before use
 (in the sense that \code{\link[=interaction]{interaction(by)}} defines the grouping).}
-
-\item{drop}{A \code{\link{logical}} scalar indicating whether to drop unused
-combinations of grouping values.}
 }
 \value{
 A \code{\linkS4class{CompositionMatrix}} object.

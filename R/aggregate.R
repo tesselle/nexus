@@ -9,18 +9,14 @@ aggregate.CompositionMatrix <- function(x, by, FUN, ...,
                                         simplify = TRUE, drop = TRUE) {
   m <- nrow(x)
 
-  ## Validation
-  if (!is.list(by)) by <- list(by)
-  arkhe::assert_lengths(by, m)
-
   ## Grouping
-  index <- interaction(by, drop = drop, sep = "_")
-  if (length(unique(index)) == m) {
+  index <- as_groups(by)
+  if (nlevels(index) == 0 || nlevels(index) == m) {
     warning("Nothing to group by.", call. = FALSE)
     return(x)
   }
 
-  m <- tapply(
+  aggr <- tapply(
     X = seq_len(m),
     INDEX = index,
     FUN = function(i, data, fun, ...) fun(data[i, , drop = FALSE], ...),
@@ -31,13 +27,13 @@ aggregate.CompositionMatrix <- function(x, by, FUN, ...,
   )
 
   has_dim <- vapply(
-    X = m,
+    X = aggr,
     FUN = function(x) !is.null(nrow(x)) && nrow(x) > 1,
     FUN.VALUE = logical(1)
   )
 
-  if (any(has_dim) || !simplify) return(m)
-  do.call(rbind, m)
+  if (any(has_dim) || !simplify) return(aggr)
+  do.call(rbind, aggr)
 }
 
 #' @export
