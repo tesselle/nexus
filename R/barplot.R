@@ -6,11 +6,11 @@ NULL
 #' @export
 #' @method barplot CompositionMatrix
 barplot.CompositionMatrix <- function(height, ..., subset = NULL,
-                                      groups = group(height),
+                                      by = groups(height),
                                       order_columns = FALSE, order_rows = NULL,
                                       decreasing = TRUE,
                                       space = 0.2, offset = 0.025,
-                                      colors = color("discreterainbow"),
+                                      color = palette_color_discrete(),
                                       border = "black", axes = TRUE, legend = TRUE) {
   ## Get data
   if (is.null(subset)) subset <- seq_len(ncol(height))
@@ -22,11 +22,11 @@ barplot.CompositionMatrix <- function(height, ..., subset = NULL,
   n <- nrow(z)
 
   ## Prepare data
-  xy <- prepare_barplot(z, groups = groups, order_columns = order_columns,
+  xy <- prepare_barplot(z, groups = by, order_columns = order_columns,
                         order_rows = order_rows, decreasing = decreasing,
                         offset = offset)
   parts <- factor(xy$data$column, levels = colnames(z))
-  col <- khroma::palette_color_discrete(colors)(parts)
+  col <- color(parts)
 
   ## Graphical parameters
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")

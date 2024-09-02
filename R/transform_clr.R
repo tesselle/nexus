@@ -30,7 +30,7 @@ setMethod(
       base = base,
       weights = weights,
       totals = totals(object),
-      groups = group(object)
+      groups = groups(object)
     )
   }
 )
@@ -57,7 +57,7 @@ setMethod(
       base = base,
       weights = w,
       totals = totals(object),
-      groups = group(object)
+      groups = groups(object)
     )
   }
 )

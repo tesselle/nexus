@@ -5,4 +5,4 @@ head(slides)
 ## Coerce to compositional data
 coda <- as_composition(slides, groups = 2)
 
-group(coda)
+groups(coda)

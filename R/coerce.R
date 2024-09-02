@@ -104,7 +104,7 @@ setMethod(
 #   signature = c(x = "CompositionMatrix"),
 #   definition = function(x) {
 #     data.frame(
-#       .group = group(x),
+#       .group = groups(x),
 #       x
 #     )
 #   }
@@ -118,7 +118,7 @@ setMethod(
 #   signature = c(x = "LogRatio"),
 #   definition = function(x) {
 #     data.frame(
-#       .group = group(x),
+#       .group = groups(x),
 #       x
 #     )
 #   }

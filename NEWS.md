@@ -15,7 +15,7 @@
 ## Breaking changes
 * `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.
 * Rename `get_totals()` and `set_totals()` to `totals()`.
-* Rename `get_groups()` and `get_groups()` to `group()`.
+* Rename `get_groups()` and `get_groups()` to `groups()`.
 * Remove `samples` slot in all classes.
 * Remove `as_features()`.
 * Remove `metrix_var()` and `metric_sd()`.

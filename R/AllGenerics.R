@@ -230,9 +230,9 @@ setGeneric(
 #' @param object An object from which to get or set `groups`.
 #' @param value A possible value for the `groups` of `x`.
 #' @return
-#'  * `group() <- value` returns an object of the same sort as `x` with the new
+#'  * `groups() <- value` returns an object of the same sort as `x` with the new
 #'    group names assigned.
-#'  * `group()` returns a [`character`] vector giving the group names of `x`.
+#'  * `groups()` returns a [`character`] vector giving the group names of `x`.
 #'  * `any_assigned()` returns a [`logical`] scalar specifying whether or not `x`
 #'    has groups.
 #'  * `is_assigned()` returns a [`logical`] vector specifying whether or not an
@@ -241,26 +241,26 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
-#' @aliases group-method
+#' @aliases groups-method
 setGeneric(
-  name = "group",
-  def = function(object) standardGeneric("group")
+  name = "groups",
+  def = function(object) standardGeneric("groups")
 )
 
-#' @rdname group
+#' @rdname groups
 setGeneric(
-  name = "group<-",
-  def = function(object, value) standardGeneric("group<-")
+  name = "groups<-",
+  def = function(object, value) standardGeneric("groups<-")
 )
 
-#' @rdname group
+#' @rdname groups
 #' @aliases any_assigned-method
 setGeneric(
   name = "any_assigned",
   def = function(object) standardGeneric("any_assigned")
 )
 
-#' @rdname group
+#' @rdname groups
 #' @aliases is_assigned-method
 setGeneric(
   name = "is_assigned",
@@ -354,7 +354,7 @@ NULL
 #' Group-based Subset
 #'
 #' @param object A [`CompositionMatrix-class`] object.
-#' @param name A [`character`] vector specifying the [group][group()] of
+#' @param name A [`character`] vector specifying the [group][groups()] of
 #'  `object` to extract.
 #' @param ... Currently not used.
 #' @return
@@ -1019,7 +1019,7 @@ NULL
 #' Displays a compositional bar chart.
 #' @param height A [`CompositionMatrix-class`] object.
 #' @param subset A vector of column indices.
-#' @param groups A `vector` of grouping elements, as long as the variables in
+#' @param by A `vector` of grouping elements, as long as the variables in
 #'  `height`.
 #' @param order_columns A [`logical`] scalar: should should columns be reorderd?
 #' @param order_rows An [`integer`] vector giving the index of the column to be
@@ -1032,9 +1032,8 @@ NULL
 #' @param offset A length-one [`numeric`] vector giving the the amount of space
 #'  (as a fraction) left between groups (defaults to \eqn{0.025}). Only used if
 #'  `groups` is not `NULL`.
-#' @param colors A vector of colors or a `function` that when called with a
-#'  single argument (an integer specifying the number of colors) returns a
-#'  vector of colors. Will be mapped to the part names.
+#' @param color A palette [`function`] that when called with a single
+#'  argument returns a `character` vector of colors.
 #' @param border The color to draw the borders.
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
 #' @param legend A [`logical`] scalar: should the legend be displayed?
@@ -1091,12 +1090,11 @@ NULL
 #'
 #' Displays a matrix of ternary plots.
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param groups A `vector` of grouping elements, as long as the variables in
-#'  `x`.
-#' @param palette_color A palette [`function`] that when called with a single
-#'  argument (`groups`) returns a `character` vector of colors.
-#' @param palette_symbol A palette [`function`] that when called with a single
-#'  argument (`groups`) returns a vector of symbols.
+#' @param by A `vector` of grouping elements, as long as the variables in `x`.
+#' @param color A palette [`function`] that when called with a single
+#'  argument returns a `character` vector of colors.
+#' @param symbol A palette [`function`] that when called with a single
+#'  argument returns a vector of symbols.
 #' @inheritParams isopleuros::ternary_pairs
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
@@ -1115,10 +1113,10 @@ NULL
 #'
 #' Displays a density plot.
 #' @param x A [`LogRatio-class`] object.
-#' @param groups A `vector` of grouping elements, as long as the variables in
+#' @param by A `vector` of grouping elements, as long as the variables in
 #'  `x`. If set, a matrix of panels defined by `groups` will be drawn.
-#' @param palette_color A palette [`function`] that when called with a single
-#'  argument (`groups`) returns a `character` vector of colors.
+#' @param color A palette [`function`] that when called with a single
+#'  argument returns a `character` vector of colors.
 #' @param rug A [`logical`] scalar: should a *rug* representation (1-d plot) of
 #'  the data be added to the plot?
 #' @param ticksize A length-one [`numeric`] vector giving the length of the

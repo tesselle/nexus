@@ -41,7 +41,7 @@ setMethod(
     msg_spa <- sprintf("%s of values are zero.", label_percent(spa, digits = 1))
 
     ## Groups
-    groups <- group(x)
+    groups <- groups(x)
     grp <- unique(groups[!is.na(groups)])
     n_grp <- length(grp)
     n_ung <- sum(is.na(groups))

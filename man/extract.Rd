@@ -16,7 +16,7 @@ extract(object, ...)
 
 \item{...}{Currently not used.}
 
-\item{name}{A \code{\link{character}} vector specifying the \link[=group]{group} of
+\item{name}{A \code{\link{character}} vector specifying the \link[=groups]{group} of
 \code{object} to extract.}
 }
 \value{
@@ -33,7 +33,7 @@ head(slides)
 ## Coerce to compositional data
 coda <- as_composition(slides, groups = 2)
 
-group(coda)
+groups(coda)
 }
 \author{
 N. Frerebeau

@@ -5,14 +5,14 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, ..., margin = NULL, groups = group(x),
-                                   palette_color = palette_color_discrete(),
-                                   palette_symbol = palette_shape()) {
+plot.CompositionMatrix <- function(x, ..., margin = NULL, by = groups(x),
+                                   color = palette_color_discrete(),
+                                   symbol = palette_shape()) {
   ## Grouping
-  if (has_groups(groups)) {
-    arkhe::assert_length(groups, nrow(x))
-    col <- palette_color(groups)
-    pch <- palette_symbol(groups)
+  if (has_groups(by)) {
+    arkhe::assert_length(by, nrow(x))
+    col <- color(by)
+    pch <- symbol(by)
   } else {
     col <- list(...)$col %||% graphics::par("col")
     pch <- list(...)$pch %||% graphics::par("pch")
@@ -30,8 +30,8 @@ setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMat
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, ..., groups = group(x),
-                          palette_color = palette_color_discrete(),
+plot.LogRatio <- function(x, ..., by = groups(x),
+                          color = palette_color_discrete(),
                           rug = TRUE, ticksize = 0.05,
                           ncol = NULL, flip = FALSE,
                           xlab = NULL, ylab = NULL,
@@ -48,14 +48,14 @@ plot.LogRatio <- function(x, ..., groups = group(x),
   nrow <- ceiling(p / ncol)
 
   ## Grouping
-  if (has_groups(groups)) {
-    arkhe::assert_length(groups, m)
-    grp <- split(z, f = groups)
-    border <- palette_color(names(grp))
+  if (has_groups(by)) {
+    arkhe::assert_length(by, m)
+    grp <- split(z, f = by)
+    border <- color(names(grp))
     rug <- FALSE
   } else {
     grp <- list(all = z)
-    groups <- rep("all", m)
+    by <- rep("all", m)
     border <- list(...)$border %||% graphics::par("col")
   }
   k <- length(grp)

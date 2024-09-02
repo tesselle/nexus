@@ -10,9 +10,9 @@
   x,
   ...,
   margin = NULL,
-  groups = group(x),
-  palette_color = palette_color_discrete(),
-  palette_symbol = palette_shape()
+  by = groups(x),
+  color = palette_color_discrete(),
+  symbol = palette_shape()
 )
 }
 \arguments{
@@ -25,14 +25,13 @@ the column to be used as the third part of the ternary plots. If \code{NULL}
 (the default), marginal compositions will be used (i.e. the geometric mean
 of the non-selected parts).}
 
-\item{groups}{A \code{vector} of grouping elements, as long as the variables in
-\code{x}.}
+\item{by}{A \code{vector} of grouping elements, as long as the variables in \code{x}.}
 
-\item{palette_color}{A palette \code{\link{function}} that when called with a single
-argument (\code{groups}) returns a \code{character} vector of colors.}
+\item{color}{A palette \code{\link{function}} that when called with a single
+argument returns a \code{character} vector of colors.}
 
-\item{palette_symbol}{A palette \code{\link{function}} that when called with a single
-argument (\code{groups}) returns a vector of symbols.}
+\item{symbol}{A palette \code{\link{function}} that when called with a single
+argument returns a vector of symbols.}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being
@@ -51,7 +50,7 @@ coda <- as_composition(kommos, parts = 3:8, groups = 1)
 plot(coda)
 
 ## Center and scale ternary plots
-plot(coda, groups = NULL, center = TRUE, scale = TRUE)
+plot(coda, by = NULL, center = TRUE, scale = TRUE)
 }
 \seealso{
 \code{\link[isopleuros:ternary_pairs]{isopleuros::ternary_pairs()}}, \code{\link[isopleuros:ternary_plot]{isopleuros::ternary_plot()}}

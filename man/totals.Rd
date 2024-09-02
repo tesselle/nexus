@@ -54,7 +54,7 @@ head(X)
 }
 \seealso{
 Other mutators: 
-\code{\link{group}()},
+\code{\link{groups}()},
 \code{\link{mutators}}
 }
 \author{

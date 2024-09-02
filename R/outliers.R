@@ -60,7 +60,7 @@ setMethod(
 
     .OutlierIndex(
       samples = rownames(z),
-      groups = group(z),
+      groups = groups(z),
       standard = sqrt(dc),
       robust = sqrt(dr),
       limit = limit,

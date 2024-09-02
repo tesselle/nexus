@@ -9,8 +9,8 @@
 \S4method{plot}{LogRatio,missing}(
   x,
   ...,
-  groups = group(x),
-  palette_color = palette_color_discrete(),
+  by = groups(x),
+  color = palette_color_discrete(),
   rug = TRUE,
   ticksize = 0.05,
   ncol = NULL,
@@ -30,11 +30,11 @@
 \item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
 \code{border} and \code{col}.}
 
-\item{groups}{A \code{vector} of grouping elements, as long as the variables in
+\item{by}{A \code{vector} of grouping elements, as long as the variables in
 \code{x}. If set, a matrix of panels defined by \code{groups} will be drawn.}
 
-\item{palette_color}{A palette \code{\link{function}} that when called with a single
-argument (\code{groups}) returns a \code{character} vector of colors.}
+\item{color}{A palette \code{\link{function}} that when called with a single
+argument returns a \code{character} vector of colors.}
 
 \item{rug}{A \code{\link{logical}} scalar: should a \emph{rug} representation (1-d plot) of
 the data be added to the plot?}
@@ -82,7 +82,7 @@ coda <- as_composition(kommos, groups = 1)
 clr <- transform_clr(coda)
 
 ## Density plot
-plot(clr, groups = NULL, flip = TRUE)
+plot(clr, by = NULL, flip = TRUE)
 
 ## Use ceramic types for grouping
 plot(clr, flip = TRUE)

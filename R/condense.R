@@ -8,7 +8,7 @@ NULL
 setMethod(
   f = "condense",
   signature = c("CompositionMatrix"),
-  definition = function(x, by = group(x), ...) {
+  definition = function(x, by = groups(x), ...) {
     m <- nrow(x)
 
     ## Grouping
@@ -29,7 +29,7 @@ setMethod(
     z <- do.call(rbind, z)
 
     tot <- tapply(X = totals(x), INDEX = by, FUN = mean, simplify = TRUE)
-    grp <- group(x)
+    grp <- groups(x)
     if (has_groups(grp)) grp <- flatten_chr(x = grp, by = by)
     else grp <- rep(NA_character_, length(tot))
 

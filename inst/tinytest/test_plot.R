@@ -27,7 +27,7 @@ if (at_home()) {
   plot_barplot_order <- function() barplot(coda, order_columns = TRUE)
   expect_snapshot_plot(plot_barplot_order, "plot_barplot_order_columns")
 
-  plot_barplot_group <- function() barplot(coda, groups = rep(1:5, 5), order_columns = TRUE)
+  plot_barplot_group <- function() barplot(coda, by = rep(1:5, 5), order_columns = TRUE)
   expect_snapshot_plot(plot_barplot_group, "plot_barplot_group")
 
   # Density ====================================================================
@@ -35,7 +35,7 @@ if (at_home()) {
   if (getRversion() >= "4.4.0") {
     ilr <- transform_ilr(coda)
 
-    plot_ratio <- function() plot(ilr, groups = rep(1:5, 5), ncol = 2)
+    plot_ratio <- function() plot(ilr, by = rep(1:5, 5), ncol = 2)
     expect_snapshot_plot(plot_ratio, "plot_ratio")
   }
 }

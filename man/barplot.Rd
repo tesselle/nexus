@@ -10,13 +10,13 @@
   height,
   ...,
   subset = NULL,
-  groups = group(height),
+  by = groups(height),
   order_columns = FALSE,
   order_rows = NULL,
   decreasing = TRUE,
   space = 0.2,
   offset = 0.025,
-  colors = color("discreterainbow"),
+  color = palette_color_discrete(),
   border = "black",
   axes = TRUE,
   legend = TRUE
@@ -29,7 +29,7 @@
 
 \item{subset}{A vector of column indices.}
 
-\item{groups}{A \code{vector} of grouping elements, as long as the variables in
+\item{by}{A \code{vector} of grouping elements, as long as the variables in
 \code{height}.}
 
 \item{order_columns}{A \code{\link{logical}} scalar: should should columns be reorderd?}
@@ -48,9 +48,8 @@ increasing or decreasing?}
 (as a fraction) left between groups (defaults to \eqn{0.025}). Only used if
 \code{groups} is not \code{NULL}.}
 
-\item{colors}{A vector of colors or a \code{function} that when called with a
-single argument (an integer specifying the number of colors) returns a
-vector of colors. Will be mapped to the part names.}
+\item{color}{A palette \code{\link{function}} that when called with a single
+argument returns a \code{character} vector of colors.}
 
 \item{border}{The color to draw the borders.}
 

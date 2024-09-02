@@ -7,4 +7,4 @@ coda <- as_composition(kommos, parts = 3:8, groups = 1)
 plot(coda)
 
 ## Center and scale ternary plots
-plot(coda, groups = NULL, center = TRUE, scale = TRUE)
+plot(coda, by = NULL, center = TRUE, scale = TRUE)

@@ -13,7 +13,7 @@ setMethod(
     arkhe::assert_type(name, "character")
     if (!any_assigned(object)) stop("No group is defined.", call. = FALSE)
 
-    ok <- group(object) %in% name
+    ok <- groups(object) %in% name
     if (!any(ok)) {
       g <- ngettext(length(name), "group", "groups")
       msg <- "No sample belongs to the %s %s."
@@ -37,46 +37,46 @@ ngroups <- function(x) {
 }
 
 #' @export
-#' @rdname group
+#' @rdname groups
 #' @aliases is_assigned,CompositionMatrix-method
-setMethod("is_assigned", "CompositionMatrix", function(object) in_groups(group(object)))
+setMethod("is_assigned", "CompositionMatrix", function(object) in_groups(groups(object)))
 
 #' @export
-#' @rdname group
+#' @rdname groups
 #' @aliases is_assigned,LogRatio-method
-setMethod("is_assigned", "LogRatio", function(object) in_groups(group(object)))
+setMethod("is_assigned", "LogRatio", function(object) in_groups(groups(object)))
 
 #' @export
-#' @rdname group
+#' @rdname groups
 #' @aliases any_assigned,CompositionMatrix-method
 setMethod("any_assigned", "CompositionMatrix", function(object) any(is_assigned(object)))
 
 #' @export
-#' @rdname group
+#' @rdname groups
 #' @aliases any_assigned,LogRatio-method
 setMethod("any_assigned", "LogRatio", function(object) any(is_assigned(object)))
 
 #' @export
-#' @rdname group
-#' @aliases group,CompositionMatrix-method
-setMethod("group", "CompositionMatrix", function(object) object@groups)
+#' @rdname groups
+#' @aliases groups,CompositionMatrix-method
+setMethod("groups", "CompositionMatrix", function(object) object@groups)
 
 #' @export
-#' @rdname group
-#' @aliases group,LogRatio-method
-setMethod("group", "LogRatio", function(object) object@groups)
+#' @rdname groups
+#' @aliases groups,LogRatio-method
+setMethod("groups", "LogRatio", function(object) object@groups)
 
 #' @export
-#' @rdname group
-#' @aliases group,OutlierIndex-method
-setMethod("group", "OutlierIndex", function(object) object@groups)
+#' @rdname groups
+#' @aliases groups,OutlierIndex-method
+setMethod("groups", "OutlierIndex", function(object) object@groups)
 
 #' @export
-#' @rdname group
-#' @aliases group,CompositionMatrix-method
+#' @rdname groups
+#' @aliases groups,CompositionMatrix,ANY-method
 setMethod(
-  f = "group<-",
-  signature = "CompositionMatrix",
+  f = "groups<-",
+  signature = c(object = "CompositionMatrix", value = "ANY"),
   definition = function(object, value) {
     if (is.null(value)) {
       object@groups <- rep(NA_character_, nrow(object))
