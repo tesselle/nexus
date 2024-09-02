@@ -81,19 +81,19 @@ setMethod("weights", "LogRatio", weights.LogRatio)
 
 # Totals =======================================================================
 #' @export
-#' @rdname total
-#' @aliases total,CompositionMatrix-method
-setMethod("total", "CompositionMatrix", function(object) object@totals)
+#' @rdname totals
+#' @aliases totals,CompositionMatrix-method
+setMethod("totals", "CompositionMatrix", function(object) object@totals)
 
 #' @export
-#' @rdname total
-#' @aliases total,LogRatio-method
-setMethod("total", "LogRatio", function(object) object@totals)
+#' @rdname totals
+#' @aliases totals,LogRatio-method
+setMethod("totals", "LogRatio", function(object) object@totals)
 
 #' @export
-#' @rdname total
+#' @rdname totals
 setMethod(
-  f = "total<-",
+  f = "totals<-",
   signature = "CompositionMatrix",
   definition = function(object, value) {
     object@totals <- if (is.null(value)) rowSums(object) else as.numeric(value)

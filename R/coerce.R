@@ -91,7 +91,7 @@ setMethod(
   f = "as_amounts",
   signature = c(from = "CompositionMatrix"),
   definition = function(from) {
-    methods::as(from, "matrix") * total(from)
+    methods::as(from, "matrix") * totals(from)
   }
 )
 

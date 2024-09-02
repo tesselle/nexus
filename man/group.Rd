@@ -75,7 +75,7 @@ group(coda)
 \seealso{
 Other mutators: 
 \code{\link{mutators}},
-\code{\link{total}()}
+\code{\link{totals}()}
 }
 \author{
 N. Frerebeau

@@ -107,7 +107,7 @@ setGeneric(
 
 #' Closure Operation
 #'
-#' Closes compositions to sum up to 1.
+#' Closes compositions to sum to 1.
 #' @param x A [`numeric`] vector or matrix.
 #' @param total A [numeric] vector specifying the total amount to which the
 #'  compositions should be closed (defaults to 1).
@@ -201,27 +201,27 @@ NULL
 
 #' Row Sums
 #'
-#' Retrieves or defines the row sums (before closure).
+#' Retrieves or defines the row sums (before [closure][closure()]).
 #' @param object An object from which to get or set `totals`.
 #' @param value A possible value for the `totals` of `x`.
 #' @return
-#'  * `total() <- value` returns an object of the same sort as `x` with the new
+#'  * `totals() <- value` returns an object of the same sort as `x` with the new
 #'    row sums assigned.
-#'  * `total()` returns the row sums of `x`.
+#'  * `totals()` returns the row sums of `x`.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
-#' @aliases total-method
+#' @aliases totals-method
 setGeneric(
-  name = "total",
-  def = function(object) standardGeneric("total")
+  name = "totals",
+  def = function(object) standardGeneric("totals")
 )
 
-#' @rdname total
+#' @rdname totals
 setGeneric(
-  name = "total<-",
-  def = function(object, value) standardGeneric("total<-")
+  name = "totals<-",
+  def = function(object, value) standardGeneric("totals<-")
 )
 
 #' Working With Groups

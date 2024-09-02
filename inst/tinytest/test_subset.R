@@ -113,7 +113,7 @@ expect_equivalent(as_amounts(sub), mtx[, 1:3])
 mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 5)
 cts <- as_composition(mtx)
 
-expect_identical(total(cts[1:5, , drop = FALSE]), total(cts)[1:5])
+expect_identical(totals(cts[1:5, , drop = FALSE]), totals(cts)[1:5])
 
 # Transpose ====================================================================
 mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 5)

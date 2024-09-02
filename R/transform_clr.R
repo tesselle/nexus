@@ -29,7 +29,7 @@ setMethod(
       order = seq_len(D),
       base = base,
       weights = weights,
-      totals = total(object),
+      totals = totals(object),
       groups = group(object)
     )
   }
@@ -56,7 +56,7 @@ setMethod(
       order = seq_len(D),
       base = base,
       weights = w,
-      totals = total(object),
+      totals = totals(object),
       groups = group(object)
     )
   }

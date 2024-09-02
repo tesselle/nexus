@@ -11,7 +11,7 @@ NULL
   ## Rows
   if (missing(i)) i <- seq_len(nrow(x))
   if (is.character(i)) i <- match(i, dimnames(x)[1L])
-  totals <- total(x)[i]
+  totals <- totals(x)[i]
   groups <- group(x)[i]
 
   ## Columns

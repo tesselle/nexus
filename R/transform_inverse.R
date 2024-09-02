@@ -18,7 +18,7 @@ setMethod(
     dimnames(y) <- list(rownames(object), object@parts)
     .CompositionMatrix(
       y,
-      totals = total(object),
+      totals = totals(object),
       groups = group(object)
     )
   }
@@ -42,7 +42,7 @@ setMethod(
 
     .CompositionMatrix(
       y,
-      totals = total(object),
+      totals = totals(object),
       groups = group(object)
     )
   }
@@ -65,7 +65,7 @@ setMethod(
 
     .CompositionMatrix(
       y,
-      totals = total(object),
+      totals = totals(object),
       groups = group(object)
     )
   }

@@ -33,7 +33,7 @@ Getters and setters to retrieve or set parts of an object.
 \seealso{
 Other mutators: 
 \code{\link{group}()},
-\code{\link{total}()}
+\code{\link{totals}()}
 }
 \author{
 N. Frerebeau

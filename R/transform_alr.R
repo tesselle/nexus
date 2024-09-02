@@ -42,7 +42,7 @@ setMethod(
       order = order(ordering),
       base = base,
       weights = weights,
-      totals = total(object),
+      totals = totals(object),
       groups = group(object)
     )
   }
@@ -77,7 +77,7 @@ setMethod(
       order = order(ordering),
       base = base,
       weights = object@weights,
-      totals = total(object),
+      totals = totals(object),
       groups = group(object)
     )
   }

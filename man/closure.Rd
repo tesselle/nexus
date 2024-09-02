@@ -28,7 +28,7 @@ compositions should be closed (defaults to 1).}
 A \code{\link{numeric}} vector or matrix (same as \code{x}).
 }
 \description{
-Closes compositions to sum up to 1.
+Closes compositions to sum to 1.
 }
 \examples{
 x <- as_composition(c(1, 2, 3))
