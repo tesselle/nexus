@@ -16,24 +16,24 @@ alr_base <- function(D) {
 setMethod(
   f = "transform_alr",
   signature = c(object = "CompositionMatrix"),
-  definition = function(object, j = ncol(object)) {
+  definition = function(object, j = ncol(object), weights = FALSE) {
     D <- ncol(object)
     parts <- colnames(object)
 
-    ## Reorder
+    ## Reorder (move denominator)
     j <- if (is.character(j)) which(parts == j) else as.integer(j)
     ordering <- c(which(j != seq_len(D)), j)
     parts <- parts[ordering]
     z <- object[, ordering, drop = FALSE]
 
+    ## Compute ratios
     base <- alr_base(D)
-
     alr <- log(z, base = exp(1)) %*% base
     rownames(alr) <- rownames(object)
     colnames(alr) <- paste(parts[-D], parts[D], sep = "_")
 
-    w <- rep(1 / D, D)
-    w <- w[-1] * w[1]
+    ## Compute weights
+    weights <- make_weights(object, weights = weights)
 
     .ALR(
       alr,
@@ -41,7 +41,7 @@ setMethod(
       ratio = paste(parts[-D], parts[D], sep = "/"),
       order = order(ordering),
       base = base,
-      weights = w,
+      weights = weights,
       totals = total(object),
       groups = group(object)
     )
@@ -58,20 +58,17 @@ setMethod(
     D <- ncol(object)
     parts <- object@parts
 
-    ## Reorder
+    ## Reorder (move denominator)
     j <- if (is.character(j)) which(parts == j) else as.integer(j)
     ordering <- c(which(j != seq_len(D)), j)
     parts <- parts[ordering]
     z <- object[, ordering, drop = FALSE]
 
+    ## Compute ratios
     base <- alr_base(D)
-
     alr <- z %*% base
     rownames(alr) <- rownames(object)
     colnames(alr) <- paste(parts[-D], parts[D], sep = "_")
-
-    w <- rep(1 / D, D)
-    w <- w[-1] * w[1]
 
     .ALR(
       alr,
@@ -79,7 +76,7 @@ setMethod(
       ratio = paste(parts[-D], parts[D], sep = "/"),
       order = order(ordering),
       base = base,
-      weights = w,
+      weights = object@weights,
       totals = total(object),
       groups = group(object)
     )

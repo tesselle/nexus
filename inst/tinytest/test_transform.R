@@ -8,16 +8,25 @@ expect_equal_to_reference(lr, file = "_snaps/transform_lr.rds")
 # CLR ==========================================================================
 clr <- transform_clr(coda, weights = FALSE)
 expect_equal_to_reference(clr, file = "_snaps/transform_clr.rds")
+
+# CLR -> CODA
 x <- transform_inverse(clr)
 expect_equal(coda, x)
 
+# weighted CLR -> CODA
 wclr <- transform_clr(coda, weights = TRUE)
 x <- transform_inverse(wclr)
 expect_equal(coda, x)
 
-alr <- transform_alr(coda)
+# ALR -> CLR
+alr <- transform_alr(coda, weights = FALSE)
 y <- transform_clr(alr)
 expect_equal(clr, y)
+
+# weighted ALR -> weighted CLR
+walr <- transform_alr(coda, weights = TRUE)
+y <- transform_clr(walr)
+expect_equal(wclr, y)
 
 x <- transform_inverse(y)
 expect_equal(coda, x)
@@ -30,16 +39,24 @@ expect_equal(coda, x)
 alr <- transform_alr(coda, j = 2)
 expect_equal_to_reference(alr, file = "_snaps/transform_alr.rds")
 
+# ALR -> CODA
 x <- transform_inverse(alr)
 expect_equal(coda, x)
 
+# weighted ALR -> CODA
+walr <- transform_alr(coda, j = 2, weights = TRUE)
+x <- transform_inverse(walr)
+expect_equal(coda, x)
+
+# CLR -> ALR
 clr <- transform_clr(coda, weights = FALSE)
 y <- transform_alr(clr, j = 2)
 expect_equal(alr, y)
 
+# weighted CLR -> weighted ALR
 wclr <- transform_clr(coda, weights = TRUE)
 y <- transform_alr(wclr, j = 2)
-expect_equal(alr, y)
+expect_equal(walr, y)
 
 x <- transform_inverse(y)
 expect_equal(coda, x)
@@ -62,9 +79,17 @@ clr <- transform_clr(coda)
 y <- transform_ilr(clr)
 expect_equal(ilr, y)
 
+# wclr <- transform_clr(coda, weights = TRUE)
+# y <- transform_ilr(wclr)
+# expect_equal(wilr, y)
+
 alr <- transform_alr(coda)
 z <- transform_ilr(alr)
 expect_equal(ilr, z)
+
+# walr <- transform_alr(coda, weights = TRUE)
+# y <- transform_ilr(walr)
+# expect_equal(wilr, y)
 
 # PLR ==========================================================================
 plr <- transform_plr(coda)

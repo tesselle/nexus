@@ -9,12 +9,18 @@
 \usage{
 transform_lr(object, ...)
 
-\S4method{transform_lr}{CompositionMatrix}(object)
+\S4method{transform_lr}{CompositionMatrix}(object, weights = FALSE)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
+
+\item{weights}{A \code{\link{logical}} scalar: should varying weights (column means)
+be computed? If \code{FALSE} (the default), equally-weighted parts are used.
+Alternatively, a positive \code{\link{numeric}} vector of weights can be specified
+(will be rescaled to sum to \eqn{1}). Weights will be used internally by
+other methods (e.g. \code{\link[=variance]{variance()}}).}
 }
 \value{
 A \code{\linkS4class{LR}} object.

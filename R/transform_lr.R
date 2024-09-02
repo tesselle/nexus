@@ -9,33 +9,34 @@ NULL
 setMethod(
   f = "transform_lr",
   signature = c(object = "CompositionMatrix"),
-  definition = function(object) {
+  definition = function(object, weights = FALSE) {
     J <- ncol(object)
     parts <- colnames(object)
-    weights <- rep(1 / J, J)
 
-    w <- unlist(utils::combn(weights, 2, FUN = function(x) Reduce(`*`, x),
-                             simplify = FALSE))
-    r <- unlist(utils::combn(parts, 2, FUN = paste, collapse = "/",
-                             simplify = FALSE))
+    ## Compute weights
+    weights <- make_weights(object, weights = weights)
 
+    ## Computes ratios
     jj <- utils::combn(seq_len(J), 2, simplify = FALSE)
     lr <- matrix(data = 0, nrow = nrow(object), ncol = length(jj))
     for (i in seq_along(jj)) {
       a <- jj[[i]][[1]]
       b <- jj[[i]][[2]]
-      lr[, i] <- log(object[, a, drop = TRUE] / object[, b, drop = TRUE], base = exp(1))
+      r <- object[, a, drop = TRUE] / object[, b, drop = TRUE]
+      lr[, i] <- log(r, base = exp(1))
     }
 
+    ## Make names
+    ratio <- unlist(utils::combn(parts, 2, FUN = paste, collapse = "/", simplify = FALSE))
     rownames(lr) <- rownames(object)
-    colnames(lr) <- r
+    colnames(lr) <- ratio
 
     .LR(
       lr,
       parts = parts,
-      ratio = r,
+      ratio = ratio,
       order = seq_len(J),
-      weights = w,
+      weights = weights,
       totals = total(object),
       groups = group(object)
     )

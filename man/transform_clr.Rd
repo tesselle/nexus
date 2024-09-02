@@ -19,9 +19,10 @@ transform_clr(object, ...)
 
 \item{...}{Currently not used.}
 
-\item{weights}{A \code{\link{logical}} scalar: should a varying weight be used. If
-\code{FALSE} (the default), equally-weighted parts are used. Alternatively, a
-positive \code{\link{numeric}} vector of weights can be specified.}
+\item{weights}{A \code{\link{logical}} scalar: should varying weights (column means)
+be used? If \code{FALSE} (the default), equally-weighted parts are used.
+Alternatively, a positive \code{\link{numeric}} vector of weights can be specified
+(will be rescaled to sum to \eqn{1}).}
 }
 \value{
 A \code{\linkS4class{CLR}} object.

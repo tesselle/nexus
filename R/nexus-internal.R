@@ -62,3 +62,27 @@ label_percent <- function(x, digits = NULL, trim = FALSE) {
   x[i] <- y
   x
 }
+
+#' Column Weights
+#'
+#' Computes column weights.
+#' @param x A `numeric` [`matrix`].
+#' @param weights A [`logical`] scalar: should varying weights (column means)
+#'  be computed? If `FALSE` (the default), equally-weighted parts are used.
+#'  Alternatively, a positive [`numeric`] vector of weights can be specified
+#'  (will be rescaled to sum to \eqn{1}).
+#' @return A [`numeric`] vector.
+#' @keywords internal
+#' @noRd
+make_weights <- function(x, weights = FALSE) {
+  D <- ncol(x)
+
+  w <- if (isTRUE(weights)) colMeans(x) else rep(1 / D, D)
+  if (is.numeric(weights)) {
+    arkhe::assert_length(weights, D)
+    arkhe::assert_positive(weights, strict = TRUE)
+    w <- weights / sum(weights) # Sum up to 1
+  }
+
+  unname(w)
+}

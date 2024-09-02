@@ -21,6 +21,7 @@
 * Remove `metrix_var()` and `metric_sd()`.
 * Redefine `outlier()` methods.
 * Rewrite `plot()` method for `OutlierIndex` object.
+* Remove the `base` argument of `transform_ilr()`.
 
 # nexus 0.2.0
 ## New classes and methods

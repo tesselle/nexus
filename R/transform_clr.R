@@ -17,14 +17,8 @@ setMethod(
     D <- ncol(object)
     parts <- colnames(object)
 
-    w <- if (isTRUE(weights)) colMeans(object) else rep(1 / D, D)
-    if (is.numeric(weights)) {
-      arkhe::assert_length(weights, D)
-      arkhe::assert_positive(weights, strict = FALSE)
-      w <- weights / sum(weights) # Sum up to 1
-    }
-
-    base <- clr_base(D, weights = w)
+    weights <- make_weights(object, weights = weights)
+    base <- clr_base(D, weights = weights)
     clr <- log(object, base = exp(1)) %*% base
     dimnames(clr) <- dimnames(object)
 
@@ -34,7 +28,7 @@ setMethod(
       ratio = parts,
       order = seq_len(D),
       base = base,
-      weights = unname(w),
+      weights = weights,
       totals = total(object),
       groups = group(object)
     )
@@ -49,7 +43,7 @@ setMethod(
   signature = c(object = "ALR"),
   definition = function(object) {
     D <- ncol(object) + 1
-    w <- rep(1 / D, D)
+    w <- object@weights
 
     base <- clr_base(D, weights = w)
     clr <- object %*% base[-D, ]

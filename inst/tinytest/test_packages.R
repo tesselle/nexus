@@ -4,9 +4,10 @@ if (at_home()) {
   coda <- as_composition(hongite)
 
   lr <- transform_lr(coda)
-  clr <- transform_clr(coda, weights = FALSE)
+  clr <- transform_clr(coda)
   wclr <- transform_clr(coda, weights = TRUE)
   alr <- transform_alr(coda, j = 2)
+  walr <- transform_alr(coda, j = 2, weights = TRUE)
   ilr <- transform_ilr(coda)
   plr <- transform_plr(coda)
 
@@ -28,10 +29,12 @@ if (at_home()) {
     expect_equivalent(dist(coda), robCompositions::aDist(hongite))
   }
   if (requireNamespace("easyCODA", quietly = TRUE)) {
+    expect_equivalent(lr@.Data, easyCODA::LR(hongite, weight = FALSE)$LR)
     expect_equivalent(clr@.Data, easyCODA::CLR(hongite, weight = FALSE)$LR)
     expect_equivalent(wclr@.Data, easyCODA::CLR(hongite, weight = TRUE)$LR)
     expect_equivalent(alr@.Data, easyCODA::ALR(hongite, denom = 2, weight = FALSE)$LR)
-    expect_equivalent(lr@.Data, easyCODA::LR(hongite, weight = FALSE)$LR)
+    expect_equivalent(walr@.Data, easyCODA::ALR(hongite, denom = 2, weight = TRUE)$LR)
+    expect_equivalent(ilr@.Data[, 4] * -1, easyCODA::ILR(hongite, numer = 1:4, denom = 5, weight = FALSE)$LR)
     expect_equivalent(variance_total(clr), easyCODA::LR.VAR(clr, weight = clr@weights, vars = FALSE))
     expect_equivalent(variance(clr), easyCODA::LR.VAR(clr, weight = clr@weights, vars = TRUE)$LRvars)
   }

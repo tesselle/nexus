@@ -425,6 +425,11 @@ NULL
 #'
 #' Computes all pairwise log-ratio transformation.
 #' @param object A [`CompositionMatrix-class`] object.
+#' @param weights A [`logical`] scalar: should varying weights (column means)
+#'  be computed? If `FALSE` (the default), equally-weighted parts are used.
+#'  Alternatively, a positive [`numeric`] vector of weights can be specified
+#'  (will be rescaled to sum to \eqn{1}). Weights will be used internally by
+#'  other methods (e.g. [variance()]).
 #' @param ... Currently not used.
 #' @return
 #'  A [`LR-class`] object.
@@ -454,9 +459,10 @@ setGeneric(
 #'
 #' Computes CLR transformation.
 #' @param object A [`CompositionMatrix-class`] object.
-#' @param weights A [`logical`] scalar: should a varying weight be used. If
-#'  `FALSE` (the default), equally-weighted parts are used. Alternatively, a
-#'  positive [`numeric`] vector of weights can be specified.
+#' @param weights A [`logical`] scalar: should varying weights (column means)
+#'  be used? If `FALSE` (the default), equally-weighted parts are used.
+#'  Alternatively, a positive [`numeric`] vector of weights can be specified
+#'  (will be rescaled to sum to \eqn{1}).
 #' @param ... Currently not used.
 #' @details
 #'  The CLR transformation computes the log of each part relative to the
@@ -490,6 +496,11 @@ setGeneric(
 #' Computes ALR transformation.
 #' @param object A [`CompositionMatrix-class`] object.
 #' @param j An [`integer`] giving the index of the rationing part (denominator).
+#' @param weights A [`logical`] scalar: should varying weights (column means)
+#'  be computed? If `FALSE` (the default), equally-weighted parts are used.
+#'  Alternatively, a positive [`numeric`] vector of weights can be specified
+#'  (will be rescaled to sum to \eqn{1}). Weights will be used internally by
+#'  other methods (e.g. [variance()]).
 #' @param ... Currently not used.
 #' @details
 #'  The ALR transformation is the logratio of a pair of parts with respect to a
@@ -522,7 +533,6 @@ setGeneric(
 #'
 #' Computes ILR transformations.
 #' @param object A [`CompositionMatrix-class`] object.
-#' @param base A [`matrix`] giving the base of the transformation.
 #' @param ... Currently not used.
 #' @details
 #'  The ILR transformation provides the coordinates of any composition with
@@ -548,7 +558,7 @@ setGeneric(
 #' @aliases transform_ilr-method
 setGeneric(
   name = "transform_ilr",
-  def = function(object, base, ...) standardGeneric("transform_ilr"),
+  def = function(object, ...) standardGeneric("transform_ilr"),
   valueClass = "ILR"
 )
 

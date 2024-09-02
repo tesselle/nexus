@@ -37,6 +37,37 @@ labels.LogRatio <- function(object, ...) {
 #' @aliases labels,LogRatio-method
 setMethod("labels", "LogRatio", labels.LogRatio)
 
+# Weights ======================================================================
+#' @export
+#' @method weights ALR
+weights.ALR <- function(object, ...) {
+  w <- object@weights
+  w[-1] * w[1]
+}
+
+#' @export
+#' @rdname mutators
+#' @aliases weights,ALR-method
+setMethod("weights", "ALR", weights.ALR)
+
+#' @export
+#' @method weights LR
+weights.LR <- function(object, ...) {
+  w <- object@weights
+  w <- utils::combn(
+    x = w,
+    m = 2,
+    FUN = function(x) Reduce(`*`, x),
+    simplify = FALSE
+  )
+  unlist(w)
+}
+
+#' @export
+#' @rdname mutators
+#' @aliases weights,LR-method
+setMethod("weights", "LR", weights.LR)
+
 #' @export
 #' @method weights LogRatio
 weights.LogRatio <- function(object, ...) {

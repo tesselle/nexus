@@ -28,21 +28,11 @@ ilr_base <- function(D, method = "basic") {
 #' @aliases transform_ilr,CompositionMatrix,missing-method
 setMethod(
   f = "transform_ilr",
-  signature = c(object = "CompositionMatrix", base = "missing"),
+  signature = c(object = "CompositionMatrix"),
   definition = function(object) {
-    H <- ilr_base(D = ncol(object), method = "basic")
-    methods::callGeneric(object, base = H)
-  }
-)
-
-#' @export
-#' @rdname transform_ilr
-#' @aliases transform_ilr,CompositionMatrix,matrix-method
-setMethod(
-  f = "transform_ilr",
-  signature = c(object = "CompositionMatrix", base = "matrix"),
-  definition = function(object, base) {
-    .transform_ilr(object, base)
+    weights <- rep(1 / ncol(object), ncol(object))
+    base <- ilr_base(D = ncol(object), method = "basic")
+    .transform_ilr(object, base, weights)
   }
 )
 
@@ -51,11 +41,12 @@ setMethod(
 #' @aliases transform_ilr,CLR,missing-method
 setMethod(
   f = "transform_ilr",
-  signature = c(object = "CLR", base = "missing"),
-  definition = function(object, base) {
+  signature = c(object = "CLR"),
+  definition = function(object) {
+    weights <- object@weights
     base <- ilr_base(D = ncol(object), method = "basic")
     object@.Data <- exp(object@.Data)
-    .transform_ilr(object, base)
+    .transform_ilr(object, base, weights)
   }
 )
 
@@ -64,14 +55,14 @@ setMethod(
 #' @aliases transform_ilr,ALR,missing-method
 setMethod(
   f = "transform_ilr",
-  signature = c(object = "ALR", base = "missing"),
-  definition = function(object, base) {
+  signature = c(object = "ALR"),
+  definition = function(object) {
     object <- transform_clr(object)
     methods::callGeneric(object)
   }
 )
 
-.transform_ilr <- function(object, base) {
+.transform_ilr <- function(object, base, weights) {
   D <- ncol(object)
   seq_parts <- seq_len(D - 1)
   parts <- colnames(object)
@@ -97,7 +88,7 @@ setMethod(
     ratio = ratio,
     order = seq_len(D),
     base = base,
-    weights = rep(1 / D, D),
+    weights = weights,
     totals = total(object),
     groups = group(object)
   )

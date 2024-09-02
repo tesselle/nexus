@@ -7,12 +7,18 @@
 \alias{set}
 \alias{labels,CompositionMatrix-method}
 \alias{labels,LogRatio-method}
+\alias{weights,ALR-method}
+\alias{weights,LR-method}
 \alias{weights,LogRatio-method}
 \title{Get or Set Parts of an Object}
 \usage{
 \S4method{labels}{CompositionMatrix}(object, ...)
 
 \S4method{labels}{LogRatio}(object, ...)
+
+\S4method{weights}{ALR}(object, ...)
+
+\S4method{weights}{LR}(object, ...)
 
 \S4method{weights}{LogRatio}(object, ...)
 }
