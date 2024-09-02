@@ -16,8 +16,10 @@
 \alias{groups,CompositionMatrix-method}
 \alias{groups,LogRatio-method}
 \alias{groups,OutlierIndex-method}
-\alias{groups<-,CompositionMatrix-method}
+\alias{groups<-,CompositionMatrix,ANY-method}
 \alias{groups,CompositionMatrix,ANY-method}
+\alias{groups<-,CompositionMatrix,list-method}
+\alias{groups,CompositionMatrix,list-method}
 \title{Working With Groups}
 \usage{
 groups(object)
@@ -42,26 +44,35 @@ is_assigned(object)
 
 \S4method{groups}{OutlierIndex}(object)
 
-\S4method{groups}{CompositionMatrix}(object) <- value
+\S4method{groups}{CompositionMatrix,ANY}(object) <- value
+
+\S4method{groups}{CompositionMatrix,list}(object) <- value
 }
 \arguments{
 \item{object}{An object from which to get or set \code{groups}.}
 
-\item{value}{A possible value for the \code{groups} of \code{x}.}
+\item{value}{A possible value for the \code{groups} of \code{x} (typically, a
+\code{\link{character}} vector).
+If \code{value} is a \code{\link{list}}, \code{\link[=interaction]{interaction(value)}} defines the
+grouping.}
 }
 \value{
 \itemize{
 \item \code{groups() <- value} returns an object of the same sort as \code{x} with the new
 group names assigned.
 \item \code{groups()} returns a \code{\link{character}} vector giving the group names of \code{x}.
-\item \code{any_assigned()} returns a \code{\link{logical}} scalar specifying whether or not \code{x}
-has groups.
+\item \code{any_assigned()} returns a \code{\link{logical}} scalar specifying whether or not
+\code{x} has groups.
 \item \code{is_assigned()} returns a \code{\link{logical}} vector specifying whether or not an
 observation belongs to a group.
 }
 }
 \description{
-Retrieves or defines the groups to which the observations belong.
+Retrieves or defines the (reference) groups to which the observations belong.
+}
+\details{
+Missing values (\code{NA}) or empty strings (\code{""}) can be used to specify that a
+sample does not belong to any group.
 }
 \examples{
 ## Data from Aitchison 1986

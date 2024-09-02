@@ -226,15 +226,21 @@ setGeneric(
 
 #' Working With Groups
 #'
-#' Retrieves or defines the groups to which the observations belong.
+#' Retrieves or defines the (reference) groups to which the observations belong.
 #' @param object An object from which to get or set `groups`.
-#' @param value A possible value for the `groups` of `x`.
+#' @param value A possible value for the `groups` of `x` (typically, a
+#'  [`character`] vector).
+#'  If `value` is a [`list`], [`interaction(value)`][interaction()] defines the
+#'  grouping.
+#' @details
+#'  Missing values (`NA`) or empty strings (`""`) can be used to specify that a
+#'  sample does not belong to any group.
 #' @return
 #'  * `groups() <- value` returns an object of the same sort as `x` with the new
 #'    group names assigned.
 #'  * `groups()` returns a [`character`] vector giving the group names of `x`.
-#'  * `any_assigned()` returns a [`logical`] scalar specifying whether or not `x`
-#'    has groups.
+#'  * `any_assigned()` returns a [`logical`] scalar specifying whether or not
+#'    `x` has groups.
 #'  * `is_assigned()` returns a [`logical`] vector specifying whether or not an
 #'    observation belongs to a group.
 #' @example inst/examples/ex-groups.R
@@ -685,7 +691,7 @@ setGeneric(
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param by A `vector` or a list of grouping elements, each as long as the
 #'  variables in `x`. The elements are coerced to factors before use
-#'  (in the sense that [`as.factor(by)`][as.factor()] defines the grouping).
+#'  (in the sense that [`interaction(by)`][interaction()] defines the grouping).
 #' @param FUN A [`function`] to compute the summary statistics.
 #' @param simplify A [`logical`] scalar: should the results be simplified to a
 #'  matrix if possible?
@@ -744,8 +750,11 @@ NULL
 #'
 #' Splits the data into subsets and computes compositional mean for each.
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param by A `vector` of grouping elements, as long as the variables in `x`
-#'  (in the sense that [`as.factor(by)`][as.factor()] defines the grouping).
+#' @param by A `vector` or a list of grouping elements, each as long as the
+#'  variables in `x`. The elements are coerced to factors before use
+#'  (in the sense that [`interaction(by)`][interaction()] defines the grouping).
+#' @param drop A [`logical`] scalar indicating whether to drop unused
+#'  combinations of grouping values.
 #' @param ... Further arguments to be passed to [mean()].
 #' @return A [`CompositionMatrix-class`] object.
 #' @seealso [mean()], [aggregate()]

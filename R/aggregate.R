@@ -13,8 +13,9 @@ aggregate.CompositionMatrix <- function(x, by, FUN, ...,
   if (!is.list(by)) by <- list(by)
   arkhe::assert_lengths(by, m)
 
+  ## Grouping
   index <- interaction(by, drop = drop, sep = "_")
-  if (length(unique(by)) == m) {
+  if (length(unique(index)) == m) {
     warning("Nothing to group by.", call. = FALSE)
     return(x)
   }

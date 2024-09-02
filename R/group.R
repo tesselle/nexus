@@ -30,7 +30,7 @@ has_groups <- function(x) {
   length(x) > 0 && any(in_groups(x))
 }
 in_groups <- function(x) {
-  !is.na(x) & nzchar(x, keepNA = TRUE)
+  !is.na(x) & x != ""
 }
 ngroups <- function(x) {
   length(unique(x))
@@ -85,6 +85,22 @@ setMethod(
       value[value == ""] <- NA_character_
       object@groups <- value
     }
+    methods::validObject(object)
+    object
+  }
+)
+
+#' @export
+#' @rdname groups
+#' @aliases groups,CompositionMatrix,list-method
+setMethod(
+  f = "groups<-",
+  signature = c(object = "CompositionMatrix", value = "list"),
+  definition = function(object, value) {
+    value <- interaction(value, sep = "_")
+    value <- as.character(value)
+    value[value == ""] <- NA_character_
+    object@groups <- value
     methods::validObject(object)
     object
   }
