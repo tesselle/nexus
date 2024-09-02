@@ -9,7 +9,7 @@
 \S4method{barplot}{CompositionMatrix}(
   height,
   ...,
-  subset = NULL,
+  select = NULL,
   by = groups(height),
   order_columns = FALSE,
   order_rows = NULL,
@@ -27,7 +27,7 @@
 
 \item{...}{Further parameters to be passed to \code{\link[graphics:barplot]{graphics::barplot()}}.}
 
-\item{subset}{A vector of column indices.}
+\item{select}{A vector of column indices.}
 
 \item{by}{A \code{vector} of grouping elements, as long as the variables in
 \code{height}.}
@@ -83,7 +83,7 @@ coda <- as_composition(kommos, groups = 1) # Coerce to compositional data
 barplot(coda, order_columns = TRUE)
 
 ## Display only minor elements
-barplot(coda, subset = is_element_minor(coda), order_columns = TRUE)
+barplot(coda, select = is_element_minor(coda), order_columns = TRUE)
 }
 \seealso{
 Other plot methods: 

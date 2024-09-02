@@ -1040,7 +1040,7 @@ NULL
 #'
 #' Displays a compositional bar chart.
 #' @param height A [`CompositionMatrix-class`] object.
-#' @param subset A vector of column indices.
+#' @param select A vector of column indices.
 #' @param by A `vector` of grouping elements, as long as the variables in
 #'  `height`.
 #' @param order_columns A [`logical`] scalar: should should columns be reorderd?

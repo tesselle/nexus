@@ -5,7 +5,7 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method barplot CompositionMatrix
-barplot.CompositionMatrix <- function(height, ..., subset = NULL,
+barplot.CompositionMatrix <- function(height, ..., select = NULL,
                                       by = groups(height),
                                       order_columns = FALSE, order_rows = NULL,
                                       decreasing = TRUE,
@@ -13,8 +13,8 @@ barplot.CompositionMatrix <- function(height, ..., subset = NULL,
                                       color = palette_color_discrete(),
                                       border = "black", axes = TRUE, legend = TRUE) {
   ## Get data
-  if (is.null(subset)) subset <- seq_len(ncol(height))
-  z <- height[, subset, drop = FALSE]
+  if (is.null(select)) select <- seq_len(ncol(height))
+  z <- height[, select, drop = FALSE]
   if (ncol(z) == 1) {
     warning("Only one part is selected. Displaying all data.", call. = FALSE)
     z <- height
