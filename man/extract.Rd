@@ -35,7 +35,13 @@ coda <- as_composition(slides, groups = 2)
 
 groups(coda)
 }
+\seealso{
+Other subsetting methods: 
+\code{\link{bind}},
+\code{\link{split}()},
+\code{\link{subset}()}
+}
 \author{
 N. Frerebeau
 }
-\concept{subset}
+\concept{subsetting methods}

@@ -46,6 +46,7 @@ do.call(rbind, s2)
 }
 \seealso{
 Other subsetting methods: 
+\code{\link{extract}()},
 \code{\link{split}()},
 \code{\link{subset}()}
 }

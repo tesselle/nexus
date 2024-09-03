@@ -381,7 +381,7 @@ NULL
 #' @example inst/examples/ex-groups.R
 #' @author N. Frerebeau
 #' @docType methods
-#' @family subset
+#' @family subsetting methods
 #' @aliases extract-method
 setGeneric(
   name = "extract",

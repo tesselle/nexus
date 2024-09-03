@@ -81,6 +81,7 @@ head(subcoda)
 \seealso{
 Other subsetting methods: 
 \code{\link{bind}},
+\code{\link{extract}()},
 \code{\link{split}()}
 }
 \author{
