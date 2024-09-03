@@ -10,9 +10,22 @@
 \usage{
 outliers(object, reference, ...)
 
-\S4method{outliers}{CompositionMatrix,missing}(object, ..., method = c("mve", "mcd"), quantile = 0.975)
+\S4method{outliers}{CompositionMatrix,missing}(
+  object,
+  ...,
+  robust = TRUE,
+  method = c("mve", "mcd"),
+  quantile = 0.975
+)
 
-\S4method{outliers}{CompositionMatrix,CompositionMatrix}(object, reference, ..., method = c("mve", "mcd"), quantile = 0.975)
+\S4method{outliers}{CompositionMatrix,CompositionMatrix}(
+  object,
+  reference,
+  ...,
+  robust = TRUE,
+  method = c("mve", "mcd"),
+  quantile = 0.975
+)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}}.}
@@ -21,9 +34,12 @@ outliers(object, reference, ...)
 
 \item{...}{Further parameters to be passed to \code{\link[MASS:cov.rob]{MASS::cov.rob()}}.}
 
+\item{robust}{A \code{\link{logical}} scalar: should robust estimators be used?}
+
 \item{method}{A \code{\link{character}} string specifying the method to be used.
 It must be one of "\code{mve}" (minimum volume ellipsoid) or "\code{mcd}" (minimum
-covariance determinant; see \code{\link[MASS:cov.rob]{MASS::cov.rob()}}).}
+covariance determinant; see \code{\link[MASS:cov.rob]{MASS::cov.rob()}}).
+Only used if \code{robust} is \code{TRUE}.}
 
 \item{quantile}{A length-one \code{\link{numeric}} vector giving the significance level.
 \code{quantile} is used as a cut-off value for outlier detection: observations

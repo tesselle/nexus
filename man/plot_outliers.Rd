@@ -9,7 +9,7 @@
 \S4method{plot}{OutlierIndex,missing}(
   x,
   ...,
-  type = c("dotchart", "distance", "qqplot"),
+  type = c("dotchart", "distance"),
   robust = TRUE,
   colors = color("discreterainbow"),
   symbols = c(16, 1, 3),
@@ -33,11 +33,11 @@
 \item{...}{Further \link[graphics:par]{graphical parameters}.}
 
 \item{type}{A \code{\link{character}} string specifying the type of plot that should be
-made. It must be one of "\code{dotchart}", "\code{distance}" or "\code{qqplot}".
+made. It must be one of "\code{dotchart}" or "\code{distance}".
 Any unambiguous substring can be given.}
 
 \item{robust}{A \code{\link{logical}} scalar: should robust Mahalanobis distances be
-displayed? Only used if \code{type} is "\code{dotchart}" or "\code{qqplot}".}
+displayed? Only used if \code{type} is "\code{dotchart}".}
 
 \item{colors}{A vector of colors or a \code{function} that when called with a
 single argument (an integer specifying the number of colors) returns a

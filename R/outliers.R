@@ -9,8 +9,9 @@ NULL
 setMethod(
   f = "outliers",
   signature = c(object = "CompositionMatrix", reference = "missing"),
-  definition = function(object, ..., method = c("mve", "mcd"), quantile = 0.975) {
-    methods::callGeneric(object, reference = object,
+  definition = function(object, ..., robust = TRUE, method = c("mve", "mcd"),
+                        quantile = 0.975) {
+    methods::callGeneric(object, reference = object, robust = robust,
                          method = method, quantile = quantile)
   }
 )
@@ -21,7 +22,8 @@ setMethod(
 setMethod(
   f = "outliers",
   signature = c(object = "CompositionMatrix", reference = "CompositionMatrix"),
-  definition = function(object, reference, ..., method = c("mve", "mcd"), quantile = 0.975) {
+  definition = function(object, reference, ..., robust = TRUE,
+                        method = c("mve", "mcd"), quantile = 0.975) {
     ## Validation
     if (!all(colnames(object) == colnames(reference))) {
       stop("", call. = FALSE)
@@ -43,17 +45,18 @@ setMethod(
       warning(sprintf(msg, n), call. = FALSE)
     }
 
-    ## Compute center and spread
+    ## Compute center and spread + Mahalanobis distance
     ## Standard estimators
     estc <- list(center = colMeans(ref, na.rm = TRUE), cov = cov(ref))
+    dc <- stats::mahalanobis(z, center = estc$center, cov = estc$cov)
 
     ## Robust estimators
-    method <- match.arg(method, several.ok = FALSE)
-    estr <- MASS::cov.rob(ref, method = method, ...)
-
-    ## Mahalanobis distance
-    dc <- stats::mahalanobis(z, center = estc$center, cov = estc$cov)
-    dr <- stats::mahalanobis(z, center = estr$center, cov = estr$cov)
+    dr <- rep(NA_real_, nrow(z))
+    if (robust) {
+      method <- match.arg(method, several.ok = FALSE)
+      estr <- MASS::cov.rob(ref, method = method, ...)
+      dr <- stats::mahalanobis(z, center = estr$center, cov = estr$cov)
+    }
 
     ## Threshold
     limit <- sqrt(stats::qchisq(p = quantile, df = p))
@@ -73,7 +76,7 @@ setMethod(
 #' @export
 #' @method plot OutlierIndex
 plot.OutlierIndex <- function(x, ...,
-                              type = c("dotchart", "distance", "qqplot"),
+                              type = c("dotchart", "distance"),
                               robust = TRUE,
                               colors = color("discreterainbow"),
                               symbols = c(16, 1, 3),
@@ -88,31 +91,31 @@ plot.OutlierIndex <- function(x, ...,
   dc <- x@standard
   dr <- x@robust
   grp <- x@groups
-
-  ## Validation
-  type <- match.arg(type, several.ok = FALSE)
-  if (all(is.na(dr)) || all(is.na(dc))) {
-    stop("No distances were calculated.", call. = FALSE)
-  }
-
   dof <- x@dof
   limit <- x@limit
   n <- length(dc)
 
+  ## Validation
+  if (all(is.na(dr))) {
+    robust <- FALSE
+    type <- "dotchart"
+  }
+  type <- match.arg(type, several.ok = FALSE)
+
   ## Graphical parameters
   shape <- rep(symbols[[1L]], n)
-  if (robust || type == "distance") shape[dr > limit] <- symbols[[2L]]
-  shape[dc > limit] <- symbols[[3L]]
-  col <- rep("black", length(grp))
-  if (nlevels(grp) > 0) {
-    col <- khroma::palette_color_discrete(colors)(grp)
-  }
+  if (robust || type == "distance") shape[dr > limit] <- symbols[[3L]]
+  if (!robust || type == "distance") shape[dc > limit] <- symbols[[2L]]
 
-  asp <- NA
+  col <- rep("black", length(grp))
+  if (nlevels(grp) > 0) col <- khroma::palette_color_discrete(colors)(grp)
+
   cy <- if (robust) dr else dc
-  ylab <- ylab %||% sprintf("%s Mahalanobis distance", ifelse(robust, "Robust", "Standard"))
+  dlab <- sprintf("%s Mahalanobis distance", ifelse(robust, "Robust", "Standard"))
+  ylab <- ylab %||% dlab
 
   if (type == "dotchart") {
+    asp <- NA
     cx <- seq_along(dc)
     xlab <- xlab %||% "Index"
     panel <- function() {
@@ -121,6 +124,7 @@ plot.OutlierIndex <- function(x, ...,
     }
   }
   if (type == "distance") {
+    asp <- 1
     cx <- dc
     cy <- dr
     xlab <- xlab %||% "Standard Mahalanobis distance"
@@ -130,20 +134,6 @@ plot.OutlierIndex <- function(x, ...,
       graphics::abline(h = limit, lty = 1)
       graphics::abline(v = limit, lty = 1)
       graphics::abline(a = 0, b = 1, lty = 2, col = "darkgrey")
-    }
-  }
-  if (type == "qqplot") {
-    cx <- stats::qchisq(stats::ppoints(n), df = dof)
-    xlab <- xlab %||% "Theoretrical Quantiles"
-    asp <- 1
-    panel <- function() {
-      i <- order(cy)
-      stats::qqline(
-        y = cy,
-        distribution = function(p) stats::qchisq(p, df = dof),
-        probs = c(0.25, 0.75), col = "black"
-      )
-      graphics::points(x = cx, y = cy[i], pch = shape[i], col = col[i])
     }
   }
 
@@ -184,13 +174,14 @@ plot.OutlierIndex <- function(x, ...,
 
   ## Add legend
   if (is.list(legend)) {
-    if (robust || type == "distance") {
+    if (type == "distance") {
       lab <- c("No outlier", "Robust only", "Both")
+      pch <- symbols
     } else {
       lab <- c("No outlier", "Outlier")
-      pch <- symbols[-2]
+      pch <- symbols[-2 - !robust]
     }
-    args <- list(x = "topleft", legend = lab, pch = symbols, bty = "n", xpd = NA)
+    args <- list(x = "topleft", legend = lab, pch = pch, bty = "n", xpd = NA)
     args <- utils::modifyList(args, legend)
     do.call(graphics::legend, args = args)
   }

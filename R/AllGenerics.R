@@ -1307,9 +1307,11 @@ NULL
 #'
 #' @param object A [`CompositionMatrix-class`].
 #' @param reference A [`CompositionMatrix-class`]. If missing, `object` is used.
+#' @param robust A [`logical`] scalar: should robust estimators be used?
 #' @param method A [`character`] string specifying the method to be used.
 #'  It must be one of "`mve`" (minimum volume ellipsoid) or "`mcd`" (minimum
 #'  covariance determinant; see [MASS::cov.rob()]).
+#'  Only used if `robust` is `TRUE`.
 #' @param quantile A length-one [`numeric`] vector giving the significance level.
 #'  `quantile` is used as a cut-off value for outlier detection: observations
 #'  with larger (squared) Mahalanobis distance are considered as potential
@@ -1367,10 +1369,10 @@ setGeneric(
 #'
 #' @param x An [`OutlierIndex-class`] object.
 #' @param type A [`character`] string specifying the type of plot that should be
-#'  made. It must be one of "`dotchart`", "`distance`" or "`qqplot`".
+#'  made. It must be one of "`dotchart`" or "`distance`".
 #'  Any unambiguous substring can be given.
 #' @param robust A [`logical`] scalar: should robust Mahalanobis distances be
-#'  displayed? Only used if `type` is "`dotchart`" or "`qqplot`".
+#'  displayed? Only used if `type` is "`dotchart`".
 #' @param colors A vector of colors or a `function` that when called with a
 #'  single argument (an integer specifying the number of colors) returns a
 #'  vector of colors. Will be mapped to the group names.
