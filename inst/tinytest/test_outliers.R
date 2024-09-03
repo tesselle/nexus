@@ -1,9 +1,11 @@
-data("hongite")
-coda <- as_composition(kommos)
+data("arctic")
+coda <- as_composition(arctic, parts = 1:3)
 
 # Detect outliers ==============================================================
-out <- outliers(coda, robust = FALSE)
-expect_equal_to_reference(out, file = "_snaps/outliers.rds")
+out <- detect_outlier(coda, robust = FALSE)
+expect_equal_to_reference(out, file = "_snaps/detect_outlier.rds")
+
+expect_equivalent(which(is_outlier(out, robust = FALSE)), c(7L, 12L))
 
 # Plot =========================================================================
 if (at_home()) {

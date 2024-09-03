@@ -4,10 +4,10 @@ NULL
 
 # Find =========================================================================
 #' @export
-#' @rdname outliers
-#' @aliases outliers,CompositionMatrix,missing-method
+#' @rdname detect_outlier
+#' @aliases detect_outlier,CompositionMatrix,missing-method
 setMethod(
-  f = "outliers",
+  f = "detect_outlier",
   signature = c(object = "CompositionMatrix", reference = "missing"),
   definition = function(object, ..., robust = TRUE, method = c("mve", "mcd"),
                         quantile = 0.975) {
@@ -17,10 +17,10 @@ setMethod(
 )
 
 #' @export
-#' @rdname outliers
-#' @aliases outliers,CompositionMatrix,CompositionMatrix-method
+#' @rdname detect_outlier
+#' @aliases detect_outlier,CompositionMatrix,CompositionMatrix-method
 setMethod(
-  f = "outliers",
+  f = "detect_outlier",
   signature = c(object = "CompositionMatrix", reference = "CompositionMatrix"),
   definition = function(object, reference, ..., robust = TRUE,
                         method = c("mve", "mcd"), quantile = 0.975) {
@@ -69,6 +69,20 @@ setMethod(
       limit = limit,
       dof = p
     )
+  }
+)
+
+#' @export
+#' @rdname detect_outlier
+#' @aliases is_outlier,OutlierIndex-method
+setMethod(
+  f = "is_outlier",
+  signature = c("OutlierIndex"),
+  definition = function(object, robust = TRUE) {
+    d <- if (robust) object@robust else object@standard
+    out <- d > object@limit
+    names(out) <- object@samples
+    out
   }
 )
 
@@ -190,6 +204,6 @@ plot.OutlierIndex <- function(x, ...,
 }
 
 #' @export
-#' @rdname plot_outliers
+#' @rdname plot_outlier
 #' @aliases plot,OutlierIndex,missing-method
 setMethod("plot", c(x = "OutlierIndex", y = "missing"), plot.OutlierIndex)

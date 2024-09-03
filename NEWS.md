@@ -13,21 +13,21 @@
 * Improve bar chart rendering.
 
 ## Bugfixes & changes
-* Fix `pca()` for `LogRatio` objects (arguments were not passed to the internal method).
+* Fix `pca()` for `LogRatio` objects (default arguments were not passed to the internal method).
 
 ## Internals
 * Store groups as `factor` instead of `character`.
 
 ## Breaking changes
 * `[` always returns a `CompositionMatrix` object by default, even if only one row/column is accessed.
-* Rename `get_totals()` and `set_totals()` to `totals()`.
-* Rename `get_groups()` and `get_groups()` to `groups()`.
 * Remove `samples` slot in all classes.
 * Remove `as_features()`.
 * Remove `metrix_var()` and `metric_sd()`.
-* Redefine `outlier()` methods.
-* Rewrite `plot()` method for `OutlierIndex` object.
 * Remove the `base` argument of `transform_ilr()`.
+* Rename `get_totals()` and `set_totals()` to `totals()`.
+* Rename `get_groups()` and `get_groups()` to `groups()`.
+* Rename `outliers()` to `detect_outlier()` and redefine methods.
+* Rewrite `plot()` method for `OutlierIndex` object.
 
 # nexus 0.2.0
 ## New classes and methods

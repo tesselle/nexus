@@ -1333,7 +1333,8 @@ NULL
 #'  why a particular threshold should be applicable to all data sets
 #'  (Filzmoser, Garrett, and Reimann 2005).
 #' @return
-#'  An [`OutlierIndex-class`] object.
+#'  * `detect_outlier()` returns an [`OutlierIndex-class`] object.
+#'  * `is_outlier()` returns a [`logical`] vector.
 #' @references
 #'  Filzmoser, P., Garrett, R. G. & Reimann, C. (2005). Multivariate outlier
 #'  detection in exploration geochemistry. *Computers & Geosciences*,
@@ -1359,10 +1360,17 @@ NULL
 #' @author N. Frerebeau
 #' @docType methods
 #' @family outlier detection methods
-#' @aliases outliers-method
+#' @aliases detect_outlier-method
 setGeneric(
-  name = "outliers",
-  def = function(object, reference, ...) standardGeneric("outliers")
+  name = "detect_outlier",
+  def = function(object, reference, ...) standardGeneric("detect_outlier")
+)
+
+#' @rdname detect_outlier
+#' @aliases is_outlier-method
+setGeneric(
+  name = "is_outlier",
+  def = function(object, ...) standardGeneric("is_outlier")
 )
 
 #' Plot Outliers
@@ -1420,8 +1428,8 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family outlier detection methods
-#' @name plot_outliers
-#' @rdname plot_outliers
+#' @name plot_outlier
+#' @rdname plot_outlier
 NULL
 
 # Sourcing =====================================================================
