@@ -20,6 +20,9 @@ identifiers:
 - description: The versioned DOI for version 0.2.0.
   type: doi
   value: 10.5281/zenodo.10711236
+- description: The versioned DOI for version 0.3.0.
+  type: doi
+  value: 10.5281/zenodo.13646482
 abstract: 'Exploration and analysis of compositional data in the framework of Aitchison
   (1986, ISBN: 978-94-010-8324-9). This package provides tools for chemical fingerprinting
   and source tracking of ancient materials.'

@@ -1,3 +1,5 @@
+# nexus 0.3.0.9000
+
 # nexus 0.3.0
 ## New classes and methods
 * Add transformation methods for `LogRatio` objects (clr <-> alr, clr -> ilr, alr -> ilr).
