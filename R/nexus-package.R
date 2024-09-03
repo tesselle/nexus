@@ -39,8 +39,8 @@
 
 #' @import arkhe
 #' @importFrom isopleuros ternary_pairs
-#' @importFrom methods as as<- callGeneric callNextMethod
-#'  .hasSlot initialize is new setClass setGeneric setMethod slot slot<-
+#' @importFrom methods as as<- cbind2 callGeneric callNextMethod
+#'  .hasSlot initialize is new rbind2 setClass setGeneric setMethod slot slot<-
 #'  slotNames validObject .valueClassTest
 #' @importFrom MASS cov.rob
 #' @importFrom stats as.dist contr.helmert cov dist hclust mahalanobis ppoints

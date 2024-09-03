@@ -10,6 +10,16 @@ license: GPL-3.0-or-later
 title: 'nexus: Sourcing Archaeological Materials by Chemical Composition'
 version: 0.3.0
 doi: 10.5281/zenodo.10225630
+identifiers:
+- description: The concept DOI.
+  type: doi
+  value: 10.5281/zenodo.10225630
+- description: The versioned DOI for version 0.1.0.
+  type: doi
+  value: 10.5281/zenodo.10225631
+- description: The versioned DOI for version 0.2.0.
+  type: doi
+  value: 10.5281/zenodo.10711236
 abstract: 'Exploration and analysis of compositional data in the framework of Aitchison
   (1986, ISBN: 978-94-010-8324-9). This package provides tools for chemical fingerprinting
   and source tracking of ancient materials.'
@@ -86,7 +96,8 @@ references:
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
   year: '2024'
-  version: '>= 0.8.0'
+  doi: 10.32614/CRAN.package.dimensio
+  version: '>= 0.9.0'
 - type: software
   title: arkhe
   abstract: 'arkhe: Tools for Cleaning Rectangular Data'
@@ -100,7 +111,8 @@ references:
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
   year: '2024'
-  version: '>= 1.6.0'
+  doi: 10.32614/CRAN.package.arkhe
+  version: '>= 1.7.0'
 - type: software
   title: graphics
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -134,7 +146,23 @@ references:
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
   year: '2024'
+  doi: 10.32614/CRAN.package.isopleuros
   version: '>= 1.2.0'
+- type: software
+  title: khroma
+  abstract: 'khroma: Colour Schemes for Scientific Data Visualization'
+  notes: Imports
+  url: https://packages.tesselle.org/khroma/
+  repository: https://CRAN.R-project.org/package=khroma
+  authors:
+  - family-names: Frerebeau
+    given-names: Nicolas
+    email: nicolas.frerebeau@u-bordeaux-montaigne.fr
+    orcid: https://orcid.org/0000-0001-5759-4944
+    affiliation: Université Bordeaux Montaigne
+  year: '2024'
+  doi: 10.32614/CRAN.package.khroma
+  version: '>= 1.14.0'
 - type: software
   title: methods
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -155,7 +183,10 @@ references:
   - family-names: Ripley
     given-names: Brian
     email: ripley@stats.ox.ac.uk
+  - family-names: Venables
+    given-names: Bill
   year: '2024'
+  doi: 10.32614/CRAN.package.MASS
 - type: software
   title: stats
   abstract: 'R: A Language and Environment for Statistical Computing'
@@ -199,6 +230,7 @@ references:
     email: Mia.Hubert@uia.ua.ac.be
     orcid: https://orcid.org/0000-0001-6398-4850
   year: '2024'
+  doi: 10.32614/CRAN.package.cluster
 - type: software
   title: folio
   abstract: 'folio: Datasets for Teaching Archaeology and Paleontology'
@@ -212,7 +244,8 @@ references:
     orcid: https://orcid.org/0000-0001-5759-4944
     affiliation: Université Bordeaux Montaigne
   year: '2024'
-  version: '>= 1.4.0'
+  doi: 10.32614/CRAN.package.folio
+  version: '>= 1.5.0'
 - type: software
   title: igraph
   abstract: 'igraph: Network Analysis and Visualization'
@@ -246,6 +279,7 @@ references:
     email: kirill@cynkra.com
     orcid: https://orcid.org/0000-0002-1416-3412
   year: '2024'
+  doi: 10.32614/CRAN.package.igraph
 - type: software
   title: knitr
   abstract: 'knitr: A General-Purpose Package for Dynamic Report Generation in R'
@@ -258,6 +292,7 @@ references:
     email: xie@yihui.name
     orcid: https://orcid.org/0000-0003-0645-5666
   year: '2024'
+  doi: 10.32614/CRAN.package.knitr
 - type: software
   title: markdown
   abstract: 'markdown: Render Markdown with ''commonmark'''
@@ -274,6 +309,7 @@ references:
   - family-names: Horner
     given-names: Jeffrey
   year: '2024'
+  doi: 10.32614/CRAN.package.markdown
 - type: software
   title: rsvg
   abstract: 'rsvg: Render SVG Images into PDF, PNG, (Encapsulated) PostScript, or
@@ -287,6 +323,7 @@ references:
     email: jeroen@berkeley.edu
     orcid: https://orcid.org/0000-0002-4035-0289
   year: '2024'
+  doi: 10.32614/CRAN.package.rsvg
 - type: software
   title: svglite
   abstract: 'svglite: An ''SVG'' Graphics Device'
@@ -314,6 +351,7 @@ references:
     given-names: Vaudor
     email: lise.vaudor@ens-lyon.fr
   year: '2024'
+  doi: 10.32614/CRAN.package.svglite
 - type: software
   title: tinysnapshot
   abstract: 'tinysnapshot: Snapshots for Unit Tests using the ''tinytest'' Framework'
@@ -326,6 +364,7 @@ references:
     email: vincent.arel-bundock@umontreal.ca
     orcid: https://orcid.org/0000-0003-2042-7063
   year: '2024'
+  doi: 10.32614/CRAN.package.tinysnapshot
 - type: software
   title: tinytest
   abstract: 'tinytest: Lightweight and Feature Complete Unit Testing Framework'
@@ -339,14 +378,5 @@ references:
     email: mark.vanderloo@gmail.com
     orcid: https://orcid.org/0000-0002-9807-4686
   year: '2024'
-identifiers:
-- description: The concept DOI.
-  type: doi
-  value: 10.5281/zenodo.10225630
-- description: The versioned DOI for version 0.1.0.
-  type: doi
-  value: 10.5281/zenodo.10225631
-- description: The versioned DOI for version 0.2.0.
-  type: doi
-  value: 10.5281/zenodo.10711236
+  doi: 10.32614/CRAN.package.tinytest
 

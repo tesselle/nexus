@@ -6,7 +6,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/tesselle/nexus/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/nexus/actions)
-[![codecov](https://codecov.io/gh/tesselle/nexus/graph/badge.svg?token=3xtuBXPGiF)](https://codecov.io/gh/tesselle/nexus)
+[![codecov](https://codecov.io/gh/tesselle/nexus/graph/badge.svg?token=3xtuBXPGiF)](https://app.codecov.io/gh/tesselle/nexus)
 [![CodeFactor](https://www.codefactor.io/repository/github/tesselle/nexus/badge/main)](https://www.codefactor.io/repository/github/tesselle/nexus/overview/main)
 [![Dependencies](https://tinyverse.netlify.app/badge/nexus)](https://cran.r-project.org/package=nexus)
 
@@ -68,7 +68,7 @@ To cite nexus in publications use:
 Frerebeau N, Philippe A (2024). *nexus: Sourcing Archaeological
 Materials by Chemical Composition*. Université Bordeaux Montaigne,
 Pessac, France. <doi:10.5281/zenodo.10225630>
-<https://doi.org/10.5281/zenodo.10225630>, R package version 0.2.0.9000,
+<https://doi.org/10.5281/zenodo.10225630>, R package version 0.3.0,
 <https://packages.tesselle.org/nexus/>.
 
 This package is a part of the tesselle project
