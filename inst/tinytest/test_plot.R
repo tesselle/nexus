@@ -10,15 +10,18 @@ if (at_home()) {
   coda <- as_composition(hongite)
 
   # Plot =======================================================================
-  plot_pairs <- function() plot(coda, order = NULL)
+  plot_pairs <- function() plot(coda)
   expect_snapshot_plot(plot_pairs, "plot_pairs")
+
+  plot_pairs <- function() plot(coda, by = rep(1:5, 5))
+  expect_snapshot_plot(plot_pairs, "plot_pairs_group")
 
   # Histogram ==================================================================
   plot_hist <- function() hist(coda, ncol = 3)
   expect_snapshot_plot(plot_hist, "plot_hist")
 
   # Barplot ====================================================================
-  plot_barplot <- function() barplot(coda, order_columns = FALSE, border = "black")
+  plot_barplot <- function() barplot(coda, by = NULL, order_columns = FALSE, border = "black")
   expect_snapshot_plot(plot_barplot, "plot_barplot")
 
   plot_barplot_order <- function() barplot(coda, order_columns = TRUE, border = "black")
@@ -35,7 +38,10 @@ if (at_home()) {
   if (getRversion() >= "4.4.0") {
     ilr <- transform_ilr(coda)
 
-    plot_ratio <- function() plot(ilr, by = rep(1:5, 5), ncol = 2)
+    plot_ratio <- function() plot(ilr, by = NULL, ncol = 2)
     expect_snapshot_plot(plot_ratio, "plot_ratio")
+
+    plot_ratio <- function() plot(ilr, by = rep(1:5, 5), ncol = 2)
+    expect_snapshot_plot(plot_ratio, "plot_ratio_group")
   }
 }

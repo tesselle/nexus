@@ -5,17 +5,20 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, ..., margin = NULL, by = groups(x),
+plot.CompositionMatrix <- function(x, ..., by = groups(x), margin = NULL,
                                    color = palette_color_discrete(),
                                    symbol = palette_shape()) {
+  m <- nrow(x)
+
   ## Grouping
-  if (has_groups(by)) {
-    arkhe::assert_length(by, nrow(x))
-    col <- color(by)
-    pch <- symbol(by)
-  } else {
+  grp <- as_groups(by, drop_na = TRUE)
+  if (nlevels(grp) == 0 || nlevels(grp) == m) {
     col <- list(...)$col %||% graphics::par("col")
     pch <- list(...)$pch %||% graphics::par("pch")
+  } else {
+    arkhe::assert_length(grp, m)
+    col <- color(grp)
+    pch <- symbol(grp)
   }
 
   isopleuros::ternary_pairs(x, margin = margin, col = col, pch = pch, ...)
@@ -39,24 +42,23 @@ plot.LogRatio <- function(x, ..., by = groups(x),
                           axes = TRUE, frame.plot = axes,
                           legend = list(x = "top")) {
   ## Get data
-  z <- x
-  m <- nrow(z)
-  p <- ncol(z)
+  m <- nrow(x)
+  p <- ncol(x)
   m_seq <- seq_len(m)
   p_seq <- seq_len(p)
   if (is.null(ncol)) ncol <- if (p > 4) 2 else 1
   nrow <- ceiling(p / ncol)
 
   ## Grouping
-  if (has_groups(by)) {
-    arkhe::assert_length(by, m)
-    grp <- split(z, f = by)
-    border <- color(names(grp))
-    rug <- FALSE
-  } else {
-    grp <- list(all = z)
-    by <- rep("all", m)
+  by <- as_groups(by, drop_na = TRUE)
+  if (nlevels(by) == 0 || nlevels(by) == m) {
+    by <- rep("", m)
+    grp <- list(x)
     border <- list(...)$border %||% graphics::par("col")
+  } else {
+    arkhe::assert_length(by, m)
+    grp <- split(x, f = by)
+    border <- color(by)
   }
   k <- length(grp)
 
@@ -93,7 +95,7 @@ plot.LogRatio <- function(x, ..., by = groups(x),
   }
 
   xlim <- range(dens_x, na.rm = TRUE)
-  ylabs <- ylab %||% labels(z) %||% paste0("z", p_seq)
+  ylabs <- ylab %||% labels(x) %||% paste0("z", p_seq)
   for (j in p_seq) {
     tmp_x <- dens_x[, j, , drop = FALSE]
     tmp_y <- dens_y[, j, , drop = FALSE]
@@ -113,7 +115,7 @@ plot.LogRatio <- function(x, ..., by = groups(x),
                         border = border[i], lty = lty)
     }
     if (rug) {
-      graphics::rug(z[, j, drop = TRUE], ticksize = ticksize, side = 1)
+      graphics::rug(x[, j, drop = TRUE], ticksize = ticksize, side = 1)
     }
 
     ## Construct Axis

@@ -9,8 +9,8 @@
 \S4method{plot}{CompositionMatrix,missing}(
   x,
   ...,
-  margin = NULL,
   by = groups(x),
+  margin = NULL,
   color = palette_color_discrete(),
   symbol = palette_shape()
 )
@@ -20,12 +20,12 @@
 
 \item{...}{Further \link[graphics:par]{graphical parameters}.}
 
+\item{by}{A \code{vector} of grouping elements, as long as the variables in \code{x}.}
+
 \item{margin}{A \code{\link{character}} string or an \code{\link{integer}} giving the index of
 the column to be used as the third part of the ternary plots. If \code{NULL}
 (the default), marginal compositions will be used (i.e. the geometric mean
 of the non-selected parts).}
-
-\item{by}{A \code{vector} of grouping elements, as long as the variables in \code{x}.}
 
 \item{color}{A palette \code{\link{function}} that when called with a single
 argument returns a \code{character} vector of colors.}

@@ -104,7 +104,7 @@ plot.OutlierIndex <- function(x, ...,
   if (robust || type == "distance") shape[dr > limit] <- symbols[[2L]]
   shape[dc > limit] <- symbols[[3L]]
   col <- rep("black", length(grp))
-  if (has_groups(grp)) {
+  if (nlevels(grp) > 0) {
     col <- khroma::palette_color_discrete(colors)(grp)
   }
 

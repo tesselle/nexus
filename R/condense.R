@@ -33,8 +33,8 @@ setMethod(
     tot <- tapply(X = totals(x), INDEX = index, FUN = mean, simplify = TRUE)
     grp <- groups(x)
 
-    if (has_groups(grp)) grp <- flatten_chr(x = grp, by = index)
-    else grp <- rep(NA, length(tot))
+    if (nlevels(grp) > 0) grp <- flatten_chr(x = grp, by = index)
+    else grp <- rep(NA, nlevels(index))
 
     rownames(z) <- levels(index)
     .CompositionMatrix(z, totals = as.numeric(tot), groups = as_groups(grp))

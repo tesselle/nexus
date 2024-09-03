@@ -107,11 +107,14 @@ prepare_barplot <- function(x, groups = NULL,
                             decreasing = TRUE, offset = 0.025) {
   ## Validation
   stopifnot(methods::is(x, "CompositionMatrix"))
-  if (!has_groups(groups)) groups <- rep(NA, nrow(x))
-  arkhe::assert_length(groups, nrow(x))
+  m <- nrow(x)
+
+  ## Grouping
+  grp <- as_groups(groups, drop_na = FALSE)
+  if (nlevels(grp) == 0 || nlevels(grp) == m) grp <- rep("", m)
+  arkhe::assert_length(grp, m)
 
   ## Row order
-  grp <- as_groups(groups, drop_na = FALSE)
   spl <- lapply(
     X = split(x = x, f = grp),
     FUN = function(x, order, decrease) {
@@ -156,7 +159,7 @@ prepare_barplot <- function(x, groups = NULL,
 
   ## Offset
   n_grp <- length(spl)
-  n_spl <- tapply(X = groups, INDEX = grp, FUN = length)
+  n_spl <- tapply(X = grp, INDEX = grp, FUN = length)
   offset <- rev(seq_len(n_grp)) * offset - offset
   data$y <- data$y + rep(offset, n_spl)[as.numeric(row)]
 

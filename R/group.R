@@ -44,14 +44,8 @@ as_groups <- function(x, drop_levels = TRUE, drop_na = TRUE) {
   if (!drop_na) x <- addNA(x, ifany = TRUE)
   x
 }
-has_groups <- function(x) {
-  length(x) > 0 && any(in_groups(x))
-}
 in_groups <- function(x) {
   !is.na(x) & x != ""
-}
-ngroups <- function(x) {
-  length(unique(x))
 }
 
 #' @export
