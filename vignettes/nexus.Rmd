@@ -23,7 +23,11 @@ knitr::opts_chunk$set(
 
 Provenance studies rely on the identification of probable sources, such that the variability between two sources is greater than the internal variability of a single source (the so-called *provenance postulate*; Weigand, Harbottle, and Sayre 1977). This assumes that a unique signature can be identified for each source on the basis of several criteria.
 
-**nexus** is designed for chemical fingerprinting and source tracking of ancient materials. It provides provides tools for exploration and analysis of compositional data in the framework of Aitchison (1986).
+**nexus** is designed for chemical fingerprinting and source tracking of ancient materials. It provides provides tools for exploration and analysis of compositional data in the framework of Aitchison (1986). If you are unfamiliar with the concepts and challenges of compositional data analysis, the following publications are a good place to start:
+
+- Egozcue, J. J., Gozzi, C., Buccianti, A. & Pawlowsky-Glahn, V. (2024). Exploring Geochemical Data Using Compositional Techniques: A Practical Guide. *Journal of Geochemical Exploration*, 258 :107385. DOI: [10.1016/j.gexplo.2024.107385](https://doi.org/10.1016/j.gexplo.2024.107385).
+- Greenacre, M. & Wood, J. R. (2024). A Comprehensive Workflow for Compositional Data Analysis in Archaeometry, with Code in R. *Archaeological and Anthropological Science*.
+- Grunsky, E., Greenacre, M. & Kjarsgaard, B. (2024). GeoCoDA: Recognizing and Validating Structural Processes in Geochemical Data. A Workflow on Compositional Data Analysis in Lithogeochemistry. *Applied Computing and Geosciences*, 22: 100149. DOI: [10.1016/j.acags.2023.100149](https://doi.org/10.1016/j.acags.2023.100149).
 
 # Get started
 
@@ -88,35 +92,28 @@ Provenance studies typically rely on two approaches, which can be used together:
 When coercing a `data.frame` to a `CompositionMatrix` object, **nexus** allows to specify whether an observation belongs to a specific group (or not):
 
 ```{r}
-## Data from Day et al. 2011
-data("kommos", package = "folio")
-kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
+## Data from Wood and Liu 2023
+data("bronze", package = "folio")
 
-## Use the first column (ceramic types) for grouping
-coda <- as_composition(kommos, groups = 1)
+## Use the third column (dynasties) for grouping
+coda <- as_composition(bronze, groups = 3)
 ```
 
-`groups(x)` and `groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) or empty strings can be used to specify that a sample does not belong to any group):
+`groups(x)` and `groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) or empty strings can be used to specify that a sample does not belong to any group.
 
-```{r}
-## Assume that a third of the samples does not belong to any group
-grp <- kommos$type
-grp[sample(length(grp), size = length(grp) / 3)] <- NA
-
-## Set groups
-groups(coda) <- grp
-is_assigned(coda)
-
-## Retrieve groups
-groups(coda)
-```
-
-Once groups have been defined, they can be used by further methods (e.g. plotting).
+Once groups have been defined, they can be used by further methods (e.g. plotting). 
+Note that for better readability, you can `select` only some of the parts (e.g. major elements):
 
 ```{r barplot, fig.width=7, fig.height=7, out.width='100%'}
 ## Compositional bar plot
-## (unassigned sample are not displayed)
-barplot(coda, order = "Ca")
+barplot(coda, select = is_element_major(coda), order_rows = "Cu", space = 0)
+```
+
+# Descriptive statistics
+
+```{r mean, eval=FALSE}
+## Compositional mean by artefact
+coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
 ```
 
 # Log-ratio transformations
@@ -133,20 +130,34 @@ back <- transform_inverse(clr)
 all.equal(back, coda)
 ```
 
-# Multivariate methods
+# Multivariate Analysis
 
-## Principal Components Analysis
+```{r}
+## Assume that about a third of the samples does not belong to any group
+grp <- groups(coda)
+grp[sample(length(grp), size = 100)] <- NA
+
+## Set groups
+groups(coda) <- grp
+
+## Retrieve groups
+# groups(coda)
+```
+
+## Log-Ratio Analysis
 
 ```{r pca, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
 ## CLR
-clr <- transform_clr(coda)
+clr <- transform_clr(coda, weights = TRUE)
 
 ## PCA
-clr_pca <- pca(clr, scale = FALSE)
+lra <- pca(clr)
 
 ## Visualize results
-viz_individuals(x = clr_pca)
-viz_variables(clr_pca)
+viz_individuals(lra, color = c("#004488", "#DDAA33", "#BB5566"))
+viz_hull(x = lra, border = c("#004488", "#DDAA33", "#BB5566"))
+
+viz_variables(lra)
 ```
 
 ## MANOVA
@@ -157,10 +168,10 @@ The log-transformed data can be assigned to a new column, allowing us to keep wo
 ## ILR
 ilr <- transform_ilr(coda)
 
-kommos$ilr <- ilr
+bronze$ilr <- ilr
 
 ## MANOVA
-fit <- manova(ilr ~ type, data = kommos)
+fit <- manova(ilr ~ groups(ilr), data = bronze)
 summary(fit)
 ```
 
@@ -170,7 +181,7 @@ The MANOVA results suggest that there are statistically significant differences 
 
 ```{r lda, fig.width=7, fig.height=7, out.width='100%'}
 ## LDA
-discr <- MASS::lda(type ~ ilr, data = kommos)
+discr <- MASS::lda(groups(ilr) ~ ilr, data = bronze)
 plot(discr)
 
 ## Back transform results

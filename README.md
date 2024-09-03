@@ -45,11 +45,12 @@ Aitchison (1986). **nexus** provides tools for chemical fingerprinting
 and source tracking of ancient materials. This package provides methods
 for compositional data analysis:
 
+- Compositional statistics.
+- Compositional data visualization.
 - Logratio transformations: `transform_lr()`, `transform_clr()`,
   `transform_alr()`, `transform_ilr()`, `transform_plr()`.
-- Compositional statistics.
 - Zero and missing value replacement.
-- Outlier detection: `outliers()`.
+- Outlier detection: `detect_outlier()`.
 
 This package also includes methods for provenance studies:
 
@@ -123,20 +124,19 @@ groups(coda) <- bronze$dynasty
 
 ``` r
 ## Compositional barplots of major elements
-barplot(coda, select = is_element_major(coda), border = NA, space = 0)
+barplot(coda, select = is_element_major(coda), order_rows = "Cu",
+        border = NA, space = 0)
 ```
 
 ![](man/figures/README-barplot-1.png)<!-- -->
 
 ``` r
-## Compositional mean by artefact
-coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
-
 ## Log-ratio analysis
 ## (PCA of centered log-ratio; outliers should be removed first)
 clr <- transform_clr(coda, weights = TRUE)
 lra <- pca(clr)
 
+## Visualize results
 viz_individuals(lra, color = c("#004488", "#DDAA33", "#BB5566"))
 viz_hull(x = lra, border = c("#004488", "#DDAA33", "#BB5566"))
 
@@ -223,6 +223,15 @@ Egozcue, J. J., V. Pawlowsky-Glahn, G. Mateu-Figueras, and C.
 Barceló-Vidal. 2003. “Isometric Logratio Transformations for
 Compositional Data Analysis.” *Mathematical Geology* 35 (3): 279–300.
 <https://doi.org/10.1023/A:1023818214614>.
+
+</div>
+
+<div id="ref-egozcue2024" class="csl-entry">
+
+Egozcue, Juan José, Caterina Gozzi, Antonella Buccianti, and Vera
+Pawlowsky-Glahn. 2024. “Exploring Geochemical Data Using Compositional
+Techniques: A Practical Guide.” *Journal of Geochemical Exploration* 258
+(March): 107385. <https://doi.org/10.1016/j.gexplo.2024.107385>.
 
 </div>
 
@@ -315,6 +324,16 @@ of Statistics and Its Application* 8 (1): 271–99.
 Greenacre, Michael J. 2019. *Compositional Data Analysis in Practice*.
 Chapman & Hall/CRC Interdisciplinary Statistics. Boca Raton: CRC Press,
 Taylor & Francis Group.
+
+</div>
+
+<div id="ref-grunsky2024" class="csl-entry">
+
+Grunsky, Eric, Michael Greenacre, and Bruce Kjarsgaard. 2024. “GeoCoDA:
+Recognizing and Validating Structural Processes in Geochemical Data. A
+Workflow on Compositional Data Analysis in Lithogeochemistry.” *Applied
+Computing and Geosciences* 22 (June): 100149.
+<https://doi.org/10.1016/j.acags.2023.100149>.
 
 </div>
 

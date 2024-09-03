@@ -40,10 +40,11 @@ This package is currently *experimental*. This means that it is functional, but 
 
 Exploration and analysis of compositional data in the framework of @aitchison1986. **nexus** provides tools for chemical fingerprinting and source tracking of ancient materials. This package provides methods for compositional data analysis:
 
-* Logratio transformations: `transform_lr()`, `transform_clr()`, `transform_alr()`, `transform_ilr()`, `transform_plr()`.
 * Compositional statistics.
+* Compositional data visualization.
+* Logratio transformations: `transform_lr()`, `transform_clr()`, `transform_alr()`, `transform_ilr()`, `transform_plr()`.
 * Zero and missing value replacement.
-* Outlier detection: `outliers()`.
+* Outlier detection: `detect_outlier()`.
 
 This package also includes methods for provenance studies:
 
@@ -101,18 +102,17 @@ groups(coda) <- bronze$dynasty
 
 ```{r barplot, fig.width=5, fig.height=7}
 ## Compositional barplots of major elements
-barplot(coda, select = is_element_major(coda), border = NA, space = 0)
+barplot(coda, select = is_element_major(coda), order_rows = "Cu",
+        border = NA, space = 0)
 ```
 
 ```{r lra, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
-## Compositional mean by artefact
-coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
-
 ## Log-ratio analysis
 ## (PCA of centered log-ratio; outliers should be removed first)
 clr <- transform_clr(coda, weights = TRUE)
 lra <- pca(clr)
 
+## Visualize results
 viz_individuals(lra, color = c("#004488", "#DDAA33", "#BB5566"))
 viz_hull(x = lra, border = c("#004488", "#DDAA33", "#BB5566"))
 
