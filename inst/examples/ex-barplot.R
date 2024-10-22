@@ -16,4 +16,5 @@ coda <- as_composition(kommos, groups = 1) # Coerce to compositional data
 barplot(coda, order_columns = TRUE)
 
 ## Display only minor elements
-barplot(coda, select = is_element_minor(coda), order_columns = TRUE)
+minor <- coda[, is_element_minor(coda)]
+barplot(minor, order_columns = TRUE)

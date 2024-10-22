@@ -1038,7 +1038,6 @@ NULL
 #'
 #' Displays a compositional bar chart.
 #' @param height A [`CompositionMatrix-class`] object.
-#' @param select A vector of column indices.
 #' @param by A `vector` of grouping elements, as long as the variables in
 #'  `height`.
 #' @param order_columns A [`logical`] scalar: should should columns be reorderd?
@@ -1057,7 +1056,7 @@ NULL
 #' @param border The color to draw the borders.
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
 #' @param legend A [`logical`] scalar: should the legend be displayed?
-#' @param ... Further parameters to be passed to [graphics::barplot()].
+#' @param ... Further graphical parameters.
 #' @return
 #'  `barplot()` is called for its side-effects: is results in a graphic being
 #'  displayed (invisibly return `height`).

@@ -5,28 +5,25 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method barplot CompositionMatrix
-barplot.CompositionMatrix <- function(height, ..., select = NULL,
+barplot.CompositionMatrix <- function(height, ...,
                                       by = groups(height),
                                       order_columns = FALSE, order_rows = NULL,
                                       decreasing = TRUE,
                                       space = 0.2, offset = 0.025,
                                       color = palette_color_discrete(),
                                       border = NA, axes = TRUE, legend = TRUE) {
-  ## Get data
-  if (is.null(select)) select <- seq_len(ncol(height))
-  z <- height[, select, drop = FALSE]
-  if (ncol(z) == 1) {
-    warning("Only one part is selected. Displaying all data.", call. = FALSE)
-    z <- height
+  ## Validation
+  if (ncol(height) < 2) {
+    stop("At least two compositional parts are needed.", call. = FALSE)
   }
-  n <- nrow(z)
 
   ## Prepare data
-  xy <- prepare_barplot(z, groups = by, order_columns = order_columns,
+  xy <- prepare_barplot(height, groups = by, order_columns = order_columns,
                         order_rows = order_rows, decreasing = decreasing,
                         offset = offset)
   parts <- factor(xy$data$column, levels = colnames(height))
   col <- color(parts)
+  n <- nrow(height)
 
   ## Graphical parameters
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
@@ -37,7 +34,7 @@ barplot.CompositionMatrix <- function(height, ..., select = NULL,
   mfrow <- graphics::par("mfrow")
   mar <- graphics::par("mar")
   mar[1] <- 3
-  mar[2] <- width2line(rownames(z), cex = cex.axis) + 0.1
+  mar[2] <- width2line(rownames(height), cex = cex.axis) + 0.1
   mar[3] <- height2line("M", cex = cex.axis)
   mar[4] <- height2line("M", cex = cex.axis)
 
@@ -107,41 +104,32 @@ prepare_barplot <- function(x, groups = NULL,
                             decreasing = TRUE, offset = 0.025) {
   ## Validation
   stopifnot(methods::is(x, "CompositionMatrix"))
-  m <- nrow(x)
 
-  ## Grouping
-  grp <- as_groups(groups, drop_na = FALSE)
-  if (nlevels(grp) == 0 || nlevels(grp) == m) grp <- rep("", m)
-  arkhe::assert_length(grp, m)
+  ## Relative frequencies
+  x <- x / rowSums(x)
+  n <- nrow(x)
 
   ## Row order
-  spl <- lapply(
-    X = split(x = x, f = grp),
-    FUN = function(x, order, decrease) {
-      i <- seq_len(nrow(x))
-      if (!is.null(order)) {
-        j <- x[, order, drop = TRUE]
-        i <- order(j, decreasing = decrease)
-      }
-      x[i, , drop = FALSE]
-    },
-    order = order_rows,
-    decrease = decreasing
-  )
-  z <- do.call(rbind, spl)
+  if (!is.null(order_rows)) {
+    j <- x[, order_rows, drop = TRUE]
+    i <- order(j, decreasing = decreasing)
+    x <- x[i, , drop = FALSE]
+  }
 
   ## Columns order
   center <- mean(x)
   if (order_columns) {
     col_order <- order(center, decreasing = FALSE)
     center <- center[col_order]
-    z <- z[, col_order, drop = FALSE]
+    x <- x[, col_order, drop = FALSE]
   }
 
-  ## Relative frequencies
-  freq <- z / rowSums(z)
-  xmax <- t(apply(X = freq, MARGIN = 1, FUN = cumsum))
-  xmin <- xmax - freq
+  ## Grouping
+  grp <- as_groups(groups, drop_na = FALSE)
+  if (nlevels(grp) == 0 || nlevels(grp) == n) grp <- rep("", n)
+  arkhe::assert_length(grp, n)
+  spl <- split(x = x, f = grp)
+  z <- do.call(rbind, spl)
 
   ## Build a long table
   row <- row(z, as.factor = TRUE)
@@ -149,10 +137,11 @@ prepare_barplot <- function(x, groups = NULL,
   data <- data.frame(
     row = as.vector(row),
     column = as.vector(col),
-    value = as.vector(freq)
+    value = as.vector(z)
   )
 
-  n <- nrow(freq)
+  xmax <- t(apply(X = z, MARGIN = 1, FUN = cumsum))
+  xmin <- xmax - z
   data$xmin <- as.vector(xmin)
   data$xmax <- as.vector(xmax)
   data$y <- as.vector(n + 1 - as.numeric(row)) / n # Reverse levels order
