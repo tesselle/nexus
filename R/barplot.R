@@ -102,18 +102,24 @@ setMethod("barplot", c(height = "CompositionMatrix"), barplot.CompositionMatrix)
 prepare_barplot <- function(x, groups = NULL,
                             order_rows = NULL, order_columns = FALSE,
                             decreasing = TRUE, offset = 0.025) {
-  ## Validation
-  stopifnot(methods::is(x, "CompositionMatrix"))
+  ## Prepare groups
+  n <- nrow(x)
+  grp <- as_groups(groups, drop_na = FALSE)
+  if (nlevels(grp) == 0 || nlevels(grp) == n) grp <- rep("", n)
 
   ## Relative frequencies
   x <- x / rowSums(x)
-  n <- nrow(x)
+
+  ## Validation
+  stopifnot(methods::is(x, "CompositionMatrix"))
+  arkhe::assert_length(grp, n)
 
   ## Row order
   if (!is.null(order_rows)) {
     j <- x[, order_rows, drop = TRUE]
     i <- order(j, decreasing = decreasing)
     x <- x[i, , drop = FALSE]
+    grp <- grp[i]
   }
 
   ## Columns order
@@ -125,9 +131,6 @@ prepare_barplot <- function(x, groups = NULL,
   }
 
   ## Grouping
-  grp <- as_groups(groups, drop_na = FALSE)
-  if (nlevels(grp) == 0 || nlevels(grp) == n) grp <- rep("", n)
-  arkhe::assert_length(grp, n)
   spl <- split(x = x, f = grp)
   z <- do.call(rbind, spl)
 
