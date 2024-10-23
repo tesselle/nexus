@@ -9,9 +9,10 @@
 \S4method{hist}{CompositionMatrix}(
   x,
   ...,
+  select = 1,
+  breaks = "Sturges",
   freq = FALSE,
-  ncol = NULL,
-  flip = FALSE,
+  labels = FALSE,
   main = NULL,
   sub = NULL,
   ann = graphics::par("ann"),
@@ -22,17 +23,20 @@
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{...}{Further parameters to be passed to \code{\link[graphics:hist]{graphics::hist()}}.}
+\item{...}{Further graphical parameters.}
+
+\item{select}{A length-one \code{vector} of column indices.}
+
+\item{breaks}{An object specifying how to compute the breakpoints
+(see \code{\link[graphics:hist]{graphics::hist()}}).}
 
 \item{freq}{A \code{\link{logical}} scalar: should absolute frequencies (counts) be
 displayed? If \code{FALSE} (the default), relative frequencies (probabilities)
 are displayed (see \code{\link[graphics:hist]{graphics::hist()}}).}
 
-\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
-Defaults to 1 for up to 4 parts, otherwise to 2.}
-
-\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
-flipped from side 2 (left) to 4 (right) from variable to variable?}
+\item{labels}{A \code{\link{logical}} scalar: should labels be drawn on top of bars?
+If \code{TRUE}, draw the counts or rounded densities; if \code{labels} is a
+\code{character} vector, draw itself.}
 
 \item{main}{A \code{\link{character}} string giving a main title for the plot.}
 
@@ -61,10 +65,8 @@ data("hongite")
 coda <- as_composition(hongite)
 
 ## Boxplot plot
-hist(coda)
-hist(coda[, 1, drop = FALSE])
-
-univariate_ilr(coda)
+hist(coda, select = "A")
+hist(coda, select = "B")
 }
 \references{
 Filzmoser, P., Hron, K. & Reimann, C. (2009). Univariate Statistical

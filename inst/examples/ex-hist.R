@@ -5,7 +5,5 @@ data("hongite")
 coda <- as_composition(hongite)
 
 ## Boxplot plot
-hist(coda)
-hist(coda[, 1, drop = FALSE])
-
-univariate_ilr(coda)
+hist(coda, select = "A")
+hist(coda, select = "B")

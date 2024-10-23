@@ -1073,13 +1073,15 @@ NULL
 #'
 #' Produces an histogram of univariate ILR data (see Filzmoser *et al.*, 2009).
 #' @param x A [`CompositionMatrix-class`] object.
+#' @param select A length-one `vector` of column indices.
+#' @param breaks An object specifying how to compute the breakpoints
+#'  (see [graphics::hist()]).
 #' @param freq A [`logical`] scalar: should absolute frequencies (counts) be
 #'  displayed? If `FALSE` (the default), relative frequencies (probabilities)
 #'  are displayed (see [graphics::hist()]).
-#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
-#'  flipped from side 2 (left) to 4 (right) from variable to variable?
-#' @param ncol An [`integer`] specifying the number of columns to use.
-#'  Defaults to 1 for up to 4 parts, otherwise to 2.
+#' @param labels A [`logical`] scalar: should labels be drawn on top of bars?
+#'  If `TRUE`, draw the counts or rounded densities; if `labels` is a
+#'  `character` vector, draw itself.
 #' @param main A [`character`] string giving a main title for the plot.
 #' @param sub A [`character`] string giving a subtitle for the plot.
 #' @param ann A [`logical`] scalar: should the default annotation (title and x
@@ -1087,7 +1089,7 @@ NULL
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
 #' @param frame.plot A [`logical`] scalar: should a box be drawn around the
 #'  plot?
-#' @param ... Further parameters to be passed to [graphics::hist()].
+#' @param ... Further graphical parameters.
 #' @return
 #'  `hist()` is called for its side-effects: is results in a graphic being
 #'  displayed (invisibly return `x`).

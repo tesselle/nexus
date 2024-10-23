@@ -17,8 +17,11 @@ if (at_home()) {
   expect_snapshot_plot(plot_pairs, "plot_pairs_group")
 
   # Histogram ==================================================================
-  plot_hist <- function() hist(coda, ncol = 3)
+  plot_hist <- function() hist(coda, select = "B")
   expect_snapshot_plot(plot_hist, "plot_hist")
+
+  plot_hist_count <- function() hist(coda, freq = TRUE, labels = TRUE)
+  expect_snapshot_plot(plot_hist_count, "plot_hist_count")
 
   # Barplot ====================================================================
   plot_barplot <- function() barplot(coda, by = NULL, order_columns = FALSE, border = "black")

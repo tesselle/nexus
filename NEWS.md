@@ -1,4 +1,6 @@
 # nexus 0.3.0.9000
+## Breaking changes
+* `hist()` now produces a single histogram.
 
 # nexus 0.3.0
 ## New classes and methods
