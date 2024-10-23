@@ -123,9 +123,11 @@ groups(coda) <- bronze$dynasty
 ```
 
 ``` r
-## Compositional barplots of major elements
-barplot(coda, select = is_element_major(coda), order_rows = "Cu",
-        border = NA, space = 0)
+## Select major elements
+major <- coda[, is_element_major(coda)]
+
+## Compositional barplot
+barplot(major, order_rows = "Cu", border = NA, space = 0)
 ```
 
 ![](man/figures/README-barplot-1.png)<!-- -->
@@ -138,7 +140,7 @@ lra <- pca(clr)
 
 ## Visualize results
 viz_individuals(lra, color = c("#004488", "#DDAA33", "#BB5566"))
-viz_hull(x = lra, border = c("#004488", "#DDAA33", "#BB5566"))
+viz_hull(x = lra, color = c("#004488", "#DDAA33", "#BB5566"))
 
 viz_variables(lra)
 ```
