@@ -24,12 +24,12 @@ URL: https://packages.tesselle.org/nexus/,
 BugReports: https://github.com/tesselle/nexus/issues
 Depends: 
     R (>= 3.5),
-    dimensio (>= 0.9.0)
+    dimensio (>= 0.10.1)
 Imports: 
-    arkhe (>= 1.7.0),
+    arkhe (>= 1.9.0),
     graphics,
     grDevices,
-    isopleuros (>= 1.2.0),
+    isopleuros (>= 1.3.0),
     khroma (>= 1.14.0),
     methods,
     MASS,
