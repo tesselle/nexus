@@ -5,35 +5,38 @@ NULL
 # CompositionMatrix ============================================================
 #' @export
 #' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, ..., by = groups(x), margin = NULL,
+plot.CompositionMatrix <- function(x, margin = NULL, ...) {
+  isopleuros::ternary_pairs(x, margin = margin, ...)
+  invisible(x)
+}
+
+#' @export
+#' @rdname pairs
+#' @aliases plot,CompositionMatrix,missing-method
+setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMatrix)
+
+#' @export
+#' @method plot GroupedComposition
+plot.GroupedComposition <- function(x, ..., margin = NULL,
                                    color = palette_color_discrete(),
                                    symbol = palette_shape()) {
-  m <- nrow(x)
-
-  ## Grouping
-  grp <- as_groups(by, drop_na = TRUE)
-  if (nlevels(grp) == 0 || nlevels(grp) == m) {
-    col <- list(...)$col %||% graphics::par("col")
-    pch <- list(...)$pch %||% graphics::par("pch")
-  } else {
-    arkhe::assert_length(grp, m)
-    col <- color(grp)
-    pch <- symbol(grp)
-  }
+  ## Aesthetics
+  col <- color(group_names(x))
+  pch <- symbol(group_names(x))
 
   isopleuros::ternary_pairs(x, margin = margin, col = col, pch = pch, ...)
   invisible(x)
 }
 
 #' @export
-#' @rdname plot
-#' @aliases plot,CompositionMatrix,missing-method
-setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMatrix)
+#' @rdname pairs
+#' @aliases plot,GroupedComposition,missing-method
+setMethod("plot", c(x = "GroupedComposition", y = "missing"), plot.GroupedComposition)
 
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, ..., by = groups(x),
+plot.LogRatio <- function(x, ...,
                           color = palette_color_discrete(),
                           rug = TRUE, ticksize = 0.05,
                           ncol = NULL, flip = FALSE,
@@ -50,15 +53,12 @@ plot.LogRatio <- function(x, ..., by = groups(x),
   nrow <- ceiling(p / ncol)
 
   ## Grouping
-  by <- as_groups(by, drop_na = TRUE)
-  if (nlevels(by) == 0 || nlevels(by) == m) {
-    by <- rep("", m)
+  if (!is_grouped(x)) {
     grp <- list(x)
     border <- list(...)$border %||% graphics::par("col")
   } else {
-    arkhe::assert_length(by, m)
-    grp <- split(x, f = by)
-    border <- color(by)
+    grp <- group_split(x)
+    border <- color(group_names(x))
   }
   k <- length(grp)
 
@@ -171,6 +171,6 @@ plot.LogRatio <- function(x, ..., by = groups(x),
 }
 
 #' @export
-#' @rdname plot_logratio
+#' @rdname plot
 #' @aliases plot,LogRatio,missing-method
 setMethod("plot", c(x = "LogRatio", y = "missing"), plot.LogRatio)

@@ -5,14 +5,20 @@
 \alias{transform_alr}
 \alias{transform_alr-method}
 \alias{transform_alr,CompositionMatrix-method}
+\alias{transform_alr,GroupedComposition-method}
 \alias{transform_alr,CLR-method}
+\alias{transform_alr,GroupedCLR-method}
 \title{Additive Log-Ratios (ALR)}
 \usage{
 transform_alr(object, ...)
 
 \S4method{transform_alr}{CompositionMatrix}(object, j = ncol(object), weights = FALSE)
 
+\S4method{transform_alr}{GroupedComposition}(object, j = ncol(object), weights = FALSE)
+
 \S4method{transform_alr}{CLR}(object, j = ncol(object))
+
+\S4method{transform_alr}{GroupedCLR}(object, j = ncol(object), weights = FALSE)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}} object.}

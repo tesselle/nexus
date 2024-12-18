@@ -11,7 +11,6 @@
   ...,
   type = c("dotchart", "distance"),
   robust = TRUE,
-  colors = color("discreterainbow"),
   symbols = c(16, 1, 3),
   xlim = NULL,
   ylim = NULL,
@@ -30,7 +29,7 @@
 \arguments{
 \item{x}{An \code{\linkS4class{OutlierIndex}} object.}
 
-\item{...}{Further \link[graphics:par]{graphical parameters}.}
+\item{...}{Further parameters to be passed to \code{\link[graphics:points]{graphics::points()}}.}
 
 \item{type}{A \code{\link{character}} string specifying the type of plot that should be
 made. It must be one of "\code{dotchart}" or "\code{distance}".
@@ -38,10 +37,6 @@ Any unambiguous substring can be given.}
 
 \item{robust}{A \code{\link{logical}} scalar: should robust Mahalanobis distances be
 displayed? Only used if \code{type} is "\code{dotchart}".}
-
-\item{colors}{A vector of colors or a \code{function} that when called with a
-single argument (an integer specifying the number of colors) returns a
-vector of colors. Will be mapped to the group names.}
 
 \item{symbols}{A lenth-three vector of symbol specification for non-outliers
 and outliers (resp.).}
@@ -99,7 +94,7 @@ plot(out, type = "dotchart")
 plot(out, type = "distance")
 
 ## Detect outliers according to CJ
-ref <- extract(coda, "CJ")
+ref <- group_extract(coda, "CJ")
 out <- detect_outlier(coda, reference = ref, method = "mcd")
 plot(out, type = "dotchart")
 }

@@ -4,14 +4,26 @@ NULL
 
 # Not exported
 get_transformation <- function(x) {
-  switch(
-    class(x),
-    LR = "Pairwise Log-Ratio",
-    CLR = "Centered Log-Ratio",
-    ALR = "Additive Log-Ratio",
-    ILR = "Isometric Log-Ratio",
-    PLR = "Pivot Log-Ratio"
-  )
+  if (methods::is(x, "LR")) return("Pairwise Log-Ratio")
+  if (methods::is(x, "CLR")) return("Centered Log-Ratio")
+  if (methods::is(x, "ALR")) return("Additive Log-Ratio")
+  if (methods::is(x, "ILR")) return("Isometric Log-Ratio")
+  if (methods::is(x, "PLR")) return("Pivot Log-Ratio")
+}
+
+is_coda <- function(object) {
+  methods::is(object, "CompositionMatrix")
+}
+
+#' Check if an Object is Grouped
+#'
+#' @param object An \R object.
+#' @return A [`logical`] scalar.
+#' @author N. Frerebeau
+#' @family grouping methods
+#' @export
+is_grouped <- function(object) {
+  methods::is(object, "ReferenceGroups")
 }
 
 # Getter =======================================================================

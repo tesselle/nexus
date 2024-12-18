@@ -15,12 +15,6 @@ make_names <- function(x, n = length(x), prefix = "X") {
   x
 }
 
-flatten_chr <- function(x, by) {
-  z <- tapply(X = x, INDEX = by, FUN = unique, simplify = FALSE)
-  z <- vapply(X = z, FUN = paste0, FUN.VALUE = character(1), collapse = ":")
-  z
-}
-
 #' Plotting Dimensions of Character Strings
 #'
 #' Convert string length in inch to number of (margin) lines.

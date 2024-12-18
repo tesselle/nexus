@@ -41,7 +41,11 @@ setMethod(
     z <- x * y
     z <- as_composition(z)
     rownames(z) <- rownames(x)
-    groups(z) <- groups(x)
+
+    if (is_grouped(x)) {
+      x@group_indices <- group_indices(x)
+      x@group_levels <- group_levels(x)
+    }
 
     z
   }
@@ -95,7 +99,11 @@ setMethod(
     z <- x ^ y
     z <- as_composition(z)
     rownames(z) <- rownames(x)
-    groups(z) <- groups(x)
+
+    if (is_grouped(x)) {
+      x@group_indices <- group_indices(x)
+      x@group_levels <- group_levels(x)
+    }
 
     z
   }

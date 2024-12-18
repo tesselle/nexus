@@ -4,9 +4,12 @@
 \name{describe}
 \alias{describe}
 \alias{describe,CompositionMatrix-method}
+\alias{describe,GroupedComposition-method}
 \title{Data Description}
 \usage{
 \S4method{describe}{CompositionMatrix}(x)
+
+\S4method{describe}{GroupedComposition}(x)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}

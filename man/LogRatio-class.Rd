@@ -24,8 +24,6 @@ S4 classes to represent log-ratio data transformations.
 \item{\code{totals}}{A \code{\link{numeric}} vector to store the absolute row sums (before
 the closure of the compositions).}
 
-\item{\code{groups}}{A \code{\link{factor}} vector to store the group names.}
-
 \item{\code{parts}}{A \code{\link{character}} vector to store the original part names.}
 
 \item{\code{ratio}}{A \code{\link{character}} vector to store the ratio names.}
@@ -56,9 +54,11 @@ In the code snippets below, \code{x} is a \code{LogRatio} object.
 
 Other classes: 
 \code{\link{CompositionMatrix-class}},
-\code{\link{LogicalMatrix-class}},
+\code{\link{GroupedComposition-class}},
+\code{\link{GroupedLogRatio-class}},
 \code{\link{NumericMatrix-class}},
-\code{\link{OutlierIndex-class}}
+\code{\link{OutlierIndex-class}},
+\code{\link{ReferenceGroups-class}}
 }
 \author{
 N. Frerebeau

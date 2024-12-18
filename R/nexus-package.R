@@ -8,9 +8,9 @@
 #'  }
 #'
 #' @section Package options:
-#'  `nexus` uses the following [options()] to configure behavior:
+#'  \pkg{nexus} uses the following [options()] to configure behavior:
 #'  * `nexus.verbose`: a [`logical`] scalar. Should \R report extra information
-#'    on progress? Defaults to `TRUE`.
+#'    on progress? Defaults to [interactive()].
 #'
 #' @author
 #'  **Full list of authors and contributors** (alphabetic order)

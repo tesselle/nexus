@@ -29,9 +29,21 @@ setMethod(
       order = seq_len(D),
       base = base,
       weights = weights,
-      totals = totals(object),
-      groups = groups(object)
+      totals = totals(object)
     )
+  }
+)
+
+#' @export
+#' @rdname transform_clr
+#' @aliases transform_clr,GroupedComposition-method
+setMethod(
+  f = "transform_clr",
+  signature = c(object = "GroupedComposition"),
+  definition = function(object, weights = FALSE) {
+    z <- methods::callNextMethod()
+    .GroupedCLR(z, group_indices = group_indices(object),
+                group_levels = group_levels(object))
   }
 )
 
@@ -56,8 +68,20 @@ setMethod(
       order = seq_len(D),
       base = base,
       weights = w,
-      totals = totals(object),
-      groups = groups(object)
+      totals = totals(object)
     )
+  }
+)
+
+#' @export
+#' @rdname transform_clr
+#' @aliases transform_clr,GroupedALR-method
+setMethod(
+  f = "transform_clr",
+  signature = c(object = "GroupedALR"),
+  definition = function(object) {
+    z <- methods::callNextMethod()
+    .GroupedCLR(z, group_indices = group_indices(object),
+                group_levels = group_levels(object))
   }
 )

@@ -37,8 +37,20 @@ setMethod(
       ratio = ratio,
       order = seq_len(J),
       weights = weights,
-      totals = totals(object),
-      groups = groups(object)
+      totals = totals(object)
     )
+  }
+)
+
+#' @export
+#' @rdname transform_lr
+#' @aliases transform_lr,GroupedComposition-method
+setMethod(
+  f = "transform_lr",
+  signature = c(object = "GroupedComposition"),
+  definition = function(object, weights = FALSE) {
+    z <- methods::callNextMethod()
+    .GroupedLR(z, group_indices = group_indices(object),
+               group_levels = group_levels(object))
   }
 )

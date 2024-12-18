@@ -2,8 +2,11 @@ data("slides")
 coda <- as_composition(slides, groups = 2)
 
 ## Compositional mean by sample
-flat <- condense(coda, by = groups(coda))
+flat <- condense(coda)
 expect_equal_to_reference(as.data.frame(flat), file = "_snaps/condense.rds")
+
+## Override groups
+flat <- condense(coda, by = slides$analyst)
 
 ## With zeros
 X1 <- data.frame(

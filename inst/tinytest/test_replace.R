@@ -1,3 +1,5 @@
+Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
+
 # Replace zeros ================================================================
 X <- data.frame(
   Ca = c(7.72, 0, 3.11, 7.19, 7.41, 5, 0, 1, 4.51),

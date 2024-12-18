@@ -28,10 +28,11 @@ setMethod(
   definition = function(object, center = TRUE, scale = FALSE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
-    x <- methods::callNextMethod(object = object, center = center, scale = scale,
-                                 rank = rank, sup_row = sup_row, sup_col = sup_col,
-                                 weight_row = weight_row, weight_col = weight_col)
-    if (any_assigned(object)) x@rows@groups <- as.character(groups(object))
+    x <- methods::callNextMethod(object, center = center, scale = scale,
+                                 rank = rank, sup_row = sup_row,
+                                 sup_col = sup_col, weight_row = weight_row,
+                                 weight_col = weight_col)
+    if (is_grouped(object)) x@rows@groups <- group_names(object)
     x
   }
 )

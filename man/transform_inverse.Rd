@@ -5,8 +5,11 @@
 \alias{transform_inverse}
 \alias{transform_inverse-method}
 \alias{transform_inverse,CLR,missing-method}
+\alias{transform_inverse,GroupedCLR,missing-method}
 \alias{transform_inverse,ALR,missing-method}
+\alias{transform_inverse,GroupedALR,missing-method}
 \alias{transform_inverse,ILR,missing-method}
+\alias{transform_inverse,GroupedILR,missing-method}
 \alias{transform_inverse,matrix,ILR-method}
 \title{Inverse Log-Ratio Transformation}
 \usage{
@@ -14,9 +17,15 @@ transform_inverse(object, origin, ...)
 
 \S4method{transform_inverse}{CLR,missing}(object)
 
+\S4method{transform_inverse}{GroupedCLR,missing}(object)
+
 \S4method{transform_inverse}{ALR,missing}(object)
 
+\S4method{transform_inverse}{GroupedALR,missing}(object)
+
 \S4method{transform_inverse}{ILR,missing}(object)
+
+\S4method{transform_inverse}{GroupedILR,missing}(object)
 
 \S4method{transform_inverse}{matrix,ILR}(object, origin)
 }

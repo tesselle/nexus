@@ -68,7 +68,7 @@ To cite nexus in publications use:
 Frerebeau N, Philippe A (2024). *nexus: Sourcing Archaeological
 Materials by Chemical Composition*. Université Bordeaux Montaigne,
 Pessac, France. <doi:10.5281/zenodo.10225630>
-<https://doi.org/10.5281/zenodo.10225630>, R package version 0.3.0,
+<https://doi.org/10.5281/zenodo.10225630>, R package version 0.3.0.9000,
 <https://packages.tesselle.org/nexus/>.
 
 This package is a part of the tesselle project
@@ -119,7 +119,7 @@ data("bronze", package = "folio")
 coda <- as_composition(bronze, parts = 4:11)
 
 ## Use dynasties as groups
-groups(coda) <- bronze$dynasty
+coda <- group(coda, by = bronze$dynasty)
 ```
 
 ``` r

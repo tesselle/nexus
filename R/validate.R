@@ -2,6 +2,21 @@
 #' @include AllClasses.R
 NULL
 
+# ReferenceGroups ==============================================================
+# setValidity(
+#   Class = "ReferenceGroups",
+#   method = function(object) {
+#     ## Get data
+#     group_indices <- object@group_indices
+#     group_levels <- object@group_levels
+#
+#     cnd <- list(
+#       arkhe::validate()
+#     )
+#     arkhe::check_class(object, cnd)
+#   }
+# )
+
 # NumericMatrix ================================================================
 setValidity(
   Class = "NumericMatrix",
@@ -18,11 +33,9 @@ setValidity(
     ## Get data
     n <- nrow(object)
     totals <- object@totals
-    groups <- object@groups
 
     cnd <- list(
-      arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
+      arkhe::validate(arkhe::assert_length(totals, n)),
       arkhe::validate(arkhe::assert_positive(object, strict = FALSE, na.rm = TRUE))
     )
     arkhe::check_class(object, cnd)
@@ -41,7 +54,6 @@ setValidity(
     weights <- object@weights
 
     totals <- object@totals
-    groups <- object@groups
 
     n <- nrow(object)
     m <- length(parts)
@@ -49,9 +61,8 @@ setValidity(
     cnd <- list(
       arkhe::validate(arkhe::assert_missing(object)),
       arkhe::validate(arkhe::assert_infinite(object)),
-      arkhe::validate(arkhe::assert_length(totals, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_length(groups, n, empty = FALSE)),
-      arkhe::validate(arkhe::assert_length(order, m, empty = FALSE))
+      arkhe::validate(arkhe::assert_length(totals, n)),
+      arkhe::validate(arkhe::assert_length(order, m))
     )
     arkhe::check_class(object, cnd)
   }

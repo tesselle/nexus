@@ -13,8 +13,6 @@ An S4 class to store the result of outlier detection.
 \describe{
 \item{\code{samples}}{A \code{\link{character}} vector to store the sample identifiers.}
 
-\item{\code{groups}}{A \code{\link{factor}} vector to store the group names.}
-
 \item{\code{standard}}{A \code{\link{numeric}} matrix giving the standard squared Mahalanobis
 distances.}
 
@@ -38,9 +36,11 @@ In the code snippets below, \code{x} is an \code{OutlierIndex} object.
 \seealso{
 Other classes: 
 \code{\link{CompositionMatrix-class}},
+\code{\link{GroupedComposition-class}},
+\code{\link{GroupedLogRatio-class}},
 \code{\link{LogRatio-class}},
-\code{\link{LogicalMatrix-class}},
-\code{\link{NumericMatrix-class}}
+\code{\link{NumericMatrix-class}},
+\code{\link{ReferenceGroups-class}}
 }
 \author{
 N. Frerebeau

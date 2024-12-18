@@ -3,63 +3,93 @@
 \docType{methods}
 \name{plot}
 \alias{plot}
-\alias{plot,CompositionMatrix,missing-method}
-\title{Plot Compositional Data}
+\alias{plot,LogRatio,missing-method}
+\title{Plot Log-Ratios}
 \usage{
-\S4method{plot}{CompositionMatrix,missing}(
+\S4method{plot}{LogRatio,missing}(
   x,
   ...,
-  by = groups(x),
-  margin = NULL,
   color = palette_color_discrete(),
-  symbol = palette_shape()
+  rug = TRUE,
+  ticksize = 0.05,
+  ncol = NULL,
+  flip = FALSE,
+  xlab = NULL,
+  ylab = NULL,
+  main = NULL,
+  ann = graphics::par("ann"),
+  axes = TRUE,
+  frame.plot = axes,
+  legend = list(x = "top")
 )
 }
 \arguments{
-\item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
+\item{x}{A \code{\linkS4class{LogRatio}} object.}
 
-\item{...}{Further \link[graphics:par]{graphical parameters}.}
-
-\item{by}{A \code{vector} of grouping elements, as long as the variables in \code{x}.}
-
-\item{margin}{A \code{\link{character}} string or an \code{\link{integer}} giving the index of
-the column to be used as the third part of the ternary plots. If \code{NULL}
-(the default), marginal compositions will be used (i.e. the geometric mean
-of the non-selected parts).}
+\item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
+\code{border} and \code{col}.}
 
 \item{color}{A palette \code{\link{function}} that when called with a single
-argument returns a \code{character} vector of colors.}
+argument returns a \code{character} vector of colors (only used if \code{x}
+\link[=group]{is grouped}).}
 
-\item{symbol}{A palette \code{\link{function}} that when called with a single
-argument returns a vector of symbols.}
+\item{rug}{A \code{\link{logical}} scalar: should a \emph{rug} representation (1-d plot) of
+the data be added to the plot?}
+
+\item{ticksize}{A length-one \code{\link{numeric}} vector giving the length of the
+ticks making up the \emph{rug}. Positive lengths give inwards ticks. Only used if
+\code{rug} is \code{TRUE}.}
+
+\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
+Defaults to 1 for up to 4 groups, otherwise to 2.}
+
+\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
+flipped from side 2 (left) to 4 (right) from variable to variable?}
+
+\item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
+
+\item{main}{A \code{\link{character}} string giving a main title for the plot.}
+
+\item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
+and y axis labels) appear on the plot?}
+
+\item{axes}{A \code{\link{logical}} scalar: should axes be drawn on the plot?}
+
+\item{frame.plot}{A \code{\link{logical}} scalar: should a box be drawn around the
+plot?}
+
+\item{legend}{A \code{\link{list}} of additional arguments to be passed to
+\code{\link[graphics:legend]{graphics::legend()}}; names of the list are used as argument names.
+If \code{NULL}, no legend is displayed.}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being
 displayed (invisibly return \code{x}).
 }
 \description{
-Displays a matrix of ternary plots.
+Displays a density plot.
 }
 \examples{
 ## Data from Day et al. 2011
 data("kommos", package = "folio") # Coerce to compositional data
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, parts = 3:8, groups = 1)
+coda <- as_composition(kommos, groups = 1)
+
+## Log ratio
+clr <- transform_clr(coda)
+
+## Density plot
+plot(clr, by = NULL, flip = TRUE)
 
 ## Use ceramic types for grouping
-plot(coda)
-
-## Center and scale ternary plots
-plot(coda, by = NULL, center = TRUE, scale = TRUE)
+plot(clr, flip = TRUE)
 }
 \seealso{
-\code{\link[isopleuros:ternary_pairs]{isopleuros::ternary_pairs()}}, \code{\link[isopleuros:ternary_plot]{isopleuros::ternary_plot()}}
-
 Other plot methods: 
 \code{\link{as_graph}()},
 \code{\link{barplot}()},
 \code{\link{hist}()},
-\code{\link{plot_logratio}}
+\code{\link{pairs}()}
 }
 \author{
 N. Frerebeau

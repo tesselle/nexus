@@ -97,7 +97,7 @@ data("bronze", package = "folio")
 coda <- as_composition(bronze, parts = 4:11)
 
 ## Use dynasties as groups
-groups(coda) <- bronze$dynasty
+coda <- group(coda, by = bronze$dynasty)
 ```
 
 ```{r barplot, fig.width=5, fig.height=7}

@@ -66,7 +66,7 @@ counts <- as_amounts(coda)
 all.equal(hongite, as.data.frame(counts))
 ```
 
-The `parts` argument of the function `as_composition()` is used to define the columns to be used as the compositional part. If `parts` is `NULL` (the default), all non-integer numeric columns (i.e. of type `double`) are used. In the case of a `data.frame` coercion, additional columns are removed.
+The `parts` argument of the function `as_composition()` is used to define the columns to be used as the compositional part. If `parts` is `NULL` (the default), all `numeric` columns are used. In the case of a `data.frame` coercion, additional columns are removed.
 
 ```{r}
 ## Create a data.frame
@@ -82,40 +82,6 @@ X <- data.frame(
 Y <- as_composition(X)
 ```
 
-# Working with (reference) groups
-
-Provenance studies typically rely on two approaches, which can be used together:
-
-* Identification of groups among the artifacts being studied, based on mineralogical or geochemical criteria (*clustering*).
-* Comparison with so-called reference groups, i.e. known geological sources or archaeological contexts (*classification*).
-
-When coercing a `data.frame` to a `CompositionMatrix` object, **nexus** allows to specify whether an observation belongs to a specific group (or not):
-
-```{r}
-## Data from Wood and Liu 2023
-data("bronze", package = "folio")
-
-## Use the third column (dynasties) for grouping
-coda <- as_composition(bronze, groups = 3)
-```
-
-`groups(x)` and `groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) or empty strings can be used to specify that a sample does not belong to any group.
-
-Once groups have been defined, they can be used by further methods (e.g. plotting). 
-Note that for better readability, you can `select` only some of the parts (e.g. major elements):
-
-```{r barplot, fig.width=7, fig.height=7, out.width='100%'}
-## Compositional bar plot
-barplot(coda, select = is_element_major(coda), order_rows = "Cu", space = 0)
-```
-
-# Descriptive statistics
-
-```{r mean, eval=FALSE}
-## Compositional mean by artefact
-coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
-```
-
 # Log-ratio transformations
 
 The package provides the following (inverse) transformations: centered log ratio (*CLR*, Aitchison 1986), additive log ratio (*ALR*, Aitchison 1986), isometric log ratio (*ILR*, Egozcue et al. 2003) and pivot log-ratio (*PLR*, Hron et al. 2017).
@@ -128,64 +94,6 @@ clr <- transform_clr(coda)
 back <- transform_inverse(clr)
 
 all.equal(back, coda)
-```
-
-# Multivariate Analysis
-
-```{r}
-## Assume that about a third of the samples does not belong to any group
-grp <- groups(coda)
-grp[sample(length(grp), size = 100)] <- NA
-
-## Set groups
-groups(coda) <- grp
-
-## Retrieve groups
-# groups(coda)
-```
-
-## Log-Ratio Analysis
-
-```{r pca, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
-## CLR
-clr <- transform_clr(coda, weights = TRUE)
-
-## PCA
-lra <- pca(clr)
-
-## Visualize results
-viz_individuals(lra, color = c("#004488", "#DDAA33", "#BB5566"))
-viz_hull(x = lra, border = c("#004488", "#DDAA33", "#BB5566"))
-
-viz_variables(lra)
-```
-
-## MANOVA
-
-The log-transformed data can be assigned to a new column, allowing us to keep working with the data in the context of the original `data.frame`:
-
-```{r manova}
-## ILR
-ilr <- transform_ilr(coda)
-
-bronze$ilr <- ilr
-
-## MANOVA
-fit <- manova(ilr ~ groups(ilr), data = bronze)
-summary(fit)
-```
-
-The MANOVA results suggest that there are statistically significant differences between groups.
-
-## Linear Discriminant Analysis
-
-```{r lda, fig.width=7, fig.height=7, out.width='100%'}
-## LDA
-discr <- MASS::lda(groups(ilr) ~ ilr, data = bronze)
-plot(discr)
-
-## Back transform results
-transform_inverse(discr$means, origin = ilr)
 ```
 
 # References

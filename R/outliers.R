@@ -61,9 +61,8 @@ setMethod(
     ## Threshold
     limit <- sqrt(stats::qchisq(p = quantile, df = p))
 
-    .OutlierIndex(
+    z <- .OutlierIndex(
       samples = rownames(z),
-      groups = groups(z),
       standard = sqrt(dc),
       robust = sqrt(dr),
       limit = limit,
@@ -92,7 +91,6 @@ setMethod(
 plot.OutlierIndex <- function(x, ...,
                               type = c("dotchart", "distance"),
                               robust = TRUE,
-                              colors = color("discreterainbow"),
                               symbols = c(16, 1, 3),
                               xlim = NULL, ylim = NULL,
                               xlab = NULL, ylab = NULL,
@@ -104,7 +102,6 @@ plot.OutlierIndex <- function(x, ...,
   ## Get data
   dc <- x@standard
   dr <- x@robust
-  grp <- x@groups
   dof <- x@dof
   limit <- x@limit
   n <- length(dc)
@@ -121,11 +118,8 @@ plot.OutlierIndex <- function(x, ...,
   if (robust || type == "distance") shape[dr > limit] <- symbols[[3L]]
   if (!robust || type == "distance") shape[dc > limit] <- symbols[[2L]]
 
-  col <- rep("black", length(grp))
-  if (nlevels(grp) > 0) col <- khroma::palette_color_discrete(colors)(grp)
-
   cy <- if (robust) dr else dc
-  dlab <- sprintf("%s Mahalanobis distance", ifelse(robust, "Robust", "Standard"))
+  dlab <- ifelse(robust, "Robust Mahalanobis distance", "Standard Mahalanobis distance")
   ylab <- ylab %||% dlab
 
   if (type == "dotchart") {
@@ -133,7 +127,7 @@ plot.OutlierIndex <- function(x, ...,
     cx <- seq_along(dc)
     xlab <- xlab %||% "Index"
     panel <- function() {
-      graphics::points(x = cx, y = cy, pch = shape, col = col)
+      graphics::points(x = cx, y = cy, pch = shape, ...)
       graphics::abline(h = limit, lty = 1)
     }
   }
@@ -144,7 +138,7 @@ plot.OutlierIndex <- function(x, ...,
     xlab <- xlab %||% "Standard Mahalanobis distance"
     ylab <- ylab %||% "Robust Mahalanobis distance"
     panel <- function() {
-      graphics::points(x = cx, y = cy, pch = shape, col = col)
+      graphics::points(x = cx, y = cy, pch = shape, ...)
       graphics::abline(h = limit, lty = 1)
       graphics::abline(v = limit, lty = 1)
       graphics::abline(a = 0, b = 1, lty = 2, col = "darkgrey")

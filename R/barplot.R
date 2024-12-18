@@ -6,7 +6,6 @@ NULL
 #' @export
 #' @method barplot CompositionMatrix
 barplot.CompositionMatrix <- function(height, ...,
-                                      by = groups(height),
                                       order_columns = FALSE, order_rows = NULL,
                                       decreasing = TRUE,
                                       space = 0.2, offset = 0.025,
@@ -18,7 +17,7 @@ barplot.CompositionMatrix <- function(height, ...,
   }
 
   ## Prepare data
-  xy <- prepare_barplot(height, groups = by, order_columns = order_columns,
+  xy <- prepare_barplot(height, order_columns = order_columns,
                         order_rows = order_rows, decreasing = decreasing,
                         offset = offset)
   parts <- factor(xy$data$column, levels = colnames(height))
@@ -99,27 +98,20 @@ barplot.CompositionMatrix <- function(height, ...,
 #' @aliases barplot,CompositionMatrix-method
 setMethod("barplot", c(height = "CompositionMatrix"), barplot.CompositionMatrix)
 
-prepare_barplot <- function(x, groups = NULL,
-                            order_rows = NULL, order_columns = FALSE,
+prepare_barplot <- function(x, order_rows = NULL, order_columns = FALSE,
                             decreasing = TRUE, offset = 0.025) {
-  ## Prepare groups
-  n <- nrow(x)
-  grp <- as_groups(groups, drop_na = FALSE)
-  if (nlevels(grp) == 0 || nlevels(grp) == n) grp <- rep("", n)
-
   ## Relative frequencies
+  n <- nrow(x)
   x <- x / rowSums(x)
 
   ## Validation
-  stopifnot(methods::is(x, "CompositionMatrix"))
-  arkhe::assert_length(grp, n)
+  stopifnot(is_coda(x))
 
   ## Row order
   if (!is.null(order_rows)) {
     j <- x[, order_rows, drop = TRUE]
     i <- order(j, decreasing = decreasing)
     x <- x[i, , drop = FALSE]
-    grp <- grp[i]
   }
 
   ## Columns order
@@ -131,7 +123,10 @@ prepare_barplot <- function(x, groups = NULL,
   }
 
   ## Grouping
-  spl <- split(x = x, f = grp)
+  if (!is_grouped(x)) {
+    x <- group(x, by = rep(NA, n), verbose = FALSE)
+  }
+  spl <- group_split(x)
   z <- do.call(rbind, spl)
 
   ## Build a long table
@@ -150,8 +145,8 @@ prepare_barplot <- function(x, groups = NULL,
   data$y <- as.vector(n + 1 - as.numeric(row)) / n # Reverse levels order
 
   ## Offset
-  n_grp <- length(spl)
-  n_spl <- tapply(X = grp, INDEX = grp, FUN = length)
+  n_grp <- group_length(x)
+  n_spl <- group_size(x)
   offset <- rev(seq_len(n_grp)) * offset - offset
   data$y <- data$y + rep(offset, n_spl)[as.numeric(row)]
 

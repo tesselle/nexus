@@ -9,7 +9,6 @@
 \S4method{barplot}{CompositionMatrix}(
   height,
   ...,
-  by = groups(height),
   order_columns = FALSE,
   order_rows = NULL,
   decreasing = TRUE,
@@ -25,9 +24,6 @@
 \item{height}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Further graphical parameters.}
-
-\item{by}{A \code{vector} of grouping elements, as long as the variables in
-\code{height}.}
 
 \item{order_columns}{A \code{\link{logical}} scalar: should should columns be reorderd?}
 
@@ -87,8 +83,8 @@ barplot(minor, order_columns = TRUE)
 Other plot methods: 
 \code{\link{as_graph}()},
 \code{\link{hist}()},
-\code{\link{plot}()},
-\code{\link{plot_logratio}}
+\code{\link{pairs}()},
+\code{\link{plot}()}
 }
 \author{
 N. Frerebeau

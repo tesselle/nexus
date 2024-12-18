@@ -5,11 +5,14 @@
 \alias{transform_lr}
 \alias{transform_lr-method}
 \alias{transform_lr,CompositionMatrix-method}
+\alias{transform_lr,GroupedComposition-method}
 \title{Pairwise Log-Ratios (LR)}
 \usage{
 transform_lr(object, ...)
 
 \S4method{transform_lr}{CompositionMatrix}(object, weights = FALSE)
+
+\S4method{transform_lr}{GroupedComposition}(object, weights = FALSE)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}} object.}

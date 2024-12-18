@@ -48,8 +48,20 @@ setMethod(
       order = order(ordering),
       base = H,
       weights = rep(1 / J, J),
-      totals = totals(object),
-      groups = groups(object)
+      totals = totals(object)
     )
+  }
+)
+
+#' @export
+#' @rdname transform_plr
+#' @aliases transform_plr,GroupedComposition-method
+setMethod(
+  f = "transform_plr",
+  signature = c(object = "GroupedComposition"),
+  definition = function(object, pivot = 1) {
+    z <- methods::callNextMethod()
+    .GroupedPLR(z, group_indices = group_indices(object),
+                group_levels = group_levels(object))
   }
 )

@@ -5,11 +5,14 @@
 \alias{condense}
 \alias{condense-method}
 \alias{condense,CompositionMatrix-method}
+\alias{condense,GroupedComposition-method}
 \title{Compositional Mean of Data Subsets}
 \usage{
 condense(x, ...)
 
-\S4method{condense}{CompositionMatrix}(x, by = groups(x), ...)
+\S4method{condense}{CompositionMatrix}(x, by, verbose = getOption("nexus.verbose"), ...)
+
+\S4method{condense}{GroupedComposition}(x, by = NULL, verbose = getOption("nexus.verbose"), ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
@@ -17,8 +20,10 @@ condense(x, ...)
 \item{...}{Further arguments to be passed to \code{\link[=mean]{mean()}}.}
 
 \item{by}{A \code{vector} or a list of grouping elements, each as long as the
-variables in \code{x}. The elements are coerced to factors before use
-(in the sense that \code{\link[=interaction]{interaction(by)}} defines the grouping).}
+variables in \code{x} (see \code{\link[=group]{group()}}).}
+
+\item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
+on progress?}
 }
 \value{
 A \code{\linkS4class{CompositionMatrix}} object.

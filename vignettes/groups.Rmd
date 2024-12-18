@@ -1,0 +1,91 @@
+---
+title: "Working with Groups"
+author: "N. Frerebeau"
+date: "`r Sys.Date()`"
+output:
+  markdown::html_format:
+    options:
+      toc: true
+      number_sections: true
+bibliography: bibliography.bib
+vignette: >
+  %\VignetteIndexEntry{Working with Groups}
+  %\VignetteEngine{knitr::knitr}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+## Install extra packages (if needed)
+# install.packages("folio")
+
+library(nexus)
+```
+
+Provenance studies typically rely on two approaches, which can be used together:
+
+* Identification of groups among the artifacts being studied, based on mineralogical or geochemical criteria (*clustering*).
+* Comparison with so-called reference groups, i.e. known geological sources or archaeological contexts (*classification*).
+
+When coercing a `data.frame` to a `CompositionMatrix` object, **nexus** allows to specify whether an observation belongs to a specific group (or not):
+
+```{r}
+## Data from Wood and Liu 2023
+data("bronze", package = "folio")
+
+## Use the third column (dynasties) for grouping
+coda <- as_composition(bronze, groups = 3)
+```
+
+`groups(x)` and `groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) or empty strings can be used to specify that a sample does not belong to any group.
+
+Once groups have been defined, they can be used by further methods (e.g. plotting). 
+Note that for better readability, you can `select` only some of the parts (e.g. major elements):
+
+```{r barplot, fig.width=7, fig.height=7, out.width='100%'}
+## Select major elements
+major <- coda[, is_element_major(coda)]
+
+## Compositional bar plot
+barplot(major, order_rows = "Cu", space = 0)
+```
+
+```{r mean, eval=FALSE}
+## Compositional mean by artefact
+coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
+```
+
+# Multivariate Analysis
+## Log-Ratio Analysis
+
+```{r pca, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}
+## CLR
+clr <- transform_clr(coda, weights = TRUE)
+
+## PCA
+lra <- pca(clr)
+
+## Visualize results
+viz_individuals(lra, color = c("#004488", "#DDAA33", "#BB5566"))
+viz_hull(x = lra, border = c("#004488", "#DDAA33", "#BB5566"))
+
+viz_variables(lra)
+```
+
+# References
+
+Aitchison, J. (1986). *The Statistical Analysis of Compositional Data. Monographs on Statistics and Applied Probability*. Londres, UK ; New York, USA: Chapman and Hall.
+
+Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. and Barceló-Vidal, C. (2003). Isometric Logratio Transformations for Compositional Data Analysis. *Mathematical Geology*, 35(3): 279-300. DOI: [10.1023/A:1023818214614](https://doi.org/10.1023/A:1023818214614).
+
+Greenacre, M. (2021). Compositional Data Analysis. *Annual Review of Statistics and Its Application*, 8(1): 271-299. DOI: [10.1146/annurev-statistics-042720-124436](https://doi.org/10.1146/annurev-statistics-042720-124436).
+
+Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. and Gardlo, A. (2017). Weighted Pivot Coordinates for Compositional Data and Their Application to Geochemical Mapping. *Mathematical Geosciences*, 49(6): 797-814. DOI : [10.1007/s11004-017-9684-z](https://doi.org/10.1007/s11004-017-9684-z).
+
+Weigand, P. C., Harbottle, G. and Sayre, E. (1977). Turquoise Sources and Source Analysisis: Mesoamerica and the Southwestern U.S.A. In J. Ericson & T. K. Earle (Eds.), *Exchange Systems in Prehistory*, 15-34. New York, NY: Academic Press.

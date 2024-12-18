@@ -1,5 +1,11 @@
 # nexus 0.3.0.9000
+## New classes and methods
+* Add `ReferenceGroups`, `GroupedComposition` and `GroupedLogRatio` classes to represent grouped data.
+* Add `group()`, `ungroup()`, `group_levels()`, `group_names()`, `group_indices()`, `group_rows()`, `group_length()`, `group_size()`, `group_extract()`, `group_split()` and `is_grouped()` to work with grouped data.
+* Add `transform_lr()`, `transform_clr()`, `transform_alr()`, `transform_ilr()`, `transform_plr()` and `transform_inverse()` methods for `GroupedComposition` and `GroupedLogRatio` objects.
+
 ## Breaking changes
+* Redesign the internal mechanism for grouping data.
 * `hist()` now produces a single histogram.
 
 # nexus 0.3.0

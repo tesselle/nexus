@@ -11,12 +11,14 @@ X <- data.frame(
 Y <- as_composition(X)
 
 ## Split by group
-## /!\ Unassigned samples are discarded ! /!\
+## /!\ Unassigned samples (NA) are discarded ! /!\
 (s1 <- split(Y, f = X$groups))
 
-## Split by group
-## Keep unassigned samples, see help(factor)
-(s2 <- split(Y, f = factor(X$groups, exclude = NULL)))
+## Better to use grouped matrix
+(s2 <- group_split(Y, by = X$groups))
+
+Z <- as_composition(X, groups = 2)
+(s3 <- group_split(Z))
 
 ## Bind by rows
-do.call(rbind, s2)
+do.call(rbind, s3)

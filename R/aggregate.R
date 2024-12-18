@@ -7,23 +7,25 @@ NULL
 #' @method aggregate CompositionMatrix
 aggregate.CompositionMatrix <- function(x, by, FUN, ...,
                                         simplify = TRUE, drop = TRUE) {
-  m <- nrow(x)
+  x <- group(x, by = by, drop_levels = drop)
+  aggregate(x, FUN, ..., simplify = simplify)
+}
 
+#' @export
+#' @rdname aggregate
+#' @aliases aggregate,CompositionMatrix-method
+setMethod("aggregate", "CompositionMatrix", aggregate.CompositionMatrix)
+
+#' @export
+#' @method aggregate GroupedComposition
+aggregate.GroupedComposition <- function(x, FUN, ..., simplify = TRUE) {
   ## Grouping
-  index <- as_groups(by)
-  if (nlevels(index) == 0 || nlevels(index) == m) {
-    warning("Nothing to group by.", call. = FALSE)
-    return(x)
-  }
-
-  aggr <- tapply(
-    X = seq_len(m),
-    INDEX = index,
+  aggr <- lapply(
+    X = group_rows(x),
     FUN = function(i, data, fun, ...) fun(data[i, , drop = FALSE], ...),
     data = x,
     fun = FUN,
-    ...,
-    simplify = FALSE
+    ...
   )
 
   has_dim <- vapply(
@@ -33,10 +35,12 @@ aggregate.CompositionMatrix <- function(x, by, FUN, ...,
   )
 
   if (any(has_dim) || !simplify) return(aggr)
-  do.call(rbind, aggr)
+  aggr <- do.call(rbind, aggr)
+  rownames(aggr) <- group_levels(x)
+  aggr
 }
 
 #' @export
 #' @rdname aggregate
-#' @aliases aggregate,CompositionMatrix-method
-setMethod("aggregate", "CompositionMatrix", aggregate.CompositionMatrix)
+#' @aliases aggregate,GroupedComposition-method
+setMethod("aggregate", "GroupedComposition", aggregate.GroupedComposition)

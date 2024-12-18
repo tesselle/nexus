@@ -16,11 +16,20 @@ setMethod(
     y <- y / rowSums(y)
 
     dimnames(y) <- list(rownames(object), object@parts)
-    .CompositionMatrix(
-      y,
-      totals = totals(object),
-      groups = groups(object)
-    )
+    .CompositionMatrix(y, totals = totals(object))
+  }
+)
+
+#' @export
+#' @rdname transform_inverse
+#' @aliases transform_inverse,GroupedCLR,missing-method
+setMethod(
+  f = "transform_inverse",
+  signature = c(object = "GroupedCLR", origin = "missing"),
+  definition = function(object) {
+    z <- methods::callNextMethod()
+    .GroupedComposition(z, group_indices = group_indices(object),
+                        group_levels = group_levels(object))
   }
 )
 
@@ -40,11 +49,20 @@ setMethod(
     dimnames(y) <- list(rownames(object), object@parts)
     y <- y[, object@order]
 
-    .CompositionMatrix(
-      y,
-      totals = totals(object),
-      groups = groups(object)
-    )
+    .CompositionMatrix(y, totals = totals(object))
+  }
+)
+
+#' @export
+#' @rdname transform_inverse
+#' @aliases transform_inverse,GroupedALR,missing-method
+setMethod(
+  f = "transform_inverse",
+  signature = c(object = "GroupedALR", origin = "missing"),
+  definition = function(object) {
+    z <- methods::callNextMethod()
+    .GroupedComposition(z, group_indices = group_indices(object),
+                        group_levels = group_levels(object))
   }
 )
 
@@ -63,11 +81,20 @@ setMethod(
     dimnames(y) <- list(rownames(object), object@parts)
     y <- y[, object@order]
 
-    .CompositionMatrix(
-      y,
-      totals = totals(object),
-      groups = groups(object)
-    )
+    .CompositionMatrix(y, totals = totals(object))
+  }
+)
+
+#' @export
+#' @rdname transform_inverse
+#' @aliases transform_inverse,GroupedILR,missing-method
+setMethod(
+  f = "transform_inverse",
+  signature = c(object = "GroupedILR", origin = "missing"),
+  definition = function(object) {
+    z <- methods::callNextMethod()
+    .GroupedComposition(z, group_indices = group_indices(object),
+                        group_levels = group_levels(object))
   }
 )
 

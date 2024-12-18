@@ -12,7 +12,6 @@ NULL
   if (missing(i)) i <- seq_len(nrow(x))
   if (is.character(i)) i <- match(i, dimnames(x)[1L])
   totals <- totals(x)[i]
-  groups <- groups(x)[i]
 
   ## Columns
   if (missing(j)) j <- seq_len(ncol(x))
@@ -28,7 +27,17 @@ NULL
   #   z <- z / tot
   # }
 
-  methods::initialize(x, z, totals = totals, groups = groups)
+  if (is_grouped(x)) {
+    g <- droplevels(group_factor(x)[i])
+    methods::initialize(
+      x, z,
+      totals = totals,
+      group_indices = as.integer(g),
+      group_levels = levels(g)
+    )
+  } else {
+    methods::initialize(x, z, totals = totals)
+  }
 }
 
 wrong_dimensions <- function(i, j) {

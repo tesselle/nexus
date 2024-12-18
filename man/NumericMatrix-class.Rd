@@ -20,9 +20,11 @@ This class inherits from \code{\link{matrix}}.
 \seealso{
 Other classes: 
 \code{\link{CompositionMatrix-class}},
+\code{\link{GroupedComposition-class}},
+\code{\link{GroupedLogRatio-class}},
 \code{\link{LogRatio-class}},
-\code{\link{LogicalMatrix-class}},
-\code{\link{OutlierIndex-class}}
+\code{\link{OutlierIndex-class}},
+\code{\link{ReferenceGroups-class}}
 }
 \author{
 N. Frerebeau

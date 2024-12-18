@@ -5,11 +5,14 @@
 \alias{transform_plr}
 \alias{transform_plr-method}
 \alias{transform_plr,CompositionMatrix-method}
+\alias{transform_plr,GroupedComposition-method}
 \title{Pivot Log-Ratios (PLR)}
 \usage{
 transform_plr(object, ...)
 
 \S4method{transform_plr}{CompositionMatrix}(object, pivot = 1)
+
+\S4method{transform_plr}{GroupedComposition}(object, pivot = 1)
 }
 \arguments{
 \item{object}{A \code{\linkS4class{CompositionMatrix}} object.}

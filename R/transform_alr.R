@@ -42,9 +42,21 @@ setMethod(
       order = order(ordering),
       base = base,
       weights = weights,
-      totals = totals(object),
-      groups = groups(object)
+      totals = totals(object)
     )
+  }
+)
+
+#' @export
+#' @rdname transform_alr
+#' @aliases transform_alr,GroupedComposition-method
+setMethod(
+  f = "transform_alr",
+  signature = c(object = "GroupedComposition"),
+  definition = function(object, j = ncol(object), weights = FALSE) {
+    z <- methods::callNextMethod()
+    .GroupedALR(z, group_indices = group_indices(object),
+                group_levels = group_levels(object))
   }
 )
 
@@ -77,8 +89,20 @@ setMethod(
       order = order(ordering),
       base = base,
       weights = object@weights,
-      totals = totals(object),
-      groups = groups(object)
+      totals = totals(object)
     )
+  }
+)
+
+#' @export
+#' @rdname transform_alr
+#' @aliases transform_alr,GroupedCLR-method
+setMethod(
+  f = "transform_alr",
+  signature = c(object = "GroupedCLR"),
+  definition = function(object, j = ncol(object), weights = FALSE) {
+    z <- methods::callNextMethod()
+    .GroupedALR(z, group_indices = group_indices(object),
+                group_levels = group_levels(object))
   }
 )

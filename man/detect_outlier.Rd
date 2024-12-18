@@ -91,7 +91,7 @@ plot(out, type = "dotchart")
 plot(out, type = "distance")
 
 ## Detect outliers according to CJ
-ref <- extract(coda, "CJ")
+ref <- group_extract(coda, "CJ")
 out <- detect_outlier(coda, reference = ref, method = "mcd")
 plot(out, type = "dotchart")
 }

@@ -31,8 +31,7 @@ setMethod(
     totals <- rowSums(from, na.rm = TRUE)
     from <- from / totals
 
-    grp <- as_groups(rep(NA, nrow(from)))
-    .CompositionMatrix(from, totals = unname(totals), groups = grp)
+    .CompositionMatrix(from, totals = unname(totals))
   }
 )
 
@@ -49,20 +48,14 @@ setMethod(
     rownames(from) <- if (has_rownames(from)) rownames(from) else lab
     colnames(from) <- make_names(x = colnames(from), n = ncol(from), prefix = "V")
 
-    ## Group names
-    grp <- rep(NA_character_, nrow(from))
-    if (!is.null(groups)) grp <- from[, groups, drop = FALSE]
-    grp <- as_groups(grp)
-
     ## Remove non-numeric columns
     if (is.null(parts)) {
       parts <- arkhe::detect(from, f = is.double, margin = 2) # Logical
-      if (verbose) {
+      if (isTRUE(verbose)) {
         n <- sum(parts)
-        what <- ngettext(n, "part", "parts")
+        what <- ngettext(n, "Found %g part (%s)", "Found %g parts (%s)")
         cols <- paste0(colnames(from)[parts], collapse = ", ")
-        msg <- "Found %g %s (%s)."
-        message(sprintf(msg, n, what, cols))
+        message(sprintf(what, n, cols))
       }
     } else {
       if (is.numeric(parts)) parts <- seq_len(ncol(from)) %in% parts
@@ -76,7 +69,12 @@ setMethod(
     totals <- rowSums(coda, na.rm = TRUE)
     coda <- coda / totals
 
-    .CompositionMatrix(coda, totals = unname(totals), groups = grp)
+    z <- .CompositionMatrix(coda, totals = unname(totals))
+    if (is.null(groups)) return(z)
+
+    ## Group names
+    grp <- from[, groups, drop = FALSE]
+    group(z, by = grp, verbose = verbose)
   }
 )
 
@@ -93,44 +91,38 @@ setMethod(
 )
 
 # To data.frame ================================================================
-# @export
-# @rdname augment
-# @aliases augment,CompositionMatrix-method
-# setMethod(
-#   f = "augment",
-#   signature = c(x = "CompositionMatrix"),
-#   definition = function(x) {
-#     data.frame(
-#       .group = groups(x),
-#       x
-#     )
-#   }
-# )
-
-# @export
-# @rdname augment
-# @aliases augment,LogRatio-method
-# setMethod(
-#   f = "augment",
-#   signature = c(x = "LogRatio"),
-#   definition = function(x) {
-#     data.frame(
-#       .group = groups(x),
-#       x
-#     )
-#   }
-# )
-
 #' @method as.data.frame CompositionMatrix
 #' @export
 as.data.frame.CompositionMatrix <- function(x, ...) {
   as.data.frame(methods::as(x, "matrix"), row.names = rownames(x))
 }
 
+#' @method as.data.frame GroupedComposition
+#' @export
+as.data.frame.GroupedComposition <- function(x, ..., group_var = ".group") {
+  z <- data.frame(
+    methods::as(x, "matrix"),
+    row.names = rownames(x)
+  )
+  z[[group_var]] <- group_names(x)
+  z
+}
+
 #' @method as.data.frame LogRatio
 #' @export
 as.data.frame.LogRatio <- function(x, ...) {
   as.data.frame(methods::as(x, "matrix"), row.names = rownames(x))
+}
+
+#' @method as.data.frame GroupedLogRatio
+#' @export
+as.data.frame.GroupedLogRatio <- function(x, ..., group_var = ".group") {
+  z <- data.frame(
+    methods::as(x, "matrix"),
+    row.names = rownames(x)
+  )
+  z[[group_var]] <- group_names(x)
+  z
 }
 
 #' @method as.data.frame OutlierIndex

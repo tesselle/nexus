@@ -8,6 +8,29 @@ setOldClass("dist")
 ## (for 'i' in x[i], x[i, ], x[, i], etc.)
 setClassUnion("index", members = c("logical", "numeric", "character"))
 
+# ReferenceGroups ==============================================================
+#' Grouped Data
+#'
+#' A virtual S4 class to represent reference groups.
+#' @slot group_indices An [`integer`] vector to store the group that each value
+#'  belongs to.
+#' @slot group_levels A [`character`] vector to store the values of the grouping
+#'  variables.
+#' @example inst/examples/ex-matrix.R
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases ReferenceGroups-class
+#' @keywords internal
+.ReferenceGroups <- setClass(
+  Class = "ReferenceGroups",
+  slots = c(
+    group_indices = "integer",
+    group_levels = "character"
+  ),
+  contains = c("VIRTUAL")
+)
+
 # CompositionMatrix ============================================================
 #' Numeric Matrix
 #'
@@ -25,28 +48,11 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   contains = "matrix"
 )
 
-#' Logical Matrix
-#'
-#' S4 classes that represent a \eqn{m \times p}{m x p} logical matrix.
-#' @slot .Data A \eqn{m \times p}{m x p} `logical` [`matrix`].
-#' @note
-#'  This class inherits from [`matrix`].
-#' @author N. Frerebeau
-#' @family classes
-#' @docType class
-#' @aliases LogicalMatrix-class
-#' @keywords internal
-.LogicalMatrix <- setClass(
-  Class = "LogicalMatrix",
-  contains = "matrix"
-)
-
 #' Compositional Matrix
 #'
 #' An S4 class to represent compositional data.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
-#' @slot groups A [`factor`] vector to store the group names.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `CompositionMatrix` object.
 #'  \describe{
@@ -58,7 +64,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #'   \item{`x[i, j]`}{Extract parts of a matrix (see [`[`][subset]).}
 #'  }
 #' @note
-#'  This class inherits from [`matrix`].
+#'  This class inherits from [`NumericMatrix-class`].
 #' @seealso [as_composition()]
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
@@ -69,10 +75,32 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 .CompositionMatrix <- setClass(
   Class = "CompositionMatrix",
   slots = c(
-    totals = "numeric",
-    groups = "factor"
+    totals = "numeric"
   ),
   contains = c("NumericMatrix")
+)
+
+#' Grouped Compositional Matrix
+#'
+#' An S4 class to represent grouped compositional data.
+#' @section Coerce:
+#'  In the code snippets below, `x` is a `GroupedComposition` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
+#' @note
+#'  This class inherits from [`CompositionMatrix-class`] and
+#'  [`ReferenceGroups-class`].
+#' @seealso [as_composition()]
+#' @example inst/examples/ex-matrix.R
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @aliases GroupedComposition-class
+#' @keywords internal
+.GroupedComposition <- setClass(
+  Class = "GroupedComposition",
+  contains = c("CompositionMatrix", "ReferenceGroups")
 )
 
 # Transformations ==============================================================
@@ -81,7 +109,6 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' S4 classes to represent log-ratio data transformations.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
-#' @slot groups A [`factor`] vector to store the group names.
 #' @slot parts A [`character`] vector to store the original part names.
 #' @slot ratio A [`character`] vector to store the ratio names.
 #' @slot order An [`integer`] vector to store the original ordering of the
@@ -107,8 +134,6 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "LogRatio",
   slots = c(
     totals = "numeric",
-    groups = "factor",
-
     parts = "character",
     ratio = "character",
     order = "integer",
@@ -153,12 +178,71 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   contains = "ILR"
 )
 
+#' Grouped Log-Ratio Matrix
+#'
+#' An S4 class to represent grouped log-ratio.
+#' @section Coerce:
+#'  In the code snippets below, `x` is a `GroupedLogRatio` object.
+#'  \describe{
+#'   \item{`as.data.frame(x)`}{Coerces to a [`data.frame`].}
+#'  }
+#' @note
+#'  This class inherits from [`LogRatio-class`] and
+#'  [`ReferenceGroups-class`].
+#' @example inst/examples/ex-matrix.R
+#' @author N. Frerebeau
+#' @family classes
+#' @docType class
+#' @name GroupedLogRatio-class
+#' @rdname GroupedLogRatio-class
+#' @keywords internal
+NULL
+
+#' @rdname GroupedLogRatio-class
+#' @aliases GroupedLR-class
+.GroupedLR <- setClass(
+  Class = "GroupedLR",
+  contains = c("LR", "ReferenceGroups")
+)
+
+#' @rdname GroupedLogRatio-class
+#' @aliases GroupedCLR-class
+.GroupedCLR <- setClass(
+  Class = "GroupedCLR",
+  contains = c("CLR", "ReferenceGroups")
+)
+
+#' @rdname GroupedLogRatio-class
+#' @aliases GroupedALR-class
+.GroupedALR <- setClass(
+  Class = "GroupedALR",
+  contains = c("ALR", "ReferenceGroups")
+)
+
+#' @rdname GroupedLogRatio-class
+#' @aliases GroupedILR-class
+.GroupedILR <- setClass(
+  Class = "GroupedILR",
+  contains = c("ILR", "ReferenceGroups")
+)
+
+#' @rdname GroupedLogRatio-class
+#' @aliases GroupedPLR-class
+.GroupedPLR <- setClass(
+  Class = "GroupedPLR",
+  contains = c("PLR", "ReferenceGroups")
+)
+
+setClassUnion(
+  name = "GroupedLogRatio",
+  members = c("GroupedLR", "GroupedCLR", "GroupedALR", "GroupedILR", "GroupedPLR")
+)
+
 # OutlierIndex =================================================================
 #' Outliers
 #'
 #' An S4 class to store the result of outlier detection.
 #' @slot samples A [`character`] vector to store the sample identifiers.
-#' @slot groups A [`factor`] vector to store the group names.
 #' @slot standard A [`numeric`] matrix giving the standard squared Mahalanobis
 #'  distances.
 #' @slot robust A [`numeric`] matrix giving the robust squared Mahalanobis
@@ -180,7 +264,6 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "OutlierIndex",
   slots = c(
     samples = "character",
-    groups = "factor",
     standard = "numeric",
     robust = "numeric",
     limit = "numeric",

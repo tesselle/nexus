@@ -4,16 +4,18 @@
 \name{aggregate}
 \alias{aggregate}
 \alias{aggregate,CompositionMatrix-method}
+\alias{aggregate,GroupedComposition-method}
 \title{Compute Summary Statistics of Data Subsets}
 \usage{
 \S4method{aggregate}{CompositionMatrix}(x, by, FUN, ..., simplify = TRUE, drop = TRUE)
+
+\S4method{aggregate}{GroupedComposition}(x, FUN, ..., simplify = TRUE)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{by}{A \code{vector} or a list of grouping elements, each as long as the
-variables in \code{x}. The elements are coerced to factors before use
-(in the sense that \code{\link[=interaction]{interaction(by)}} defines the grouping).}
+variables in \code{x} (see \code{\link[=group]{group()}}).}
 
 \item{FUN}{A \code{\link{function}} to compute the summary statistics.}
 

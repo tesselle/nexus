@@ -38,6 +38,19 @@ setMethod(
 
 #' @export
 #' @rdname transform_ilr
+#' @aliases transform_ilr,GroupedComposition,missing-method
+setMethod(
+  f = "transform_ilr",
+  signature = c(object = "GroupedComposition"),
+  definition = function(object) {
+    z <- methods::callNextMethod()
+    .GroupedILR(z, group_indices = group_indices(object),
+                group_levels = group_levels(object))
+  }
+)
+
+#' @export
+#' @rdname transform_ilr
 #' @aliases transform_ilr,CLR,missing-method
 setMethod(
   f = "transform_ilr",
@@ -52,6 +65,19 @@ setMethod(
 
 #' @export
 #' @rdname transform_ilr
+#' @aliases transform_ilr,GroupedCLR,missing-method
+setMethod(
+  f = "transform_ilr",
+  signature = c(object = "GroupedCLR"),
+  definition = function(object) {
+    z <- methods::callNextMethod()
+    .GroupedILR(z, group_indices = group_indices(object),
+                group_levels = group_levels(object))
+  }
+)
+
+#' @export
+#' @rdname transform_ilr
 #' @aliases transform_ilr,ALR,missing-method
 setMethod(
   f = "transform_ilr",
@@ -59,6 +85,19 @@ setMethod(
   definition = function(object) {
     object <- transform_clr(object)
     methods::callGeneric(object)
+  }
+)
+
+#' @export
+#' @rdname transform_ilr
+#' @aliases transform_ilr,GroupedALR,missing-method
+setMethod(
+  f = "transform_ilr",
+  signature = c(object = "GroupedALR"),
+  definition = function(object) {
+    z <- methods::callNextMethod()
+    .GroupedILR(z, group_indices = group_indices(object),
+                group_levels = group_levels(object))
   }
 )
 
@@ -89,8 +128,7 @@ setMethod(
     order = seq_len(D),
     base = base,
     weights = weights,
-    totals = totals(object),
-    groups = groups(object)
+    totals = totals(object)
   )
 }
 
