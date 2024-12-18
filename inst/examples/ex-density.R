@@ -7,7 +7,4 @@ coda <- as_composition(kommos, groups = 1)
 clr <- transform_clr(coda)
 
 ## Density plot
-plot(clr, by = NULL, flip = TRUE)
-
-## Use ceramic types for grouping
 plot(clr, flip = TRUE)

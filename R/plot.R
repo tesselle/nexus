@@ -58,7 +58,7 @@ plot.LogRatio <- function(x, ...,
     border <- list(...)$border %||% graphics::par("col")
   } else {
     grp <- group_split(x)
-    border <- color(group_names(x))
+    border <- color(group_levels(x))
   }
   k <- length(grp)
 
