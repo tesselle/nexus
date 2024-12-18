@@ -183,8 +183,6 @@ setGeneric(
 )
 
 # Extract ======================================================================
-
-
 ## Subset ----------------------------------------------------------------------
 #' Extract or Replace Parts of an Object
 #'
@@ -271,6 +269,26 @@ setGeneric(
   name = "totals<-",
   def = function(object, value) standardGeneric("totals<-")
 )
+
+#' Coerce to a Data Frame
+#'
+#' @param x An \R object (typically, a [`CompositionMatrix-class`] object).
+#' @param row.names A [`character`] vector giving the row names for the data
+#'  frame, or `NULL`.
+#' @param optional A [`logical`] scalar: should the names of the variables in
+#'  the data frame be checked?
+#' @param group_var A [`character`] string specifying the name of the column to
+#'  create for group attribution.
+#' @param ... Currently not used.
+#' @return
+#'  A [`data.frame`].
+#' @example inst/examples/ex-coerce.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name as.data.frame
+#' @rdname as.data.frame
+NULL
 
 #' Matrix Transpose
 #'

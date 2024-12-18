@@ -32,6 +32,7 @@ Getters and setters to retrieve or set parts of an object.
 }
 \seealso{
 Other mutators: 
+\code{\link{as.data.frame}()},
 \code{\link{totals}()}
 }
 \author{

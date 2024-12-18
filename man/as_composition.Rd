@@ -60,7 +60,7 @@ totals(B)
 A2 <- as_amounts(B)
 
 ## Coerce to a data.frame
-X <- data.frame(B)
+X <- as.data.frame(B)
 head(X)
 }
 \seealso{

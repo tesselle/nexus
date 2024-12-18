@@ -93,40 +93,74 @@ setMethod(
 # To data.frame ================================================================
 #' @method as.data.frame CompositionMatrix
 #' @export
-as.data.frame.CompositionMatrix <- function(x, ...) {
-  as.data.frame(methods::as(x, "matrix"), row.names = rownames(x))
+as.data.frame.CompositionMatrix <- function(x, row.names = rownames(x),
+                                            optional = FALSE, ...) {
+  as.data.frame(methods::as(x, "matrix"), row.names = row.names, optional = optional)
 }
+
+#' @export
+#' @rdname as.data.frame
+#' @aliases as.data.frame,CompositionMatrix-method
+setMethod("as.data.frame", "CompositionMatrix", as.data.frame.CompositionMatrix)
 
 #' @method as.data.frame GroupedComposition
 #' @export
-as.data.frame.GroupedComposition <- function(x, ..., group_var = ".group") {
+as.data.frame.GroupedComposition <- function(x, row.names = rownames(x),
+                                             optional = FALSE, ...,
+                                             group_var = ".group") {
   z <- data.frame(
     methods::as(x, "matrix"),
-    row.names = rownames(x)
+    row.names = row.names,
+    check.names = !optional
   )
   z[[group_var]] <- group_names(x)
   z
 }
+
+#' @export
+#' @rdname as.data.frame
+#' @aliases as.data.frame,GroupedComposition-method
+setMethod("as.data.frame", "GroupedComposition", as.data.frame.GroupedComposition)
 
 #' @method as.data.frame LogRatio
 #' @export
-as.data.frame.LogRatio <- function(x, ...) {
-  as.data.frame(methods::as(x, "matrix"), row.names = rownames(x))
+as.data.frame.LogRatio <- function(x, row.names = rownames(x),
+                                   optional = FALSE, ...) {
+  as.data.frame(methods::as(x, "matrix"), row.names = row.names, optional = optional)
 }
+
+#' @export
+#' @rdname as.data.frame
+#' @aliases as.data.frame,LogRatio-method
+setMethod("as.data.frame", "LogRatio", as.data.frame.LogRatio)
 
 #' @method as.data.frame GroupedLogRatio
 #' @export
-as.data.frame.GroupedLogRatio <- function(x, ..., group_var = ".group") {
+as.data.frame.GroupedLogRatio <- function(x, row.names = rownames(x),
+                                          optional = FALSE, ...,
+                                          group_var = ".group") {
   z <- data.frame(
     methods::as(x, "matrix"),
-    row.names = rownames(x)
+    row.names = row.names,
+    check.names = !optional
   )
   z[[group_var]] <- group_names(x)
   z
 }
 
+#' @export
+#' @rdname as.data.frame
+#' @aliases as.data.frame,GroupedLogRatio-method
+setMethod("as.data.frame", "GroupedLogRatio", as.data.frame.GroupedLogRatio)
+
 #' @method as.data.frame OutlierIndex
 #' @export
-as.data.frame.OutlierIndex <- function(x, ...) {
-  as.data.frame(x@standard, row.names = rownames(x))
+as.data.frame.OutlierIndex <- function(x, row.names = rownames(x),
+                                       optional = FALSE, ...) {
+  as.data.frame(x@standard, row.names = row.names, optional = optional)
 }
+
+#' @export
+#' @rdname as.data.frame
+#' @aliases as.data.frame,OutlierIndex-method
+setMethod("as.data.frame", "OutlierIndex", as.data.frame.OutlierIndex)
