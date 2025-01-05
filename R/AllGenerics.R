@@ -19,10 +19,12 @@ NULL
 #' Coerces an object to a `CompositionMatrix` object.
 #' @param from A [`matrix`] or [`data.frame`] to be coerced.
 #' @param parts A `vector` giving the index of the column to be used a
-#'  compositional parts. If `NULL` (the default), all [`double`] columns will be
-#'  used.
+#'  compositional parts. If `NULL` and `autodetect` is `TRUE` (the default),
+#'  all `numeric` columns will be used.
 #' @param groups An [`integer`] giving the index of the column to be used to
 #'  group the samples. If `NULL` (the default), no grouping is stored.
+#' @param autodetect A [`logical`] scalar: should `numeric` variables be
+#'  automatically used as compositional parts?
 #' @param verbose A [`logical`] scalar: should \R report extra information
 #'  on progress?
 #' @param ... Currently not used.

@@ -22,6 +22,9 @@ setMethod(
   f = "as_composition",
   signature = c(from = "matrix"),
   definition = function(from) {
+    ## Validation
+    arkhe::assert_type(from, "numeric")
+
     ## Make row/column names
     lab <- make_names(x = NULL, n = nrow(from), prefix = "S")
     rownames(from) <- if (has_rownames(from)) rownames(from) else lab
@@ -41,7 +44,7 @@ setMethod(
 setMethod(
   f = "as_composition",
   signature = c(from = "data.frame"),
-  definition = function(from, parts = NULL, groups = NULL,
+  definition = function(from, parts = NULL, groups = NULL, autodetect = TRUE,
                         verbose = getOption("nexus.verbose")) {
     ## Clean row/column names
     lab <- make_names(x = NULL, n = nrow(from), prefix = "S")
@@ -50,12 +53,16 @@ setMethod(
 
     ## Remove non-numeric columns
     if (is.null(parts)) {
-      parts <- arkhe::detect(from, f = is.double, margin = 2) # Logical
-      if (isTRUE(verbose)) {
-        n <- sum(parts)
-        what <- ngettext(n, "Found %g part (%s)", "Found %g parts (%s)")
-        cols <- paste0(colnames(from)[parts], collapse = ", ")
-        message(sprintf(what, n, cols))
+      if (isTRUE(autodetect)) {
+        parts <- arkhe::detect(from, f = is.numeric, margin = 2)
+        if (isTRUE(verbose)) {
+          n <- sum(parts)
+          what <- ngettext(n, "Found %g part (%s)", "Found %g parts (%s)")
+          cols <- paste0(colnames(from)[parts], collapse = ", ")
+          message(sprintf(what, n, cols))
+        }
+      } else {
+        arkhe::assert_filled(parts)
       }
     } else {
       if (is.numeric(parts)) parts <- seq_len(ncol(from)) %in% parts

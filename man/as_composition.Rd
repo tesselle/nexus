@@ -19,6 +19,7 @@ as_composition(from, ...)
   from,
   parts = NULL,
   groups = NULL,
+  autodetect = TRUE,
   verbose = getOption("nexus.verbose")
 )
 }
@@ -28,11 +29,14 @@ as_composition(from, ...)
 \item{...}{Currently not used.}
 
 \item{parts}{A \code{vector} giving the index of the column to be used a
-compositional parts. If \code{NULL} (the default), all \code{\link{double}} columns will be
-used.}
+compositional parts. If \code{NULL} and \code{autodetect} is \code{TRUE} (the default),
+all \code{numeric} columns will be used.}
 
 \item{groups}{An \code{\link{integer}} giving the index of the column to be used to
 group the samples. If \code{NULL} (the default), no grouping is stored.}
+
+\item{autodetect}{A \code{\link{logical}} scalar: should \code{numeric} variables be
+automatically used as compositional parts?}
 
 \item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
 on progress?}

@@ -40,7 +40,7 @@ When coercing a `data.frame` to a `CompositionMatrix` object, **nexus** allows t
 data("bronze", package = "folio")
 
 ## Use the third column (dynasties) for grouping
-coda <- as_composition(bronze, groups = 3)
+coda <- as_composition(bronze, parts = 4:11, groups = 3)
 ```
 
 `groups(x)` and `groups(x) <- value` allow to retrieve or set groups of an existing `CompositionMatrix`. Missing values (`NA`) or empty strings can be used to specify that a sample does not belong to any group.
