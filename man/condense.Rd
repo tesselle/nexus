@@ -10,9 +10,9 @@
 \usage{
 condense(x, ...)
 
-\S4method{condense}{CompositionMatrix}(x, by, verbose = getOption("nexus.verbose"), ...)
+\S4method{condense}{CompositionMatrix}(x, by, verbose = FALSE, ...)
 
-\S4method{condense}{GroupedComposition}(x, by = NULL, verbose = getOption("nexus.verbose"), ...)
+\S4method{condense}{GroupedComposition}(x, by = NULL, verbose = FALSE, ...)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}

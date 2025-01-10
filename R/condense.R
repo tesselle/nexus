@@ -8,7 +8,7 @@ NULL
 setMethod(
   f = "condense",
   signature = "CompositionMatrix",
-  definition = function(x, by, verbose = getOption("nexus.verbose"), ...) {
+  definition = function(x, by, verbose = FALSE, ...) {
     x <- group(x, by = by)
     methods::callGeneric(x = x, verbose = verbose, ...)
   }
@@ -20,7 +20,7 @@ setMethod(
 setMethod(
   f = "condense",
   signature = "GroupedComposition",
-  definition = function(x, by = NULL, verbose = getOption("nexus.verbose"), ...) {
+  definition = function(x, by = NULL, verbose = FALSE, ...) {
     ## Grouping
     grp <- group_factor(x)
     if (!is.null(by)) x <- group(x, by = by, verbose = verbose)
