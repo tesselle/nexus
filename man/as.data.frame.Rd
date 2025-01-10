@@ -39,7 +39,9 @@
 frame, or \code{NULL}.}
 
 \item{optional}{A \code{\link{logical}} scalar: should the names of the variables in
-the data frame be checked?}
+the data frame be checked? If \code{FALSE} then the names of the variables in the
+data frame are checked to ensure that they are syntactically valid variable
+names and are not duplicated.}
 
 \item{...}{Currently not used.}
 

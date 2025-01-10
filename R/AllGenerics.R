@@ -278,7 +278,9 @@ setGeneric(
 #' @param row.names A [`character`] vector giving the row names for the data
 #'  frame, or `NULL`.
 #' @param optional A [`logical`] scalar: should the names of the variables in
-#'  the data frame be checked?
+#'  the data frame be checked? If `FALSE` then the names of the variables in the
+#'  data frame are checked to ensure that they are syntactically valid variable
+#'  names and are not duplicated.
 #' @param group_var A [`character`] string specifying the name of the column to
 #'  create for group attribution.
 #' @param ... Currently not used.
