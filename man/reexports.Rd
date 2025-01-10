@@ -13,7 +13,8 @@
 \alias{palette_color_picker}
 \alias{palette_shape}
 \alias{palette_line}
-\alias{palette_size_range}
+\alias{palette_size_sequential}
+\alias{palette_size_diverging}
 \title{Objects exported from other packages}
 \keyword{internal}
 \description{
@@ -23,6 +24,6 @@ below to see their documentation.
 \describe{
   \item{arkhe}{\code{\link[arkhe]{remove_NA}}, \code{\link[arkhe]{remove_constant}}, \code{\link[arkhe]{remove_zero}}, \code{\link[arkhe]{sparsity}}}
 
-  \item{khroma}{\code{\link[khroma:colour]{color}}, \code{\link[khroma]{palette_color_continuous}}, \code{\link[khroma]{palette_color_discrete}}, \code{\link[khroma]{palette_color_picker}}, \code{\link[khroma:palette_shape]{palette_line}}, \code{\link[khroma]{palette_shape}}, \code{\link[khroma]{palette_size_range}}}
+  \item{khroma}{\code{\link[khroma:colour]{color}}, \code{\link[khroma]{palette_color_continuous}}, \code{\link[khroma]{palette_color_discrete}}, \code{\link[khroma]{palette_color_picker}}, \code{\link[khroma:palette_shape]{palette_line}}, \code{\link[khroma]{palette_shape}}, \code{\link[khroma:palette_size]{palette_size_diverging}}, \code{\link[khroma:palette_size]{palette_size_sequential}}}
 }}
 

@@ -42,6 +42,10 @@ khroma::palette_shape
 #' @export
 khroma::palette_line
 
-#' @importFrom khroma palette_size_range
+#' @importFrom khroma palette_size_sequential
 #' @export
-khroma::palette_size_range
+khroma::palette_size_sequential
+
+#' @importFrom khroma palette_size_diverging
+#' @export
+khroma::palette_size_diverging
