@@ -25,8 +25,8 @@ Provenance studies rely on the identification of probable sources, such that the
 
 **nexus** is designed for chemical fingerprinting and source tracking of ancient materials. It provides provides tools for exploration and analysis of compositional data in the framework of Aitchison (1986). If you are unfamiliar with the concepts and challenges of compositional data analysis, the following publications are a good place to start:
 
-- Egozcue, J. J., Gozzi, C., Buccianti, A. & Pawlowsky-Glahn, V. (2024). Exploring Geochemical Data Using Compositional Techniques: A Practical Guide. *Journal of Geochemical Exploration*, 258 :107385. DOI: [10.1016/j.gexplo.2024.107385](https://doi.org/10.1016/j.gexplo.2024.107385).
-- Greenacre, M. & Wood, J. R. (2024). A Comprehensive Workflow for Compositional Data Analysis in Archaeometry, with Code in R. *Archaeological and Anthropological Science*.
+- Egozcue, J. J., Gozzi, C., Buccianti, A. & Pawlowsky-Glahn, V. (2024). Exploring Geochemical Data Using Compositional Techniques: A Practical Guide. *Journal of Geochemical Exploration*, 258: 107385. DOI: [10.1016/j.gexplo.2024.107385](https://doi.org/10.1016/j.gexplo.2024.107385).
+- Greenacre, M. & Wood, J. R. (2024). A Comprehensive Workflow for Compositional Data Analysis in Archaeometry, with Code in R. *Archaeological and Anthropological Science*, 16: 171. DOI: [10.1007/s12520-024-02070-w](https://doi.org/10.1007/s12520-024-02070-w)
 - Grunsky, E., Greenacre, M. & Kjarsgaard, B. (2024). GeoCoDA: Recognizing and Validating Structural Processes in Geochemical Data. A Workflow on Compositional Data Analysis in Lithogeochemistry. *Applied Computing and Geosciences*, 22: 100149. DOI: [10.1016/j.acags.2023.100149](https://doi.org/10.1016/j.acags.2023.100149).
 
 # Get started
