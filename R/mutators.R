@@ -11,17 +11,21 @@ get_transformation <- function(x) {
   if (methods::is(x, "PLR")) return("Pivot Log-Ratio")
 }
 
-is_coda <- function(object) {
+# Predicates ===================================================================
+#' @export
+#' @rdname CompositionMatrix-class
+is_composition <- function(object) {
   methods::is(object, "CompositionMatrix")
 }
 
-#' Check if an Object is Grouped
-#'
-#' @param object An \R object.
-#' @return A [`logical`] scalar.
-#' @author N. Frerebeau
-#' @family grouping methods
 #' @export
+#' @rdname LogRatio-class
+is_logratio <- function(object) {
+  methods::is(object, "LogRatio")
+}
+
+#' @export
+#' @rdname ReferenceGroups-class
 is_grouped <- function(object) {
   methods::is(object, "ReferenceGroups")
 }

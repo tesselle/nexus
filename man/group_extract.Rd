@@ -49,8 +49,7 @@ group_size(coda)
 Other grouping methods: 
 \code{\link{group}()},
 \code{\link{group_metadata}},
-\code{\link{group_split}()},
-\code{\link{is_grouped}()}
+\code{\link{group_split}()}
 }
 \author{
 N. Frerebeau

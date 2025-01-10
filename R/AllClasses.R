@@ -16,6 +16,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #'  belongs to.
 #' @slot group_levels A [`character`] vector to store the values of the grouping
 #'  variables.
+#' @param object A `ReferenceGroups` object.
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
 #' @family classes
@@ -53,6 +54,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' An S4 class to represent compositional data.
 #' @slot totals A [`numeric`] vector to store the absolute row sums (before
 #'  the closure of the compositions).
+#' @param object A `CompositionMatrix` object.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `CompositionMatrix` object.
 #'  \describe{
@@ -116,6 +118,7 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #' @slot base A [`numeric`] matrix to store the basis of the transformation.
 #' @slot weights A [`numeric`] vector to store the weights assigned to the
 #'  respective log-ratios.
+#' @param object A `LogRatio` object.
 #' @section Coerce:
 #'  In the code snippets below, `x` is a `LogRatio` object.
 #'  \describe{

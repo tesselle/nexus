@@ -73,8 +73,7 @@ do.call(rbind, s3)
 Other grouping methods: 
 \code{\link{group}()},
 \code{\link{group_extract}()},
-\code{\link{group_metadata}},
-\code{\link{is_grouped}()}
+\code{\link{group_metadata}}
 }
 \author{
 N. Frerebeau

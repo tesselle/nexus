@@ -105,7 +105,7 @@ prepare_barplot <- function(x, order_rows = NULL, order_columns = FALSE,
   x <- x / rowSums(x)
 
   ## Validation
-  stopifnot(is_coda(x))
+  stopifnot(is_composition(x))
 
   ## Row order
   if (!is.null(order_rows)) {
