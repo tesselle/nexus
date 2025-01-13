@@ -1,12 +1,21 @@
 data("slides")
-coda <- as_composition(slides, groups = 2)
+coda <- as_composition(slides)
 
-## Compositional mean by sample
+## Ungrouped
+flat <- condense(coda, by = slides$analyst)
+expect_false(is_grouped(flat))
+expect_identical(rownames(flat), paste0("A", 1:5))
+
+## Compositional mean by group
+coda <- group(coda, by = slides$analyst)
 flat <- condense(coda)
-expect_equal_to_reference(as.data.frame(flat), file = "_snaps/condense.rds")
+expect_identical(group_names(flat), paste0("A", 1:5))
 
 ## Override groups
-flat <- condense(coda, by = slides$analyst)
+flat <- condense(coda, by = slides$slide)
+expect_identical(rownames(flat), c("A", "B", "C", "D", "E"))
+expect_identical(group_names(flat), rep(paste0("A", 1:5, collapse = ":"), 5))
+expect_equal_to_reference(as.data.frame(flat), file = "_snaps/condense.rds")
 
 ## With zeros
 X1 <- data.frame(
