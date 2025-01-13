@@ -9,46 +9,41 @@
 \S4method{plot}{LogRatio,missing}(
   x,
   ...,
-  color = palette_color_discrete(),
-  rug = TRUE,
-  ticksize = 0.05,
-  ncol = NULL,
-  flip = FALSE,
+  factor = 1,
+  amount = NULL,
+  palette_color = palette_color_discrete(),
+  palette_symbol = palette_shape(),
   xlab = NULL,
   ylab = NULL,
   main = NULL,
+  sub = NULL,
   ann = graphics::par("ann"),
   axes = TRUE,
   frame.plot = axes,
-  legend = list(x = "top")
+  legend = list(x = "topright")
 )
 }
 \arguments{
 \item{x}{A \code{\linkS4class{LogRatio}} object.}
 
-\item{...}{Further \link[graphics:par]{graphical parameters}, particularly,
-\code{border} and \code{col}.}
+\item{...}{Further graphical parameters.}
 
-\item{color}{A palette \code{\link{function}} that when called with a single
+\item{factor, amount}{A length-one \code{\link{numeric}} vector specifying the amount of
+jitter (see \code{\link[=jitter]{jitter()}}).}
+
+\item{palette_color}{A palette \code{\link{function}} that when called with a single
 argument returns a \code{character} vector of colors (only used if \code{x}
 \link[=group]{is grouped}).}
 
-\item{rug}{A \code{\link{logical}} scalar: should a \emph{rug} representation (1-d plot) of
-the data be added to the plot?}
-
-\item{ticksize}{A length-one \code{\link{numeric}} vector giving the length of the
-ticks making up the \emph{rug}. Positive lengths give inwards ticks. Only used if
-\code{rug} is \code{TRUE}.}
-
-\item{ncol}{An \code{\link{integer}} specifying the number of columns to use.
-Defaults to 1 for up to 4 groups, otherwise to 2.}
-
-\item{flip}{A \code{\link{logical}} scalar: should the y-axis (ticks and numbering) be
-flipped from side 2 (left) to 4 (right) from variable to variable?}
+\item{palette_symbol}{A palette \code{\link{function}} that when called with a single
+argument returns a vector of symbols (only used if \code{x}
+\link[=group]{is grouped}).}
 
 \item{xlab, ylab}{A \code{\link{character}} vector giving the x and y axis labels.}
 
 \item{main}{A \code{\link{character}} string giving a main title for the plot.}
+
+\item{sub}{A \code{\link{character}} string giving a subtitle for the plot.}
 
 \item{ann}{A \code{\link{logical}} scalar: should the default annotation (title and x
 and y axis labels) appear on the plot?}
@@ -67,19 +62,19 @@ If \code{NULL}, no legend is displayed.}
 displayed (invisibly return \code{x}).
 }
 \description{
-Displays a density plot.
+Displays a scatter plot.
 }
 \examples{
 ## Data from Day et al. 2011
-data("kommos", package = "folio") # Coerce to compositional data
+data("kommos", package = "folio")
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, groups = 1)
+coda <- as_composition(kommos, groups = 1) # Coerce to compositional data
 
 ## Log ratio
 clr <- transform_clr(coda)
 
-## Density plot
-plot(clr, flip = TRUE)
+## Use ceramic types for grouping
+plot(clr)
 }
 \seealso{
 Other plot methods: 

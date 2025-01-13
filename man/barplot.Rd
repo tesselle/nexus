@@ -14,7 +14,7 @@
   decreasing = TRUE,
   space = 0.2,
   offset = 0.025,
-  color = palette_color_discrete(),
+  palette_color = palette_color_discrete(),
   border = NA,
   axes = TRUE,
   legend = TRUE
@@ -41,7 +41,7 @@ increasing or decreasing?}
 (as a fraction) left between groups (defaults to \eqn{0.025}). Only used if
 \code{groups} is not \code{NULL}.}
 
-\item{color}{A palette \code{\link{function}} that when called with a single
+\item{palette_color}{A palette \code{\link{function}} that when called with a single
 argument returns a \code{character} vector of colors.}
 
 \item{border}{The color to draw the borders.}

@@ -1137,7 +1137,7 @@ NULL
 #' @param offset A length-one [`numeric`] vector giving the the amount of space
 #'  (as a fraction) left between groups (defaults to \eqn{0.025}). Only used if
 #'  `groups` is not `NULL`.
-#' @param color A palette [`function`] that when called with a single
+#' @param palette_color A palette [`function`] that when called with a single
 #'  argument returns a `character` vector of colors.
 #' @param border The color to draw the borders.
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
@@ -1197,16 +1197,16 @@ NULL
 #'
 #' Displays a matrix of ternary plots.
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param color A palette [`function`] that when called with a single
+#' @param palette_color A palette [`function`] that when called with a single
 #'  argument returns a `character` vector of colors.
-#' @param symbol A palette [`function`] that when called with a single
+#' @param palette_symbol A palette [`function`] that when called with a single
 #'  argument returns a vector of symbols.
 #' @inheritParams isopleuros::ternary_pairs
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
 #'  displayed (invisibly return `x`).
 #' @seealso [isopleuros::ternary_pairs()], [isopleuros::ternary_plot()]
-#' @example inst/examples/ex-plot.R
+#' @example inst/examples/ex-pairs.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family plot methods
@@ -1217,22 +1217,19 @@ NULL
 ## Density ---------------------------------------------------------------------
 #' Plot Log-Ratios
 #'
-#' Displays a density plot.
+#' Displays a scatter plot.
 #' @param x A [`LogRatio-class`] object.
-#' @param color A palette [`function`] that when called with a single
+#' @param factor,amount A length-one [`numeric`] vector specifying the amount of
+#'  jitter (see [jitter()]).
+#' @param palette_color A palette [`function`] that when called with a single
 #'  argument returns a `character` vector of colors (only used if `x`
 #'  [is grouped][group()]).
-#' @param rug A [`logical`] scalar: should a *rug* representation (1-d plot) of
-#'  the data be added to the plot?
-#' @param ticksize A length-one [`numeric`] vector giving the length of the
-#'  ticks making up the *rug*. Positive lengths give inwards ticks. Only used if
-#'  `rug` is `TRUE`.
-#' @param flip A [`logical`] scalar: should the y-axis (ticks and numbering) be
-#'  flipped from side 2 (left) to 4 (right) from variable to variable?
-#' @param ncol An [`integer`] specifying the number of columns to use.
-#'  Defaults to 1 for up to 4 groups, otherwise to 2.
+#' @param palette_symbol A palette [`function`] that when called with a single
+#'  argument returns a vector of symbols (only used if `x`
+#'  [is grouped][group()]).
 #' @param xlab,ylab A [`character`] vector giving the x and y axis labels.
 #' @param main A [`character`] string giving a main title for the plot.
+#' @param sub A [`character`] string giving a subtitle for the plot.
 #' @param ann A [`logical`] scalar: should the default annotation (title and x
 #'  and y axis labels) appear on the plot?
 #' @param axes A [`logical`] scalar: should axes be drawn on the plot?
@@ -1241,12 +1238,11 @@ NULL
 #' @param legend A [`list`] of additional arguments to be passed to
 #'  [graphics::legend()]; names of the list are used as argument names.
 #'  If `NULL`, no legend is displayed.
-#' @param ... Further [graphical parameters][graphics::par()], particularly,
-#'  `border` and `col`.
+#' @param ... Further graphical parameters.
 #' @return
 #'  `plot()` is called for its side-effects: is results in a graphic being
 #'  displayed (invisibly return `x`).
-#' @example inst/examples/ex-density.R
+#' @example inst/examples/ex-plot.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family plot methods

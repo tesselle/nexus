@@ -73,6 +73,7 @@ Collate:
     'nexus-internal.R'
     'nexus-package.R'
     'outliers.R'
+    'pairs.R'
     'pca.R'
     'plot.R'
     'quantile.R'

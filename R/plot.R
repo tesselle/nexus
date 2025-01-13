@@ -2,169 +2,80 @@
 #' @include AllGenerics.R
 NULL
 
-# CompositionMatrix ============================================================
-#' @export
-#' @method plot CompositionMatrix
-plot.CompositionMatrix <- function(x, margin = NULL, ...) {
-  isopleuros::ternary_pairs(x, margin = margin, ...)
-  invisible(x)
-}
-
-#' @export
-#' @rdname pairs
-#' @aliases plot,CompositionMatrix,missing-method
-setMethod("plot", c(x = "CompositionMatrix", y = "missing"), plot.CompositionMatrix)
-
-#' @export
-#' @method plot GroupedComposition
-plot.GroupedComposition <- function(x, ..., margin = NULL,
-                                   color = palette_color_discrete(),
-                                   symbol = palette_shape()) {
-  ## Aesthetics
-  col <- color(group_names(x))
-  pch <- symbol(group_names(x))
-
-  isopleuros::ternary_pairs(x, margin = margin, col = col, pch = pch, ...)
-  invisible(x)
-}
-
-#' @export
-#' @rdname pairs
-#' @aliases plot,GroupedComposition,missing-method
-setMethod("plot", c(x = "GroupedComposition", y = "missing"), plot.GroupedComposition)
-
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, ...,
-                          color = palette_color_discrete(),
-                          rug = TRUE, ticksize = 0.05,
-                          ncol = NULL, flip = FALSE,
+plot.LogRatio <- function(x, ..., factor = 1, amount = NULL,
+                          palette_color = palette_color_discrete(),
+                          palette_symbol = palette_shape(),
                           xlab = NULL, ylab = NULL,
-                          main = NULL, ann = graphics::par("ann"),
+                          main = NULL, sub = NULL, ann = graphics::par("ann"),
                           axes = TRUE, frame.plot = axes,
-                          legend = list(x = "top")) {
+                          legend = list(x = "topright")) {
   ## Get data
-  m <- nrow(x)
-  p <- ncol(x)
-  m_seq <- seq_len(m)
-  p_seq <- seq_len(p)
-  if (is.null(ncol)) ncol <- if (p > 4) 2 else 1
-  nrow <- ceiling(p / ncol)
-
-  ## Grouping
-  if (!is_grouped(x)) {
-    grp <- list(x)
-    border <- list(...)$border %||% graphics::par("col")
-  } else {
-    grp <- group_split(x)
-    border <- color(group_levels(x))
-  }
-  k <- length(grp)
+  xy <- data.frame(
+    x = jitter(as.vector(col(x)), factor = factor, amount = amount),
+    y = as.vector(x)
+  )
 
   ## Graphical parameters
-  ## Save and restore
-  old_par <- graphics::par(
-    mar = c(0, 5.1, 0, if (flip) 5.1 else 2.1),
-    oma = c(6, 0, 5, 0),
-    mfcol = c(nrow, ncol)
-  )
-  on.exit(graphics::par(old_par))
+  col <- list(...)$col %||% graphics::par("col")
+  bg <- list(...)$bg %||% graphics::par("bg")
+  pch <- list(...)$pch %||% graphics::par("pch")
+  cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
+  col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
+  font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
 
-  cex.lab <- list(...)$cex.lab %||% graphics::par("cex.lab")
-  col.lab <- list(...)$col.lab %||% graphics::par("col.lab")
-  font.lab <- list(...)$font.lab %||% graphics::par("font.lab")
-  cex.main <- list(...)$cex.main %||% graphics::par("cex.main")
-  font.main <- list(...)$font.main %||% graphics::par("font.main")
-  col.main <- list(...)$col.main %||% graphics::par("col.main")
-
-  lty <- list(...)$lty %||% graphics::par("lty")
-  col <- grDevices::adjustcolor(border, alpha.f = 0.25)
-
-  ## Compute densities
-  n_dens <- 512
-  dens_x <- dens_y <- array(data = NA_real_, dim = c(n_dens, p, k),
-                            dimnames = list(NULL, NULL, names(grp)))
-  for (i in seq_len(k)) {
-    for (j in p_seq) {
-      tmp <- grp[[i]][, j, drop = TRUE]
-      dens <- stats::density(x = tmp, n = n_dens)
-      dens_x[, j, i] <- dens$x
-      dens_y[, j, i] <- dens$y
-    }
+  ## Grouping
+  if (is_grouped(x)) {
+    lvl <- group_names(x)
+    col <- palette_color(lvl)
+    bg <- grDevices::adjustcolor(col, alpha.f = 0.5)
+    pch <- palette_symbol(lvl)
   }
 
-  xlim <- range(dens_x, na.rm = TRUE)
-  ylabs <- ylab %||% labels(x) %||% paste0("z", p_seq)
-  for (j in p_seq) {
-    tmp_x <- dens_x[, j, , drop = FALSE]
-    tmp_y <- dens_y[, j, , drop = FALSE]
+  ## Open new window
+  grDevices::dev.hold()
+  on.exit(grDevices::dev.flush(), add = TRUE)
+  graphics::plot.new()
 
-    ## Open new window
-    grDevices::dev.hold()
-    on.exit(grDevices::dev.flush(), add = TRUE)
-    graphics::plot.new()
+  ## Set plotting coordinates
+  xlim <- range(xy$x)
+  ylim <- range(xy$y)
+  graphics::plot.window(xlim = xlim, ylim = ylim)
 
-    ## Set plotting coordinates
-    ylim <- c(0, max(tmp_y, na.rm = TRUE) * 1.05)
-    graphics::plot.window(xlim = xlim, ylim = ylim, yaxs = "i")
+  ## Plot
+  graphics::points(x = xy$x, y = xy$y, pch = pch, col = col, bg = bg)
 
-    ## Plot
-    for (i in 1:k) {
-      graphics::polygon(x = tmp_x[, , i], y = tmp_y[, , i], col = col[i],
-                        border = border[i], lty = lty)
-    }
-    if (rug) {
-      graphics::rug(x[, j, drop = TRUE], ticksize = ticksize, side = 1)
-    }
-
-    ## Construct Axis
-    do_x <- (j %% nrow == 0 || j == p)
-    y_side <- if (j %% 2 || !flip) 2 else 4
-    if (axes) {
-      if (do_x) {
-        graphics::axis(side = 1, xpd = NA, las = 1)
-      }
-      graphics::axis(side = y_side, xpd = NA, las = 1)
-    }
-
-    ## Plot frame
-    if (frame.plot) {
-      graphics::box()
-    }
-
-    ## Add annotation
-    if (ann) {
-      if (do_x) {
-        graphics::mtext(xlab, side = 1, line = 3, cex = cex.lab, col = col.lab,
-                        font = font.lab)
-      }
-      graphics::mtext(ylabs[[j]], side = y_side, line = 3, cex = cex.lab,
-                      col = col.lab, font = font.lab)
-    }
+  ## Construct axis
+  if (axes) {
+    graphics::axis(side = 1, at = seq_len(ncol(x)),
+                   labels = labels(x), las = 1,
+                   cex.axis = cex.axis, col.axis = col.axis,
+                   font.axis = font.axis)
+    graphics::axis(side = 2, las = 1)
   }
 
-  ## Add legend
-  if (is.list(legend) && k > 1) {
-    leg_par <- graphics::par(mar = c(0, 0, 0, 0), oma = c(0, 0, 0, 0),
-                             mfcol = c(1, 1), new = TRUE)
-    on.exit(graphics::par(leg_par), add = TRUE)
-    graphics::plot(0, 0, type = "n", ann = FALSE, axes = FALSE)
-
-    ## Compute legend position
-    args <- list(x = "top", legend = names(grp), col = border, fill = col,
-                 ncol = ceiling(m / 2), bty = "n", xpd = NA)
-    args <- utils::modifyList(args, legend)
-
-    ## Plot legend
-    do.call(graphics::legend, args = args)
+  ## Plot frame
+  if (frame.plot) {
+    graphics::box()
   }
 
   ## Add annotation
   if (ann) {
-    graphics::par(mfcol = c(1, 1))
-    graphics::mtext(main, side = 3, line = 3, cex = cex.main, font = font.main,
-                    col = col.main)
+    ylab <- ylab %||% get_transformation(x)
+    graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)
+  }
+
+  ## Add legend
+  if (is.list(legend) && is_grouped(x)) {
+    ## Compute legend position
+    args <- list(x = "topright", legend = unique(lvl), pch = unique(pch),
+                 col = unique(col), bg = unique(bg), bty = "n")
+    args <- utils::modifyList(args, legend)
+
+    ## Plot legend
+    do.call(graphics::legend, args = args)
   }
 
   invisible(x)

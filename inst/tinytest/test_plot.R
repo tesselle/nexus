@@ -10,10 +10,10 @@ if (at_home()) {
   coda <- as_composition(hongite)
 
   # Plot =======================================================================
-  plot_pairs <- function() plot(coda)
+  plot_pairs <- function() pairs(coda)
   expect_snapshot_plot(plot_pairs, "plot_pairs")
 
-  plot_pairs <- function() plot(group(coda, by = rep(1:5, 5)))
+  plot_pairs <- function() pairs(group(coda, by = rep(1:5, 5)))
   expect_snapshot_plot(plot_pairs, "plot_pairs_group")
 
   # Histogram ==================================================================
@@ -37,16 +37,13 @@ if (at_home()) {
   expect_snapshot_plot(plot_barplot_group, "plot_barplot_group")
 
   # Density ====================================================================
-  # See argument old.coords of density().
-  if (getRversion() >= "4.4.0") {
-    ilr <- transform_ilr(coda)
+  ilr <- transform_ilr(coda)
 
-    plot_ratio <- function() plot(ilr, ncol = 2)
-    expect_snapshot_plot(plot_ratio, "plot_ratio")
+  plot_ratio <- function() plot(ilr, pch = 16, factor = 0)
+  expect_snapshot_plot(plot_ratio, "plot_ratio")
 
-    gilr <- transform_ilr(group(coda, by = rep(1:5, 5)))
+  gilr <- transform_ilr(group(coda, by = rep(1:5, 5)))
 
-    plot_ratio <- function() plot(gilr, ncol = 2)
-    expect_snapshot_plot(plot_ratio, "plot_ratio_group")
-  }
+  plot_ratio <- function() plot(gilr, factor = 0)
+  expect_snapshot_plot(plot_ratio, "plot_ratio_group")
 }

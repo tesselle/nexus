@@ -1,10 +1,10 @@
 ## Data from Day et al. 2011
-data("kommos", package = "folio") # Coerce to compositional data
+data("kommos", package = "folio")
 kommos <- remove_NA(kommos, margin = 1) # Remove cases with missing values
-coda <- as_composition(kommos, parts = 3:8, groups = 1)
+coda <- as_composition(kommos, groups = 1) # Coerce to compositional data
+
+## Log ratio
+clr <- transform_clr(coda)
 
 ## Use ceramic types for grouping
-plot(coda)
-
-## Center and scale ternary plots
-plot(coda, by = NULL, center = TRUE, scale = TRUE)
+plot(clr)

@@ -9,7 +9,7 @@ barplot.CompositionMatrix <- function(height, ...,
                                       order_columns = FALSE, order_rows = NULL,
                                       decreasing = TRUE,
                                       space = 0.2, offset = 0.025,
-                                      color = palette_color_discrete(),
+                                      palette_color = palette_color_discrete(),
                                       border = NA, axes = TRUE, legend = TRUE) {
   ## Validation
   if (ncol(height) < 2) {
@@ -21,7 +21,7 @@ barplot.CompositionMatrix <- function(height, ...,
                         order_rows = order_rows, decreasing = decreasing,
                         offset = offset)
   parts <- factor(xy$data$column, levels = colnames(height))
-  col <- color(parts)
+  col <- palette_color(parts)
   n <- nrow(height)
 
   ## Graphical parameters
