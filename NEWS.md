@@ -1,3 +1,5 @@
+# nexus 0.4.0.9000
+
 # nexus 0.4.0
 ## New classes and methods
 * Add `ReferenceGroups`, `GroupedComposition` and `GroupedLogRatio` classes to represent grouped data.

@@ -23,6 +23,9 @@ identifiers:
 - description: The versioned DOI for version 0.3.0.
   type: doi
   value: 10.5281/zenodo.13646482
+- description: The versioned DOI for version 0.4.0.
+  type: doi
+  value: 10.5281/zenodo.14645055
 - description: The CRAN DOI
   type: doi
   value: 10.32614/cran.package.nexus
