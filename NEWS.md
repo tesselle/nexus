@@ -1,8 +1,9 @@
-# nexus 0.3.0.9000
+# nexus 0.4.0
 ## New classes and methods
 * Add `ReferenceGroups`, `GroupedComposition` and `GroupedLogRatio` classes to represent grouped data.
 * Add `group()`, `ungroup()`, `group_levels()`, `group_names()`, `group_indices()`, `group_rows()`, `group_length()`, `group_size()`, `group_extract()`, `group_split()` and `is_grouped()` to work with grouped data.
 * Add `transform_lr()`, `transform_clr()`, `transform_alr()`, `transform_ilr()`, `transform_plr()` and `transform_inverse()` methods for `GroupedComposition` and `GroupedLogRatio` objects.
+* Add `is_composition()`, `is_logratio()` and `is_grouped()` to check if an object is from a specific class.
 * Add `pairs()` to display a matrix of ternary plots.
 
 ## Enhancements
