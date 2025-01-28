@@ -31,9 +31,9 @@ on progress? Defaults to \code{\link[=interactive]{interactive()}}.
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://codeberg.org/tesselle/nexus}
   \item \url{https://packages.tesselle.org/nexus/}
-  \item \url{https://github.com/tesselle/nexus}
-  \item Report bugs at \url{https://github.com/tesselle/nexus/issues}
+  \item Report bugs at \url{https://codeberg.org/tesselle/nexus/issues}
 }
 
 }

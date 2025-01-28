@@ -5,9 +5,6 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check](https://github.com/tesselle/nexus/workflows/R-CMD-check/badge.svg)](https://github.com/tesselle/nexus/actions)
-[![codecov](https://codecov.io/gh/tesselle/nexus/graph/badge.svg?token=3xtuBXPGiF)](https://app.codecov.io/gh/tesselle/nexus)
-[![CodeFactor](https://www.codefactor.io/repository/github/tesselle/nexus/badge/main)](https://www.codefactor.io/repository/github/tesselle/nexus/overview/main)
 [![Dependencies](https://tinyverse.netlify.app/badge/nexus)](https://cran.r-project.org/package=nexus)
 
 <a href="https://tesselle.r-universe.dev/nexus"
@@ -83,11 +80,11 @@ You can install the released version of **nexus** from
 install.packages("nexus")
 ```
 
-And the development version from [GitHub](https://github.com/) with:
+And the development version from [Codeberg](https://codeberg.org/) with:
 
 ``` r
 # install.packages("remotes")
-remotes::install_github("tesselle/nexus")
+remotes::install_git("https://codeberg.org/tesselle/nexus")
 ```
 
 ## Usage

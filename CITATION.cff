@@ -61,7 +61,7 @@ preferred-citation:
   url: https://packages.tesselle.org/nexus/
   doi: 10.5281/zenodo.10225630
 repository: https://CRAN.R-project.org/package=nexus
-repository-code: https://github.com/tesselle/nexus
+repository-code: https://codeberg.org/tesselle/nexus
 url: https://packages.tesselle.org/nexus/
 contact:
 - family-names: Frerebeau

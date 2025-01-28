@@ -5,8 +5,8 @@
   "description": "Exploration and analysis of compositional data in the framework of Aitchison (1986, ISBN: 978-94-010-8324-9). This package provides tools for chemical fingerprinting and source tracking of ancient materials.",
   "name": "nexus: Sourcing Archaeological Materials by Chemical Composition",
   "relatedLink": ["https://packages.tesselle.org/nexus/", "https://CRAN.R-project.org/package=nexus"],
-  "codeRepository": "https://github.com/tesselle/nexus",
-  "issueTracker": "https://github.com/tesselle/nexus/issues",
+  "codeRepository": "https://codeberg.org/tesselle/nexus",
+  "issueTracker": "https://codeberg.org/tesselle/nexus/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
   "version": "0.4.0",
   "programmingLanguage": {
@@ -299,9 +299,5 @@
       "sameAs": "https://doi.org/10.5281/zenodo.10225630"
     }
   ],
-  "releaseNotes": "https://github.com/tesselle/nexus/blob/master/NEWS.md",
-  "readme": "https://github.com/tesselle/nexus/blob/main/README.md",
-  "contIntegration": ["https://github.com/tesselle/nexus/actions", "https://app.codecov.io/gh/tesselle/nexus"],
-  "developmentStatus": "https://www.repostatus.org/#wip",
-  "keywords": ["archaeology", "archaeological-science", "archaeometry", "provenance-studies", "compositional-data", "r-package"]
+  "developmentStatus": "https://www.repostatus.org/#wip"
 }
