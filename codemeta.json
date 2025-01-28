@@ -37,15 +37,6 @@
       "@id": "https://orcid.org/0000-0002-5331-5087"
     }
   ],
-  "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Brice",
-      "familyName": "Lebrun",
-      "email": "brice.lebrun@u-bordeaux-montaigne.fr",
-      "@id": "https://orcid.org/0000-0001-7503-8685"
-    }
-  ],
   "funder": [
     {
       "@type": "Organization",
