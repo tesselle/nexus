@@ -6,12 +6,18 @@
 \alias{mean,CompositionMatrix-method}
 \title{Compositional Mean}
 \usage{
-\S4method{mean}{CompositionMatrix}(x, ...)
+\S4method{mean}{CompositionMatrix}(x, ..., ignore_na = FALSE, ignore_zero = TRUE)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{...}{Further arguments to be passed to internal methods.}
+\item{...}{Currently not used.}
+
+\item{ignore_na}{A \code{\link{logical}} scalar: should \link[=NA]{missing values} be
+stripped before the computation proceeds?}
+
+\item{ignore_zero}{A \code{\link{logical}} scalar: should zeros be stripped before the
+computation proceeds?}
 }
 \value{
 A \code{\link{numeric}} vector.

@@ -8,9 +8,11 @@ NULL
 setMethod(
   f = "condense",
   signature = "CompositionMatrix",
-  definition = function(x, by, verbose = FALSE, ...) {
+  definition = function(x, by, ignore_na = FALSE, ignore_zero = TRUE,
+                        verbose = FALSE, ...) {
     x <- group(x, by = by)
-    y <- methods::callGeneric(x = x, verbose = verbose, ...)
+    y <- methods::callGeneric(x = x, ignore_na = ignore_na,
+                              ignore_zero = ignore_zero, verbose = verbose, ...)
     ungroup(y)
   }
 )
@@ -21,13 +23,20 @@ setMethod(
 setMethod(
   f = "condense",
   signature = "GroupedComposition",
-  definition = function(x, by = NULL, verbose = FALSE, ...) {
+  definition = function(x, by = NULL, ignore_na = FALSE, ignore_zero = TRUE,
+                        verbose = FALSE, ...) {
     ## Grouping
     grp <- group_factor(x)
     if (!is.null(by)) x <- group(x, by = by, verbose = verbose)
 
     ## Compute mean
-    z <- aggregate(x, FUN = mean, ..., simplify = TRUE)
+    z <- aggregate(
+      x = x,
+      FUN = mean,
+      ignore_na = ignore_na,
+      ignore_zero = ignore_zero,
+      simplify = TRUE
+    )
     tot <- tapply(X = totals(x), INDEX = group_factor(x), FUN = mean)
 
     z <- .CompositionMatrix(z, totals = as.numeric(tot))

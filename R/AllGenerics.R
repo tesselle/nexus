@@ -797,7 +797,8 @@ NULL
 #' Compositional Mean
 #'
 #' @param x A [`CompositionMatrix-class`] object.
-#' @param ... Further arguments to be passed to internal methods.
+#' @inheritParams gmean
+#' @param ... Currently not used.
 #' @details
 #'  Closed vector of the columns geometric means.
 #' @return A [`numeric`] vector.
@@ -839,9 +840,10 @@ NULL
 #' @param x A [`CompositionMatrix-class`] object.
 #' @param by A `vector` or a list of grouping elements, each as long as the
 #'  variables in `x` (see [group()]).
+#' @inheritParams gmean
 #' @param verbose A [`logical`] scalar: should \R report extra information
 #'  on progress?
-#' @param ... Further arguments to be passed to [mean()].
+#' @param ... Currently not used.
 #' @return A [`CompositionMatrix-class`] object.
 #' @seealso [mean()], [aggregate()]
 #' @example inst/examples/ex-condense.R

@@ -6,12 +6,12 @@ expect_equal_to_reference(aggregate(petro, by = slides$analyst, FUN = mean),
                           file = "_snaps/aggregate.rds")
 
 # Mean =========================================================================
-expect_equal(nexus:::gmean(c(7.72, 0, 3.11, 7.19), zero.rm = FALSE), 0)
-expect_equal(nexus:::gmean(c(7.72, NA, 3.11, 7.19), na.rm = FALSE), NA_real_)
-expect_equal(nexus:::gmean(c(7.72, 0, NA, 7.19), zero.rm = FALSE, na.rm = FALSE), NA_real_)
+expect_equal(nexus:::gmean(c(7.72, 0, 3.11, 7.19), ignore_zero = FALSE), 0)
+expect_equal(nexus:::gmean(c(7.72, NA, 3.11, 7.19), ignore_na = FALSE), NA_real_)
+expect_equal(nexus:::gmean(c(7.72, 0, NA, 7.19), ignore_zero = FALSE, ignore_na = FALSE), NA_real_)
 expect_equal(
-  nexus:::gmean(c(7.72, 0, 3.11, 7.19), zero.rm = TRUE),
-  nexus:::gmean(c(7.72, NA, 3.11, 7.19), na.rm = TRUE)
+  nexus:::gmean(c(7.72, 0, 3.11, 7.19), ignore_zero = TRUE),
+  nexus:::gmean(c(7.72, NA, 3.11, 7.19), ignore_na = TRUE)
 )
 
 data("hongite")

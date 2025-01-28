@@ -10,17 +10,30 @@
 \usage{
 condense(x, ...)
 
-\S4method{condense}{CompositionMatrix}(x, by, verbose = FALSE, ...)
+\S4method{condense}{CompositionMatrix}(x, by, ignore_na = FALSE, ignore_zero = TRUE, verbose = FALSE, ...)
 
-\S4method{condense}{GroupedComposition}(x, by = NULL, verbose = FALSE, ...)
+\S4method{condense}{GroupedComposition}(
+  x,
+  by = NULL,
+  ignore_na = FALSE,
+  ignore_zero = TRUE,
+  verbose = FALSE,
+  ...
+)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
-\item{...}{Further arguments to be passed to \code{\link[=mean]{mean()}}.}
+\item{...}{Currently not used.}
 
 \item{by}{A \code{vector} or a list of grouping elements, each as long as the
 variables in \code{x} (see \code{\link[=group]{group()}}).}
+
+\item{ignore_na}{A \code{\link{logical}} scalar: should \link[=NA]{missing values} be
+stripped before the computation proceeds?}
+
+\item{ignore_zero}{A \code{\link{logical}} scalar: should zeros be stripped before the
+computation proceeds?}
 
 \item{verbose}{A \code{\link{logical}} scalar: should \R report extra information
 on progress?}

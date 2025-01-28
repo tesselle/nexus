@@ -4,7 +4,7 @@
 \alias{gmean}
 \title{Geometric Mean}
 \usage{
-gmean(x, trim = 0, na.rm = FALSE, zero.rm = TRUE)
+gmean(x, trim = 0, ignore_na = FALSE, ignore_zero = TRUE)
 }
 \arguments{
 \item{x}{A \code{\link{numeric}} vector.}
@@ -13,10 +13,10 @@ gmean(x, trim = 0, na.rm = FALSE, zero.rm = TRUE)
 of observations to be trimmed from each end of \code{x} before the mean is
 computed.}
 
-\item{na.rm}{A \code{\link{logical}} scalar: should \code{NA} values be stripped before the
-computation proceeds?}
+\item{ignore_na}{A \code{\link{logical}} scalar: should \link[=NA]{missing values} be
+stripped before the computation proceeds?}
 
-\item{zero.rm}{A \code{\link{logical}} scalar: should zeros be stripped before the
+\item{ignore_zero}{A \code{\link{logical}} scalar: should zeros be stripped before the
 computation proceeds?}
 }
 \value{

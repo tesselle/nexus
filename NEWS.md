@@ -1,4 +1,6 @@
 # nexus 0.4.0.9000
+## Enhancements
+* `mean()` and `condense()` gained two new arguments `ignore_na` and `ignore_zero`.
 
 # nexus 0.4.0
 ## New classes and methods
