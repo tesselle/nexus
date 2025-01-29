@@ -4,34 +4,28 @@
 \name{group_split}
 \alias{group_split}
 \alias{group_split-method}
-\alias{group_split,CompositionMatrix-method}
-\alias{group_split,GroupedComposition-method}
-\alias{group_split,GroupedLogRatio-method}
 \alias{split,CompositionMatrix-method}
 \alias{split,LogRatio-method}
+\alias{group_split,GroupedComposition-method}
+\alias{group_split,GroupedLogRatio-method}
 \title{Divide into Groups}
 \usage{
 group_split(object, ...)
 
-\S4method{group_split}{CompositionMatrix}(object, by, ...)
+\S4method{split}{CompositionMatrix}(x, f, drop = FALSE, ...)
+
+\S4method{split}{LogRatio}(x, f, drop = FALSE, ...)
 
 \S4method{group_split}{GroupedComposition}(object, ...)
 
 \S4method{group_split}{GroupedLogRatio}(object, ...)
-
-\S4method{split}{CompositionMatrix}(x, f, drop = FALSE, ...)
-
-\S4method{split}{LogRatio}(x, f, drop = FALSE, ...)
 }
 \arguments{
 \item{object, x}{A \code{\linkS4class{CompositionMatrix}} object.}
 
 \item{...}{Currently not used.}
 
-\item{by}{A \code{vector} or a list of grouping elements, each as long as the
-variables in \code{object} (see \code{\link[=group]{group()}}).}
-
-\item{f}{A 'factor' in the sense that \code{\link[=as.factor]{as.factor(f)}} defines
+\item{f}{A \code{factor} in the sense that \code{\link[=as.factor]{as.factor(f)}} defines
 the grouping, or a list of such factors in which case their interaction is
 used for the grouping (see \code{\link[base:split]{base::split()}}).}
 
@@ -54,26 +48,24 @@ X <- data.frame(
 )
 
 ## Coerce to a compositional matrix
-Y <- as_composition(X)
+Y <- as_composition(X, parts = c("Ca", "Fe", "Na"))
 
 ## Split by group
 ## /!\ Unassigned samples (NA) are discarded ! /!\
 (s1 <- split(Y, f = X$groups))
 
 ## Better to use grouped matrix
-(s2 <- group_split(Y, by = X$groups))
-
-Z <- as_composition(X, groups = 2)
-(s3 <- group_split(Z))
+Y <- group(Y, by = X$groups)
+(s2 <- group_split(Y))
 
 ## Bind by rows
-do.call(rbind, s3)
+do.call(rbind, s2)
 }
 \seealso{
 Other grouping methods: 
 \code{\link{group}()},
-\code{\link{group_extract}()},
-\code{\link{group_metadata}}
+\code{\link{group_metadata}},
+\code{\link{group_subset}()}
 }
 \author{
 N. Frerebeau

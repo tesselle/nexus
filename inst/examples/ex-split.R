@@ -8,17 +8,15 @@ X <- data.frame(
 )
 
 ## Coerce to a compositional matrix
-Y <- as_composition(X)
+Y <- as_composition(X, parts = c("Ca", "Fe", "Na"))
 
 ## Split by group
 ## /!\ Unassigned samples (NA) are discarded ! /!\
 (s1 <- split(Y, f = X$groups))
 
 ## Better to use grouped matrix
-(s2 <- group_split(Y, by = X$groups))
-
-Z <- as_composition(X, groups = 2)
-(s3 <- group_split(Z))
+Y <- group(Y, by = X$groups)
+(s2 <- group_split(Y))
 
 ## Bind by rows
-do.call(rbind, s3)
+do.call(rbind, s2)

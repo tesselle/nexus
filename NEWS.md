@@ -2,6 +2,9 @@
 ## Enhancements
 * `mean()` and `condense()` gained two new arguments `ignore_na` and `ignore_zero`.
 
+## Breaking changes
+* Rename `group_extract()` to `group_subset()`.
+
 # nexus 0.4.0
 ## New classes and methods
 * Add `ReferenceGroups`, `GroupedComposition` and `GroupedLogRatio` classes to represent grouped data.

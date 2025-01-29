@@ -423,9 +423,7 @@ setGeneric(
 #'
 #' Divides a compositional matrix by groups.
 #' @param object,x A [`CompositionMatrix-class`] object.
-#' @param by A `vector` or a list of grouping elements, each as long as the
-#'  variables in `object` (see [group()]).
-#' @param f A 'factor' in the sense that [`as.factor(f)`][as.factor()] defines
+#' @param f A `factor` in the sense that [`as.factor(f)`][as.factor()] defines
 #'  the grouping, or a list of such factors in which case their interaction is
 #'  used for the grouping (see [base::split()]).
 #' @param drop A [`logical`] scalar: should levels that do not occur be dropped?
@@ -454,10 +452,10 @@ setGeneric(
 #' @author N. Frerebeau
 #' @docType methods
 #' @family grouping methods
-#' @aliases group_extract-method
+#' @aliases group_subset-method
 setGeneric(
-  name = "group_extract",
-  def = function(object, ...) standardGeneric("group_extract")
+  name = "group_subset",
+  def = function(object, ...) standardGeneric("group_subset")
 )
 
 # Tools ========================================================================

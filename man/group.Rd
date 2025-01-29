@@ -84,9 +84,9 @@ group_size(coda)
 }
 \seealso{
 Other grouping methods: 
-\code{\link{group_extract}()},
 \code{\link{group_metadata}},
-\code{\link{group_split}()}
+\code{\link{group_split}()},
+\code{\link{group_subset}()}
 }
 \author{
 N. Frerebeau
