@@ -51,6 +51,10 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+X-schema.org-applicationCategory: Archaeological Science
+X-schema.org-isPartOf: https://www.tesselle.org
+X-schema.org-keywords: archaeology, archaeological-science, archaeometry,
+    compositional-data, provenance-studies, r-package
 Collate: 
     'AllClasses.R'
     'AllGenerics.R'

@@ -70,11 +70,11 @@ contact:
   orcid: https://orcid.org/0000-0001-5759-4944
 keywords:
 - archaeology
-- archaeological science
+- archaeological-science
 - archaeometry
-- r package
-- compositional data
-- provenance studies
+- compositional-data
+- provenance-studies
+- r-package
 references:
 - type: software
   title: 'R: A Language and Environment for Statistical Computing'
