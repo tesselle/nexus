@@ -1,6 +1,7 @@
 # nexus 0.4.0.9000
 ## Enhancements
 * `mean()` and `condense()` gained two new arguments `ignore_na` and `ignore_zero`.
+* `as.data.frame()` methods for `LogRatio` and `GroupedLogRatio` class return a `data.frame` with variable labels.
 
 ## Breaking changes
 * Rename `group_extract()` to `group_subset()`.

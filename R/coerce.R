@@ -133,7 +133,11 @@ setMethod("as.data.frame", "GroupedComposition", as.data.frame.GroupedCompositio
 #' @export
 as.data.frame.LogRatio <- function(x, row.names = rownames(x),
                                    optional = FALSE, ...) {
-  as.data.frame(methods::as(x, "matrix"), row.names = row.names, optional = optional)
+  z <- as.data.frame(methods::as(x, "matrix"), row.names = row.names, optional = optional)
+
+  lab <- labels(x)
+  for (j in seq_len(ncol(z))) attr(z[[j]], "label") <- lab[[j]]
+  z
 }
 
 #' @export
@@ -151,6 +155,10 @@ as.data.frame.GroupedLogRatio <- function(x, row.names = rownames(x),
     row.names = row.names,
     check.names = !optional
   )
+
+  lab <- labels(x)
+  for (j in seq_len(ncol(z))) attr(z[[j]], "label") <- lab[[j]]
+
   z[[group_var]] <- group_names(x)
   z
 }
