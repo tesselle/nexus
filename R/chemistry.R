@@ -2,6 +2,13 @@
 #' @include AllGenerics.R
 NULL
 
+is_chemical <- function(object) {
+  pattern <- "^([A-Z]{1}[a-z]?[1-9]*)+$"
+  z <- grepl(pattern, x = object)
+  names(z) <- object
+  z
+}
+
 #' @export
 #' @rdname chemistry
 #' @aliases is_oxide,character-method
@@ -9,7 +16,7 @@ setMethod(
   f = "is_oxide",
   signature = c(object = "character"),
   definition = function(object) {
-    pattern <- "[A-Z]{1}[a-z]{0,1}[0-9]*O[0-9]*"
+    pattern <- "^[A-Z]{1}[a-z]?[1-9]*[O]{1}[1-9]*$"
     z <- grepl(pattern, x = object)
     names(z) <- object
     z

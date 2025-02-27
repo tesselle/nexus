@@ -1131,6 +1131,7 @@ NULL
 #'  used for the ordering of the data.
 #' @param decreasing A [`logical`] scalar: should the sort order of rows be
 #'  increasing or decreasing?
+#' @param names A [`logical`] scalar: should row names be displayed?
 #' @param space A length-one [`numeric`] vector giving the the amount of space
 #'  (as a fraction of the width of a bar) left between each bar
 #'  (defaults to \eqn{0.2}).

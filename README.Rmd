@@ -102,7 +102,7 @@ coda <- group(coda, by = bronze$dynasty)
 major <- coda[, is_element_major(coda)]
 
 ## Compositional barplot
-barplot(major, order_rows = "Cu", border = NA, space = 0)
+barplot(major, order_rows = "Cu", names = FALSE, border = NA, space = 0)
 ```
 
 ```{r lra, fig.width=7, fig.height=7, out.width='50%', fig.show='hold'}

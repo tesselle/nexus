@@ -1,5 +1,6 @@
 # nexus 0.4.0.9000
 ## Enhancements
+* `barplot()` gained a new `names` argument to hide/display row names.
 * `mean()` and `condense()` gained two new arguments `ignore_na` and `ignore_zero`.
 * `as.data.frame()` methods for `LogRatio` and `GroupedLogRatio` class return a `data.frame` with variable labels.
 

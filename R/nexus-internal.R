@@ -57,6 +57,19 @@ label_percent <- function(x, digits = NULL, trim = FALSE) {
   x
 }
 
+#' Label Chemical Formula
+#'
+#' @param x A [`character`] vector.
+#' @return A [`character`] vector.
+#' @keywords internal
+#' @noRd
+label_chemical <- function(x, digits = NULL, trim = FALSE) {
+  if (!all(is_chemical(x))) return(x)
+  x <- gsub(pattern = "([[:digit:]]+)", replacement = "[\\1]", x = x, fixed = FALSE)
+  x <- gsub(pattern = "([[:alpha:]]+)", replacement = "\"\\1\"", x = x, fixed = FALSE)
+  gsub(pattern = "]\"", replacement = "]*\"", x = x, fixed = FALSE)
+}
+
 #' Column Weights
 #'
 #' Computes column weights.

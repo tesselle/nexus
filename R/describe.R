@@ -66,7 +66,7 @@ setMethod(
   rows_NA <- ngettext(m_NA, "composition", "compositions")
   cols_NA <- ngettext(p_NA, "part", "parts")
 
-  pc <- arkhe::label_percent(c(m_NA / m, p_NA / p), digits = 1, trim = TRUE)
+  pc <- label_percent(c(m_NA / m, p_NA / p), digits = 1, trim = TRUE)
   pc_NA <- sprintf(" (%s)", pc)
 
   msg_row_NA <- sprintf("%d %s%s containing missing values.", m_NA, rows_NA, pc_NA[[1]])

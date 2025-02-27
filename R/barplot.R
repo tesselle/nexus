@@ -7,7 +7,7 @@ NULL
 #' @method barplot CompositionMatrix
 barplot.CompositionMatrix <- function(height, ...,
                                       order_columns = FALSE, order_rows = NULL,
-                                      decreasing = TRUE,
+                                      decreasing = TRUE, names = TRUE,
                                       space = 0.2, offset = 0.025,
                                       palette_color = palette_color_discrete(),
                                       border = NA, axes = TRUE, legend = TRUE) {
@@ -32,10 +32,11 @@ barplot.CompositionMatrix <- function(height, ...,
   ## Save and restore
   mfrow <- graphics::par("mfrow")
   mar <- graphics::par("mar")
+  nlines <- height2line("M", cex = cex.axis)
   mar[1] <- 3
-  mar[2] <- width2line(rownames(height), cex = cex.axis) + 0.1
-  mar[3] <- height2line("M", cex = cex.axis)
-  mar[4] <- height2line("M", cex = cex.axis)
+  mar[2] <- if (names) width2line(rownames(height), cex = cex.axis) + 0.1 else nlines
+  mar[3] <- nlines
+  mar[4] <- nlines
 
   old_par <- graphics::par(mfrow = mfrow, mar = mar)
   on.exit(graphics::par(old_par))
@@ -68,11 +69,13 @@ barplot.CompositionMatrix <- function(height, ...,
     graphics::axis(side = 1, at = at, labels = label_percent(at),
                    xpd = NA, las = 1, cex.axis = cex.axis, col.axis = col.axis,
                    font.axis = font.axis)
-    graphics::axis(side = 2, at = unique(xy$data$y), labels = unique(xy$data$row),
-                   las = 2, lty = 0, cex.axis = cex.axis, col.axis = col.axis,
-                   font.axis = font.axis)
     graphics::mtext(text = names(xy$groups), side = 4, line = 0, at = xy$groups,
                     cex = cex.axis, col = col.axis, font = font.axis)
+    if (names) {
+      graphics::axis(side = 2, at = unique(xy$data$y), labels = unique(xy$data$row),
+                     las = 2, lty = 0, cex.axis = cex.axis, col.axis = col.axis,
+                     font.axis = font.axis)
+    }
   }
 
   ## Add legend
@@ -85,7 +88,8 @@ barplot.CompositionMatrix <- function(height, ...,
       col = unique(col),
       border = border
     )
-    graphics::mtext(text = names(xy$mean), side = 3, line = 0,
+    lab <- label_chemical(names(xy$mean))
+    graphics::mtext(text = parse(text = lab), side = 3, line = 0,
                     at = cumsum(xy$mean) - xy$mean / 2,
                     cex = cex.axis, col = unique(col), font = font.axis)
   }
