@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Code
+coverage](https://packages.tesselle.org/nexus/coverage/badge.svg)](https://packages.tesselle.org/nexus/coverage/)
 [![Dependencies](https://tinyverse.netlify.app/badge/nexus)](https://cran.r-project.org/package=nexus)
 
 <a href="https://tesselle.r-universe.dev/nexus"
