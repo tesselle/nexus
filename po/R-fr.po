@@ -2,120 +2,124 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nexus 0.4.0.9000\n"
 "POT-Creation-Date: 2025-03-04 18:12+0100\n"
-"PO-Revision-Date: 2025-03-04 18:12+0100\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2025-03-04 17:34+0000\n"
+"Last-Translator: nfrerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
+"Language-Team: French <https://translate.codeberg.org/projects/tesselle/"
+"nexus/fr/>\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #: barplot.R:16
 msgid "At least two compositional parts are needed."
-msgstr ""
+msgstr "Au moins deux variables sont nécessaires."
 
 #: bind.R:17
 msgid "Duplicated rownames!"
-msgstr ""
+msgstr "Noms de ligne dupliqués !"
 
 #: bind.R:35
 msgid "Combining grouped matrices by rows is not currently supported."
 msgstr ""
+"La combinaison par lignes de matrices groupées n'est pas prise en charge "
+"actuellement."
 
 #: describe.R:86
 msgid "%s of values are zero."
-msgstr ""
+msgstr "%s des valeurs sont égales à zéro."
 
 #: describe.R:89
 msgid "Data checking:"
-msgstr ""
+msgstr "Vérification des données :"
 
 #: group.R:72
 msgid "Nothing to group by."
-msgstr ""
+msgstr "Rien à regrouper."
 
 #: group.R:76
 msgid "As many groups as individuals."
-msgstr ""
+msgstr "Autant de groupes que d'individus."
 
 #: hist.R:60
 msgid "Frequency"
-msgstr ""
+msgstr "Fréquence"
 
 #: outliers.R:29
 msgid "Column names do not match!"
-msgstr ""
+msgstr "Les noms de colonnes ne correspondent pas !"
 
 #: outliers.R:40
 msgid "Sample size is too small (%d)."
-msgstr ""
+msgstr "Le nombre d'individus est trop faible (%d)."
 
 #: outliers.R:44
 msgid "Possibly too small sample size (%d)."
-msgstr ""
+msgstr "Le nombre d'individus est probablement trop faible (%d)."
 
 #: outliers.R:122 outliers.R:140
 msgid "Robust Mahalanobis distance"
-msgstr ""
+msgstr "Distance de Mahalanobis robuste"
 
 #: outliers.R:123 outliers.R:139
 msgid "Standard Mahalanobis distance"
-msgstr ""
+msgstr "Distance de Mahalanobis standard"
 
 #: outliers.R:129
 msgid "Index"
-msgstr ""
+msgstr "Indice"
 
 #: outliers.R:187 outliers.R:190
 msgid "No outlier"
-msgstr ""
+msgstr "Non aberrant"
 
 #: outliers.R:187
 msgid "Robust only"
-msgstr ""
+msgstr "Robuste uniquement"
 
 #: outliers.R:187
 msgid "Both"
-msgstr ""
+msgstr "Les deux"
 
 #: outliers.R:190
 msgid "Outlier"
-msgstr ""
+msgstr "Aberrant"
 
 #: pca.R:14
 msgid "PCA of centered log-ratio (CLR)."
-msgstr ""
+msgstr "ACP du rapport logarithmique centré (CLR)."
 
 #: coerce.R:60
 msgid "Found %g part (%s)"
 msgid_plural "Found %g parts (%s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Trouvé %g partie (%s)"
+msgstr[1] "Trouvé %g parties (%s)"
 
 #: describe.R:15 describe.R:38
 msgid "%d composition"
 msgid_plural "%d compositions"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d composition"
+msgstr[1] "%d compositions"
 
 #: describe.R:16 describe.R:39
 msgid "with %d part"
 msgid_plural "with %d parts"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "avec %d partie"
+msgstr[1] "avec %d parties"
 
 #: describe.R:45
 msgid "%d group"
 msgid_plural "%d groups"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d groupe"
+msgstr[1] "%d groupes"
 
 #: describe.R:49
 msgid "%d unassigned sample."
 msgid_plural "%d unassigned samples."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d individu non attribué."
+msgstr[1] "%d individus non attribués."
 
 #: describe.R:68
 msgid ""
@@ -125,34 +129,38 @@ msgid_plural ""
 "\n"
 "%d missing values:"
 msgstr[0] ""
+"\n"
+"%d valeur manquante :"
 msgstr[1] ""
+"\n"
+"%d valeurs manquantes :"
 
 #: describe.R:70
 msgid "%d observation (%s) contains missing values."
 msgid_plural "%d observations (%s) contain missing values."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d observation (%s) contient des valeurs manquantes."
+msgstr[1] "%d observations (%s) contiennent des valeurs manquantes."
 
 #: describe.R:74
 msgid "%d variable (%s) contains missing values."
 msgid_plural "%d variables (%s) contain missing values."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d variable (%s) contient des valeurs manquantes."
+msgstr[1] "%d variables (%s) contiennent des valeurs manquantes."
 
 #: describe.R:80
 msgid "%d part with no variance."
 msgid_plural "%d parts with no variance."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d partie de variance nulle."
+msgstr[1] "%d parties de variance nulle."
 
 #: group.R:12
 msgid "No sample belongs to the group: %s."
 msgid_plural "No sample belongs to the groups: %s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Aucun individu n'appartient au groupe : %s."
+msgstr[1] "Aucun individu n'appartient aux groupes : %s."
 
 #: group.R:80
 msgid "Found %g group (%s)"
 msgid_plural "Found %g groups (%s)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%g groupe trouvé (%s)"
+msgstr[1] "%g groupes trouvés (%s)"
