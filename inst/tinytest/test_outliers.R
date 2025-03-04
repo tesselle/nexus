@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 data("arctic")
 coda <- as_composition(arctic, parts = 1:3)
 

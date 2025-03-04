@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 # Data with groups =============================================================
 data("slides")
 coda <- as_composition(slides, group = NULL)

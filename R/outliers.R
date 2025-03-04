@@ -25,8 +25,8 @@ setMethod(
   definition = function(object, reference, ..., robust = TRUE,
                         method = c("mve", "mcd"), quantile = 0.975) {
     ## Validation
-    if (!all(colnames(object) == colnames(reference))) {
-      stop("", call. = FALSE)
+    if (!identical(colnames(object), colnames(reference))) {
+      stop(tr_("Column names do not match!"), call. = FALSE)
     }
 
     ## Transformation
@@ -37,11 +37,11 @@ setMethod(
     n <- nrow(ref)
     p <- ncol(ref)
     if (n < (p + 1)) {
-      msg <- "Sample size is too small (%d)."
+      msg <- tr_("Sample size is too small (%d).")
       stop(sprintf(msg, n), call. = FALSE)
     }
     if (n < (2 * p)) {
-      msg <- "Possibly too small sample size (%d)."
+      msg <- tr_("Possibly too small sample size (%d).")
       warning(sprintf(msg, n), call. = FALSE)
     }
 
@@ -119,13 +119,14 @@ plot.OutlierIndex <- function(x, ...,
   if (!robust || type == "distance") shape[dc > limit] <- symbols[[2L]]
 
   cy <- if (robust) dr else dc
-  dlab <- ifelse(robust, "Robust Mahalanobis distance", "Standard Mahalanobis distance")
+  dlab <- ifelse(robust, tr_("Robust Mahalanobis distance"),
+                 tr_("Standard Mahalanobis distance"))
   ylab <- ylab %||% dlab
 
   if (type == "dotchart") {
     asp <- NA
     cx <- seq_along(dc)
-    xlab <- xlab %||% "Index"
+    xlab <- xlab %||% tr_("Index")
     panel <- function() {
       graphics::points(x = cx, y = cy, pch = shape, ...)
       graphics::abline(h = limit, lty = 1)
@@ -135,8 +136,8 @@ plot.OutlierIndex <- function(x, ...,
     asp <- 1
     cx <- dc
     cy <- dr
-    xlab <- xlab %||% "Standard Mahalanobis distance"
-    ylab <- ylab %||% "Robust Mahalanobis distance"
+    xlab <- xlab %||% tr_("Standard Mahalanobis distance")
+    ylab <- ylab %||% tr_("Robust Mahalanobis distance")
     panel <- function() {
       graphics::points(x = cx, y = cy, pch = shape, ...)
       graphics::abline(h = limit, lty = 1)
@@ -183,10 +184,10 @@ plot.OutlierIndex <- function(x, ...,
   ## Add legend
   if (is.list(legend)) {
     if (type == "distance") {
-      lab <- c("No outlier", "Robust only", "Both")
+      lab <- c(tr_("No outlier"), tr_("Robust only"), tr_("Both"))
       pch <- symbols
     } else {
-      lab <- c("No outlier", "Outlier")
+      lab <- c(tr_("No outlier"), tr_("Outlier"))
       pch <- symbols[-2 - !robust]
     }
     args <- list(x = "topleft", legend = lab, pch = pch, bty = "n", xpd = NA)

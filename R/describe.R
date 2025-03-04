@@ -60,27 +60,31 @@ setMethod(
   p <- ncol(x)
 
   ## Missing values
-  m_NA <- sum(arkhe::detect(x, f = is.na, margin = 1))
-  p_NA <- sum(arkhe::detect(x, f = is.na, margin = 2))
-
-  rows_NA <- ngettext(m_NA, "composition", "compositions")
-  cols_NA <- ngettext(p_NA, "part", "parts")
-
+  n_NA <- sum(count(x, f = is.na))
+  m_NA <- sum(detect(x, f = is.na, margin = 1))
+  p_NA <- sum(detect(x, f = is.na, margin = 2))
   pc <- label_percent(c(m_NA / m, p_NA / p), digits = 1, trim = TRUE)
-  pc_NA <- sprintf(" (%s)", pc)
 
-  msg_row_NA <- sprintf("%d %s%s containing missing values.", m_NA, rows_NA, pc_NA[[1]])
-  msg_col_NA <- sprintf("%d %s%s containing missing values.", p_NA, cols_NA, pc_NA[[2]])
+  msg_NA <- sprintf(ngettext(n_NA, "\n%d missing value:", "\n%d missing values:"), n_NA)
+
+  rows_NA <- ngettext(m_NA, "%d observation (%s) contains missing values.",
+                      "%d observations (%s) contain missing values.")
+  msg_row_NA <- sprintf(rows_NA, m_NA, pc[[1]])
+
+  cols_NA <- ngettext(p_NA, "%d variable (%s) contains missing values.",
+                      "%d variables (%s) contain missing values.")
+  msg_col_NA <- sprintf(cols_NA, p_NA, pc[[2]])
 
   ## Constant columns
-  p_var <- sum(arkhe::detect(x, f = function(x) is_unique(x), margin = 2))
-  cols_var <- ngettext(p_var, "%d part with no variance.", "%d parts with no variance.")
+  p_var <- sum(detect(x, f = function(x) is_unique(x), margin = 2))
+  cols_var <- ngettext(p_var, "%d part with no variance.",
+                       "%d parts with no variance.")
   msg_col_var <- sprintf(cols_var, p_var)
 
   ## Sparsity
-  spa <- arkhe::sparsity(x, count = FALSE)
-  msg_spa <- sprintf("%s of values are zero.", label_percent(spa, digits = 1))
+  spa <- sparsity(x, count = FALSE)
+  msg_spa <- sprintf(tr_("%s of values are zero."), label_percent(spa, digits = 1))
 
-  cat("\nData checking:", msg_spa, msg_col_var, sep = "\n* ")
-  cat("\nMissing values:", msg_row_NA, msg_col_NA, sep = "\n* ")
+  cat(msg_NA, msg_row_NA, msg_col_NA, sep = "\n* ")
+  cat(tr_("\nData checking:"), msg_spa, msg_col_var, sep = "\n* ")
 }

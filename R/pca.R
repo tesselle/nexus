@@ -11,7 +11,7 @@ setMethod(
   definition = function(object, center = TRUE, scale = FALSE, rank = NULL,
                         sup_row = NULL, sup_col = NULL,
                         weight_row = NULL, weight_col = NULL) {
-    message("PCA of centered log-ratio.")
+    message(tr_("PCA of centered log-ratio (CLR)."))
     x <- transform_clr(object)
     methods::callGeneric(object = x, center = center, scale = scale,
                          rank = rank, sup_row = sup_row, sup_col = sup_col,

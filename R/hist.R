@@ -57,7 +57,7 @@ hist.CompositionMatrix <- function(x, ..., select = 1,
   ## Add annotation
   if (ann) {
     xlab <- labels(x)[select]
-    ylab <- "Frequency"
+    ylab <- tr_("Frequency")
     graphics::mtext(sprintf("ilr(%s)", xlab), side = 1, line = 3,
                     cex = cex.lab, col = col.lab, font = font.lab)
     graphics::mtext(sprintf("%s %%", xlab), side = 3, line = 3,

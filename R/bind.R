@@ -14,7 +14,7 @@ setMethod(
 
     spl <- c(rownames(x), rownames(y))
     if (any(duplicated(spl))) {
-      warning("Duplicated rownames!", call. = FALSE)
+      warning(tr_("Duplicated rownames!"), call. = FALSE)
       spl <- make.unique(spl, sep = "_")
     }
 
@@ -32,7 +32,7 @@ setMethod(
   f = "rbind2",
   signature = c(x = "GroupedComposition", y = "GroupedComposition"),
   definition = function(x, y) {
-    stop("Combining grouped matrices by rows is not currently supported.",
+    stop(tr_("Combining grouped matrices by rows is not currently supported."),
          call. = FALSE)
   }
 )

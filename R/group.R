@@ -69,11 +69,11 @@ setMethod(
     ## Validation
     arkhe::assert_length(by, nrow(object))
     if (nlevels(by) == 0) {
-      stop("Nothing to group by.", call. = FALSE)
+      stop(tr_("Nothing to group by."), call. = FALSE)
     }
     if (isTRUE(verbose)) {
       if (nlevels(by) == nrow(object)) {
-        message("As many groups as individuals.")
+        message(tr_("As many groups as individuals."))
       }
 
       n <- nlevels(by)

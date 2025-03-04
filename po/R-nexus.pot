@@ -1,0 +1,154 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: nexus 0.4.0.9000\n"
+"POT-Creation-Date: 2025-03-04 18:12+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: barplot.R:16
+msgid "At least two compositional parts are needed."
+msgstr ""
+
+#: bind.R:17
+msgid "Duplicated rownames!"
+msgstr ""
+
+#: bind.R:35
+msgid "Combining grouped matrices by rows is not currently supported."
+msgstr ""
+
+#: describe.R:86
+msgid "%s of values are zero."
+msgstr ""
+
+#: describe.R:89
+msgid "Data checking:"
+msgstr ""
+
+#: group.R:72
+msgid "Nothing to group by."
+msgstr ""
+
+#: group.R:76
+msgid "As many groups as individuals."
+msgstr ""
+
+#: hist.R:60
+msgid "Frequency"
+msgstr ""
+
+#: outliers.R:29
+msgid "Column names do not match!"
+msgstr ""
+
+#: outliers.R:40
+msgid "Sample size is too small (%d)."
+msgstr ""
+
+#: outliers.R:44
+msgid "Possibly too small sample size (%d)."
+msgstr ""
+
+#: outliers.R:122 outliers.R:140
+msgid "Robust Mahalanobis distance"
+msgstr ""
+
+#: outliers.R:123 outliers.R:139
+msgid "Standard Mahalanobis distance"
+msgstr ""
+
+#: outliers.R:129
+msgid "Index"
+msgstr ""
+
+#: outliers.R:187 outliers.R:190
+msgid "No outlier"
+msgstr ""
+
+#: outliers.R:187
+msgid "Robust only"
+msgstr ""
+
+#: outliers.R:187
+msgid "Both"
+msgstr ""
+
+#: outliers.R:190
+msgid "Outlier"
+msgstr ""
+
+#: pca.R:14
+msgid "PCA of centered log-ratio (CLR)."
+msgstr ""
+
+#: coerce.R:60
+msgid "Found %g part (%s)"
+msgid_plural "Found %g parts (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:15 describe.R:38
+msgid "%d composition"
+msgid_plural "%d compositions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:16 describe.R:39
+msgid "with %d part"
+msgid_plural "with %d parts"
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:45
+msgid "%d group"
+msgid_plural "%d groups"
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:49
+msgid "%d unassigned sample."
+msgid_plural "%d unassigned samples."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:68
+msgid "\n%d missing value:"
+msgid_plural "\n%d missing values:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:70
+msgid "%d observation (%s) contains missing values."
+msgid_plural "%d observations (%s) contain missing values."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:74
+msgid "%d variable (%s) contains missing values."
+msgid_plural "%d variables (%s) contain missing values."
+msgstr[0] ""
+msgstr[1] ""
+
+#: describe.R:80
+msgid "%d part with no variance."
+msgid_plural "%d parts with no variance."
+msgstr[0] ""
+msgstr[1] ""
+
+#: group.R:12
+msgid "No sample belongs to the group: %s."
+msgid_plural "No sample belongs to the groups: %s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: group.R:80
+msgid "Found %g group (%s)"
+msgid_plural "Found %g groups (%s)"
+msgstr[0] ""
+msgstr[1] ""

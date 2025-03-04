@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 # CompositionMatrix totals =====================================================
 mtx <- matrix(sample(1:100, 75, TRUE), ncol = 5)
 coda <- as_composition(mtx)

@@ -1,4 +1,4 @@
-Sys.setlocale("LC_MESSAGES", 'en_GB.UTF-8') # Force locale
+Sys.setenv(LANGUAGE = "en") # Force locale
 
 # Replace zeros ================================================================
 X1 <- data.frame(

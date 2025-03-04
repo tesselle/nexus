@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 if (at_home()) {
   using("tinysnapshot")
   options(tinysnapshot_device = "svglite")

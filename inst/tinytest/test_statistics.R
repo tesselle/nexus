@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 # Aggregate ====================================================================
 data("slides")
 petro <- as_composition(slides)

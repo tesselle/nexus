@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 # Back transform to count ======================================================
 data("hongite")
 coda <- as_composition(hongite)

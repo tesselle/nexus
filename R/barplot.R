@@ -13,7 +13,7 @@ barplot.CompositionMatrix <- function(height, ...,
                                       border = NA, axes = TRUE, legend = TRUE) {
   ## Validation
   if (ncol(height) < 2) {
-    stop("At least two compositional parts are needed.", call. = FALSE)
+    stop(tr_("At least two compositional parts are needed."), call. = FALSE)
   }
 
   ## Prepare data

@@ -1,3 +1,5 @@
+Sys.setenv(LANGUAGE = "en") # Force locale
+
 # Extract with an index vector =================================================
 mtx <- matrix(data = sample(2:10, 100, TRUE), ncol = 10)
 cts <- as_composition(mtx)
