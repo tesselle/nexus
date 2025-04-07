@@ -67,7 +67,7 @@ To cite nexus in publications use:
 Frerebeau N, Philippe A (2025). *nexus: Sourcing Archaeological
 Materials by Chemical Composition*. Université Bordeaux Montaigne,
 Pessac, France. <doi:10.5281/zenodo.10225630>
-<https://doi.org/10.5281/zenodo.10225630>, R package version 0.4.0,
+<https://doi.org/10.5281/zenodo.10225630>, R package version 0.5.0,
 <https://packages.tesselle.org/nexus/>.
 
 This package is a part of the tesselle project

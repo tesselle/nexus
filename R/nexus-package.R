@@ -2,7 +2,7 @@
 #'  \tabular{ll}{
 #'   **Package:** \tab nexus \cr
 #'   **Type:** \tab Package \cr
-#'   **Version:** \tab 0.4.0 \cr
+#'   **Version:** \tab 0.5.0 \cr
 #'   **License:** \tab GPL-3 \cr
 #'   **Zenodo:** \tab \doi{10.5281/zenodo.10225630} \cr
 #'  }
