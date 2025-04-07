@@ -1,3 +1,5 @@
+# nexus 0.5.0.9000
+
 # nexus 0.5.0
 ## Enhancements
 * `barplot()` gained a new `names` argument to hide/display row names.
