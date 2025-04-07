@@ -22,15 +22,15 @@ setMethod(
 setMethod(
   f = "detect_outlier",
   signature = c(object = "CompositionMatrix", reference = "CompositionMatrix"),
-  definition = function(object, reference, ..., robust = TRUE,
-                        method = c("mve", "mcd"), quantile = 0.975) {
+  definition = function(object, reference, ..., quantile = 0.975, robust = TRUE,
+                        method = c("mve", "mcd")) {
     ## Validation
     if (!identical(colnames(object), colnames(reference))) {
       stop(tr_("Column names do not match!"), call. = FALSE)
     }
 
     ## Transformation
-    z <- transform_ilr(object)
+    obj <- transform_ilr(object)
     ref <- transform_ilr(reference)
 
     ## Clean
@@ -48,24 +48,24 @@ setMethod(
     ## Compute center and spread + Mahalanobis distance
     ## Standard estimators
     estc <- list(center = colMeans(ref, na.rm = TRUE), cov = cov(ref))
-    dc <- stats::mahalanobis(z, center = estc$center, cov = estc$cov)
+    dc <- stats::mahalanobis(obj, center = estc$center, cov = estc$cov)
 
     ## Robust estimators
-    dr <- rep(NA_real_, nrow(z))
+    dr <- rep(NA_real_, nrow(obj))
     if (robust) {
       method <- match.arg(method, several.ok = FALSE)
       estr <- MASS::cov.rob(ref, method = method, ...)
-      dr <- stats::mahalanobis(z, center = estr$center, cov = estr$cov)
+      dr <- stats::mahalanobis(obj, center = estr$center, cov = estr$cov)
     }
 
     ## Threshold
-    limit <- sqrt(stats::qchisq(p = quantile, df = p))
+    limit <- stats::qchisq(p = quantile, df = p)
 
-    z <- .OutlierIndex(
-      samples = rownames(z),
+    .OutlierIndex(
+      samples = rownames(obj),
       standard = sqrt(dc),
       robust = sqrt(dr),
-      limit = limit,
+      limit = sqrt(limit),
       dof = p
     )
   }

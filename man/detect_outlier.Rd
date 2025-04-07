@@ -27,9 +27,9 @@ is_outlier(object, ...)
   object,
   reference,
   ...,
+  quantile = 0.975,
   robust = TRUE,
-  method = c("mve", "mcd"),
-  quantile = 0.975
+  method = c("mve", "mcd")
 )
 
 \S4method{is_outlier}{OutlierIndex}(object, robust = TRUE)
