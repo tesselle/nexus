@@ -76,11 +76,11 @@
 <line x1='266.40' y1='430.56' x2='266.40' y2='437.76' style='stroke-width: 0.75;' />
 <line x1='367.45' y1='430.56' x2='367.45' y2='437.76' style='stroke-width: 0.75;' />
 <line x1='468.51' y1='430.56' x2='468.51' y2='437.76' style='stroke-width: 0.75;' />
-<text x='64.29' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='165.35' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='266.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>20</text>
-<text x='367.45' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>30</text>
-<text x='468.51' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='15.28px' lengthAdjust='spacingAndGlyphs'>40</text>
+<text x='64.29' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='165.35' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='266.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>20</text>
+<text x='367.45' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>30</text>
+<text x='468.51' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='13.35px' lengthAdjust='spacingAndGlyphs'>40</text>
 <line x1='59.04' y1='387.62' x2='59.04' y2='80.98' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='387.62' x2='51.84' y2='387.62' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='336.51' x2='51.84' y2='336.51' style='stroke-width: 0.75;' />
@@ -89,19 +89,19 @@
 <line x1='59.04' y1='183.19' x2='51.84' y2='183.19' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='132.08' x2='51.84' y2='132.08' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='80.98' x2='51.84' y2='80.98' style='stroke-width: 0.75;' />
-<text x='44.64' y='392.00' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='19.09px' lengthAdjust='spacingAndGlyphs'>0.5</text>
-<text x='44.64' y='340.89' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='19.09px' lengthAdjust='spacingAndGlyphs'>1.0</text>
-<text x='44.64' y='289.78' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='19.09px' lengthAdjust='spacingAndGlyphs'>1.5</text>
-<text x='44.64' y='238.67' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='19.09px' lengthAdjust='spacingAndGlyphs'>2.0</text>
-<text x='44.64' y='187.57' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='19.09px' lengthAdjust='spacingAndGlyphs'>2.5</text>
-<text x='44.64' y='136.46' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='19.09px' lengthAdjust='spacingAndGlyphs'>3.0</text>
-<text x='44.64' y='85.35' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='19.09px' lengthAdjust='spacingAndGlyphs'>3.5</text>
+<text x='44.64' y='391.75' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>0.5</text>
+<text x='44.64' y='340.64' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>1.0</text>
+<text x='44.64' y='289.54' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>1.5</text>
+<text x='44.64' y='238.43' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>2.0</text>
+<text x='44.64' y='187.32' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>2.5</text>
+<text x='44.64' y='136.21' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>3.0</text>
+<text x='44.64' y='85.10' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='16.68px' lengthAdjust='spacingAndGlyphs'>3.5</text>
 <polygon points='59.04,430.56 473.76,430.56 473.76,59.04 59.04,59.04 ' style='stroke-width: 0.75;' />
-<text x='266.40' y='485.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='33.06px' lengthAdjust='spacingAndGlyphs'>Index</text>
-<text transform='translate(12.96,244.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='188.65px' lengthAdjust='spacingAndGlyphs'>Standard Mahalanobis distance</text>
+<text x='266.40' y='485.28' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='29.36px' lengthAdjust='spacingAndGlyphs'>Index</text>
+<text transform='translate(12.96,244.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='168.13px' lengthAdjust='spacingAndGlyphs'>Standard Mahalanobis distance</text>
 <circle cx='69.84' cy='73.44' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #000000;' />
 <circle cx='69.84' cy='87.84' r='2.70' style='stroke-width: 0.75;' />
-<text x='80.64' y='77.81' style='font-size: 12.00px; font-family: "Arial";' textLength='58.79px' lengthAdjust='spacingAndGlyphs'>No outlier</text>
-<text x='80.64' y='92.21' style='font-size: 12.00px; font-family: "Arial";' textLength='40.75px' lengthAdjust='spacingAndGlyphs'>Outlier</text>
+<text x='80.64' y='77.57' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='51.36px' lengthAdjust='spacingAndGlyphs'>No outlier</text>
+<text x='80.64' y='91.97' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='35.34px' lengthAdjust='spacingAndGlyphs'>Outlier</text>
 </g>
 </svg>

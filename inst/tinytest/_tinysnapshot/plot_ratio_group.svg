@@ -195,37 +195,37 @@
 <line x1='202.40' y1='430.56' x2='202.40' y2='437.76' style='stroke-width: 0.75;' />
 <line x1='330.40' y1='430.56' x2='330.40' y2='437.76' style='stroke-width: 0.75;' />
 <line x1='458.40' y1='430.56' x2='458.40' y2='437.76' style='stroke-width: 0.75;' />
-<text x='74.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='29.85px' lengthAdjust='spacingAndGlyphs'>(A)/B</text>
-<text x='202.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='42.05px' lengthAdjust='spacingAndGlyphs'>(A,B)/C</text>
-<text x='330.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='55.11px' lengthAdjust='spacingAndGlyphs'>(A,B,C)/D</text>
-<text x='458.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='66.51px' lengthAdjust='spacingAndGlyphs'>(A,B,C,D)/E</text>
+<text x='74.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='27.34px' lengthAdjust='spacingAndGlyphs'>(A)/B</text>
+<text x='202.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='39.34px' lengthAdjust='spacingAndGlyphs'>(A,B)/C</text>
+<text x='330.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='51.34px' lengthAdjust='spacingAndGlyphs'>(A,B,C)/D</text>
+<text x='458.40' y='456.48' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='62.68px' lengthAdjust='spacingAndGlyphs'>(A,B,C,D)/E</text>
 <line x1='59.04' y1='385.79' x2='59.04' y2='68.78' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='385.79' x2='51.84' y2='385.79' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='306.54' x2='51.84' y2='306.54' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='227.29' x2='51.84' y2='227.29' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='148.03' x2='51.84' y2='148.03' style='stroke-width: 0.75;' />
 <line x1='59.04' y1='68.78' x2='51.84' y2='68.78' style='stroke-width: 0.75;' />
-<text x='44.64' y='390.17' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-3</text>
-<text x='44.64' y='310.91' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-2</text>
-<text x='44.64' y='231.66' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='11.97px' lengthAdjust='spacingAndGlyphs'>-1</text>
-<text x='44.64' y='152.41' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>0</text>
-<text x='44.64' y='73.15' text-anchor='end' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='44.64' y='389.92' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='10.67px' lengthAdjust='spacingAndGlyphs'>-3</text>
+<text x='44.64' y='310.67' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='10.67px' lengthAdjust='spacingAndGlyphs'>-2</text>
+<text x='44.64' y='231.42' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='10.67px' lengthAdjust='spacingAndGlyphs'>-1</text>
+<text x='44.64' y='152.16' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>0</text>
+<text x='44.64' y='72.91' text-anchor='end' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>1</text>
 <polygon points='59.04,430.56 473.76,430.56 473.76,59.04 59.04,59.04 ' style='stroke-width: 0.75;' />
-<text transform='translate(12.96,244.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Arial";' textLength='116.21px' lengthAdjust='spacingAndGlyphs'>Isometric Log-Ratio</text>
+<text transform='translate(12.96,244.80) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='104.05px' lengthAdjust='spacingAndGlyphs'>Isometric Log-Ratio</text>
 </g>
 <g clip-path='url(#cpNTkuMDR8NDczLjc2fDU5LjA0fDQzMC41Ng==)'>
-<circle cx='449.92' cy='73.44' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #1965B0;' />
-<polygon points='449.92,83.64 453.56,89.94 446.28,89.94 ' style='stroke-width: 0.75; stroke: none; fill: #7BAFDE;' />
-<polygon points='447.22,104.94 452.62,104.94 452.62,99.54 447.22,99.54 ' style='stroke-width: 0.75; stroke: none; fill: #4EB265;' />
-<line x1='446.10' y1='116.64' x2='453.74' y2='116.64' style='stroke-width: 0.75; stroke: #F7F056;' />
-<line x1='449.92' y1='120.46' x2='449.92' y2='112.82' style='stroke-width: 0.75; stroke: #F7F056;' />
-<rect x='447.22' y='128.34' width='5.40' height='5.40' style='stroke-width: 0.75; stroke: #DC050C;' />
-<line x1='447.22' y1='133.74' x2='452.62' y2='128.34' style='stroke-width: 0.75; stroke: #DC050C;' />
-<line x1='447.22' y1='128.34' x2='452.62' y2='133.74' style='stroke-width: 0.75; stroke: #DC050C;' />
-<text x='460.72' y='77.81' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>1</text>
-<text x='460.72' y='92.21' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='460.72' y='106.61' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>3</text>
-<text x='460.72' y='121.01' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='460.72' y='135.41' style='font-size: 12.00px; font-family: "Arial";' textLength='7.64px' lengthAdjust='spacingAndGlyphs'>5</text>
+<circle cx='450.89' cy='73.44' r='2.70' style='stroke-width: 0.75; stroke: none; fill: #1965B0;' />
+<polygon points='450.89,83.64 454.52,89.94 447.25,89.94 ' style='stroke-width: 0.75; stroke: none; fill: #7BAFDE;' />
+<polygon points='448.19,104.94 453.59,104.94 453.59,99.54 448.19,99.54 ' style='stroke-width: 0.75; stroke: none; fill: #4EB265;' />
+<line x1='447.07' y1='116.64' x2='454.70' y2='116.64' style='stroke-width: 0.75; stroke: #F7F056;' />
+<line x1='450.89' y1='120.46' x2='450.89' y2='112.82' style='stroke-width: 0.75; stroke: #F7F056;' />
+<rect x='448.19' y='128.34' width='5.40' height='5.40' style='stroke-width: 0.75; stroke: #DC050C;' />
+<line x1='448.19' y1='133.74' x2='453.59' y2='128.34' style='stroke-width: 0.75; stroke: #DC050C;' />
+<line x1='448.19' y1='128.34' x2='453.59' y2='133.74' style='stroke-width: 0.75; stroke: #DC050C;' />
+<text x='461.69' y='77.57' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='461.69' y='91.97' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='461.69' y='106.37' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>3</text>
+<text x='461.69' y='120.77' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='461.69' y='135.17' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='6.67px' lengthAdjust='spacingAndGlyphs'>5</text>
 </g>
 </svg>

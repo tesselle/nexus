@@ -38,6 +38,7 @@ Imports:
 Suggests: 
     cluster,
     folio (>= 1.5.0),
+    fontquiver,
     igraph,
     knitr,
     markdown,

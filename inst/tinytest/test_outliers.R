@@ -12,11 +12,7 @@ expect_equivalent(which(is_outlier(out, robust = FALSE)), c(7L, 12L))
 # Plot =========================================================================
 if (at_home()) {
   using("tinysnapshot")
-  options(tinysnapshot_device = "svglite")
-  options(tinysnapshot_height = 7) # inches
-  options(tinysnapshot_width = 7)
-  options(tinysnapshot_tol = 200) # pixels
-  options(tinysnapshot_os = "Linux")
+  source("helpers.R")
 
   plot_outliers <- function() plot(out, type = "dotchart", robust = FALSE)
   expect_snapshot_plot(plot_outliers, "plot_outliers_dotchart")
