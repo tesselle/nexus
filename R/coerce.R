@@ -114,14 +114,14 @@ setMethod("as.data.frame", "CompositionMatrix", as.data.frame.CompositionMatrix)
 #' @export
 as.data.frame.GroupedComposition <- function(x, row.names = rownames(x),
                                              optional = FALSE, ...,
-                                             group_var = ".group") {
+                                             group_var = ".group",
+                                             group_after = 0) {
   z <- data.frame(
     methods::as(x, "matrix"),
     row.names = row.names,
     check.names = !optional
   )
-  z[[group_var]] <- group_names(x)
-  z
+  arkhe::append_column(z, group_names(x), after = group_after, var = group_var)
 }
 
 #' @export
@@ -149,7 +149,8 @@ setMethod("as.data.frame", "LogRatio", as.data.frame.LogRatio)
 #' @export
 as.data.frame.GroupedLogRatio <- function(x, row.names = rownames(x),
                                           optional = FALSE, ...,
-                                          group_var = ".group") {
+                                          group_var = ".group",
+                                          group_after = 0) {
   z <- data.frame(
     methods::as(x, "matrix"),
     row.names = row.names,
@@ -159,8 +160,7 @@ as.data.frame.GroupedLogRatio <- function(x, row.names = rownames(x),
   lab <- labels(x)
   for (j in seq_len(ncol(z))) attr(z[[j]], "label") <- lab[[j]]
 
-  z[[group_var]] <- group_names(x)
-  z
+  arkhe::append_column(z, group_names(x), after = group_after, var = group_var)
 }
 
 #' @export

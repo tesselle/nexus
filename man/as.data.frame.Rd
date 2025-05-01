@@ -17,7 +17,8 @@
   row.names = rownames(x),
   optional = FALSE,
   ...,
-  group_var = ".group"
+  group_var = ".group",
+  group_after = 0
 )
 
 \S4method{as.data.frame}{LogRatio}(x, row.names = rownames(x), optional = FALSE, ...)
@@ -27,7 +28,8 @@
   row.names = rownames(x),
   optional = FALSE,
   ...,
-  group_var = ".group"
+  group_var = ".group",
+  group_after = 0
 )
 
 \S4method{as.data.frame}{OutlierIndex}(x, row.names = rownames(x), optional = FALSE, ...)
@@ -47,6 +49,9 @@ names and are not duplicated.}
 
 \item{group_var}{A \code{\link{character}} string specifying the name of the column to
 create for group attribution.}
+
+\item{group_after}{An \code{\link{integer}} specifying a subscript, after which the new
+\code{group_var} column is to be appended.}
 }
 \value{
 A \code{\link{data.frame}}.

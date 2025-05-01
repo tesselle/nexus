@@ -7,7 +7,7 @@ NULL
 #' @method aggregate CompositionMatrix
 aggregate.CompositionMatrix <- function(x, by, FUN, ...,
                                         simplify = TRUE, drop = TRUE) {
-  x <- group(x, by = by, drop_levels = drop)
+  x <- group(x, by = by, drop_levels = drop, verbose = FALSE)
   aggregate(x, FUN, ..., simplify = simplify)
 }
 

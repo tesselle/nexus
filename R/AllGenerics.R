@@ -283,6 +283,8 @@ setGeneric(
 #'  names and are not duplicated.
 #' @param group_var A [`character`] string specifying the name of the column to
 #'  create for group attribution.
+#' @param group_after An [`integer`] specifying a subscript, after which the new
+#'  `group_var` column is to be appended.
 #' @param ... Currently not used.
 #' @return
 #'  A [`data.frame`].
