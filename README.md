@@ -5,9 +5,17 @@
 
 <!-- badges: start -->
 
-[![Code
-coverage](https://packages.tesselle.org/nexus/coverage/badge.svg)](https://packages.tesselle.org/nexus/coverage/)
-[![Dependencies](https://tinyverse.netlify.app/badge/nexus)](https://cran.r-project.org/package=nexus)
+<a href="https://ci.codeberg.org/repos/14695" class="pkgdown-devel"><img
+src="https://ci.codeberg.org/api/badges/14695/status.svg"
+alt="status-badge" /></a>
+<a href="https://packages.tesselle.org/nexus/coverage/"
+class="pkgdown-devel"><img
+src="https://packages.tesselle.org/nexus/coverage/badge.svg"
+alt="Code coverage" /></a>
+<a href="https://cran.r-project.org/package=nexus"
+class="pkgdown-devel"><img
+src="https://tinyverse.netlify.app/badge/nexus"
+alt="Dependencies" /></a>
 
 <a href="https://tesselle.r-universe.dev/nexus"
 class="pkgdown-devel"><img
