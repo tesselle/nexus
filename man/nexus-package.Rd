@@ -33,6 +33,7 @@ Useful links:
 \itemize{
   \item \url{https://codeberg.org/tesselle/nexus}
   \item \url{https://packages.tesselle.org/nexus/}
+  \item \url{https://tesselle.r-universe.dev/nexus,}
   \item Report bugs at \url{https://codeberg.org/tesselle/nexus/issues}
 }
 

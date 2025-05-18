@@ -20,7 +20,8 @@ Description: Exploration and analysis of compositional data in the
     ancient materials.
 License: GPL (>= 3)
 URL: https://codeberg.org/tesselle/nexus,
-    https://packages.tesselle.org/nexus/
+    https://packages.tesselle.org/nexus/,
+    https://tesselle.r-universe.dev/nexus,
 BugReports: https://codeberg.org/tesselle/nexus/issues
 Depends: 
     R (>= 3.5),
