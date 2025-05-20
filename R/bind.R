@@ -9,6 +9,8 @@ setMethod(
   f = "rbind2",
   signature = c(x = "CompositionMatrix", y = "CompositionMatrix"),
   definition = function(x, y) {
+    arkhe::assert_colnames(y, colnames(x))
+
     mtx_x <- methods::as(x, "matrix")
     mtx_y <- methods::as(y, "matrix")
 
@@ -20,7 +22,6 @@ setMethod(
 
     z <- rbind(mtx_x, mtx_y)
     rownames(z) <- spl
-
     .CompositionMatrix(z, totals = c(totals(x), totals(y)))
   }
 )
@@ -32,7 +33,7 @@ setMethod(
   f = "rbind2",
   signature = c(x = "GroupedComposition", y = "GroupedComposition"),
   definition = function(x, y) {
-    stop(tr_("Combining grouped matrices by rows is not currently supported."),
-         call. = FALSE)
+    z <- methods::callNextMethod(x, y)
+    group(z, by = c(group_names(x), group_names(y)))
   }
 )

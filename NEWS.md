@@ -1,4 +1,6 @@
 # nexus 0.5.0.9000
+## New classes and methods
+* Add `rbind()` method for `GroupedComposition` objects.
 
 # nexus 0.5.0
 ## Enhancements

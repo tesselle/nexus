@@ -38,14 +38,9 @@ setMethod(
     if (all(x <= 0)) x <- 1 / x
     if (all(y <= 0)) y <- 1 / y
 
-    z <- x * y
-    z <- as_composition(z)
+    z <- closure(x * y)
+    z <- methods::initialize(x, z)
     rownames(z) <- rownames(x)
-
-    if (is_grouped(x)) {
-      x@group_indices <- group_indices(x)
-      x@group_levels <- group_levels(x)
-    }
 
     z
   }
@@ -96,14 +91,9 @@ setMethod(
   definition = function(x, y) {
     arkhe::assert_length(y, 1L)
 
-    z <- x ^ y
-    z <- as_composition(z)
+    z <- closure(x ^ y)
+    z <- methods::initialize(x, z)
     rownames(z) <- rownames(x)
-
-    if (is_grouped(x)) {
-      x@group_indices <- group_indices(x)
-      x@group_levels <- group_levels(x)
-    }
 
     z
   }

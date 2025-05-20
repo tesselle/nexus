@@ -19,7 +19,7 @@ scale.CompositionMatrix <- function(x, center = TRUE, scale = TRUE) {
 
   if (!isFALSE(scale)) {
     if (isTRUE(scale)) scale <- sqrt(mean(diag(covariance(x, center = TRUE))))
-    arkhe::assert_type(scale, "numeric")
+    arkhe::assert_scalar(scale, "numeric")
 
     y <- powering(y, 1 / scale)
   }

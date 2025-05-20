@@ -39,7 +39,7 @@ setMethod(
 # Groups =======================================================================
 #' Compute Groups
 #'
-#' @param x A ([`list`] of) [`factors`] for which interaction is to be computed.
+#' @param x A ([`list`] of) [`factor`]s for which interaction is to be computed.
 #' @param drop_levels A [`logical`] scalar: should unused factor levels be
 #'  dropped?
 #' @param allow_na A [`logical`] scalar: should `NA` be considered an extra
