@@ -21,7 +21,7 @@ setMethod(
     X <- do.call(cbind, X)
 
     d <- cluster::daisy(X, metric = "gower", ...)
-    as.dist(d)
+    as.dist(as.matrix(d))
   }
 )
 

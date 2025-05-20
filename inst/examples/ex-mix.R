@@ -17,6 +17,6 @@ petro <- cdt(petro) # Get the complete disjunctive table
 
 ## First approach
 mix1 <- mix(as.matrix(chem), as.matrix(petro), lambda = 2)
-mds1 <- stats::cmdscale(mix1) # Multi-Dimensional Scaling
+mds1 <- pcoa(mix1) # Multi-Dimensional Scaling
 plot(mds1)
 }

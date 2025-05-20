@@ -25,9 +25,9 @@ URL: https://codeberg.org/tesselle/nexus,
 BugReports: https://codeberg.org/tesselle/nexus/issues
 Depends: 
     R (>= 3.5),
-    dimensio (>= 0.13.0)
+    dimensio (>= 0.14.0)
 Imports: 
-    arkhe (>= 1.10.0),
+    arkhe (>= 1.11.0),
     graphics,
     grDevices,
     isopleuros (>= 1.4.0),
