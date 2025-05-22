@@ -63,6 +63,7 @@ plot(plr_graph)
 \seealso{
 Other plot methods: 
 \code{\link{barplot}()},
+\code{\link{boxplot}()},
 \code{\link{hist}()},
 \code{\link{pairs}()},
 \code{\link{plot}()}

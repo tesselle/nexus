@@ -7,9 +7,9 @@ coda <- as_composition(kommos, parts = 3:22) # Coerce to compositional data
 clr <- transform_clr(coda)
 
 ## Boxplot
-plot(clr)
+boxplot(clr)
 
 ## Use ceramic types for grouping
 grp <- group(coda, by = kommos$type)
 clr <- transform_clr(grp)
-plot(clr)
+boxplot(clr)

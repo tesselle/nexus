@@ -9,13 +9,7 @@
 \usage{
 \S4method{pairs}{CompositionMatrix}(x, margin = NULL, ...)
 
-\S4method{pairs}{GroupedComposition}(
-  x,
-  ...,
-  margin = NULL,
-  palette_color = palette_color_discrete(),
-  palette_symbol = palette_shape()
-)
+\S4method{pairs}{GroupedComposition}(x, ..., margin = NULL, color = NULL, symbol = NULL)
 }
 \arguments{
 \item{x}{A \code{\linkS4class{CompositionMatrix}} object.}
@@ -27,11 +21,12 @@ of the non-selected parts).}
 
 \item{...}{Further \link[graphics:par]{graphical parameters}.}
 
-\item{palette_color}{A palette \code{\link{function}} that when called with a single
-argument returns a \code{character} vector of colors.}
+\item{color}{A (named) vector of colors (will be mapped to the group names
+of \code{object}) or a \code{\link{function}} that when called with a single argument (an
+integer specifying the number of colors) returns a vector of colors.}
 
-\item{palette_symbol}{A palette \code{\link{function}} that when called with a single
-argument returns a vector of symbols.}
+\item{symbol}{A (named) vector of colors (will be mapped to the group names
+of \code{object}).}
 }
 \value{
 \code{plot()} is called for its side-effects: is results in a graphic being
@@ -58,6 +53,7 @@ pairs(coda, by = NULL, center = TRUE, scale = TRUE)
 Other plot methods: 
 \code{\link{as_graph}()},
 \code{\link{barplot}()},
+\code{\link{boxplot}()},
 \code{\link{hist}()},
 \code{\link{plot}()}
 }

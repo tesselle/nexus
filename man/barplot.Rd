@@ -15,7 +15,7 @@
   names = TRUE,
   space = 0.2,
   offset = 0.025,
-  palette_color = palette_color_discrete(),
+  color = NULL,
   border = NA,
   axes = TRUE,
   legend = TRUE
@@ -44,8 +44,9 @@ increasing or decreasing?}
 (as a fraction) left between groups (defaults to \eqn{0.025}). Only used if
 \code{groups} is not \code{NULL}.}
 
-\item{palette_color}{A palette \code{\link{function}} that when called with a single
-argument returns a \code{character} vector of colors.}
+\item{color}{A (named) vector of colors (will be mapped to the group names
+of \code{object}) or a \code{\link{function}} that when called with a single argument (an
+integer specifying the number of colors) returns a vector of colors.}
 
 \item{border}{The color to draw the borders.}
 
@@ -85,6 +86,7 @@ barplot(minor, order_columns = TRUE)
 \seealso{
 Other plot methods: 
 \code{\link{as_graph}()},
+\code{\link{boxplot}()},
 \code{\link{hist}()},
 \code{\link{pairs}()},
 \code{\link{plot}()}

@@ -18,12 +18,11 @@ setMethod("pairs", c(x = "CompositionMatrix"), pairs.CompositionMatrix)
 #' @export
 #' @method pairs GroupedComposition
 pairs.GroupedComposition <- function(x, ..., margin = NULL,
-                                    palette_color = palette_color_discrete(),
-                                    palette_symbol = palette_shape()) {
+                                     color = NULL, symbol = NULL) {
   ## Aesthetics
   lvl <- group_names(x)
-  col <- palette_color(lvl)
-  pch <- palette_symbol(lvl)
+  col <- khroma::palette_color_discrete(color)(lvl)
+  pch <- khroma::palette_shape(symbol)(lvl)
 
   isopleuros::ternary_pairs(x, margin = margin, col = col, pch = pch, ...)
   invisible(x)

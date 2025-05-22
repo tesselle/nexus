@@ -5,16 +5,13 @@ NULL
 # LogRatio =====================================================================
 #' @export
 #' @method plot LogRatio
-plot.LogRatio <- function(x, ..., factor = 1, amount = NULL,
-                          palette_color = palette_color_discrete(),
-                          palette_symbol = palette_shape(),
+plot.LogRatio <- function(x, ..., jitter_factor = 1, jitter_amount = NULL,
                           xlab = NULL, ylab = NULL,
                           main = NULL, sub = NULL, ann = graphics::par("ann"),
-                          axes = TRUE, frame.plot = axes,
-                          legend = list(x = "topright")) {
+                          axes = TRUE, frame.plot = axes) {
   ## Get data
   xy <- data.frame(
-    x = jitter(as.vector(col(x)), factor = factor, amount = amount),
+    x = jitter(as.vector(col(x)), factor = jitter_factor, amount = jitter_amount),
     y = as.vector(x)
   )
 
@@ -25,14 +22,6 @@ plot.LogRatio <- function(x, ..., factor = 1, amount = NULL,
   cex.axis <- list(...)$cex.axis %||% graphics::par("cex.axis")
   col.axis <- list(...)$col.axis %||% graphics::par("col.axis")
   font.axis <- list(...)$font.axis %||% graphics::par("font.axis")
-
-  ## Grouping
-  if (is_grouped(x)) {
-    lvl <- group_names(x)
-    col <- palette_color(lvl)
-    bg <- grDevices::adjustcolor(col, alpha.f = 0.5)
-    pch <- palette_symbol(lvl)
-  }
 
   ## Open new window
   grDevices::dev.hold()
@@ -64,18 +53,7 @@ plot.LogRatio <- function(x, ..., factor = 1, amount = NULL,
   ## Add annotation
   if (ann) {
     ylab <- ylab %||% get_transformation(x)
-    graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab, ...)
-  }
-
-  ## Add legend
-  if (is.list(legend) && is_grouped(x)) {
-    ## Compute legend position
-    args <- list(x = "topright", legend = unique(lvl), pch = unique(pch),
-                 col = unique(col), bg = unique(bg), bty = "n")
-    args <- utils::modifyList(args, legend)
-
-    ## Plot legend
-    do.call(graphics::legend, args = args)
+    graphics::title(main = main, sub = sub, xlab = xlab, ylab = ylab)
   }
 
   invisible(x)
@@ -85,3 +63,52 @@ plot.LogRatio <- function(x, ..., factor = 1, amount = NULL,
 #' @rdname plot
 #' @aliases plot,LogRatio,missing-method
 setMethod("plot", c(x = "LogRatio", y = "missing"), plot.LogRatio)
+
+#' @export
+#' @method plot GroupedLogRatio
+plot.GroupedLogRatio <- function(x, ..., jitter_factor = 1, jitter_amount = NULL,
+                                 color = NULL, symbol = NULL,
+                                 xlab = NULL, ylab = NULL,
+                                 main = NULL, sub = NULL,
+                                 ann = graphics::par("ann"),
+                                 axes = TRUE, frame.plot = axes,
+                                 legend = list(x = "topright")) {
+
+  ## Graphical parameters
+  lvl <- group_names(x)
+  col <- khroma::palette_color_discrete(color)(lvl)
+  bg <- grDevices::adjustcolor(col, alpha.f = 0.5)
+  pch <- khroma::palette_shape(symbol)(lvl)
+
+  ## Plot
+  plot(
+    ungroup(x),
+    col = col, pch = pch, bg = bg,
+    jitter_factor = jitter_factor,
+    jitter_amount = jitter_amount,
+    xlab = xlab, ylab = ylab,
+    main = main, sub = sub, ann = ann,
+    axes = axes, frame.plot = frame.plot
+  )
+
+  ## Add legend
+  if (is.list(legend) && is_grouped(x)) {
+    args <- list(
+      x = "topright",
+      legend = tapply(lvl, lvl, unique),
+      pch = tapply(pch, lvl, unique),
+      col = tapply(col, lvl, unique),
+      bg = tapply(bg, lvl, unique),
+      bty = "n"
+    )
+    args <- utils::modifyList(args, legend)
+    do.call(graphics::legend, args = args)
+  }
+
+  invisible(x)
+}
+
+#' @export
+#' @rdname plot
+#' @aliases plot,GroupedLogRatio,missing-method
+setMethod("plot", c(x = "GroupedLogRatio", y = "missing"), plot.GroupedLogRatio)

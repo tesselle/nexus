@@ -7,7 +7,7 @@ if (at_home()) {
   data("hongite")
   coda <- as_composition(hongite)
 
-  # Plot =======================================================================
+  # Ternary plot ===============================================================
   plot_pairs <- function() pairs(coda)
   expect_snapshot_plot(plot_pairs, "plot_pairs")
 
@@ -34,14 +34,21 @@ if (at_home()) {
   plot_barplot_group <- function() barplot(group(coda, by = rep(1:5, 5)), order_columns = TRUE, border = "black")
   expect_snapshot_plot(plot_barplot_group, "plot_barplot_group")
 
-  # Density ====================================================================
+  # Scatter plot ===============================================================
   ilr <- transform_ilr(coda)
 
-  plot_ratio <- function() plot(ilr, pch = 16, factor = 0)
+  plot_ratio <- function() plot(ilr, pch = 16, jitter_factor = 0)
   expect_snapshot_plot(plot_ratio, "plot_ratio")
 
   gilr <- transform_ilr(group(coda, by = rep(1:5, 5)))
 
-  plot_ratio <- function() plot(gilr, factor = 0)
+  plot_ratio <- function() plot(gilr, jitter_factor = 0)
   expect_snapshot_plot(plot_ratio, "plot_ratio_group")
+
+  # Boxplot ====================================================================
+  boxplot_ratio <- function() boxplot(ilr)
+  expect_snapshot_plot(boxplot_ratio, "boxplot_ratio")
+
+  boxplot_ratio <- function() boxplot(gilr)
+  expect_snapshot_plot(boxplot_ratio, "boxplot_ratio_group")
 }

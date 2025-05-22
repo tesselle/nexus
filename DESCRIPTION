@@ -63,6 +63,7 @@ Collate:
     'aggregate.R'
     'barplot.R'
     'bind.R'
+    'boxplot.R'
     'chemistry.R'
     'coerce.R'
     'condense.R'

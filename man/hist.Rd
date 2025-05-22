@@ -78,6 +78,7 @@ Analysis of Environmental (Compositional) Data: Problems and Possibilities.
 Other plot methods: 
 \code{\link{as_graph}()},
 \code{\link{barplot}()},
+\code{\link{boxplot}()},
 \code{\link{pairs}()},
 \code{\link{plot}()}
 }
