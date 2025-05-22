@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: nexus 0.4.0.9000\n"
-"POT-Creation-Date: 2025-03-04 18:12+0100\n"
+"Project-Id-Version: nexus 0.5.0.9000\n"
+"POT-Creation-Date: 2025-05-22 17:45+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,12 +15,8 @@ msgstr ""
 msgid "At least two compositional parts are needed."
 msgstr ""
 
-#: bind.R:17
+#: bind.R:19
 msgid "Duplicated rownames!"
-msgstr ""
-
-#: bind.R:35
-msgid "Combining grouped matrices by rows is not currently supported."
 msgstr ""
 
 #: describe.R:86
@@ -31,11 +27,11 @@ msgstr ""
 msgid "Data checking:"
 msgstr ""
 
-#: group.R:72
+#: group.R:73
 msgid "Nothing to group by."
 msgstr ""
 
-#: group.R:76
+#: group.R:77
 msgid "As many groups as individuals."
 msgstr ""
 
@@ -147,7 +143,7 @@ msgid_plural "No sample belongs to the groups: %s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: group.R:80
+#: group.R:81
 msgid "Found %g group (%s)"
 msgid_plural "Found %g groups (%s)"
 msgstr[0] ""

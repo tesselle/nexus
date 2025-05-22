@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nexus 0.4.0.9000\n"
-"POT-Creation-Date: 2025-03-04 18:12+0100\n"
+"POT-Creation-Date: 2025-05-22 17:45+0200\n"
 "PO-Revision-Date: 2025-03-04 17:34+0000\n"
 "Last-Translator: nfrerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/tesselle/"
@@ -17,15 +17,9 @@ msgstr ""
 msgid "At least two compositional parts are needed."
 msgstr "Au moins deux variables sont nécessaires."
 
-#: bind.R:17
+#: bind.R:19
 msgid "Duplicated rownames!"
 msgstr "Noms de ligne dupliqués !"
-
-#: bind.R:35
-msgid "Combining grouped matrices by rows is not currently supported."
-msgstr ""
-"La combinaison par lignes de matrices groupées n'est pas prise en charge "
-"actuellement."
 
 #: describe.R:86
 msgid "%s of values are zero."
@@ -35,11 +29,11 @@ msgstr "%s des valeurs sont égales à zéro."
 msgid "Data checking:"
 msgstr "Vérification des données :"
 
-#: group.R:72
+#: group.R:73
 msgid "Nothing to group by."
 msgstr "Rien à regrouper."
 
-#: group.R:76
+#: group.R:77
 msgid "As many groups as individuals."
 msgstr "Autant de groupes que d'individus."
 
@@ -159,7 +153,7 @@ msgid_plural "No sample belongs to the groups: %s."
 msgstr[0] "Aucun individu n'appartient au groupe : %s."
 msgstr[1] "Aucun individu n'appartient aux groupes : %s."
 
-#: group.R:80
+#: group.R:81
 msgid "Found %g group (%s)"
 msgid_plural "Found %g groups (%s)"
 msgstr[0] "%g groupe trouvé (%s)"

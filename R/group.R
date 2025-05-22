@@ -56,6 +56,36 @@ compute_groups <- function(x, drop_levels = TRUE, allow_na = TRUE) {
   x
 }
 
+#' Validate Groups
+#'
+#' @param object A [`matrix`]-like object.
+#' @param by A ([`list`] of) [`factor`]s for which interaction is to be computed.
+#' @param verbose A [`logical`] scalar: should \R report extra information
+#'  on progress?
+#' @return Invisibly returns `by`.
+#' @keywords internal
+#' @noRd
+validate_groups <- function(object, by, verbose = getOption("nexus.verbose")) {
+  arkhe::assert_type(by, "integer")
+  arkhe::assert_length(by, nrow(object))
+
+  if (nlevels(by) == 0) {
+    stop(tr_("Nothing to group by."), call. = FALSE)
+  }
+  if (isTRUE(verbose)) {
+    if (nlevels(by) == nrow(object)) {
+      message(tr_("As many groups as individuals."))
+    }
+
+    n <- nlevels(by)
+    what <- ngettext(n, "Found %g group (%s)", "Found %g groups (%s)")
+    grp <- paste0(levels(by), collapse = ", ")
+    message(sprintf(what, n, grp))
+  }
+
+  invisible(by)
+}
+
 #' @export
 #' @rdname group
 #' @aliases group,CompositionMatrix-method
@@ -67,20 +97,7 @@ setMethod(
     by <- compute_groups(by, ...)
 
     ## Validation
-    arkhe::assert_length(by, nrow(object))
-    if (nlevels(by) == 0) {
-      stop(tr_("Nothing to group by."), call. = FALSE)
-    }
-    if (isTRUE(verbose)) {
-      if (nlevels(by) == nrow(object)) {
-        message(tr_("As many groups as individuals."))
-      }
-
-      n <- nlevels(by)
-      what <- ngettext(n, "Found %g group (%s)", "Found %g groups (%s)")
-      grp <- paste0(levels(by), collapse = ", ")
-      message(sprintf(what, n, grp))
-    }
+    validate_groups(object, by, verbose = verbose)
 
     .GroupedComposition(
       object,
