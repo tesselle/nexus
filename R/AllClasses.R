@@ -16,6 +16,8 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
 #'  belongs to.
 #' @slot group_levels A [`character`] vector to store the values of the grouping
 #'  variables.
+#' @slot group_ordered A [`logical`] scalar to determine if the levels should be
+#'  regarded as ordered (in the order given).
 #' @param object A `ReferenceGroups` object.
 #' @example inst/examples/ex-matrix.R
 #' @author N. Frerebeau
@@ -27,7 +29,8 @@ setClassUnion("index", members = c("logical", "numeric", "character"))
   Class = "ReferenceGroups",
   slots = c(
     group_indices = "integer",
-    group_levels = "character"
+    group_levels = "character",
+    group_ordered = "logical"
   ),
   contains = c("VIRTUAL")
 )

@@ -23,6 +23,9 @@ belongs to.}
 
 \item{\code{group_levels}}{A \code{\link{character}} vector to store the values of the grouping
 variables.}
+
+\item{\code{group_ordered}}{A \code{\link{logical}} scalar to determine if the levels should be
+regarded as ordered (in the order given).}
 }}
 
 \examples{

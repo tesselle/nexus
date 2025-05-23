@@ -51,6 +51,7 @@ setMethod(
   definition = function(object, weights = FALSE) {
     z <- methods::callNextMethod()
     .GroupedLR(z, group_indices = group_indices(object),
-               group_levels = group_levels(object))
+               group_levels = group_levels(object),
+               group_ordered = is_ordered(object))
   }
 )

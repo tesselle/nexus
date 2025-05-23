@@ -350,6 +350,8 @@ setGeneric(
 #'
 #' Retrieve the (reference) groups to which the observations belong.
 #' @param object A [grouped][group()] \R object.
+#' @param exclude A [`character`] vector of values to be excluded when forming
+#'  the set of levels.
 #' @example inst/examples/ex-group.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -370,6 +372,13 @@ setGeneric(
 setGeneric(
   name = "group_names",
   def = function(object) standardGeneric("group_names")
+)
+
+#' @rdname group_metadata
+#' @aliases group_factor-method
+setGeneric(
+  name = "group_factor",
+  def = function(object, ...) standardGeneric("group_factor")
 )
 
 #' @rdname group_metadata

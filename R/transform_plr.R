@@ -62,6 +62,7 @@ setMethod(
   definition = function(object, pivot = 1) {
     z <- methods::callNextMethod()
     .GroupedPLR(z, group_indices = group_indices(object),
-                group_levels = group_levels(object))
+                group_levels = group_levels(object),
+                group_ordered = is_ordered(object))
   }
 )

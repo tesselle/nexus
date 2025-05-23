@@ -7,6 +7,8 @@
 \alias{group_levels-method}
 \alias{group_names}
 \alias{group_names-method}
+\alias{group_factor}
+\alias{group_factor-method}
 \alias{group_rows}
 \alias{group_rows-method}
 \alias{group_length}
@@ -22,6 +24,7 @@
 \alias{all_assigned}
 \alias{group_levels,ReferenceGroups-method}
 \alias{group_names,ReferenceGroups-method}
+\alias{group_factor,ReferenceGroups-method}
 \alias{group_indices,ReferenceGroups-method}
 \alias{group_rows,ReferenceGroups-method}
 \alias{group_length,ReferenceGroups-method}
@@ -34,6 +37,8 @@
 group_levels(object)
 
 group_names(object)
+
+group_factor(object, ...)
 
 group_rows(object)
 
@@ -53,6 +58,8 @@ all_assigned(object)
 
 \S4method{group_names}{ReferenceGroups}(object)
 
+\S4method{group_factor}{ReferenceGroups}(object, exclude = NA)
+
 \S4method{group_indices}{ReferenceGroups}(object)
 
 \S4method{group_rows}{ReferenceGroups}(object)
@@ -69,6 +76,9 @@ all_assigned(object)
 }
 \arguments{
 \item{object}{A \link[=group]{grouped} \R object.}
+
+\item{exclude}{A \code{\link{character}} vector of values to be excluded when forming
+the set of levels.}
 }
 \description{
 Retrieve the (reference) groups to which the observations belong.
@@ -79,6 +89,9 @@ Retrieve the (reference) groups to which the observations belong.
 names.
 
 \item \code{group_names(ReferenceGroups)}: returns a \code{\link{character}} vector giving the name of
+the group that each observation belongs to.
+
+\item \code{group_factor(ReferenceGroups)}: returns a \code{\link{factor}} vector giving the name of
 the group that each observation belongs to.
 
 \item \code{group_indices(ReferenceGroups)}: returns an \code{\link{integer}} vector giving the group

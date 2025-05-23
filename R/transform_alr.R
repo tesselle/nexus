@@ -56,7 +56,8 @@ setMethod(
   definition = function(object, j = ncol(object), weights = FALSE) {
     z <- methods::callNextMethod()
     .GroupedALR(z, group_indices = group_indices(object),
-                group_levels = group_levels(object))
+                group_levels = group_levels(object),
+                group_ordered = is_ordered(object))
   }
 )
 
@@ -103,6 +104,7 @@ setMethod(
   definition = function(object, j = ncol(object), weights = FALSE) {
     z <- methods::callNextMethod()
     .GroupedALR(z, group_indices = group_indices(object),
-                group_levels = group_levels(object))
+                group_levels = group_levels(object),
+                group_ordered = is_ordered(object))
   }
 )

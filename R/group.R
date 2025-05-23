@@ -48,8 +48,10 @@ setMethod(
 #' @keywords internal
 #' @noRd
 compute_groups <- function(x, drop_levels = TRUE, allow_na = TRUE) {
-  if (!is.list(x)) x <- list(x)
-  x <- interaction(x, sep = "_")
+  if (is.list(x)) {
+    x <- if (length(x) > 1) interaction(x, sep = "_") else x[[1L]]
+  }
+  x <- as.factor(x)
   if (drop_levels) x <- droplevels(x)
   if (allow_na) x <- addNA(x, ifany = TRUE)
 
@@ -102,7 +104,8 @@ setMethod(
     .GroupedComposition(
       object,
       group_indices = as.integer(by),
-      group_levels = levels(by)
+      group_levels = levels(by),
+      group_ordered = is.ordered(by)
     )
   }
 )
@@ -118,7 +121,7 @@ setMethod(
     ## Compute groups
     if (isTRUE(add)) {
       if (!is.list(by)) by <- list(by)
-      by <- c(list(group_factor(object)), by)
+      by <- c(list(group_factor(object, exclude = NULL)), by)
     }
     methods::callNextMethod(object, by = by, verbose = verbose, ...)
   }
@@ -211,13 +214,26 @@ setMethod(
   definition = function(object) group_levels(object)[group_indices(object)]
 )
 
-group_factor <- function(object) {
-  factor(
-    x = group_names(object),
-    levels = group_levels(object),
-    exclude = NULL
-  )
+is_ordered <- function(object) {
+  isTRUE(object@group_ordered)
 }
+
+#' @export
+#' @describeIn group_metadata returns a [`factor`] vector giving the name of
+#'  the group that each observation belongs to.
+#' @aliases group_factor,ReferenceGroups-method
+setMethod(
+  f = "group_factor",
+  signature = "ReferenceGroups",
+  definition = function(object, exclude = NA) {
+    factor(
+      x = group_names(object),
+      levels = group_levels(object),
+      exclude = exclude,
+      ordered = is_ordered(object)
+    )
+  }
+)
 
 #' @export
 #' @describeIn group_metadata returns an [`integer`] vector giving the group
@@ -237,7 +253,7 @@ setMethod(
   f = "group_rows",
   signature = "ReferenceGroups",
   definition = function(object) {
-    i <- group_factor(object)
+    i <- group_factor(object, exclude = NULL)
     split(seq_along(i), f = i)
   }
 )

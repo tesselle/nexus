@@ -29,7 +29,8 @@ setMethod(
   definition = function(object) {
     z <- methods::callNextMethod()
     .GroupedComposition(z, group_indices = group_indices(object),
-                        group_levels = group_levels(object))
+                        group_levels = group_levels(object),
+                        group_ordered = is_ordered(object))
   }
 )
 
@@ -62,7 +63,8 @@ setMethod(
   definition = function(object) {
     z <- methods::callNextMethod()
     .GroupedComposition(z, group_indices = group_indices(object),
-                        group_levels = group_levels(object))
+                        group_levels = group_levels(object),
+                        group_ordered = is_ordered(object))
   }
 )
 
@@ -94,7 +96,8 @@ setMethod(
   definition = function(object) {
     z <- methods::callNextMethod()
     .GroupedComposition(z, group_indices = group_indices(object),
-                        group_levels = group_levels(object))
+                        group_levels = group_levels(object),
+                        group_ordered = is_ordered(object))
   }
 )
 

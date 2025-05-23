@@ -28,12 +28,13 @@ NULL
   # }
 
   if (is_grouped(x)) {
-    g <- droplevels(group_factor(x)[i])
+    g <- droplevels(group_factor(x, exclude = NULL)[i])
     methods::initialize(
       x, z,
       totals = totals,
       group_indices = as.integer(g),
-      group_levels = levels(g)
+      group_levels = levels(g),
+      group_ordered = is.ordered(g)
     )
   } else {
     methods::initialize(x, z, totals = totals)

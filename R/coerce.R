@@ -80,7 +80,7 @@ setMethod(
     if (is.null(groups)) return(z)
 
     ## Group names
-    grp <- from[, groups, drop = FALSE]
+    grp <- from[groups]
     group(z, by = grp, verbose = verbose)
   }
 )
