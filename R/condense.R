@@ -10,7 +10,7 @@ setMethod(
   signature = "CompositionMatrix",
   definition = function(x, by, ignore_na = FALSE, ignore_zero = TRUE,
                         verbose = FALSE, ...) {
-    x <- group(x, by = by)
+    x <- group(x, by = by, verbose = verbose)
     y <- methods::callGeneric(x = x, ignore_na = ignore_na,
                               ignore_zero = ignore_zero, verbose = verbose, ...)
     ungroup(y)

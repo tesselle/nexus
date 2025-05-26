@@ -102,7 +102,11 @@ barplot.CompositionMatrix <- function(height, ...,
 setMethod("barplot", c(height = "CompositionMatrix"), barplot.CompositionMatrix)
 
 prepare_barplot <- function(x, order_rows = NULL, order_columns = FALSE,
-                            decreasing = TRUE, offset = 0.025) {
+                            decreasing = TRUE, offset = 0.025,
+                            verbose = getOption("nexus.verbose")) {
+  ## Remove missing values
+  x <- arkhe::remove_NA(x, margin = 2, verbose = verbose)
+
   ## Relative frequencies
   n <- nrow(x)
   x <- x / rowSums(x)
