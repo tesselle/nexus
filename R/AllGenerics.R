@@ -406,10 +406,10 @@ setGeneric(
 )
 
 #' @rdname group_metadata
-#' @aliases group_length-method
+#' @aliases group_n-method
 setGeneric(
-  name = "group_length",
-  def = function(object) standardGeneric("group_length")
+  name = "group_n",
+  def = function(object) standardGeneric("group_n")
 )
 
 #' @rdname group_metadata

@@ -40,7 +40,7 @@ setMethod(
     msg_tbl <- sprintf("%s %s:", rows, cols)
 
     ## Groups
-    i <- group_length(x)
+    i <- group_n(x)
     ls_grp <- paste0(dQuote(group_levels(x)), collapse = ", ")
     msg_grp <- sprintf(ngettext(i, "%d group", "%d groups"), i)
     msg_grp <- sprintf("%s: %s.", msg_grp, ls_grp)

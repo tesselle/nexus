@@ -13,6 +13,6 @@ group_indices(coda)
 
 group_rows(coda)
 
-group_length(coda)
+group_n(coda)
 
 group_size(coda)

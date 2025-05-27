@@ -152,7 +152,7 @@ prepare_barplot <- function(x, order_rows = NULL, order_columns = FALSE,
   data$y <- as.vector(n + 1 - as.numeric(row)) / n # Reverse levels order
 
   ## Offset
-  n_grp <- group_length(x)
+  n_grp <- group_n(x)
   n_spl <- group_size(x)
   offset <- rev(seq_len(n_grp)) * offset - offset
   data$y <- data$y + rep(offset, n_spl)[as.numeric(row)]

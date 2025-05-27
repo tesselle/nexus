@@ -260,9 +260,9 @@ setMethod(
 
 #' @export
 #' @describeIn group_metadata gives the total number of groups.
-#' @aliases group_length,ReferenceGroups-method
+#' @aliases group_n,ReferenceGroups-method
 setMethod(
-  f = "group_length",
+  f = "group_n",
   signature = "ReferenceGroups",
   definition = function(object) length(group_levels(object))
 )
