@@ -100,9 +100,11 @@ setMethod(
 # To data.frame ================================================================
 #' @method as.data.frame CompositionMatrix
 #' @export
-as.data.frame.CompositionMatrix <- function(x, row.names = rownames(x),
-                                            optional = FALSE, ...) {
-  as.data.frame(methods::as(x, "matrix"), row.names = row.names, optional = optional)
+as.data.frame.CompositionMatrix <- function(x, ..., group_var = ".group", group_after = 0) {
+  z <- as.data.frame(methods::as(x, "matrix"), row.names = rownames(x), ...)
+
+  if (!is_grouped(x)) return(z)
+  arkhe::append_column(z, group_names(x), after = group_after, var = group_var)
 }
 
 #' @export
@@ -110,63 +112,23 @@ as.data.frame.CompositionMatrix <- function(x, row.names = rownames(x),
 #' @aliases as.data.frame,CompositionMatrix-method
 setMethod("as.data.frame", "CompositionMatrix", as.data.frame.CompositionMatrix)
 
-#' @method as.data.frame GroupedComposition
-#' @export
-as.data.frame.GroupedComposition <- function(x, row.names = rownames(x),
-                                             optional = FALSE, ...,
-                                             group_var = ".group",
-                                             group_after = 0) {
-  z <- data.frame(
-    methods::as(x, "matrix"),
-    row.names = row.names,
-    check.names = !optional
-  )
-  arkhe::append_column(z, group_names(x), after = group_after, var = group_var)
-}
-
-#' @export
-#' @rdname as.data.frame
-#' @aliases as.data.frame,GroupedComposition-method
-setMethod("as.data.frame", "GroupedComposition", as.data.frame.GroupedComposition)
-
 #' @method as.data.frame LogRatio
 #' @export
-as.data.frame.LogRatio <- function(x, row.names = rownames(x),
-                                   optional = FALSE, ...) {
-  z <- as.data.frame(methods::as(x, "matrix"), row.names = row.names, optional = optional)
+as.data.frame.LogRatio <- function(x, ..., group_var = ".group", group_after = 0) {
+  z <- as.data.frame(methods::as(x, "matrix"), row.names = rownames(x), ...)
 
+  ## Add columns labels
   lab <- labels(x)
   for (j in seq_len(ncol(z))) attr(z[[j]], "label") <- lab[[j]]
-  z
+
+  if (!is_grouped(x)) return(z)
+  arkhe::append_column(z, group_names(x), after = group_after, var = group_var)
 }
 
 #' @export
 #' @rdname as.data.frame
 #' @aliases as.data.frame,LogRatio-method
 setMethod("as.data.frame", "LogRatio", as.data.frame.LogRatio)
-
-#' @method as.data.frame GroupedLogRatio
-#' @export
-as.data.frame.GroupedLogRatio <- function(x, row.names = rownames(x),
-                                          optional = FALSE, ...,
-                                          group_var = ".group",
-                                          group_after = 0) {
-  z <- data.frame(
-    methods::as(x, "matrix"),
-    row.names = row.names,
-    check.names = !optional
-  )
-
-  lab <- labels(x)
-  for (j in seq_len(ncol(z))) attr(z[[j]], "label") <- lab[[j]]
-
-  arkhe::append_column(z, group_names(x), after = group_after, var = group_var)
-}
-
-#' @export
-#' @rdname as.data.frame
-#' @aliases as.data.frame,GroupedLogRatio-method
-setMethod("as.data.frame", "GroupedLogRatio", as.data.frame.GroupedLogRatio)
 
 #' @method as.data.frame OutlierIndex
 #' @export

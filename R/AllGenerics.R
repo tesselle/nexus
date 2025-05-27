@@ -272,6 +272,7 @@ setGeneric(
   def = function(object, value) standardGeneric("totals<-")
 )
 
+## Coerce ----------------------------------------------------------------------
 #' Coerce to a Data Frame
 #'
 #' @param x An \R object (typically, a [`CompositionMatrix-class`] object).
@@ -282,10 +283,11 @@ setGeneric(
 #'  data frame are checked to ensure that they are syntactically valid variable
 #'  names and are not duplicated.
 #' @param group_var A [`character`] string specifying the name of the column to
-#'  create for group attribution.
+#'  create for group attribution (only used if `x` is [grouped][group()]).
 #' @param group_after An [`integer`] specifying a subscript, after which the new
-#'  `group_var` column is to be appended.
-#' @param ... Currently not used.
+#'  `group_var` column is to be appended (only used if `x` is [grouped][group()]).
+#' @param ... Further parameters to be passed to
+#'  [`as.data.frame()`][base::as.data.frame].
 #' @return
 #'  A [`data.frame`].
 #' @example inst/examples/ex-coerce.R

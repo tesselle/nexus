@@ -3,8 +3,6 @@
 S3method(aggregate,CompositionMatrix)
 S3method(aggregate,GroupedComposition)
 S3method(as.data.frame,CompositionMatrix)
-S3method(as.data.frame,GroupedComposition)
-S3method(as.data.frame,GroupedLogRatio)
 S3method(as.data.frame,LogRatio)
 S3method(as.data.frame,OutlierIndex)
 S3method(barplot,CompositionMatrix)
