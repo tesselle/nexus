@@ -329,7 +329,7 @@ NULL
 NULL
 
 # Groups =======================================================================
-#' Working With Groups
+#' Group by One or More Variables
 #'
 #' Define or remove the (reference) groups to which the observations belong.
 #' @param object An \R object (typically, a [`CompositionMatrix-class`] object).
@@ -362,6 +362,41 @@ setGeneric(
   def = function(object, ...) standardGeneric("ungroup")
 )
 
+#' Grouped Data
+#'
+#' Retrieve the (reference) groups to which the observations belong.
+#' @param object A [grouped][group()] \R object.
+#' @return
+#'  * `is_assigned()` returns a [`logical`] vector specifying whether or
+#'    not an observation belongs to a group.
+#'  * `any_assigned()` returns an [`logical`] scalar specifying if any
+#'    observation belongs to a group.
+#'  * `all_assigned()` returns an [`logical`] scalar specifying if all
+#'    observations belong to a group.
+#' @example inst/examples/ex-group.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family grouping methods
+#' @aliases is_assigned-method
+setGeneric(
+  name = "is_assigned",
+  def = function(object) standardGeneric("is_assigned")
+)
+
+#' @rdname is_assigned
+#' @aliases any_assigned-method
+setGeneric(
+  name = "any_assigned",
+  def = function(object) standardGeneric("any_assigned")
+)
+
+#' @rdname is_assigned
+#' @aliases any_assigned-method
+setGeneric(
+  name = "all_assigned",
+  def = function(object) standardGeneric("all_assigned")
+)
+
 #' Grouping Metadata
 #'
 #' Retrieve the (reference) groups to which the observations belong.
@@ -369,82 +404,70 @@ setGeneric(
 #' @param exclude A [`character`] vector of values to be excluded when forming
 #'  the set of levels.
 #' @param ... Currently not used.
+#' @return
+#'  * `group_levels()` returns a [`character`] vector giving the group
+#'    names.
+#'  * `group_size()` returns an [`integer`] vector giving the size of each
+#'    group.
+#'  * `group_n()` gives the total number of groups.
+#'  * `group_names()` returns a [`character`] vector giving the name of
+#'    the group that each observation belongs to.
+#'  * `group_factor()` returns a [`factor`] vector giving the name of
+#'    the group that each observation belongs to.
+#'  * `group_indices()` returns an [`integer`] vector giving the group
+#'    that each value belongs to.
+#'  * `group_rows()` returns a `list` of [`integer`] vectors giving the
+#'    observation that each group contains.
 #' @example inst/examples/ex-group.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family grouping methods
-#' @name group_metadata
-#' @rdname group_metadata
-NULL
-
-#' @rdname group_metadata
-#' @aliases group_levels-method
-setGeneric(
-  name = "group_levels",
-  def = function(object) standardGeneric("group_levels")
-)
-
-#' @rdname group_metadata
 #' @aliases group_names-method
 setGeneric(
   name = "group_names",
   def = function(object) standardGeneric("group_names")
 )
 
-#' @rdname group_metadata
+#' @rdname group_names
+#' @aliases group_levels-method
+setGeneric(
+  name = "group_levels",
+  def = function(object) standardGeneric("group_levels")
+)
+
+#' @rdname group_names
 #' @aliases group_factor-method
 setGeneric(
   name = "group_factor",
   def = function(object, ...) standardGeneric("group_factor")
 )
 
-#' @rdname group_metadata
+#' @rdname group_names
 #' @aliases group_rows-method
 setGeneric(
   name = "group_rows",
   def = function(object) standardGeneric("group_rows")
 )
 
-#' @rdname group_metadata
+#' @rdname group_names
 #' @aliases group_n-method
 setGeneric(
   name = "group_n",
   def = function(object) standardGeneric("group_n")
 )
 
-#' @rdname group_metadata
+#' @rdname group_names
 #' @aliases group_size-method
 setGeneric(
   name = "group_size",
   def = function(object) standardGeneric("group_size")
 )
 
-#' @rdname group_metadata
+#' @rdname group_names
 #' @aliases group_indices-method
 setGeneric(
   name = "group_indices",
   def = function(object) standardGeneric("group_indices")
-)
-
-#' @rdname group_metadata
-#' @aliases is_assigned-method
-setGeneric(
-  name = "is_assigned",
-  def = function(object) standardGeneric("is_assigned")
-)
-
-#' @rdname group_metadata
-#' @aliases any_assigned-method
-setGeneric(
-  name = "any_assigned",
-  def = function(object) standardGeneric("any_assigned")
-)
-
-#' @rdname group_metadata
-#' @aliases any_assigned-method
-setGeneric(
-  name = "all_assigned",
-  def = function(object) standardGeneric("all_assigned")
 )
 
 #' Divide into Groups

@@ -44,15 +44,16 @@ group_indices(coda)
 
 group_rows(coda)
 
-group_length(coda)
+group_n(coda)
 
 group_size(coda)
 }
 \seealso{
 Other grouping methods: 
 \code{\link{group}()},
-\code{\link{group_metadata}},
-\code{\link{group_split}()}
+\code{\link{group_names}()},
+\code{\link{group_split}()},
+\code{\link{is_assigned}()}
 }
 \author{
 N. Frerebeau

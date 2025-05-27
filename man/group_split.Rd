@@ -64,8 +64,9 @@ do.call(rbind, s2)
 \seealso{
 Other grouping methods: 
 \code{\link{group}()},
-\code{\link{group_metadata}},
-\code{\link{group_subset}()}
+\code{\link{group_names}()},
+\code{\link{group_subset}()},
+\code{\link{is_assigned}()}
 }
 \author{
 N. Frerebeau

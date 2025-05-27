@@ -13,7 +13,7 @@
 \alias{ungroup,GroupedALR-method}
 \alias{ungroup,GroupedILR-method}
 \alias{ungroup,GroupedPLR-method}
-\title{Working With Groups}
+\title{Group by One or More Variables}
 \usage{
 group(object, ...)
 
@@ -84,9 +84,10 @@ group_size(coda)
 }
 \seealso{
 Other grouping methods: 
-\code{\link{group_metadata}},
+\code{\link{group_names}()},
 \code{\link{group_split}()},
-\code{\link{group_subset}()}
+\code{\link{group_subset}()},
+\code{\link{is_assigned}()}
 }
 \author{
 N. Frerebeau

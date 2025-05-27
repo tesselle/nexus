@@ -195,8 +195,7 @@ setMethod(
 
 # Metadata =====================================================================
 #' @export
-#' @describeIn group_metadata returns a [`character`] vector giving the group
-#'  names.
+#' @rdname group_names
 #' @aliases group_levels,ReferenceGroups-method
 setMethod(
   f = "group_levels",
@@ -205,8 +204,7 @@ setMethod(
 )
 
 #' @export
-#' @describeIn group_metadata returns a [`character`] vector giving the name of
-#'  the group that each observation belongs to.
+#' @rdname group_names
 #' @aliases group_names,ReferenceGroups-method
 setMethod(
   f = "group_names",
@@ -219,8 +217,7 @@ is_ordered <- function(object) {
 }
 
 #' @export
-#' @describeIn group_metadata returns a [`factor`] vector giving the name of
-#'  the group that each observation belongs to.
+#' @rdname group_names
 #' @aliases group_factor,ReferenceGroups-method
 setMethod(
   f = "group_factor",
@@ -236,8 +233,7 @@ setMethod(
 )
 
 #' @export
-#' @describeIn group_metadata returns an [`integer`] vector giving the group
-#'  that each value belongs to.
+#' @rdname group_names
 #' @aliases group_indices,ReferenceGroups-method
 setMethod(
   f = "group_indices",
@@ -246,8 +242,7 @@ setMethod(
 )
 
 #' @export
-#' @describeIn group_metadata returns a `list` of [`integer`] vectors giving the
-#'  observation that each group contains.
+#' @rdname group_names
 #' @aliases group_rows,ReferenceGroups-method
 setMethod(
   f = "group_rows",
@@ -259,7 +254,7 @@ setMethod(
 )
 
 #' @export
-#' @describeIn group_metadata gives the total number of groups.
+#' @rdname group_names
 #' @aliases group_n,ReferenceGroups-method
 setMethod(
   f = "group_n",
@@ -268,7 +263,7 @@ setMethod(
 )
 
 #' @export
-#' @describeIn group_metadata gives the size of each group.
+#' @rdname group_names
 #' @aliases group_size,ReferenceGroups-method
 setMethod(
   f = "group_size",
@@ -276,9 +271,9 @@ setMethod(
   definition = function(object) lengths(group_rows(object))
 )
 
+# Predicates ===================================================================
 #' @export
-#' @describeIn group_metadata returns a [`logical`] vector specifying whether or
-#'  not an observation belongs to a group.
+#' @rdname is_assigned
 #' @aliases is_assigned,ReferenceGroups-method
 setMethod(
   f = "is_assigned",
@@ -287,8 +282,7 @@ setMethod(
 )
 
 #' @export
-#' @describeIn group_metadata returns an [`logical`] scalar specifying if any
-#'  observation belongs to a group.
+#' @rdname is_assigned
 #' @aliases any_assigned,ReferenceGroups-method
 setMethod(
   f = "any_assigned",
@@ -297,8 +291,7 @@ setMethod(
 )
 
 #' @export
-#' @describeIn group_metadata returns an [`logical`] scalar specifying if all
-#'  observations belong to a group.
+#' @rdname is_assigned
 #' @aliases all_assigned,ReferenceGroups-method
 setMethod(
   f = "all_assigned",
