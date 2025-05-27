@@ -38,7 +38,7 @@ labels.CompositionMatrix <- function(object, ...) {
 }
 
 #' @export
-#' @rdname mutators
+#' @rdname labels
 #' @aliases labels,CompositionMatrix-method
 setMethod("labels", "CompositionMatrix", labels.CompositionMatrix)
 
@@ -49,7 +49,7 @@ labels.LogRatio <- function(object, ...) {
 }
 
 #' @export
-#' @rdname mutators
+#' @rdname labels
 #' @aliases labels,LogRatio-method
 setMethod("labels", "LogRatio", labels.LogRatio)
 
@@ -62,7 +62,7 @@ weights.ALR <- function(object, ...) {
 }
 
 #' @export
-#' @rdname mutators
+#' @rdname weights
 #' @aliases weights,ALR-method
 setMethod("weights", "ALR", weights.ALR)
 
@@ -80,7 +80,7 @@ weights.LR <- function(object, ...) {
 }
 
 #' @export
-#' @rdname mutators
+#' @rdname weights
 #' @aliases weights,LR-method
 setMethod("weights", "LR", weights.LR)
 
@@ -91,7 +91,7 @@ weights.LogRatio <- function(object, ...) {
 }
 
 #' @export
-#' @rdname mutators
+#' @rdname weights
 #' @aliases weights,LogRatio-method
 setMethod("weights", "LogRatio", weights.LogRatio)
 

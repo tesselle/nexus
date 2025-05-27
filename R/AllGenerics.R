@@ -232,30 +232,44 @@ NULL
 NULL
 
 ## Mutators --------------------------------------------------------------------
-#' Get or Set Parts of an Object
+#' Weights
 #'
-#' Getters and setters to retrieve or set parts of an object.
-#' @param object An object from which to get or set element(s).
-# @param value A possible value for the element(s) of `x`.
+#' Extract weights from an object.
+#' @param object An object for which the extraction of weights is meaningful.
+# @param value A possible value for the element(s) of `object`.
 #' @param ... Currently not used.
 # @example inst/examples/ex-mutators.R
 #' @author N. Frerebeau
 #' @docType methods
 #' @family mutators
-#' @name mutators
-#' @rdname mutators
+#' @name weights
+#' @rdname weights
 #' @aliases get set
+NULL
+
+#' Labels
+#'
+#' Find a suitable set of labels from an object.
+#' @param object An object from which to get the labels.
+# @param value A possible value for the element(s) of `object`.
+#' @param ... Currently not used.
+# @example inst/examples/ex-mutators.R
+#' @author N. Frerebeau
+#' @docType methods
+#' @family mutators
+#' @name labels
+#' @rdname labels
 NULL
 
 #' Row Sums
 #'
 #' Retrieves or defines the row sums (before [closure][closure()]).
 #' @param object An object from which to get or set `totals`.
-#' @param value A possible value for the `totals` of `x`.
+#' @param value A possible value for the `totals` of `object`.
 #' @return
-#'  * `totals() <- value` returns an object of the same sort as `x` with the new
-#'    row sums assigned.
-#'  * `totals()` returns the row sums of `x`.
+#'  * `totals() <- value` returns an object of the same sort as `object` with
+#'    the new row sums assigned.
+#'  * `totals()` returns the row sums of `object`.
 #' @example inst/examples/ex-coerce.R
 #' @author N. Frerebeau
 #' @docType methods
@@ -354,6 +368,7 @@ setGeneric(
 #' @param object A [grouped][group()] \R object.
 #' @param exclude A [`character`] vector of values to be excluded when forming
 #'  the set of levels.
+#' @param ... Currently not used.
 #' @example inst/examples/ex-group.R
 #' @author N. Frerebeau
 #' @docType methods

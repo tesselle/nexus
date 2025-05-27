@@ -77,6 +77,8 @@ all_assigned(object)
 \arguments{
 \item{object}{A \link[=group]{grouped} \R object.}
 
+\item{...}{Currently not used.}
+
 \item{exclude}{A \code{\link{character}} vector of values to be excluded when forming
 the set of levels.}
 }

@@ -23,13 +23,13 @@ totals(object) <- value
 \arguments{
 \item{object}{An object from which to get or set \code{totals}.}
 
-\item{value}{A possible value for the \code{totals} of \code{x}.}
+\item{value}{A possible value for the \code{totals} of \code{object}.}
 }
 \value{
 \itemize{
-\item \code{totals() <- value} returns an object of the same sort as \code{x} with the new
-row sums assigned.
-\item \code{totals()} returns the row sums of \code{x}.
+\item \code{totals() <- value} returns an object of the same sort as \code{object} with
+the new row sums assigned.
+\item \code{totals()} returns the row sums of \code{object}.
 }
 }
 \description{
@@ -55,7 +55,8 @@ head(X)
 \seealso{
 Other mutators: 
 \code{\link{as.data.frame}()},
-\code{\link{mutators}}
+\code{\link{labels}()},
+\code{\link{weights}()}
 }
 \author{
 N. Frerebeau
