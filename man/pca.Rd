@@ -80,7 +80,7 @@ X <- pca(coda)
 biplot(X)
 
 ## Explore results
-viz_individuals(X)
+viz_individuals(X, extra_quali = group_names(coda))
 viz_variables(X)
 }
 \references{

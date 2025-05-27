@@ -8,16 +8,17 @@ output:
       toc: true
       number_sections: true
 vignette: >
-  %\VignetteIndexEntry{Working with Groups}
+  %\VignetteIndexEntry{Grouped Data}
   %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
-
+  
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+Sys.setenv(LANGUAGE = "en") # Force locale
 ```
 
 ```{r setup}
@@ -34,36 +35,50 @@ Provenance studies typically rely on two approaches, which can be used together:
 * Identification of groups among the artifacts being studied, based on mineralogical or geochemical criteria (*clustering*).
 * Comparison with so-called reference groups, i.e. known geological sources or archaeological contexts (*classification*).
 
-When coercing a `data.frame` to a `CompositionMatrix` object, **nexus** allows to specify whether an observation belongs to a specific group (or not):
+For the sake of the demonstration, let's assume that a third of the samples are of unknown provenance: missing values (`NA`) can be used to specify that a sample does not belong to any group.
 
-```{r}
+```{r data}
 ## Data from Wood and Liu 2023
 data("bronze", package = "folio")
+dynasty <- as.character(bronze$dynasty) # Save original data for further use
 
+## Randomly add missing values
+set.seed(12345) # Set seed for reproductibility
+n <- nrow(bronze)
+bronze$dynasty[sample(n, size = n / 3)] <- NA
+```
+
+When coercing a `data.frame` to a `CompositionMatrix` object, **nexus** allows to specify whether an observation belongs to a specific group (or not):
+
+```{r coda}
 ## Use the third column (dynasties) for grouping
 coda <- as_composition(bronze, parts = 4:11, groups = 3)
 ```
 
-`group()` allow to set groups of an existing `CompositionMatrix`. Missing values (`NA`) can be used to specify that a sample does not belong to any group.
+Alternatively, `group()` allows to set groups of an existing `CompositionMatrix`.
 
-# Repeated Measurements
+```{r group}
+## Create a composition data matrix
+coda <- as_composition(bronze, parts = 4:11)
 
-If your data contain several observations for the same sample (e.g. repeated measurements), you can use one or more categorical variable to split the data into subsets and compute the compositional mean for each:
-
-```{r mean}
-## Compositional mean by artefact
-coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
+## Use the third dynasties for grouping
+coda <- group(coda, by = bronze$dynasty)
 ```
 
 Once groups have been defined, they can be used by further methods (e.g. plotting). 
 Note that for better readability, you can select only some of the parts (e.g. major elements):
 
-```{r barplot, fig.width=7, fig.height=7, out.width='100%'}
+```{r barplot, fig.width=10, fig.height=10, out.width='100%'}
 ## Select major elements
 major <- coda[, is_element_major(coda)]
 
 ## Compositional bar plot
 barplot(major, order_rows = "Cu", space = 0)
+```
+
+```{r ternary, fig.width=10, fig.height=10, out.width='100%'}
+## Matrix of ternary plots
+pairs(coda)
 ```
 
 # Log-Ratio Analysis
@@ -88,14 +103,15 @@ viz_variables(lra)
 
 # Discriminant Analysis
 
-The log-transformed data can be assigned to a new column, allowing us to keep working with the data in the context of the original `data.frame`:
-
 ```{r manova}
+## Subset training data
+train <- coda[is_assigned(coda), ]
+
 ## ILR
-ilr <- transform_ilr(coda)
+ilr_train <- transform_ilr(train)
 
 ## MANOVA
-fit <- manova(ilr ~ group_names(ilr))
+fit <- manova(ilr_train ~ group_names(ilr_train))
 summary(fit)
 ```
 
@@ -103,21 +119,30 @@ The MANOVA results suggest that there are statistically significant differences 
 
 ```{r lda, fig.width=7, fig.height=7, out.width='100%'}
 ## LDA
-discr <- MASS::lda(ilr, grouping = group_names(ilr))
+discr <- MASS::lda(ilr_train, grouping = group_names(ilr_train))
 plot(discr)
-
-## Back transform results
-transform_inverse(discr$means, origin = ilr)
 ```
 
-# References
+```{r lda-model}
+## Back transform results
+transform_inverse(discr$means, origin = ilr_train)
+```
 
-Aitchison, J. (1986). *The Statistical Analysis of Compositional Data. Monographs on Statistics and Applied Probability*. Londres, UK ; New York, USA: Chapman and Hall.
+```{r lda-predict}
+## Subset unassigned samples
+test <- coda[!is_assigned(coda), ]
+ilr_test <- transform_ilr(test)
 
-Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. and Barceló-Vidal, C. (2003). Isometric Logratio Transformations for Compositional Data Analysis. *Mathematical Geology*, 35(3): 279-300. DOI: [10.1023/A:1023818214614](https://doi.org/10.1023/A:1023818214614).
+## Predict group membership
+results <- predict(discr, ilr_test)
 
-Greenacre, M. (2021). Compositional Data Analysis. *Annual Review of Statistics and Its Application*, 8(1): 271-299. DOI: [10.1146/annurev-statistics-042720-124436](https://doi.org/10.1146/annurev-statistics-042720-124436).
+## Assess the accuracy of the prediction
+(ct <- table(
+  predicted = results$class, 
+  expected = dynasty[!is_assigned(coda)]
+))
+diag(proportions(ct, margin = 1))
 
-Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. and Gardlo, A. (2017). Weighted Pivot Coordinates for Compositional Data and Their Application to Geochemical Mapping. *Mathematical Geosciences*, 49(6): 797-814. DOI : [10.1007/s11004-017-9684-z](https://doi.org/10.1007/s11004-017-9684-z).
-
-Weigand, P. C., Harbottle, G. and Sayre, E. (1977). Turquoise Sources and Source Analysisis: Mesoamerica and the Southwestern U.S.A. In J. Ericson & T. K. Earle (Eds.), *Exchange Systems in Prehistory*, 15-34. New York, NY: Academic Press.
+## Total percent correct
+sum(diag(proportions(ct)))
+```

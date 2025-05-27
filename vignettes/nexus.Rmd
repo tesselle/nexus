@@ -16,8 +16,10 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  message = FALSE
 )
+Sys.setenv(LANGUAGE = "en") # Force locale
 ```
 
 Provenance studies rely on the identification of probable sources, such that the variability between two sources is greater than the internal variability of a single source (the so-called *provenance postulate*; Weigand, Harbottle, and Sayre 1977). This assumes that a unique signature can be identified for each source on the basis of several criteria.
@@ -32,18 +34,19 @@ Provenance studies rely on the identification of probable sources, such that the
 
 ```{r setup}
 ## Install extra packages (if needed)
-# install.packages("folio")
+# install.packages("folio") # datasets
+# install.packages("isopleuros") # ternary plot
 
 library(nexus)
 ```
 
-**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (positive) descriptions of the parts of some whole, carrying relative, rather than absolute, information (Aitchison 1986; Greenacre 2021).
+**nexus** provides a set of S4 classes that represent different special types of matrix. The most basic class represents a compositional data matrix, i.e. quantitative (positive) descriptions of the parts of some whole, carrying relative, rather than absolute, information (Aitchison 1986; Greenacre 2019).
 
 *It assumes that you keep your data tidy*: each variable must be saved in its own column and each observation (sample) must be saved in its own row.
 
 This class is of simple use as it inherits from base `matrix`:
 
-```{r}
+```{r composition}
 ## Mineral compositions of rock specimens
 ## Data from Aitchison 1986
 data("hongite")
@@ -58,7 +61,7 @@ A `CompositionMatrix` represents a *closed* composition matrix: each row of the 
 
 The original row sums are kept internally, so that the source data can be restored:
 
-```{r}
+```{r amounts}
 ## Coerce to count data
 counts <- as_amounts(coda)
 
@@ -67,7 +70,7 @@ all.equal(hongite, as.data.frame(counts))
 
 The `parts` argument of the function `as_composition()` is used to define the columns to be used as the compositional part. If `parts` is `NULL` (the default), all `numeric` columns are used. In the case of a `data.frame` coercion, additional columns are removed.
 
-```{r}
+```{r coerce}
 ## Create a data.frame
 X <- data.frame(
   type = c("A", "A", "B", "A", "B", "C", "C", "C", "B"),
@@ -81,11 +84,86 @@ X <- data.frame(
 Y <- as_composition(X)
 ```
 
+It is also possible to define a grouping variable (see `vignette("groups")`):
+
+```{r group}
+## Coerce to a compositional matrix
+## (the 'type' column will be used for group definition)
+Y <- as_composition(X, group = 1)
+```
+
+# Repeated measurements
+
+If your data contain several observations for the same sample (e.g. repeated measurements), you can use one or more categorical variable to split the data into subsets and compute the compositional mean for each:
+
+```{r condense}
+## Data from Wood and Liu 2023
+data("bronze", package = "folio")
+
+## Create a composition data matrix
+coda <- as_composition(bronze, parts = 4:11)
+
+## Compositional mean by artefact
+coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
+```
+
+# Descriptive statistics
+
+* `covariance()`: (centered) log-ratio covariance matrix (Aitchison 1986);
+* `mean()`: compositional mean (Aitchison 1986);
+* `pip()`: proportionality index of parts (Egozcue & Pawlowsky-Glahn 2023);
+* `quantile()`: sample quantiles;
+* `variation()`: variation matrix (Aitchison 1986).
+
+```{r mean}
+## Compositional mean
+mean(coda)
+```
+
+# Data visualization
+
+Compositional data are multivariate data for which relative values are important: they can easily be visualized using stacked bar charts showing sample composition.
+
+Note that for better readability, you can select only some of the parts (e.g. major elements), but keep in mind that the percentages displayed may change radically if additional parts are added/deleted (principle of subcompositional coherence; Greenacre 2019).
+
+```{r barplot, fig.width=10, fig.height=10, out.width='100%'}
+## Select major elements
+major <- coda[, is_element_major(coda)]
+
+## Compositional bar plot
+barplot(major, order_rows = "Cu", order_columns = TRUE, space = 0)
+```
+
+As described by Filzmoser *et al.* (2009), histograms (showing univariate distributions) can be calculated and plotted:
+
+```{r histogram, fig.width=5, fig.height=5, fig.show='hold', out.width='33%'}
+hist(coda, select = "Cu")
+hist(coda, select = "Sn")
+hist(coda, select = "Pb")
+```
+
+[**isopleuros**](https://packages.tesselle.org/isopleuros/) is a companion package to **nexus** that allows to create ternary plots:
+
+```{r ternary, fig.width=10, fig.height=10, out.width='100%'}
+## Load
+library(isopleuros)
+
+## Cu-Sn-Pb ternary plot
+CuSnPb <- coda[, c("Cu", "Sn", "Pb")]
+ternary_plot(CuSnPb)
+ternary_grid()
+```
+
 # Log-ratio transformations
 
-The package provides the following (inverse) transformations: centered log ratio (*CLR*, Aitchison 1986), additive log ratio (*ALR*, Aitchison 1986), isometric log ratio (*ILR*, Egozcue et al. 2003) and pivot log-ratio (*PLR*, Hron et al. 2017).
+The package provides the following (inverse) transformations: 
 
-```{r transform, fig.width=7, fig.height=8, out.width='100%'}
+* `transform_clr()`: centered log ratio (*CLR*, Aitchison 1986);
+* `transform_alr()`: additive log ratio (*ALR*, Aitchison 1986);
+* `transform_ilr()`: isometric log ratio (*ILR*, Egozcue *et al.* 2003);
+* `transform_plr()`: pivot log-ratio (*PLR*, Hron *et al.* 2017).
+
+```{r transform}
 ## CLR
 clr <- transform_clr(coda)
 
@@ -95,13 +173,17 @@ back <- transform_inverse(clr)
 all.equal(back, coda)
 ```
 
-# References
+# References {.unnumbered}
 
 Aitchison, J. (1986). *The Statistical Analysis of Compositional Data. Monographs on Statistics and Applied Probability*. Londres, UK ; New York, USA: Chapman and Hall.
 
+Egozcue, J. J. and Pawlowsky-Glahn, V. (2023). Subcompositional Coherence and and a Novel Proportionality Index of Parts. *SORT*, 47(2): 229-244. DOI: [10.57645/20.8080.02.7](https://doi.org/10.57645/20.8080.02.7).
+
 Egozcue, J. J., Pawlowsky-Glahn, V., Mateu-Figueras, G. and Barceló-Vidal, C. (2003). Isometric Logratio Transformations for Compositional Data Analysis. *Mathematical Geology*, 35(3): 279-300. DOI: [10.1023/A:1023818214614](https://doi.org/10.1023/A:1023818214614).
 
-Greenacre, M. (2021). Compositional Data Analysis. *Annual Review of Statistics and Its Application*, 8(1): 271-299. DOI: [10.1146/annurev-statistics-042720-124436](https://doi.org/10.1146/annurev-statistics-042720-124436).
+Filzmoser, P., Hron, K. and Reimann, C. (2009). Univariate Statistical Analysis of Environmental (Compositional) Data: Problems and Possibilities. *Science of The Total Environment*, 407(23): 6100-6108. DOI: [10.1016/j.scitotenv.2009.08.008](https://doi.org/10.1016/j.scitotenv.2009.08.008).
+
+Greenacre, M. J. (2019). *Compositional Data Analysis in Practice*. Chapman & Hall/CRC Interdisciplinary Statistics. Boca Raton: CRC Press, Taylor & Francis Group.
 
 Hron, K., Filzmoser, P., de Caritat, P., Fišerová, E. and Gardlo, A. (2017). Weighted Pivot Coordinates for Compositional Data and Their Application to Geochemical Mapping. *Mathematical Geosciences*, 49(6): 797-814. DOI : [10.1007/s11004-017-9684-z](https://doi.org/10.1007/s11004-017-9684-z).
 
