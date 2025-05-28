@@ -2,7 +2,11 @@
 data("slides")
 
 ## Coerce to compositional data
-coda <- as_composition(slides, groups = 2)
+coda <- as_composition(slides)
 
 ## Quick description
+describe(coda)
+
+## Group
+coda <- group(coda, by = slides$slide)
 describe(coda)
