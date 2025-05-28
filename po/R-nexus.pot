@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nexus 0.5.0.9000\n"
-"POT-Creation-Date: 2025-05-22 17:45+0200\n"
+"POT-Creation-Date: 2025-06-02 14:28+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,19 +19,19 @@ msgstr ""
 msgid "Duplicated rownames!"
 msgstr ""
 
-#: describe.R:86
-msgid "%s of values are zero."
-msgstr ""
-
-#: describe.R:89
+#: describe.R:100
 msgid "Data checking:"
 msgstr ""
 
-#: group.R:73
+#: describe.R:110
+msgid "%s of numeric values are zero"
+msgstr ""
+
+#: group.R:75
 msgid "Nothing to group by."
 msgstr ""
 
-#: group.R:77
+#: group.R:79
 msgid "As many groups as individuals."
 msgstr ""
 
@@ -89,51 +89,51 @@ msgid_plural "Found %g parts (%s)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:15 describe.R:38
+#: describe.R:56
 msgid "%d composition"
 msgid_plural "%d compositions"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:16 describe.R:39
-msgid "with %d part"
-msgid_plural "with %d parts"
+#: describe.R:60
+msgid "%d part"
+msgid_plural "%d parts"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:45
+#: describe.R:69
 msgid "%d group"
 msgid_plural "%d groups"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:49
-msgid "%d unassigned sample."
-msgid_plural "%d unassigned samples."
+#: describe.R:73
+msgid "%d unassigned sample"
+msgid_plural "%d unassigned samples"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:68
-msgid "\n%d missing value:"
-msgid_plural "\n%d missing values:"
+#: describe.R:86
+msgid "%d missing value:"
+msgid_plural "%d missing values:"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:70
-msgid "%d observation (%s) contains missing values."
-msgid_plural "%d observations (%s) contain missing values."
+#: describe.R:88
+msgid "%d observation (%s) contains missing values"
+msgid_plural "%d observations (%s) contain missing values"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:74
-msgid "%d variable (%s) contains missing values."
-msgid_plural "%d variables (%s) contain missing values."
+#: describe.R:92
+msgid "%d variable (%s) contains missing values"
+msgid_plural "%d variables (%s) contain missing values"
 msgstr[0] ""
 msgstr[1] ""
 
-#: describe.R:80
-msgid "%d part with no variance."
-msgid_plural "%d parts with no variance."
+#: describe.R:104
+msgid "%d variable with no variance"
+msgid_plural "%d variables with no variance"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -143,7 +143,7 @@ msgid_plural "No sample belongs to the groups: %s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: group.R:81
+#: group.R:83
 msgid "Found %g group (%s)"
 msgid_plural "Found %g groups (%s)"
 msgstr[0] ""

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: nexus 0.4.0.9000\n"
-"POT-Creation-Date: 2025-05-22 17:45+0200\n"
+"POT-Creation-Date: 2025-05-28 17:13+0200\n"
 "PO-Revision-Date: 2025-03-04 17:34+0000\n"
 "Last-Translator: nfrerebeau <nicolas.frerebeau@u-bordeaux-montaigne.fr>\n"
 "Language-Team: French <https://translate.codeberg.org/projects/tesselle/"
@@ -21,19 +21,19 @@ msgstr "Au moins deux variables sont nécessaires."
 msgid "Duplicated rownames!"
 msgstr "Noms de ligne dupliqués !"
 
-#: describe.R:86
-msgid "%s of values are zero."
-msgstr "%s des valeurs sont égales à zéro."
-
-#: describe.R:89
+#: describe.R:100
 msgid "Data checking:"
 msgstr "Vérification des données :"
 
-#: group.R:73
+#: describe.R:110
+msgid "%s of numeric values are zero"
+msgstr "%s des valeurs numériques sont égales à zéro"
+
+#: group.R:75
 msgid "Nothing to group by."
 msgstr "Rien à regrouper."
 
-#: group.R:77
+#: group.R:79
 msgid "As many groups as individuals."
 msgstr "Autant de groupes que d'individus."
 
@@ -88,64 +88,56 @@ msgstr "ACP du rapport logarithmique centré (CLR)."
 #: coerce.R:60
 msgid "Found %g part (%s)"
 msgid_plural "Found %g parts (%s)"
-msgstr[0] "Trouvé %g partie (%s)"
-msgstr[1] "Trouvé %g parties (%s)"
+msgstr[0] "%g partie identifiée (%s)"
+msgstr[1] "%g parties identifiées (%s)"
 
-#: describe.R:15 describe.R:38
+#: describe.R:56
 msgid "%d composition"
 msgid_plural "%d compositions"
 msgstr[0] "%d composition"
 msgstr[1] "%d compositions"
 
-#: describe.R:16 describe.R:39
-msgid "with %d part"
-msgid_plural "with %d parts"
-msgstr[0] "avec %d partie"
-msgstr[1] "avec %d parties"
+#: describe.R:60
+msgid "%d part"
+msgid_plural "%d parts"
+msgstr[0] "%d partie"
+msgstr[1] "%d parties"
 
-#: describe.R:45
+#: describe.R:69
 msgid "%d group"
 msgid_plural "%d groups"
 msgstr[0] "%d groupe"
 msgstr[1] "%d groupes"
 
-#: describe.R:49
-msgid "%d unassigned sample."
-msgid_plural "%d unassigned samples."
-msgstr[0] "%d individu non attribué."
-msgstr[1] "%d individus non attribués."
+#: describe.R:73
+msgid "%d unassigned sample"
+msgid_plural "%d unassigned samples"
+msgstr[0] "%d individu non attribué"
+msgstr[1] "%d individus non attribués"
 
-#: describe.R:68
-msgid ""
-"\n"
-"%d missing value:"
-msgid_plural ""
-"\n"
-"%d missing values:"
-msgstr[0] ""
-"\n"
-"%d valeur manquante :"
-msgstr[1] ""
-"\n"
-"%d valeurs manquantes :"
+#: describe.R:86
+msgid "%d missing value:"
+msgid_plural "%d missing values:"
+msgstr[0] "%d valeur manquante :"
+msgstr[1] "%d valeurs manquantes :"
 
-#: describe.R:70
-msgid "%d observation (%s) contains missing values."
-msgid_plural "%d observations (%s) contain missing values."
-msgstr[0] "%d observation (%s) contient des valeurs manquantes."
-msgstr[1] "%d observations (%s) contiennent des valeurs manquantes."
+#: describe.R:88
+msgid "%d observation (%s) contains missing values"
+msgid_plural "%d observations (%s) contain missing values"
+msgstr[0] "%d observation (%s) contient des valeurs manquantes"
+msgstr[1] "%d observations (%s) contiennent des valeurs manquantes"
 
-#: describe.R:74
-msgid "%d variable (%s) contains missing values."
-msgid_plural "%d variables (%s) contain missing values."
-msgstr[0] "%d variable (%s) contient des valeurs manquantes."
-msgstr[1] "%d variables (%s) contiennent des valeurs manquantes."
+#: describe.R:92
+msgid "%d variable (%s) contains missing values"
+msgid_plural "%d variables (%s) contain missing values"
+msgstr[0] "%d variable (%s) contient des valeurs manquantes"
+msgstr[1] "%d variables (%s) contiennent des valeurs manquantes"
 
-#: describe.R:80
-msgid "%d part with no variance."
-msgid_plural "%d parts with no variance."
-msgstr[0] "%d partie de variance nulle."
-msgstr[1] "%d parties de variance nulle."
+#: describe.R:104
+msgid "%d variable with no variance"
+msgid_plural "%d variables with no variance"
+msgstr[0] "%d variable de variance nulle"
+msgstr[1] "%d variables de variance nulle"
 
 #: group.R:12
 msgid "No sample belongs to the group: %s."
@@ -153,8 +145,8 @@ msgid_plural "No sample belongs to the groups: %s."
 msgstr[0] "Aucun individu n'appartient au groupe : %s."
 msgstr[1] "Aucun individu n'appartient aux groupes : %s."
 
-#: group.R:81
+#: group.R:83
 msgid "Found %g group (%s)"
 msgid_plural "Found %g groups (%s)"
-msgstr[0] "%g groupe trouvé (%s)"
-msgstr[1] "%g groupes trouvés (%s)"
+msgstr[0] "%g groupe identifié (%s)"
+msgstr[1] "%g groupes identifiés (%s)"
