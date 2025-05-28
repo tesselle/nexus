@@ -12,12 +12,17 @@ Exploration and analysis of compositional data in the framework of Aitchison (19
 }
 \details{
 \tabular{ll}{
-\strong{Package:} \tab nexus \cr
-\strong{Type:} \tab Package \cr
-\strong{Version:} \tab 0.5.0 \cr
-\strong{License:} \tab GPL-3 \cr
-\strong{Zenodo:} \tab \doi{10.5281/zenodo.10225630} \cr
+\strong{Version} \tab 0.5.0 \cr
+\strong{License} \tab GPL-3 \cr
+\strong{CRAN DOI} \tab \doi{10.32614/CRAN.package.nexus} \cr
+\strong{Zenodo DOI} \tab \doi{10.5281/zenodo.10225630} \cr
 }
+
+Archéosciences Bordeaux (UMR 6034)\cr
+Maison de l'Archéologie\cr
+Université Bordeaux Montaigne\cr
+F-33607 Pessac cedex\cr
+France
 }
 \section{Package options}{
 
@@ -33,29 +38,25 @@ Useful links:
 \itemize{
   \item \url{https://codeberg.org/tesselle/nexus}
   \item \url{https://packages.tesselle.org/nexus/}
-  \item \url{https://tesselle.r-universe.dev/nexus,}
+  \item \url{https://tesselle.r-universe.dev/nexus}
   \item Report bugs at \url{https://codeberg.org/tesselle/nexus/issues}
 }
 
 }
 \author{
-\strong{Full list of authors and contributors} (alphabetic order)
+\strong{Maintainer}: Nicolas Frerebeau \email{nicolas.frerebeau@u-bordeaux-montaigne.fr} (\href{https://orcid.org/0000-0001-5759-4944}{ORCID})
 
-\tabular{ll}{
-Nicolas Frerebeau \tab \emph{Université Bordeaux Montaigne, France} \cr
-Brice Lebrun \tab \emph{Université Bordeaux Montaigne, France} \cr
-Anne Philippe \tab \emph{Université de Nantes, France} \cr
+Authors:
+\itemize{
+  \item Anne Philippe \email{anne.philippe@univ-nantes.fr} (\href{https://orcid.org/0000-0002-5331-5087}{ORCID})
 }
 
-\strong{Package maintainer}
+Other contributors:
+\itemize{
+  \item Brice Lebrun (\href{https://orcid.org/0000-0001-7503-8685}{ORCID}) (Logo designer) [artist]
+  \item Université Bordeaux Montaigne (03pbgwk21) [funder]
+  \item CNRS (02feahw73) [funder]
+}
 
-Nicolas Frerebeau\cr
-\email{nicolas.frerebeau@u-bordeaux-montaigne.fr}
-
-Archéosciences Bordeaux (UMR 6034)\cr
-Maison de l'Archéologie\cr
-Université Bordeaux Montaigne\cr
-F-33607 Pessac cedex\cr
-France
 }
 \keyword{internal}

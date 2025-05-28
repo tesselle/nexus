@@ -19,7 +19,6 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 # nexus <img width=120px src="man/figures/logo.png" align="right" />
 
 <!-- badges: start -->
-[![status-badge](https://ci.codeberg.org/api/badges/14695/status.svg)](https://ci.codeberg.org/repos/14695){.pkgdown-devel}
 [![Code coverage](https://packages.tesselle.org/nexus/coverage/badge.svg)](https://packages.tesselle.org/nexus/coverage/){.pkgdown-devel}
 [![Dependencies](https://tinyverse.netlify.app/badge/nexus)](https://cran.r-project.org/package=nexus){.pkgdown-devel}
 
@@ -28,19 +27,17 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 [![CRAN checks](https://badges.cranchecks.info/worst/nexus.svg)](https://cran.r-project.org/web/checks/check_results_nexus.html){.pkgdown-release}
 [![CRAN Downloads](https://cranlogs.r-pkg.org/badges/nexus)](https://cran.r-project.org/package=nexus){.pkgdown-release}
 
-[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10225630.svg)](https://doi.org/10.5281/zenodo.10225630)
 <!-- badges: end -->
 
 ## Overview
 
-This package is currently *experimental*. This means that it is functional, but interfaces and functionalities may change over time, testing and documentation may be lacking.
-
 Exploration and analysis of compositional data in the framework of @aitchison1986. **nexus** provides tools for chemical fingerprinting and source tracking of ancient materials. This package provides methods for compositional data analysis:
 
-* Compositional statistics.
-* Compositional data visualization.
+* Compositional statistics: `covariance()`, `mean()`, `pip()`, `quantile()`, `variance()`, `variation()`.
+* Compositional data visualization: `barplot()`, `boxplot()`, `pairs()`, `plot()`.
 * Logratio transformations: `transform_lr()`, `transform_clr()`, `transform_alr()`, `transform_ilr()`, `transform_plr()`.
 * Zero and missing value replacement.
 * Outlier detection: `detect_outlier()`.

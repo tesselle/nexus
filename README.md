@@ -5,9 +5,6 @@
 
 <!-- badges: start -->
 
-<a href="https://ci.codeberg.org/repos/14695" class="pkgdown-devel"><img
-src="https://ci.codeberg.org/api/badges/14695/status.svg"
-alt="status-badge" /></a>
 <a href="https://packages.tesselle.org/nexus/coverage/"
 class="pkgdown-devel"><img
 src="https://packages.tesselle.org/nexus/coverage/badge.svg"
@@ -34,26 +31,24 @@ class="pkgdown-release"><img
 src="https://cranlogs.r-pkg.org/badges/nexus"
 alt="CRAN Downloads" /></a>
 
-[![Project Status: WIP – Initial development is in progress, but there
-has not yet been a stable, usable release suitable for the
-public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+[![Project Status: Active – The project has reached a stable, usable
+state and is being actively
+developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10225630.svg)](https://doi.org/10.5281/zenodo.10225630)
 <!-- badges: end -->
 
 ## Overview
 
-This package is currently *experimental*. This means that it is
-functional, but interfaces and functionalities may change over time,
-testing and documentation may be lacking.
-
 Exploration and analysis of compositional data in the framework of J.
 Aitchison (1986). **nexus** provides tools for chemical fingerprinting
 and source tracking of ancient materials. This package provides methods
 for compositional data analysis:
 
-- Compositional statistics.
-- Compositional data visualization.
+- Compositional statistics: `covariance()`, `mean()`, `pip()`,
+  `quantile()`, `variance()`, `variation()`.
+- Compositional data visualization: `barplot()`, `boxplot()`, `pairs()`,
+  `plot()`.
 - Logratio transformations: `transform_lr()`, `transform_clr()`,
   `transform_alr()`, `transform_ilr()`, `transform_plr()`.
 - Zero and missing value replacement.
