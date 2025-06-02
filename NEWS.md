@@ -1,3 +1,5 @@
+# nexus 0.6.0.9000
+
 # nexus 0.6.0
 ## New classes and methods
 * Add `boxplot()` methods for `LogRatio` and `GroupedLogRatio` classes.

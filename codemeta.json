@@ -280,7 +280,7 @@
   "applicationCategory": "ArchaeologicalScience",
   "isPartOf": "https://www.tesselle.org",
   "keywords": ["archaeology", "archaeological-science", "archaeometry", "compositional-data", "provenance-studies", "r-package"],
-  "fileSize": "903.951KB",
+  "fileSize": "903.743KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
