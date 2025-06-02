@@ -4,17 +4,17 @@
   "identifier": "nexus",
   "description": "Exploration and analysis of compositional data in the framework of Aitchison (1986, ISBN: 978-94-010-8324-9). This package provides tools for chemical fingerprinting and source tracking of ancient materials.",
   "name": "nexus: Sourcing Archaeological Materials by Chemical Composition",
-  "relatedLink": ["https://packages.tesselle.org/nexus/", "https://CRAN.R-project.org/package=nexus"],
+  "relatedLink": ["https://packages.tesselle.org/nexus/", "https://tesselle.r-universe.dev/nexus", "https://CRAN.R-project.org/package=nexus"],
   "codeRepository": "https://codeberg.org/tesselle/nexus",
   "issueTracker": "https://codeberg.org/tesselle/nexus/issues",
   "license": "https://spdx.org/licenses/GPL-3.0",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.4.3 (2025-02-28)",
+  "runtimePlatform": "R version 4.5.0 (2025-04-11)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -81,6 +81,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=folio"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "fontquiver",
+      "name": "fontquiver",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=fontquiver"
     },
     {
       "@type": "SoftwareApplication",
@@ -178,7 +190,7 @@
       "@type": "SoftwareApplication",
       "identifier": "dimensio",
       "name": "dimensio",
-      "version": ">= 0.13.0",
+      "version": ">= 0.14.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -191,7 +203,7 @@
       "@type": "SoftwareApplication",
       "identifier": "arkhe",
       "name": "arkhe",
-      "version": ">= 1.10.0",
+      "version": ">= 1.11.0",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -268,7 +280,7 @@
   "applicationCategory": "ArchaeologicalScience",
   "isPartOf": "https://www.tesselle.org",
   "keywords": ["archaeology", "archaeological-science", "archaeometry", "compositional-data", "provenance-studies", "r-package"],
-  "fileSize": "824.484KB",
+  "fileSize": "903.951KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
@@ -288,10 +300,10 @@
       "name": "{nexus: Sourcing Archaeological Materials by Chemical Composition}",
       "identifier": "10.5281/zenodo.10225630",
       "url": "https://packages.tesselle.org/nexus/",
-      "description": "R package version 0.5.0",
+      "description": "R package version 0.6.0",
       "@id": "https://doi.org/10.5281/zenodo.10225630",
       "sameAs": "https://doi.org/10.5281/zenodo.10225630"
     }
   ],
-  "developmentStatus": "https://www.repostatus.org/#wip"
+  "developmentStatus": "https://www.repostatus.org/#active"
 }

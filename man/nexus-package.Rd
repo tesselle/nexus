@@ -12,7 +12,7 @@ Exploration and analysis of compositional data in the framework of Aitchison (19
 }
 \details{
 \tabular{ll}{
-\strong{Version} \tab 0.5.0 \cr
+\strong{Version} \tab 0.6.0 \cr
 \strong{License} \tab GPL-3 \cr
 \strong{CRAN DOI} \tab \doi{10.32614/CRAN.package.nexus} \cr
 \strong{Zenodo DOI} \tab \doi{10.5281/zenodo.10225630} \cr

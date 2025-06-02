@@ -1,6 +1,16 @@
-# nexus 0.5.0.9000
+# nexus 0.6.0
 ## New classes and methods
-* Add `rbind()` method for `GroupedComposition` objects.
+* Add `boxplot()` methods for `LogRatio` and `GroupedLogRatio` classes.
+* Add `group_factor()`.
+* Add `plot()` method for `GroupedLogRatio` class.
+* Add `rbind()` method for `GroupedComposition` class.
+
+## Enhancements
+* `group()` now preserves ordered factor.
+
+## Breaking changes
+* Rename `group_length()` to `group_n()`.
+* Replace `palette_color` and `palette_symbol` arguments of `barplot()`, `pairs()` and `plot()` with `color` and `symbol`.
 
 # nexus 0.5.0
 ## Enhancements
@@ -31,11 +41,11 @@
 
 # nexus 0.3.0
 ## New classes and methods
-* Add transformation methods for `LogRatio` objects (clr <-> alr, clr -> ilr, alr -> ilr).
+* Add transformation methods for `LogRatio` classes (clr <-> alr, clr -> ilr, alr -> ilr).
 * Add `condense()` to compute compositional mean of data subsets.
 * Add `pip()` to compute proportionality index of parts.
-* Add `rbind()` method for `CompositionMatrix` objects.
-* Add `show()` methods for `LogRatio` objects.
+* Add `rbind()` method for `CompositionMatrix` class.
+* Add `show()` method for `LogRatio` class.
 * Add `is_element_major()`, `is_element_minor()`, `is_element_trace()` and `is_oxide()` methods for `CompositionMatrix` objects.
 * Add `variance()` and `variance_total()` to compute (total) variance.
 
@@ -44,7 +54,7 @@
 * Improve bar chart rendering.
 
 ## Bugfixes & changes
-* Fix `pca()` for `LogRatio` objects (default arguments were not passed to the internal method).
+* Fix `pca()` for `LogRatio` class (default arguments were not passed to the internal method).
 
 ## Internals
 * Store groups as `factor` instead of `character`.
