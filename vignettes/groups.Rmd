@@ -1,5 +1,5 @@
 ---
-title: "Grouped Data"
+title: "Grouped Compositional Data"
 author: "N. Frerebeau"
 date: "`r Sys.Date()`"
 output:
@@ -8,7 +8,7 @@ output:
       toc: true
       number_sections: true
 vignette: >
-  %\VignetteIndexEntry{Grouped Data}
+  %\VignetteIndexEntry{Grouped Compositional Data}
   %\VignetteEngine{knitr::knitr}
   %\VignetteEncoding{UTF-8}
 ---
@@ -23,7 +23,7 @@ Sys.setenv(LANGUAGE = "en") # Force locale
 
 ```{r setup}
 ## Install extra packages (if needed)
-# install.packages("folio")
+# install.packages("folio") # datasets
 
 library(nexus)
 ```
@@ -35,7 +35,7 @@ Provenance studies typically rely on two approaches, which can be used together:
 * Identification of groups among the artifacts being studied, based on mineralogical or geochemical criteria (*clustering*).
 * Comparison with so-called reference groups, i.e. known geological sources or archaeological contexts (*classification*).
 
-For the sake of the demonstration, let's assume that a third of the samples are of unknown provenance: missing values (`NA`) can be used to specify that a sample does not belong to any group.
+We use here the results of the analysis of 369 ancient bronzes (see `help(bronze, package = "folio")`) attributed to three dynasties. For the sake of the demonstration, let's assume that a third of the samples are of unknown provenance: missing values (`NA`) can be used to specify that a sample does not belong to any group.
 
 ```{r data}
 ## Data from Wood and Liu 2023
@@ -117,16 +117,25 @@ summary(fit)
 
 The MANOVA results suggest that there are statistically significant differences between groups.
 
-```{r lda, fig.width=7, fig.height=7, out.width='100%'}
+Let's now try how effective a Linear Discriminant Analysis (LDA) is at separating the three groups:
+
+```{r lda}
 ## LDA
-discr <- MASS::lda(ilr_train, grouping = group_names(ilr_train))
-plot(discr)
+(discr <- MASS::lda(ilr_train, grouping = group_names(ilr_train)))
 ```
+
+By default, some of these results (group averages and discriminant function coefficients) are reported in ILR coordinates, making them difficult to interpret. Therefore, it is preferable to transform these results back into compositions or equivalent CLR coefficients:
 
 ```{r lda-model}
 ## Back transform results
 transform_inverse(discr$means, origin = ilr_train)
 ```
+
+```{r lda-plot, fig.width=10, fig.height=10, out.width='100%'}
+plot(discr, col = c("#DDAA33", "#BB5566", "#004488")[group_indices(ilr_train)])
+```
+
+We can then try to predict the group membership of the unassigned samples:
 
 ```{r lda-predict}
 ## Subset unassigned samples

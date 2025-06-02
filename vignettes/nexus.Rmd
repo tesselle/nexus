@@ -109,7 +109,10 @@ coda <- condense(coda, by = list(bronze$dynasty, bronze$reference))
 
 # Descriptive statistics
 
+Several compositional statistics can be calculated:
+
 * `covariance()`: (centered) log-ratio covariance matrix (Aitchison 1986);
+* `dist()`: Aitchison distance (euclidean distance on CLR-transformed data);
 * `mean()`: compositional mean (Aitchison 1986);
 * `pip()`: proportionality index of parts (Egozcue & Pawlowsky-Glahn 2023);
 * `quantile()`: sample quantiles;
