@@ -15,6 +15,17 @@ expect_equivalent(perturbation(as_composition(x), as_composition(y)), as_composi
 expect_equivalent(as_composition(x) %perturbe% as_composition(y), as_composition(x * y))
 expect_equivalent(as_composition(x) %perturbe% - as_composition(y), as_composition(x / y))
 
+# Mass to molar conversion
+hydro_mass <- c(Na = 159, K = 6.318, Mg = 92.41, Ca = 279.1, Cl = 345.956092,
+           SO4 = 730.60139, HCO3 = 349.5047) # mass
+molar_weights <- c(22.99, 39.098, 34.305, 40.078, 35.453, 96.063, 61.017)
+hydro_mol <- perturbation(as_composition(hydro_mass), 1 / molar_weights)
+
+expect_equivalent(
+  round(hydro_mol@.Data, 3),
+  matrix(c(0.174, 0.004, 0.068, 0.175, 0.245, 0.191, 0.144), nrow = 1)
+)
+
 # Powering =====================================================================
 # c(1^2, 2^2, 1^2) / 6
 expect_identical(powering(y, 2), closure(y ^ 2))
